@@ -22,7 +22,8 @@
         android:layout_alignBottom="@+id/button1"
         android:layout_marginLeft="56dp"
         android:layout_toRightOf="@+id/button1"
-        android:text="Övningar" />
+        android:text="Övningar"
+        android:onClick="ovningar" />
 
     <Button
         android:id="@+id/button3"
@@ -31,7 +32,8 @@
         android:layout_alignRight="@+id/button1"
         android:layout_below="@+id/button1"
         android:layout_marginTop="74dp"
-        android:text="Statistik" />
+        android:text="Statistik"
+        android:onClick="statistik" />
 
     <Button
         android:id="@+id/button4"
@@ -39,6 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/button3"
         android:layout_alignRight="@+id/button2"
-        android:text="Historik" />
+        android:text="Historik"
+        android:onClick="historik" />
 
 </RelativeLayout>

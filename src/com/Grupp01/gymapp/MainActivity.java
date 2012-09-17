@@ -23,4 +23,16 @@ public class MainActivity extends Activity {
     public void workout(View view)
     {
     }
+    
+    public void historik(View view)
+    {
+    }
+    
+    public void statistik(View view)
+    {
+    }
+    
+    public void ovningar(View view)
+    {
+    }
 }
