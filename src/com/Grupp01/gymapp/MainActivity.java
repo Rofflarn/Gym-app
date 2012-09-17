@@ -28,13 +28,19 @@ public class MainActivity extends Activity {
     
     public void historik(View view)
     {
+    	Intent historik = new Intent(this, Historik.class);
+    	startActivity(historik);
     }
     
     public void statistik(View view)
     {
+    	Intent statistik = new Intent(this, Statistik.class);
+    	startActivity(statistik);
     }
     
     public void ovningar(View view)
     {
+    	Intent ovningar = new Intent(this, Ovningar.class);
+    	startActivity(ovningar);
     }
 }
