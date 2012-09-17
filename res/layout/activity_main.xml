@@ -11,7 +11,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginLeft="47dp"
         android:layout_marginTop="70dp"
-        android:text="Button" />
+        android:text="Träningspass" />
 
     <Button
         android:id="@+id/button2"
@@ -21,7 +21,7 @@
         android:layout_alignBottom="@+id/button1"
         android:layout_marginLeft="56dp"
         android:layout_toRightOf="@+id/button1"
-        android:text="Button" />
+        android:text="Övningar" />
 
     <Button
         android:id="@+id/button3"
@@ -30,7 +30,7 @@
         android:layout_alignRight="@+id/button1"
         android:layout_below="@+id/button1"
         android:layout_marginTop="74dp"
-        android:text="Button" />
+        android:text="Statistik" />
 
     <Button
         android:id="@+id/button4"
@@ -38,24 +38,6 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/button3"
         android:layout_alignRight="@+id/button2"
-        android:text="Button" />
-
-    <Button
-        android:id="@+id/button5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/button3"
-        android:layout_below="@+id/button3"
-        android:layout_marginTop="78dp"
-        android:text="Button" />
-
-    <Button
-        android:id="@+id/button6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/button5"
-        android:layout_alignBottom="@+id/button5"
-        android:layout_alignLeft="@+id/button4"
-        android:text="Button" />
+        android:text="Historik" />
 
 </RelativeLayout>
