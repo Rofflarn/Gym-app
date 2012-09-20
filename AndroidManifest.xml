@@ -20,6 +20,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".Workout"
+            android:label="@string/title_activity_main" />
+        <activity
+            android:name=".Statistik"
+            android:label="@string/title_activity_main" />
+        <activity
+            android:name=".Historik"
+            android:label="@string/title_activity_main" />
+        <activity
+            android:name=".Ovningar"
+            android:label="@string/title_activity_main" />
     </application>
 
 </manifest>
