@@ -5,7 +5,7 @@
  * should not be modified by hand.
  */
 
-package com.Grupp01.gymapp;
+package com.actionbarsherlock;
 
 public final class R {
     public static final class attr {
