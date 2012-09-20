@@ -25,12 +25,27 @@
             </intent-filter>
         </activity>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         <activity android:name="Historik" android:label="History"></activity>
         <activity android:name="Ovningar" android:label="Excercises"></activity>
         <activity android:name="Statistik" android:label="Statistic"></activity>
         <activity android:name="Workout" android:label="Workouts"></activity>
 >>>>>>> origin/ActionbarSherlockTest
+=======
+        <activity
+            android:name=".Workout"
+            android:label="@string/title_activity_main" />
+        <activity
+            android:name=".Statistik"
+            android:label="@string/title_activity_main" />
+        <activity
+            android:name=".Historik"
+            android:label="@string/title_activity_main" />
+        <activity
+            android:name=".Ovningar"
+            android:label="@string/title_activity_main" />
+>>>>>>> 6a22d5983ce33a0376aa42e9e6a5b5281388b819
     </application>
 
 </manifest>
