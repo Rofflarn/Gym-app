@@ -1,10 +1,12 @@
 package com.Grupp01.gymapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
+import com.actionbarsherlock.view.MenuItem;
 
 public class Ovningar extends SherlockActivity {
 
@@ -20,4 +22,5 @@ public class Ovningar extends SherlockActivity {
     	inflater.inflate(R.menu.ovningar, menu);
         return true;
     }
+
 }
