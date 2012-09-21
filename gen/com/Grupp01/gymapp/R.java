@@ -787,16 +787,6 @@ containing a value of this type.
         public static final int ic_launcher=0x7f020056;
     }
     public static final class id {
-<<<<<<< HEAD
-        public static final int button1=0x7f070000;
-        public static final int button2=0x7f070001;
-        public static final int button3=0x7f070002;
-        public static final int button4=0x7f070003;
-        public static final int linearLayout1=0x7f070005;
-        public static final int menu_settings=0x7f070007;
-        public static final int textView1=0x7f070004;
-        public static final int textView2=0x7f070006;
-=======
         public static final int abs__action_bar=0x7f040022;
         public static final int abs__action_bar_container=0x7f040021;
         public static final int abs__action_bar_subtitle=0x7f040011;
@@ -832,7 +822,7 @@ containing a value of this type.
         public static final int button4=0x7f04002a;
         public static final int disableHome=0x7f040009;
         public static final int homeAsUp=0x7f040006;
-        public static final int linearLayout1=0x7f04002b;
+        public static final int linearLayout1=0x7f04002c;
         public static final int listMode=0x7f040002;
         public static final int menu_save=0x7f04002e;
         public static final int normal=0x7f040001;
@@ -840,14 +830,13 @@ containing a value of this type.
         public static final int showHome=0x7f040005;
         public static final int showTitle=0x7f040007;
         public static final int tabMode=0x7f040003;
-        public static final int textView1=0x7f04002c;
+        public static final int textView1=0x7f04002b;
         public static final int textView2=0x7f04002d;
         public static final int useLogo=0x7f040004;
         public static final int wrap_content=0x7f040000;
     }
     public static final class integer {
         public static final int abs__max_action_buttons=0x7f080000;
->>>>>>> origin/ActionbarSherlockTest
     }
     public static final class layout {
         public static final int abs__action_bar_home=0x7f030000;

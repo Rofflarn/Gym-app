@@ -3,8 +3,7 @@ package com.Grupp01.gymapp;
 import android.os.Bundle;
 
 import com.actionbarsherlock.app.SherlockActivity;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
+import com.actionbarsherlock.view.*;
 
 public class Historik extends SherlockActivity {
 
