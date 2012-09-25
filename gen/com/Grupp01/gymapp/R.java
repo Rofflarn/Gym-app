@@ -824,15 +824,16 @@ containing a value of this type.
         public static final int homeAsUp=0x7f040006;
         public static final int linearLayout1=0x7f04002c;
         public static final int listMode=0x7f040002;
-        public static final int menu_save=0x7f04002e;
+        public static final int menu_save=0x7f04002f;
         public static final int normal=0x7f040001;
         public static final int showCustom=0x7f040008;
         public static final int showHome=0x7f040005;
         public static final int showTitle=0x7f040007;
         public static final int tabMode=0x7f040003;
-        public static final int textView1=0x7f04002b;
-        public static final int textView2=0x7f04002d;
+        public static final int textView1=0x7f04002d;
+        public static final int textView2=0x7f04002e;
         public static final int useLogo=0x7f040004;
+        public static final int visa=0x7f04002b;
         public static final int wrap_content=0x7f040000;
     }
     public static final class integer {
@@ -860,12 +861,13 @@ containing a value of this type.
         public static final int abs__screen_simple=0x7f030012;
         public static final int abs__screen_simple_overlay_action_mode=0x7f030013;
         public static final int activity_main=0x7f030014;
-        public static final int historik=0x7f030015;
-        public static final int ovningar=0x7f030016;
-        public static final int sherlock_spinner_dropdown_item=0x7f030017;
-        public static final int sherlock_spinner_item=0x7f030018;
-        public static final int statistik=0x7f030019;
-        public static final int workout=0x7f03001a;
+        public static final int dialog=0x7f030015;
+        public static final int historik=0x7f030016;
+        public static final int ovningar=0x7f030017;
+        public static final int sherlock_spinner_dropdown_item=0x7f030018;
+        public static final int sherlock_spinner_item=0x7f030019;
+        public static final int statistik=0x7f03001a;
+        public static final int workout=0x7f03001b;
     }
     public static final class menu {
         public static final int activity_main=0x7f0b0000;
