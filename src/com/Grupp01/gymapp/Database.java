@@ -29,7 +29,8 @@ public class Database {
 			createMuscles(db);
 			createSets(db);
 			createUsers(db);
-		   
+			createPassTemplates(db);
+			createSetTemplates(db);
 		}
 		
 		/**
@@ -75,8 +76,8 @@ public class Database {
 		
 		private void createSets(SQLiteDatabase db)
 		{
-			 db.execSQL("CREATE TABLE Sets (SetId INTEGER PRIMARY KEY AUTOINCREMENT, SetReps INTEGER, SetWeight REAL, PassId INTEGER, SetDuration NUMERIC, "
-					 	+ "ExerciseId INTEGER NOT NULL, SetDistance INTEGER)");
+			 db.execSQL("CREATE TABLE Sets (SetId INTEGER PRIMARY KEY AUTOINCREMENT, SetReps INTEGER, SetWeight REAL, SetDistance INTEGER, PassId INTEGER,"
+					 	+ " SetDuration NUMERIC, ExerciseId INTEGER NOT NULL)");
 		}
 		
 		private void createSports(SQLiteDatabase db)
@@ -86,7 +87,17 @@ public class Database {
 		
 		private void createUsers(SQLiteDatabase db)
 		{
-			 db.execSQL("CREATE TABLE Users (UserId  INTEGER PRIMARY KEY AUTOINCREMENT, UserName TEXT NOT NULL, UserBirthday NUMERIC NOT NULL, UserInitialWeight REAL)");
+			 db.execSQL("CREATE TABLE Users (UserId INTEGER PRIMARY KEY AUTOINCREMENT, UserName TEXT NOT NULL, UserBirthday NUMERIC NOT NULL, UserInitialWeight REAL)");
+		}
+		
+		private void createPassTemplates(SQLiteDatabase db)
+		{
+			 db.execSQL("CREATE TABLE PassTemplates (PassTemplateId INTEGER PRIMARY KEY AUTOINCREMENT, PassTemplateName TEXT NOT NULL)");
+		}
+		
+		private void createSetTemplates(SQLiteDatabase db)
+		{
+			 db.execSQL("CREATE TABLE SetTemplates (SetTemplateId INTEGER PRIMARY KEY AUTOINCREMENT, SetTemplateReps INTEGER, SetTemplateWeight REAL, SetTemplateDistance INTEGER,ExerciseId INTEGER NOT NULL, PassTemplateId INTEGER NOT NULL))");
 		}
 		
 		
