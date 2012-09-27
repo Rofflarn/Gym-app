@@ -1,5 +1,10 @@
 package com.Grupp01.gymapp;
 
+<<<<<<< HEAD
+=======
+import android.app.Dialog;
+import android.content.Intent;
+>>>>>>> f22e36ff53d81966827745cabc9a19cd87443913
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.ListView;
@@ -8,7 +13,11 @@ import android.widget.TextView;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
+<<<<<<< HEAD
 import com.actionbarsherlock.view.MenuItem.OnMenuItemClickListener;
+=======
+import com.actionbarsherlock.view.MenuItem;
+>>>>>>> f22e36ff53d81966827745cabc9a19cd87443913
 
 public class Ovningar extends SherlockActivity {
 
@@ -16,9 +25,13 @@ public class Ovningar extends SherlockActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ovningar);
+<<<<<<< HEAD
         ListView listView = (ListView)findViewById(R.id.listView1);
         TextView tv = new TextView(this);
         tv.setText("funkar");
+=======
+        getSupportActionBar().setHomeButtonEnabled(true);
+>>>>>>> f22e36ff53d81966827745cabc9a19cd87443913
     }
 
     @Override
@@ -38,6 +51,24 @@ public class Ovningar extends SherlockActivity {
     		
     	});
         return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                // app icon in action bar clicked; go home
+                Intent intentMain = new Intent(this, MainActivity.class);
+                intentMain.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intentMain);
+                return true;
+            case R.id.menu_addExe:
+            	Intent intentAddExe = new Intent(this, AddExercise.class);
+                intentAddExe.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intentAddExe);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
     
 //    public void newExercise(View view)
