@@ -26,12 +26,16 @@ public class Database {
 			createPasses(db);
 			createMeasures(db);
 			createMeasureData(db);		
-			db.execSQL("CREATE TABLE Muscles (MuscleId INTEGER PRIMARY KEY AUTOINCREMENT, MuscleName TEXT NOT NULL, MuscleGroupId INTEGER NOT NULL, MuscleImage TEXT)");
-		    db.execSQL("CREATE TABLE Sets (SetId INTEGER PRIMARY KEY AUTOINCREMENT, SetReps INTEGER, SetWeight REAL, PassId INTEGER, SetDuration NUMERIC, ExerciseId INTEGER NOT NULL, SetDistance INTEGER)");
-		    db.execSQL("CREATE TABLE Sports (SportId  INTEGER PRIMARY KEY AUTOINCREMENT, SportName TEXT NOT NULL)");
-		    db.execSQL("CREATE TABLE Users (UserId  INTEGER PRIMARY KEY AUTOINCREMENT, UserName TEXT NOT NULL, UserBirthday NUMERIC NOT NULL, UserInitialWeight REAL)");
+			createMuscles(db);
+			createSets(db);
+			createUsers(db);
+		   
 		}
 		
+		/**
+		 * 
+		 * @param db
+		 */
 		private void createExercises(SQLiteDatabase db)
 		{
 			db.execSQL("CREATE TABLE Exercises (ExceriseId INTEGER PRIMARY KEY AUTOINCREMENT, ExercisePri INTEGER, ExerciseSec INTEGER," +
@@ -63,6 +67,29 @@ public class Database {
 		{
 			db.execSQL("CREATE TABLE Measures (MeasureId INTEGER PRIMARY KEY AUTONINCREMENT, MeasureData NUMERIC NOT NULL, UserId INTEGER NOT NULL);");
 		}
+		
+		private void createMuscles(SQLiteDatabase db)
+		{
+		db.execSQL("CREATE TABLE Muscles (MuscleId INTEGER PRIMARY KEY AUTOINCREMENT, MuscleName TEXT NOT NULL, MuscleGroupId INTEGER NOT NULL, MuscleImage TEXT)");
+		}
+		
+		private void createSets(SQLiteDatabase db)
+		{
+			 db.execSQL("CREATE TABLE Sets (SetId INTEGER PRIMARY KEY AUTOINCREMENT, SetReps INTEGER, SetWeight REAL, PassId INTEGER, SetDuration NUMERIC, "
+					 	+ "ExerciseId INTEGER NOT NULL, SetDistance INTEGER)");
+		}
+		
+		private void createSports(SQLiteDatabase db)
+		{
+			 db.execSQL("CREATE TABLE Sports (SportId  INTEGER PRIMARY KEY AUTOINCREMENT, SportName TEXT NOT NULL)");
+		}
+		
+		private void createUsers(SQLiteDatabase db)
+		{
+			 db.execSQL("CREATE TABLE Users (UserId  INTEGER PRIMARY KEY AUTOINCREMENT, UserName TEXT NOT NULL, UserBirthday NUMERIC NOT NULL, UserInitialWeight REAL)");
+		}
+		
+		
 	}
 
 }
