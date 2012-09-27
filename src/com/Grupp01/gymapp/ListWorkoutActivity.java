@@ -3,13 +3,17 @@ package com.Grupp01.gymapp;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockActivity;
@@ -21,6 +25,13 @@ public class ListWorkoutActivity extends SherlockActivity {
 	private String  [] listWorkouts = { "Övning 1", "Övning 2", "Övning 3",
 	"Övning 4", "Övning 5","Övning 6","Övning 7","Övning 8","Övning 9","Övning 10","Övning 11","Övning 12",};
 	//list1 is only a string used in testing before fetching data from DB
+	
+	public final static String WORKOUT_NAME = "com.Grupp01.gymapp.WORKOUT";
+	static final int dialog_id = 0;
+	TextView Dialog_TextView;
+	EditText Dialog_EditText;
+	Button Dialog_addWorkout, Dialog_Cancel;
+	Dialog d;
 	
 	private ListView mainListView ;  				
 	private ArrayAdapter<String> listAdapter ;  
@@ -72,6 +83,49 @@ public class ListWorkoutActivity extends SherlockActivity {
     			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
     			startActivity(intent);
     			return true;
+    		case	R.id.menu_addWorkout:
+    			d = new Dialog(ListWorkoutActivity.this);
+    			
+    			
+    			d.setContentView(R.layout.newworkoutdialog);
+    			d.setTitle("Create a new Workout");
+    			final Intent intent2 = new Intent(this,EditWorkout.class);
+
+    			 Button.OnClickListener Dialog_addWorkoutListener
+    			   = new Button.OnClickListener()
+    			 {
+    			 
+    			 @Override
+    			 		public void onClick(View view) 
+    			 		{
+    				 		String workoutName = Dialog_EditText.getText().toString();
+    				 		intent2.putExtra(WORKOUT_NAME, workoutName);
+    				 		startActivity(intent2);
+    			 		}
+    			    
+    			 };
+    			   
+    			 Button.OnClickListener Dialog_CancelListener
+    			   = new Button.OnClickListener()
+    			 {
+    			 
+    				 	@Override
+    				 	public void onClick(View view)
+    				 	{
+    				 		d.dismiss();
+    				 	}
+    			    
+    			 };
+    			
+    			Dialog_EditText = 	(EditText)d.findViewById(R.id.dialogedittext);
+    			Dialog_TextView = 	(TextView)d.findViewById(R.id.dialogtextview);
+    		    Dialog_addWorkout = (Button)d.findViewById(R.id.dialogaddworkout);
+    		    Dialog_Cancel = 	(Button)d.findViewById(R.id.dialogcancel);
+    		    
+    		    Dialog_addWorkout.setOnClickListener(Dialog_addWorkoutListener);
+    		    Dialog_Cancel.setOnClickListener(Dialog_CancelListener);
+    		    
+    			d.show();
     		default:
     			return super.onOptionsItemSelected(item);
     	}

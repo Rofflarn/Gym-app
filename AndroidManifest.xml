@@ -24,6 +24,9 @@
             android:name=".ListWorkoutActivity"
             android:label="@string/title_activity_main" />
         <activity
+            android:name=".EditWorkout"
+            android:label="@string/title_activity_main" />
+        <activity
             android:name=".Statistik"
             android:label="@string/title_activity_main" />
         <activity
