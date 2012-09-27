@@ -25,7 +25,11 @@ public class Database {
 			createExerciseTypes(db);
 			createPasses(db);
 			createMeasures(db);
-			createMeasureData(db);			 
+			createMeasureData(db);		
+			db.execSQL("CREATE TABLE Muscles (MuscleId INTEGER PRIMARY KEY AUTOINCREMENT, MuscleName TEXT NOT NULL, MuscleGroupId INTEGER NOT NULL, MuscleImage TEXT)");
+		    db.execSQL("CREATE TABLE Sets (SetId INTEGER PRIMARY KEY AUTOINCREMENT, SetReps INTEGER, SetWeight REAL, PassId INTEGER, SetDuration NUMERIC, ExerciseId INTEGER NOT NULL, SetDistance INTEGER)");
+		    db.execSQL("CREATE TABLE Sports (SportId  INTEGER PRIMARY KEY AUTOINCREMENT, SportName TEXT NOT NULL)");
+		    db.execSQL("CREATE TABLE Users (UserId  INTEGER PRIMARY KEY AUTOINCREMENT, UserName TEXT NOT NULL, UserBirthday NUMERIC NOT NULL, UserInitialWeight REAL)");
 		}
 		
 		private void createExercises(SQLiteDatabase db)
