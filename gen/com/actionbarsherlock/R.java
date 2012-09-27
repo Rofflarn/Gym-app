@@ -820,24 +820,45 @@ containing a value of this type.
         public static final int abs__title=0x7f04001b;
         public static final int abs__titleDivider=0x7f04001c;
         public static final int abs__up=0x7f04000b;
+<<<<<<< HEAD
         public static final int button1=0x7f040028;
         public static final int button2=0x7f040029;
         public static final int button3=0x7f04002a;
         public static final int button4=0x7f04002b;
+=======
+        public static final int button=0x7f04002c;
+        public static final int button1=0x7f040027;
+        public static final int button2=0x7f040028;
+        public static final int button3=0x7f040029;
+        public static final int button4=0x7f04002a;
+>>>>>>> 4540c37edf5114a666a9b4b05f89b93ecb4f18b0
         public static final int disableHome=0x7f040009;
+        public static final int exerciseName=0x7f04002b;
         public static final int homeAsUp=0x7f040006;
+<<<<<<< HEAD
         public static final int linearLayout1=0x7f04002c;
         public static final int listMode=0x7f040002;
         public static final int menu_addExe=0x7f040030;
         public static final int menu_settings=0x7f04002f;
+=======
+        public static final int linearLayout1=0x7f04002e;
+        public static final int listMode=0x7f040002;
+        public static final int menu_save=0x7f040031;
+>>>>>>> 4540c37edf5114a666a9b4b05f89b93ecb4f18b0
         public static final int normal=0x7f040001;
         public static final int showCustom=0x7f040008;
         public static final int showHome=0x7f040005;
         public static final int showTitle=0x7f040007;
         public static final int spinner2=0x7f040027;
         public static final int tabMode=0x7f040003;
+<<<<<<< HEAD
         public static final int textView1=0x7f04002d;
         public static final int textView2=0x7f04002e;
+=======
+        public static final int test=0x7f04002d;
+        public static final int textView1=0x7f04002f;
+        public static final int textView2=0x7f040030;
+>>>>>>> 4540c37edf5114a666a9b4b05f89b93ecb4f18b0
         public static final int useLogo=0x7f040004;
         public static final int wrap_content=0x7f040000;
     }

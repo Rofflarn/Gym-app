@@ -4,6 +4,10 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
@@ -46,9 +50,22 @@ public class Ovningar extends SherlockActivity {
     
     public void newExercise(View view)
     {
-    	Dialog dialog = new Dialog(this);
+    	final Dialog dialog = new Dialog(this);
     	dialog.setContentView(R.layout.dialog);
     	dialog.setTitle("New Exercise");
+    	
+    	Button button = (Button) dialog.findViewById(R.id.button);
+    	button.setOnClickListener(
+    			new OnClickListener()
+    			{
+    				public void onClick(View view)
+    				{
+    					TextView tv = (TextView) findViewById(R.id.test);
+    					EditText et = (EditText) dialog.findViewById(R.id.exerciseName);
+    					tv.setText(et.getText().toString());
+    					dialog.dismiss();
+    				}
+    			});
     	dialog.show();
     }
 }
