@@ -7,5 +7,7 @@
     <string name="menu_save">SAVE!</string>
     <string name="menu_addExc">Add Excersice!</string>
     <string name="menu_addWorkout">Add workout</string>
+    <string name="list_workout_favorites">Favorites</string>
+    <string name="list_workout_all">All</string>
 
 </resources>

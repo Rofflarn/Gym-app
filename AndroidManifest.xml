@@ -21,7 +21,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Workout"
+            android:name=".ListWorkoutActivity"
             android:label="@string/title_activity_main" />
         <activity
             android:name=".Statistik"
