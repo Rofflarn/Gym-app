@@ -31,7 +31,15 @@ public class Database {
 			createUsers(db);
 			createPassTemplates(db);
 			createSetTemplates(db);
+			createSports(db);
 		}
+		
+		@Override
+		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+	           // TODO Auto-generated method stub
+	          // db.execSQL("DROP TABLE IF EXIST " + DATABASE_TABLE);
+	         // onCreate(db);
+	       }
 		
 		/**
 		 * 
