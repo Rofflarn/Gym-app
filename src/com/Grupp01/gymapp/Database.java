@@ -107,8 +107,6 @@ public class Database {
 		{
 			 db.execSQL("CREATE TABLE SetTemplates (SetTemplateId INTEGER PRIMARY KEY AUTOINCREMENT, SetTemplateReps INTEGER, SetTemplateWeight REAL, SetTemplateDistance INTEGER,ExerciseId INTEGER NOT NULL, PassTemplateId INTEGER NOT NULL))");
 		}
-		
-		
 	}
 
 }
