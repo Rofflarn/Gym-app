@@ -7,15 +7,23 @@
     <string name="menu_save">SAVE!</string>
     <string name="menu_addExe">Add Excersice!</string>
     <string name="title_activity_add_exercise">AddExercise</string>
+	<string name="trainingtype_prompt">Choose type of training</string>
+	<string name="primary_muscletype_prompt">Primary muscle</string>
+	<string name="secondary_muscletype_prompt">secondary muscle</string>
+	<string name="string_type_of_training">Select type of training</string>
 	
-	<string-array name="planets_array">
-        <item>Mercury</item>
-        <item>Venus</item>
-        <item>Earth</item>
-        <item>Mars</item>
-        <item>Jupiter</item>
-        <item>Saturn</item>
-        <item>Uranus</item>
-        <item>Neptune</item>
+    <string-array name="trainingtype_array">
+        <item>Cardio</item>
+        <item>Static</item>
+        <item>Dynamic</item>
     </string-array>
+        
+        <string-array name="muscle_type">
+        <item>Biceps</item>
+        <item>Triceps</item>
+        <item>Deltoid</item>
+        <item>Lats</item>
+    </string-array>
+    
+
 </resources>
