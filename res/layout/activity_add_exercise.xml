@@ -16,6 +16,7 @@
         android:id="@+id/spinner_type_of_training"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:entries="@array/trainingtype_array"
         android:prompt="@string/trainingtype_prompt" />
 
     <TextView
