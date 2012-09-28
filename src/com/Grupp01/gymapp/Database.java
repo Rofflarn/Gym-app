@@ -37,8 +37,20 @@ public class Database {
 		@Override
 		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 	           // TODO Auto-generated method stub
-	          // db.execSQL("DROP TABLE IF EXIST " + DATABASE_TABLE);
-	         // onCreate(db);
+				db.execSQL("DROP TABLE IF EXIST Exercises");
+				db.execSQL("DROP TABLE IF EXIST ExerciseTypes");
+				db.execSQL("DROP TABLE IF EXIST MeasureDataTypes");
+				db.execSQL("DROP TABLE IF EXIST MeasureData");
+				db.execSQL("DROP TABLE IF EXIST Passes");
+				db.execSQL("DROP TABLE IF EXIST Measures");
+				db.execSQL("DROP TABLE IF EXIST Muscles");
+				db.execSQL("DROP TABLE IF EXIST Sets");
+				db.execSQL("DROP TABLE IF EXIST Sports");
+				db.execSQL("DROP TABLE IF EXIST MuscleGroups");
+				db.execSQL("DROP TABLE IF EXIST Users");
+				db.execSQL("DROP TABLE IF EXIST PassTemplates");
+				db.execSQL("DROP TABLE IF EXIST SetTemplates");
+				onCreate(db);
 	       }
 		
 		/**
@@ -91,7 +103,12 @@ public class Database {
 		private void createSports(SQLiteDatabase db)
 		{
 			 db.execSQL("CREATE TABLE Sports (SportId  INTEGER PRIMARY KEY AUTOINCREMENT, SportName TEXT NOT NULL)");
-		}
+		}//Example of INSERT INTO Sports (SportName) VALUES ('Cycling'), ('Fitnesswalking'), ('Golfing'), ('Hiking'), ('Kayaking'), ('Kitesurfing'), ('Mountainbiking'), ('Orienteering'), ('Riding'), ('Rollerskiing'), ('Rowing'), ('Running'), ('Sailing'), ('Skating'), ('Skiing,crosscountry'), ('Skiing,downhill'), ('Snowboarding'), ('Spinning'), ('Swimming'), ('Walking'), ('Windsurfing')
+		
+		private void createMuscleGroups(SQLiteDatabase db)
+		{
+			 db.execSQL("CREATE TABLE MuscleGroups (MuscleGroupId  INTEGER PRIMARY KEY AUTOINCREMENT, MuscleGroupName TEXT NOT NULL)");
+		}//INSERT INTO MuscleGroups (MuscleGroupName) VALUES ('Arms'), ('Chest'), ('Back'), ('Shoulders'), ('Abdomen'), ('Legs')
 		
 		private void createUsers(SQLiteDatabase db)
 		{
