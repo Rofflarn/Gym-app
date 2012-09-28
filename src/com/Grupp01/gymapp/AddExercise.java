@@ -74,11 +74,13 @@ public class AddExercise extends SherlockActivity implements OnItemSelectedListe
 		
 	}
 	public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+			System.out.println("Entering onItemSelected");
 		if(items[position].equals("Static"))
 		{
 			setContentView(R.layout.add_exercise_static);
 			spinnerType = (Spinner)findViewById(R.id.spinner_type_of_training);
-			spinnerType.setSelection(1,true);
+			initSpinnerType();
+			spinnerType.setSelection(1);
 			System.out.println("static");
 			
 			//button.setVisibility(View.VISIBLE);
@@ -88,13 +90,17 @@ public class AddExercise extends SherlockActivity implements OnItemSelectedListe
 		{
 			setContentView(R.layout.add_exercise_static);
 			spinnerType = (Spinner)findViewById(R.id.spinner_type_of_training);
-			spinnerType.setSelection(2,true);
+			initSpinnerType();
+			spinnerType.setSelection(2);
 			System.out.println("dynamic");
 		}
 		else
 		{
+			setContentView(R.layout.add_exercise_static);
 			System.out.println("cardio");
+			spinnerType.setSelection(1);
 			button.setVisibility(view.VISIBLE);
+			initSpinnerType();
 			//setContentView(R.layout.activity_add_exercise);
 	
 		}
