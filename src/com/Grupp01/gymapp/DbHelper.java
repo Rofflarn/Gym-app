@@ -75,7 +75,10 @@ public class DbHelper extends SQLiteOpenHelper{
 		db.execSQL("CREATE TABLE Exercises (ExceriseId INTEGER PRIMARY KEY AUTOINCREMENT, ExercisePri INTEGER, " +
 				"ExerciseSec INTEGER, ExerciseName TEXT NOT NULL, ExerciseDesc TEXT, ExerciseNote Text, " +
 				"ExerciseTypeId INTEGER NOT NULL);");
-		//db.execSQL("INSERT INTO Exercises(ExercisePri, ExerciseSec, ExerciseName, ExerciseTypeId) VALUES (2, , 'Sit-ups', 3), (3, 1, 'Chins',3), (1, 4, 'Bench press', 3)");
+		//db.execSQL("INSERT INTO Exercises(ExercisePri, ExerciseSec, ExerciseName, ExerciseTypeId) VALUES (2, , 'Sit-ups', 1);");
+		db.execSQL("INSERT INTO Exercises(ExercisePri, ExerciseSec, ExerciseName, ExerciseTypeId) VALUES (3, 1, 'Chins', 1);");
+		db.execSQL("INSERT INTO Exercises(ExercisePri, ExerciseSec, ExerciseName, ExerciseTypeId) VALUES (1, 4, 'Bench press', 3);");
+		db.execSQL("INSERT INTO Exercises(ExercisePri, ExerciseSec, ExerciseName, ExerciseTypeId) VALUES (1, 2, 'Push-ups', 1);");
 	}
 	
 	/**
@@ -89,9 +92,7 @@ public class DbHelper extends SQLiteOpenHelper{
 		db.execSQL("CREATE TABLE ExerciseTypes (ExerciseTypeId INTEGER PRIMARY KEY AUTOINCREMENT, ExerciseTypeName TEXT);");
 		db.execSQL("insert into ExerciseTypes (ExerciseTypeName) VALUES ('Cardio');");
 		db.execSQL("insert into ExerciseTypes (ExerciseTypeName) VALUES ('Dynamic');");
-		db.execSQL("insert into ExerciseTypes (ExerciseTypeName) VALUES ('Static');");
-		
-		
+		db.execSQL("insert into ExerciseTypes (ExerciseTypeName) VALUES ('Static');");		
 	}
 	
 	/**
@@ -150,8 +151,12 @@ public class DbHelper extends SQLiteOpenHelper{
 	private void createMuscleGroups(SQLiteDatabase db)
 	{
 		db.execSQL("CREATE TABLE MuscleGroups (MuscleGroupId  INTEGER PRIMARY KEY AUTOINCREMENT, MuscleGroupName TEXT NOT NULL);");
-		/*db.execSQL("INSERT INTO MuscleGroups(MuscleGroupName) VALUES ('Arms'), ('Chest'), ('Back'), " +
-		 		"('Shoulders'), ('Abdomen'), ('Legs')");*/
+		db.execSQL("INSERT INTO MuscleGroups(MuscleGroupName) VALUES ('Arms');");
+		db.execSQL("INSERT INTO MuscleGroups(MuscleGroupName) VALUES ('Chest');");
+		db.execSQL("INSERT INTO MuscleGroups(MuscleGroupName) VALUES ('Back');");
+		db.execSQL("INSERT INTO MuscleGroups(MuscleGroupName) VALUES ('Shoulders');");
+		db.execSQL("INSERT INTO MuscleGroups(MuscleGroupName) VALUES ('Abdomen');");
+		db.execSQL("INSERT INTO MuscleGroups(MuscleGroupName) VALUES ('Legs');");
 	}
 	
 	/**
@@ -164,7 +169,12 @@ public class DbHelper extends SQLiteOpenHelper{
 	{
 		db.execSQL("CREATE TABLE Muscles (MuscleId INTEGER PRIMARY KEY AUTOINCREMENT, MuscleName TEXT NOT NULL, " +
 				"MuscleGroupId INTEGER NOT NULL, MuscleImage TEXT);");
-		//db.execSQL("INSERT INTO Muscles (MuscleName, MuscleGroupId) VALUES ('Biceps', 1), ('Abs', 5), ('Triceps', 1), ('Gluteus Maximus', 6), ('Straight thigh', 6), ('Tailor', ?6)");
+		db.execSQL("INSERT INTO Muscles (MuscleName, MuscleGroupId) VALUES ('Biceps', 1);");
+		db.execSQL("INSERT INTO Muscles (MuscleName, MuscleGroupId) VALUES ('Triceps', 1);");
+		db.execSQL("INSERT INTO Muscles (MuscleName, MuscleGroupId) VALUES ('Abs', 5);");
+		db.execSQL("INSERT INTO Muscles (MuscleName, MuscleGroupId) VALUES ('Gluteus Maximus', 6);");
+		db.execSQL("INSERT INTO Muscles (MuscleName, MuscleGroupId) VALUES ('Straight thigh', 6);");
+		db.execSQL("INSERT INTO Muscles (MuscleName, MuscleGroupId) VALUES ('Tailor', 6);");
 	}
 	
 	/**
@@ -188,10 +198,17 @@ public class DbHelper extends SQLiteOpenHelper{
 	private void createSports(SQLiteDatabase db)
 	{
 		 db.execSQL("CREATE TABLE Sports (SportId  INTEGER PRIMARY KEY AUTOINCREMENT, SportName TEXT NOT NULL);");
-		/* db.execSQL("INSERT INTO Sports (SportName) VALUES ('Cycling'), ('Fitnesswalking'), ('Golfing'), ('Hiking'), " +
-		 		"('Kayaking'), ('Kitesurfing'), ('Mountainbiking'), ('Orienteering'), ('Riding'), ('Rollerskiing'), " +
-		 		"('Rowing'), ('Running'), ('Sailing'), ('Skating'), ('Skiing,crosscountry'), ('Skiing,downhill'), " +
-		 		"('Snowboarding'), ('Spinning'), ('Swimming'), ('Walking'), ('Windsurfing')");*/
+		 db.execSQL("INSERT INTO Sports (SportName) VALUES ('Cycling');");
+		 db.execSQL("INSERT INTO Sports (SportName) VALUES ('Powerwalking');");
+		 db.execSQL("INSERT INTO Sports (SportName) VALUES ('Mountainbiking');");
+		 db.execSQL("INSERT INTO Sports (SportName) VALUES ('Orienteering');");
+		 db.execSQL("INSERT INTO Sports (SportName) VALUES ('Running');");
+		 db.execSQL("INSERT INTO Sports (SportName) VALUES ('Spinning');");
+		 db.execSQL("INSERT INTO Sports (SportName) VALUES ('Walking');");
+		 db.execSQL("INSERT INTO Sports (SportName) VALUES ('Skiing');");
+		 db.execSQL("INSERT INTO Sports (SportName) VALUES ('Swimming');");
+		 db.execSQL("INSERT INTO Sports (SportName) VALUES ('Rowing');");
+		 db.execSQL("INSERT INTO Sports (SportName) VALUES ('Floorball');");
 	}
 	
 	/**
@@ -215,7 +232,10 @@ public class DbHelper extends SQLiteOpenHelper{
 	private void createPassTemplates(SQLiteDatabase db)
 	{
 		db.execSQL("CREATE TABLE PassTemplates (PassTemplateId INTEGER PRIMARY KEY AUTOINCREMENT, PassTemplateName TEXT NOT NULL);");
-		//db.execSQL("INSERT INTO PassTemplates (PassTemplateName) VALUES ('Upper body'), ('Core'), ('Legs'), ('Spinning')");
+		db.execSQL("INSERT INTO PassTemplates (PassTemplateName) VALUES ('Upper body');");
+		db.execSQL("INSERT INTO PassTemplates (PassTemplateName) VALUES ('Core');");
+		db.execSQL("INSERT INTO PassTemplates (PassTemplateName) VALUES ('Legs');");
+		db.execSQL("INSERT INTO PassTemplates (PassTemplateName) VALUES ('Spinning');");
 	}
 	
 	/**
@@ -228,7 +248,10 @@ public class DbHelper extends SQLiteOpenHelper{
 	{
 		db.execSQL("CREATE TABLE SetTemplates (SetTemplateId INTEGER PRIMARY KEY AUTOINCREMENT, SetTemplateReps INTEGER," +
 		 		" SetTemplateWeight REAL, SetTemplateDistance INTEGER,ExerciseId INTEGER NOT NULL, PassTemplateId INTEGER NOT NULL);");
-		//db.execSQL("INSERT INTO SetTemplates (SetTemplateReps, SetTemplateWeight, SetTemplateDistance, ExerciseId, PassTemplateId) VALUES (10, 10, , 3, 1), (25, 10, , 2, 1), (10, 12, , 1, 2)");
+		db.execSQL("INSERT INTO SetTemplates (SetTemplateReps, SetTemplateWeight, ExerciseId, PassTemplateId) VALUES (10, 10, 3, 1);");
+		db.execSQL("INSERT INTO SetTemplates (SetTemplateReps, SetTemplateWeight, ExerciseId, PassTemplateId) VALUES (25, 10, 2, 1);");
+		db.execSQL("INSERT INTO SetTemplates (SetTemplateReps, SetTemplateWeight, ExerciseId, PassTemplateId) VALUES (10, 12, 3, 2);");
+		db.execSQL("INSERT INTO SetTemplates (SetTemplateReps, SetTemplateWeight, ExerciseId, PassTemplateId) VALUES (10, 10, 1, 1);");
 	}
 	
 }
