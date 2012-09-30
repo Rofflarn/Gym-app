@@ -1,0 +1,56 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <TableLayout
+       android:id="@+id/tableLayout1"
+       android:layout_width="fill_parent"
+       android:layout_height="fill_parent" >
+
+       <TableRow>
+           <TextView
+           android:layout_width="fill_parent"
+           android:layout_height="fill_parent"
+           android:text="Names" />
+           
+           
+           <TextView
+           android:layout_width="fill_parent"
+           android:layout_height="fill_parent"
+           android:text="Type"
+           />
+           
+           <TextView
+           android:layout_width="fill_parent"
+           android:layout_height="fill_parent"
+           android:text="Primary" />
+           
+           <TextView
+           android:layout_width="fill_parent"
+           android:layout_height="fill_parent"
+           android:text="Secondary" />
+      
+       </TableRow>
+
+      
+             
+
+       
+    </TableLayout>
+   
+<TextView
+       android:id="@+id/tvSQLinfo"
+       android:layout_width="fill_parent"
+       android:layout_height="fill_parent"
+       android:text="get info from db" />
+
+<Button
+    android:id="@+id/button1"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Button"
+    android:onClick="openDatabase" />
+
+</LinearLayout>
