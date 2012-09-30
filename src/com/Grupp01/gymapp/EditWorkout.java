@@ -11,20 +11,25 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 
-public class EditWorkout extends SherlockActivity {
+public class EditWorkout extends SherlockActivity implements OnItemSelectedListener{
 
 		private ListView mainListView;  
 	  private Planet[] planets;
 	  private ArrayAdapter<Planet> listAdapter;
 	  private String workoutName;
+	  
+	  String[] items = { "Hej", "detta", "är", "Robert"};
+	  
 	@SuppressWarnings("deprecation")
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -48,6 +53,21 @@ public class EditWorkout extends SherlockActivity {
           }  
         });  
       
+        Spinner spin = (Spinner) findViewById(R.id.spinner1);
+		spin.setOnItemSelectedListener((OnItemSelectedListener) this);
+
+		ArrayAdapter<String> aa = new ArrayAdapter<String>(
+				this,
+				android.R.layout.simple_spinner_item, 
+				items);
+
+		aa.setDropDownViewResource(
+		   android.R.layout.simple_spinner_dropdown_item);
+		spin.setAdapter(aa);
+        
+        
+        
+        
           
         // Create and populate planets.  
         planets = (Planet[]) getLastNonConfigurationInstance() ;  
@@ -188,4 +208,15 @@ public class EditWorkout extends SherlockActivity {
           getSupportActionBar().setTitle(workoutName);
           return true;
       }
+
+  	public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+  		// TODO Auto-generated method stub
+  		
+  	}
+
+  	@Override
+  	public void onNothingSelected(AdapterView<?> arg0) {
+  		return;
+  		
+  	}  
     }  
