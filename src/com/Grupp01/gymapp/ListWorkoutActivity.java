@@ -27,7 +27,8 @@ public class ListWorkoutActivity extends SherlockActivity {
 	//list1 is only a string used in testing before fetching data from DB
 	
 	public final static String WORKOUT_NAME = "com.Grupp01.gymapp.WORKOUT";
-	static final int dialog_id = 0;
+	
+	//Variables for the dialog
 	TextView Dialog_TextView;
 	EditText Dialog_EditText;
 	Button Dialog_addWorkout, Dialog_Cancel;
@@ -83,52 +84,73 @@ public class ListWorkoutActivity extends SherlockActivity {
     			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
     			startActivity(intent);
     			return true;
+    			//when clicking "add workout" a dialog pops up
     		case	R.id.menu_addWorkout:
-    			d = new Dialog(ListWorkoutActivity.this);
-    			
-    			
-    			d.setContentView(R.layout.newworkoutdialog);
-    			d.setTitle("Create a new Workout");
-    			final Intent intent2 = new Intent(this,EditWorkout.class);
-
-    			 Button.OnClickListener Dialog_addWorkoutListener
-    			   = new Button.OnClickListener()
-    			 {
-    			 
-    			 @Override
-    			 		public void onClick(View view) 
-    			 		{
-    				 		String workoutName = Dialog_EditText.getText().toString();
-    				 		intent2.putExtra(WORKOUT_NAME, workoutName);
-    				 		startActivity(intent2);
-    			 		}
-    			    
-    			 };
-    			   
-    			 Button.OnClickListener Dialog_CancelListener
-    			   = new Button.OnClickListener()
-    			 {
-    			 
-    				 	@Override
-    				 	public void onClick(View view)
-    				 	{
-    				 		d.dismiss();
-    				 	}
-    			    
-    			 };
-    			
-    			Dialog_EditText = 	(EditText)d.findViewById(R.id.dialogedittext);
-    			Dialog_TextView = 	(TextView)d.findViewById(R.id.dialogtextview);
-    		    Dialog_addWorkout = (Button)d.findViewById(R.id.dialogaddworkout);
-    		    Dialog_Cancel = 	(Button)d.findViewById(R.id.dialogcancel);
-    		    
-    		    Dialog_addWorkout.setOnClickListener(Dialog_addWorkoutListener);
-    		    Dialog_Cancel.setOnClickListener(Dialog_CancelListener);
-    		    
-    			d.show();
+    			openDialog();
     		default:
     			return super.onOptionsItemSelected(item);
     	}
+    }
+    
+    //Handles the dialog
+    private void openDialog()
+    {
+    	d = new Dialog(ListWorkoutActivity.this);
+		
+		
+		d.setContentView(R.layout.newworkoutdialog);
+		d.setTitle("Create a new Workout");
+		//An intent that starts when you will click 
+		final Intent intent2 = new Intent(this,EditWorkout.class);
+
+		//A listener to the "add workout" button in the dialog
+		 Button.OnClickListener Dialog_addWorkoutListener
+		   = new Button.OnClickListener()
+		 {
+		 
+			 
+			 //When the button is clicked
+		 @Override
+		 		public void onClick(View view) 
+		 		{
+			 		String workoutName = Dialog_EditText.getText().toString();
+			 		//If the workout doesn't contain any characters, cancel the dialog and go back to the ListWorkoutActivity
+			 		if(workoutName.trim().equals(""))
+			 		{
+			 			d.dismiss();
+			 			return;
+			 		}
+			 		//Add the name of the workout to the intent so the next activity can get the name
+			 		intent2.putExtra(WORKOUT_NAME, workoutName);
+			 		startActivity(intent2);
+		 		}
+		    
+		 };
+		//A listener that is getting added to the "Cancel" button in the dialog  
+		 Button.OnClickListener Dialog_CancelListener
+		   = new Button.OnClickListener()
+		 {
+		 
+			 	@Override
+			 	//When the button is clicked
+			 	public void onClick(View view)
+			 	{
+			 		//Cancel the dialog
+			 		d.dismiss();
+			 	}
+		    
+		 };
+		//Creates all of the GUI in the dialog 
+		Dialog_EditText = 	(EditText)d.findViewById(R.id.dialogedittext);
+		Dialog_TextView = 	(TextView)d.findViewById(R.id.dialogtextview);
+	    Dialog_addWorkout = (Button)d.findViewById(R.id.dialogaddworkout);
+	    Dialog_Cancel = 	(Button)d.findViewById(R.id.dialogcancel);
+	    
+	    //The listeners are added to the buttons
+	    Dialog_addWorkout.setOnClickListener(Dialog_addWorkoutListener);
+	    Dialog_Cancel.setOnClickListener(Dialog_CancelListener);
+	    
+		d.show();
     }
     	
 }

@@ -1,0 +1,34 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:id="@+id/customdialog"
+android:orientation="vertical"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+android:padding="10dp"
+>
+<TextView
+android:id="@+id/dialogtextview"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+/>
+<EditText
+android:id="@+id/dialogedittext"
+android:layout_weight="1"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+android:hint="Input name on workout"
+android:inputType="text"
+
+/>
+<Button
+android:id="@+id/dialogaddworkout"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+android:text="Add Workout"
+/>
+<Button
+android:id="@+id/dialogcancel"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+android:text="Cancel"
+/>
+</LinearLayout>
