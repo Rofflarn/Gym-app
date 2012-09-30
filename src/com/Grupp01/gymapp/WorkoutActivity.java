@@ -84,6 +84,11 @@ public class WorkoutActivity extends SherlockActivity {
     			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
     			startActivity(intent);
     			return true;
+    		case R.id.menu_editWorkout:
+    			Intent intent2 = new Intent(this, EditWorkout.class);
+    			intent2.putExtra(ListWorkoutActivity.WORKOUT_NAME, workoutName);
+    			startActivity(intent2);
+    			return true;    			
     		default:
     			return super.onOptionsItemSelected(item);
     	}

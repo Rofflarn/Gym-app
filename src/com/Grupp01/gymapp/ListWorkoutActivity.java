@@ -165,13 +165,15 @@ public class ListWorkoutActivity extends SherlockActivity {
     public boolean onContextItemSelected(android.view.MenuItem item) {
     	AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
       int menuItemIndex = item.getItemId();
+      String workoutName = mainListView.getAdapter().getItem(info.position).toString();
       switch(menuItemIndex){
       	case 0:
-    	  editWorkouts();
-    	  return true;
+      		editWorkouts(workoutName);
+      		return true;
       	case 1:
-    	  deleteWorkout();
-    	  return true;
+      		
+      		deleteWorkout(workoutName);
+      		return true;
       }
       return true;
     }
@@ -184,16 +186,17 @@ public class ListWorkoutActivity extends SherlockActivity {
      * Is called from contextMenu when the user longclicks a workout and selects 
      * "Delete" from the menu.
      */
-	private void deleteWorkout() {
+	private void deleteWorkout(String workoutName) {
 		
 		//Show a confirmation dialog before deleting
 		AlertDialog.Builder deleteDialog = new AlertDialog.Builder(this);
-		deleteDialog.setMessage("Are you sure you want to delete the workout?");
+		deleteDialog.setMessage("Are you sure you want to delete workout " + workoutName +"?");
 		deleteDialog.setCancelable(false);
 		
 		//Set action for clicking "Yes" (the user wants to delete)
 		deleteDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
 	           public void onClick(DialogInterface dialog, int id) {
+	        	  
 	        	   Toast.makeText(ListWorkoutActivity.this, "Not implementet yet!", Toast.LENGTH_SHORT).show();
 	           } //End of onclick method
 			}	//end of newDialogInterface
@@ -216,10 +219,12 @@ public class ListWorkoutActivity extends SherlockActivity {
 	
 	/**
      * Is called from contextMenu when the user longclicks a workout and selects 
-     * "Delete" from the menu.
+     * "Edit" from the menu. Will start EditWorkout to add/remove exercises.
      */
-	private void editWorkouts() {
-		Toast.makeText(this, "Will open edit workout activity", Toast.LENGTH_SHORT).show();
+	private void editWorkouts(String workoutName) {
+		Intent intent = new Intent(this, EditWorkout.class);
+		intent.putExtra(WORKOUT_NAME, workoutName);
+		startActivity(intent);		
 		
 	}
 
