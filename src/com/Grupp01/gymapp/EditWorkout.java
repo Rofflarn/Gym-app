@@ -17,18 +17,20 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.view.Menu;
 
 public class EditWorkout extends SherlockActivity {
 
 		private ListView mainListView;  
 	  private Planet[] planets;
 	  private ArrayAdapter<Planet> listAdapter;
+	  private String workoutName;
 	@SuppressWarnings("deprecation")
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
-        String workoutName = intent.getStringExtra(ListWorkoutActivity.WORKOUT_NAME);
+        workoutName = intent.getStringExtra(ListWorkoutActivity.WORKOUT_NAME);
         
         setContentView(R.layout.editworkout);
      // Find the ListView resource.   
@@ -175,4 +177,15 @@ public class EditWorkout extends SherlockActivity {
       public Object onRetainNonConfigurationInstance() {  
         return planets ;  
       }  
+      
+      
+      @Override
+      public boolean onCreateOptionsMenu(Menu menu) {
+      	getSupportMenuInflater().inflate(R.menu.editworkout, menu);
+          getSupportActionBar().setHomeButtonEnabled(true);
+          
+          //Set the title to the name of the workout
+          getSupportActionBar().setTitle(workoutName);
+          return true;
+      }
     }  

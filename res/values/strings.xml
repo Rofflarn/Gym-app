@@ -11,5 +11,6 @@
     <string name="list_workout_all">All</string>
     <string name="title_activity_workout">WorkoutActivity</string>
     <string name="menu_editWorkout">Edit workout!</string>
+    <string name="menu_createExercise">Create new exercise</string>
 
 </resources>
