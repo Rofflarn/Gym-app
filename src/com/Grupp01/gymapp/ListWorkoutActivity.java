@@ -3,8 +3,12 @@ package com.Grupp01.gymapp;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -18,8 +22,8 @@ import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 
 public class ListWorkoutActivity extends SherlockActivity {
-	private String  [] listWorkouts = { "Övning 1", "Övning 2", "Övning 3",
-	"Övning 4", "Övning 5","Övning 6","Övning 7","Övning 8","Övning 9","Övning 10","Övning 11","Övning 12",};
+	private String  [] listWorkouts = { "Pass 1", "Pass 2", "Pass 3",
+	"Pass 4", "Pass 5","Passg 6","Pass 7","Pass 8","Pass 9","Pass 10","Pass 11","Pass 12",};
 	//list1 is only a string used in testing before fetching data from DB
 	
 	private ListView mainListView ;  				
@@ -29,31 +33,65 @@ public class ListWorkoutActivity extends SherlockActivity {
     public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.list_workout);
-		
+		createWorkoutList();
+	}
+	
+	
+	
+	
+	/**
+	 * Is called from onCreate to build the list with all workouts and
+	 * set correct actions for onClick and also context menus for longclicking.
+	 * 
+	 */
+	private void createWorkoutList() {
 		//Builds the list of all workouts
 		 mainListView = (ListView) findViewById( R.id.ListViewWorkouts );
 		 ArrayList<String> arrayWorkouts = new ArrayList<String>();
 		 arrayWorkouts.addAll( Arrays.asList(listWorkouts) );		
 		 listAdapter = new ArrayAdapter<String>(this, R.layout.list, arrayWorkouts);
 		 mainListView.setAdapter(listAdapter);   
-		 
+		 registerForContextMenu(mainListView);
 		 
 		 //Set each row in the list clickable and fetch the title of the workout 
 		 //to be able to open correct workout in WorkoutActivity
 		 mainListView.setOnItemClickListener(new OnItemClickListener() {
 	            public void onItemClick(AdapterView<?> arg0, View v, int position,
 	                    long id) {
-	            	//Get the text label of the row that has been clicked
-	            	String listRow = mainListView.getAdapter().getItem(position).toString();	
 	            	
-	            	//The toast is only a test so far to make sure that the information about the text label is correct
-	            	Toast.makeText(getApplicationContext(), listRow, Toast.LENGTH_SHORT).show();
+	            	//Get the text label of the row that has been clicked (will be used to open the correct workout)
+	            	String workoutName = mainListView.getAdapter().getItem(position).toString();	
+	            	startNewWorkout(workoutName);
+	            	
 	            	
 	            }// end of onItemClick
 	        });// end of setOnItemClickListener
-		 
-    }
+		
+	}
 
+
+	
+	
+	
+	
+	/**
+	 * Is called with the user selects to create a new workout (clicking the "add workout" button
+	 * in ActionBar. 
+	 * @param workoutName The name for the new workout.
+	 * 
+	 */
+	private void startNewWorkout(String workoutName) {
+		Intent workout = new Intent(ListWorkoutActivity.this, WorkoutActivity.class);
+		workout.putExtra("WORKOUT_NAME", workoutName);
+    	startActivity(workout);
+	}
+	
+	
+	
+	
+	
+	
+	
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
     	MenuInflater inflater = getSupportMenuInflater();
@@ -62,6 +100,10 @@ public class ListWorkoutActivity extends SherlockActivity {
     	getSupportActionBar().setHomeButtonEnabled(true);
         return true;
     }
+    
+    
+    
+    
     
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
@@ -72,9 +114,96 @@ public class ListWorkoutActivity extends SherlockActivity {
     			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
     			startActivity(intent);
     			return true;
+    		case R.id.menu_addWorkout:
+    			 Toast.makeText(ListWorkoutActivity.this, "Will create a new workout", Toast.LENGTH_SHORT).show();
+    		
     		default:
     			return super.onOptionsItemSelected(item);
     	}
     }
+    
+    
+    
+    
+    
+    
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v,
+        ContextMenuInfo menuInfo) {
+      if (v.getId()==R.id.ListViewWorkouts) {
+        AdapterView.AdapterContextMenuInfo contextMenuInfo = (AdapterView.AdapterContextMenuInfo)menuInfo;
+       // menu.setHeaderTitle(Countries[info.position]);
+         menu.add(Menu.NONE, 0, 0, "Edit");
+         menu.add(Menu.NONE, 1, 1, "Delete");
+         
+        }
+      }
+    
+    
+    
+    
+    
+    
+    @Override
+    public boolean onContextItemSelected(android.view.MenuItem item) {
+    	AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
+      int menuItemIndex = item.getItemId();
+      switch(menuItemIndex){
+      	case 0:
+    	  editWorkouts();
+    	  return true;
+      	case 1:
+    	  deleteWorkout();
+    	  return true;
+      }
+      return true;
+    }
+
+
+    
+    
+    
+    /**
+     * Is called from contextMenu when the user longclicks a workout and selects 
+     * "Delete" from the menu.
+     */
+	private void deleteWorkout() {
+		
+		//Show a confirmation dialog before deleting
+		AlertDialog.Builder deleteDialog = new AlertDialog.Builder(this);
+		deleteDialog.setMessage("Are you sure you want to delete the workout?");
+		deleteDialog.setCancelable(false);
+		
+		//Set action for clicking "Yes" (the user wants to delete)
+		deleteDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+	           public void onClick(DialogInterface dialog, int id) {
+	        	   Toast.makeText(ListWorkoutActivity.this, "Not implementet yet!", Toast.LENGTH_SHORT).show();
+	           } //End of onclick method
+			}	//end of newDialogInterface
+		);	//End of setPositiveButton
+		
+		//Set action for choosing not to delete (the dialog just closes and no action is taken)
+		deleteDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+	           public void onClick(DialogInterface dialog, int id) {
+	        	   dialog.cancel();
+	           } //End of onclick method
+			}	//end of newDialogInterface
+		);	//End of setPositiveButton
+		
+		//Show the dialog
+		AlertDialog alert = deleteDialog.create();
+		alert.show();
+	}
+
+	
+	
+	/**
+     * Is called from contextMenu when the user longclicks a workout and selects 
+     * "Delete" from the menu.
+     */
+	private void editWorkouts() {
+		Toast.makeText(this, "Will open edit workout activity", Toast.LENGTH_SHORT).show();
+		
+	}
     	
 }

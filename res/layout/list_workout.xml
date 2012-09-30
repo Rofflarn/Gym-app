@@ -7,7 +7,6 @@
 
     <ListView 
 	    android:id="@+id/ListViewWorkouts" 
-	    android:layout_below="@+id/list_workout_favorites_textView"
    		android:layout_width="fill_parent"
   		android:layout_height="fill_parent"/>
 	    
