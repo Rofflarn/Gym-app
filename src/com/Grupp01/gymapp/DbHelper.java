@@ -35,6 +35,7 @@ public class DbHelper extends SQLiteOpenHelper{
 		createPassTemplates(db);
 		createSetTemplates(db);
 		createSports(db);
+		createMuscleGroups(db);
 	}
 	
 	/**
@@ -86,7 +87,11 @@ public class DbHelper extends SQLiteOpenHelper{
 	private void createExerciseTypes(SQLiteDatabase db)
 	{
 		db.execSQL("CREATE TABLE ExerciseTypes (ExerciseTypeId INTEGER PRIMARY KEY AUTOINCREMENT, ExerciseTypeName TEXT);");
-		//db.execSQL("INSERT INTO ExerciseTypes (ExerciseTypeName) VALUES ('Cardio'), ('Static'), ('Dynamic')");
+		db.execSQL("insert into ExerciseTypes (ExerciseTypeName) VALUES ('Cardio');");
+		db.execSQL("insert into ExerciseTypes (ExerciseTypeName) VALUES ('Dynamic');");
+		db.execSQL("insert into ExerciseTypes (ExerciseTypeName) VALUES ('Static');");
+		
+		
 	}
 	
 	/**
@@ -145,8 +150,8 @@ public class DbHelper extends SQLiteOpenHelper{
 	private void createMuscleGroups(SQLiteDatabase db)
 	{
 		db.execSQL("CREATE TABLE MuscleGroups (MuscleGroupId  INTEGER PRIMARY KEY AUTOINCREMENT, MuscleGroupName TEXT NOT NULL);");
-		db.execSQL("INSERT INTO MuscleGroups(MuscleGroupName) VALUES ('Arms'), ('Chest'), ('Back'), " +
-		 		"('Shoulders'), ('Abdomen'), ('Legs')");
+		/*db.execSQL("INSERT INTO MuscleGroups(MuscleGroupName) VALUES ('Arms'), ('Chest'), ('Back'), " +
+		 		"('Shoulders'), ('Abdomen'), ('Legs')");*/
 	}
 	
 	/**

@@ -21,21 +21,8 @@
            android:layout_height="fill_parent"
            android:text="Type"
            />
-           
-           <TextView
-           android:layout_width="fill_parent"
-           android:layout_height="fill_parent"
-           android:text="Primary" />
-           
-           <TextView
-           android:layout_width="fill_parent"
-           android:layout_height="fill_parent"
-           android:text="Secondary" />
       
-       </TableRow>
-
-      
-             
+       </TableRow>     
 
        
     </TableLayout>
@@ -50,7 +37,14 @@
     android:id="@+id/button1"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="Button"
+    android:text="Skapa data"
     android:onClick="openDatabase" />
+
+<Button
+    android:id="@+id/button2"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Se data"
+    android:onClick="showDatabase" />
 
 </LinearLayout>
