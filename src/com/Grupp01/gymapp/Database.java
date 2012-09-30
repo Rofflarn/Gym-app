@@ -39,14 +39,15 @@ public class Database {
 	       Cursor c = ourDatabase.rawQuery("SELECT * FROM ExerciseTypes;", null);
 	       String result = "";
 	       
-	       int iRow = c.getColumnIndex("ExerciseTypeID");
-	       int iName = c.getColumnIndex("ExerciseTypeName");
+	       int id = c.getColumnIndex("ExerciseTypeId");
+	       int name = c.getColumnIndex("ExerciseTypeName");
 	       //Forlopp som går igenom hela databasen, alla kolummer
-	      // for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext())
-	      // {
-	           result = result + c.getString(iRow) + " " + c.getString(iName) + "\n";
-	      // }
-	       
+	      for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext())
+	      {
+	    	  result = result + c.getString(id) + " " + c.getString(name) + "\n";
+	    	  System.out.println(Integer.toString(c.getInt(id)) + " | " + c.getString(name));
+	      }
+	      
 	       return result;
 	   }
 	}
