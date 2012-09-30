@@ -5,6 +5,7 @@ import java.util.Arrays;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.ContextMenu;
@@ -13,7 +14,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockActivity;
@@ -25,6 +29,14 @@ public class ListWorkoutActivity extends SherlockActivity {
 	private String  [] listWorkouts = { "Pass 1", "Pass 2", "Pass 3",
 	"Pass 4", "Pass 5","Passg 6","Pass 7","Pass 8","Pass 9","Pass 10","Pass 11","Pass 12",};
 	//list1 is only a string used in testing before fetching data from DB
+	
+	public final static String WORKOUT_NAME = "com.Grupp01.gymapp.WORKOUT";
+	
+	//Variables for the dialog
+	TextView Dialog_TextView;
+	EditText Dialog_EditText;
+	Button Dialog_addWorkout, Dialog_Cancel;
+	Dialog d;
 	
 	private ListView mainListView ;  				
 	private ArrayAdapter<String> listAdapter ;  
@@ -114,14 +126,19 @@ public class ListWorkoutActivity extends SherlockActivity {
     			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
     			startActivity(intent);
     			return true;
-    		case R.id.menu_addWorkout:
-    			 Toast.makeText(ListWorkoutActivity.this, "Will create a new workout", Toast.LENGTH_SHORT).show();
-    		
+    			
+    			
+    		//when clicking "add workout" a dialog pops up
+    		case	R.id.menu_addWorkout:
+    			openDialog();
+    			
+    			
     		default:
     			return super.onOptionsItemSelected(item);
     	}
     }
     
+
     
     
     
@@ -205,5 +222,67 @@ public class ListWorkoutActivity extends SherlockActivity {
 		Toast.makeText(this, "Will open edit workout activity", Toast.LENGTH_SHORT).show();
 		
 	}
+
+    //Handles the dialog
+    private void openDialog()
+    {
+    	d = new Dialog(ListWorkoutActivity.this);
+		
+		
+		d.setContentView(R.layout.newworkoutdialog);
+		d.setTitle("Create a new Workout");
+		//An intent that starts when you will click 
+		final Intent intent2 = new Intent(this,EditWorkout.class);
+
+		//A listener to the "add workout" button in the dialog
+		 Button.OnClickListener Dialog_addWorkoutListener
+		   = new Button.OnClickListener()
+		 {
+		 
+			 
+			 //When the button is clicked
+		 @Override
+		 		public void onClick(View view) 
+		 		{
+			 		String workoutName = Dialog_EditText.getText().toString();
+			 		//If the workout doesn't contain any characters, cancel the dialog and go back to the ListWorkoutActivity
+			 		if(workoutName.trim().equals(""))
+			 		{
+			 			d.dismiss();
+			 			return;
+			 		}
+			 		//Add the name of the workout to the intent so the next activity can get the name
+			 		intent2.putExtra(WORKOUT_NAME, workoutName);
+			 		startActivity(intent2);
+		 		}
+		    
+		 };
+		//A listener that is getting added to the "Cancel" button in the dialog  
+		 Button.OnClickListener Dialog_CancelListener
+		   = new Button.OnClickListener()
+		 {
+		 
+			 	@Override
+			 	//When the button is clicked
+			 	public void onClick(View view)
+			 	{
+			 		//Cancel the dialog
+			 		d.dismiss();
+			 	}
+		    
+		 };
+		//Creates all of the GUI in the dialog 
+		Dialog_EditText = 	(EditText)d.findViewById(R.id.dialogedittext);
+		Dialog_TextView = 	(TextView)d.findViewById(R.id.dialogtextview);
+	    Dialog_addWorkout = (Button)d.findViewById(R.id.dialogaddworkout);
+	    Dialog_Cancel = 	(Button)d.findViewById(R.id.dialogcancel);
+	    
+	    //The listeners are added to the buttons
+	    Dialog_addWorkout.setOnClickListener(Dialog_addWorkoutListener);
+	    Dialog_Cancel.setOnClickListener(Dialog_CancelListener);
+	    
+		d.show();
+    }
+
     	
 }
