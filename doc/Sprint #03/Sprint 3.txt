@@ -1,7 +1,8 @@
 Sprint 02 återblick:
 Vi har lagt ner mer tid än vad sprinten har begärt enligt vårat sprint02 dokument. Ändå så är vi inte klara med featuresen i sprint 02.
 Detta beror på att väldigt mycket tid har lagts ner på att lära sig hur android och dess layout fungerar. 
-Att få igång och förstår databasen har även tagit mer tid än vad vi trodde. 
+Att få igång och förstår databasen har även tagit mer tid än vad vi trodde. Eftersom vi inte har blivit helt klara med våra features
+har vi heller inte mergat någon branch med master än, det är därför denna veckans apk är snarlik med förra veckans apk.  
 
 
 Sprint 03:
