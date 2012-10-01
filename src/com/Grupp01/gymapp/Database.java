@@ -13,7 +13,7 @@ public class Database {
 	private DbHelper ourHelper;
 	private final Context ourContext;
 	private SQLiteDatabase ourDatabase;
-
+	private String[] items;
 
 	public Database(Context c)
 	{
@@ -50,8 +50,23 @@ public class Database {
 		return result;
 	}
 
-	public Cursor getExerciseTypes(){
-		return ourDatabase.rawQuery("SELECT * FROM ExerciseTypes;", null);
+	public String[] getExerciseTypes(){
+		Cursor c = ourDatabase.rawQuery("SELECT * FROM ExerciseTypes;", null);
+		
+		int id = c.getColumnIndex("ExerciseTypeId");
+		int name = c.getColumnIndex("ExerciseTypeName");
+		
+		//Forlopp som går igenom hela databasen, alla kolummer
+        //String[] columns = new String[]{ "ExerciseTypeID", "ExerciseTypeName"};
+		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext())
+		{
+			
+			//result = result + c.getString(id) + " " + c.getString(name) + "\n";
+			//System.out.println("Id: " + Integer.toString(c.getInt(id)) + " | Name: " + c.getString(name));
+			items[c.getInt(id)] = c.getString(name);
+			System.out.println(items[c.getInt(id)]);
+		}
+		return items;
 		//Kanske borde returnera map?
 	}
 	
