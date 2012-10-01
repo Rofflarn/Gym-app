@@ -16,6 +16,8 @@
     <string name="string_cancel">Cancel</string>
     <string name="description">Description</string>
     <string name="comment">Note to self</string>
+    <string name="hint_description">Describe your exercise</string>
+    <string name="hint_comment">Add a personal comment</string>
 
     <string-array name="trainingtype_array">
         <item>Cardio</item>
