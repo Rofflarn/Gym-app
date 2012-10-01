@@ -220,7 +220,11 @@ public class ListWorkoutActivity extends SherlockActivity {
 		
 	}
 
-    //Handles the dialog
+	/**
+     * Is called from when a user clicks the "Add workout". Will open a dialog which ask
+     * the person to write a name for the workout. When the user clicks "Add workout" in
+     * the dialog the activity "EditWorkout" starts where you can add/remove exercises.
+     */
     private void openDialog()
     {
     	//Variables for the dialog
@@ -230,14 +234,21 @@ public class ListWorkoutActivity extends SherlockActivity {
     	
     	addWorkout_Dialog.setMessage("Enter name of Workout:");
     	addWorkout_Dialog.setView(editText_Dialog);
-    	//If pressing "Add Workout"
+    	
+    	
+    	//If pressing "Add Workout" on the dialog
     	addWorkout_Dialog.setPositiveButton("Add Workout", new DialogInterface.OnClickListener() 
     	{
+    		/** When the user clicked "Add workout"
+    		 *  go to EditWorkout
+    		 *  if nothing is inputed, the dialog closes and
+    		 *  the user is returned to ListWorkout
+    		 *  */
     		public void onClick(DialogInterface dialog, int whichButton) 
     		{
     		  Editable value = editText_Dialog.getText();
     		  String workoutName = value.toString();
-		 		//If the workout doesn't contain any characters, cancel the dialog and go back to the ListWorkoutActivity
+
 		 		if(workoutName.trim().equals(""))
 		 		{
 		 			dialog.cancel();
@@ -248,18 +259,17 @@ public class ListWorkoutActivity extends SherlockActivity {
 		 		startActivity(intent2);
     		 }
     	});
-    	//If pressing "Cancel"
+    	//If pressing "Cancel" on the dialog
     	addWorkout_Dialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener()
     	{
 			
+    		/** Close dialog if the user press cancel*/
 			@Override
 			public void onClick(DialogInterface dialog, int whichButton) 
 			{
 				dialog.cancel();
 			}
 		});
-    	
     	addWorkout_Dialog.show();
- 
     }
 }

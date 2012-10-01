@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import android.app.AlertDialog;
-import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,14 +18,15 @@ import android.widget.Spinner;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 
-public class EditWorkout extends SherlockActivity implements OnItemSelectedListener{
-
-	  private ListView mainListView;  
+public class EditWorkout extends SherlockActivity implements OnItemSelectedListener
+{
+	
+	  private ListView mainListView;
 	  private Exercise[] excercises;
 	  private ArrayAdapter<Exercise> listAdapter;
 	  private String workoutName;
 	 
-	  String[] muscleGroup = { "Hej", "detta", "är", "Robert"};
+	  String[] muscleGroups = { "Hej", "detta", "är", "Robert"};
 	  
 	@Override
     public void onCreate(Bundle savedInstanceState)
@@ -42,7 +42,12 @@ public class EditWorkout extends SherlockActivity implements OnItemSelectedListe
 
         // When item is tapped, toggle checked properties of CheckBox and Exercise.  
         mainListView.setOnItemClickListener(new AdapterView.OnItemClickListener()
-        {  
+        {
+          /*** 
+           * Is called when the user press a Exercise in the workout, when
+           * a user click on a exercise, the exercise is getting checked
+           * If the exercise already was checked when clicked, it is getting unchecked
+           * */
           @Override  
           public void onItemClick( AdapterView<?> parent, View item,   int position, long id) 
           {  
@@ -50,38 +55,42 @@ public class EditWorkout extends SherlockActivity implements OnItemSelectedListe
             Exercise.toogleChecked();
             ExerciseViewHolder viewHolder = (ExerciseViewHolder) item.getTag();
             viewHolder.getCheckBox().setChecked( Exercise.isChecked() );
-          }  
-        });  
+          }//End of onItemClick
+        });//End of Listener
         
-        
+        //Create a spinner and add a listener to it.
         Spinner spin = (Spinner) findViewById(R.id.spinner1);
 		spin.setOnItemSelectedListener((OnItemSelectedListener) this);
 
-		ArrayAdapter<String> muscleGroups = new ArrayAdapter<String>
-		(this,android.R.layout.simple_spinner_item,muscleGroup);
+		//Creates an ArrayAdapter that contains the String-Array called musclegroups
+		ArrayAdapter<String> muscleGroupsSpinner = new ArrayAdapter<String>
+		(this,android.R.layout.simple_spinner_item,muscleGroups);
 
-		muscleGroups.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		spin.setAdapter(muscleGroups);
+		//On click, make a dropdown menu
+		muscleGroupsSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		//Set the Arrayadapter into the spinner
+		spin.setAdapter(muscleGroupsSpinner);
         
 		//Not implemented yet since we dont have a database
         Button save_Workout;
         
+        //Creates a cancel button and adds a listener
         Button cancel_EditWorkout = (Button) findViewById(R.id.button_Workout_Cancel);
         cancel_EditWorkout.setOnClickListener(new View.OnClickListener() 
         {
+        	/**When the user clicks on the cancel button a dialog pop up that
+        	 * asks the user if he want to close the "EditWorkout"-session*/
             public void onClick(View v) 
             {
             	cancel_EditWorkoutDialog();
-    			
             }
         }
-            );
+        );
         
-        
-		
-		
         
         // Since we don't have a database we manually put in exercises
+        //Could use a Arraylist directly but we use a String since we will load
+        //String-Arrays from the database we use a String-array here
         if ( excercises == null )
         {
           excercises = new Exercise[]
@@ -92,24 +101,26 @@ public class EditWorkout extends SherlockActivity implements OnItemSelectedListe
         		  new Exercise("Push-ups"), new Exercise("sit-ups"),
         		  };
         }
+        //Puts the String-array inte a Arraylist
         ArrayList<Exercise> exerciseList = new ArrayList<Exercise>();
         exerciseList.addAll( Arrays.asList(excercises) );
           
-        // Set our custom array adapter as the ListView's adapter.
+        // Set our custom Arrayadapter as the ListView's adapter.
         listAdapter = new ExerciseArrayAdapter(this, exerciseList);
         mainListView.setAdapter( listAdapter );
 	}
       @Override
       public boolean onCreateOptionsMenu(Menu menu)
       {
-      	getSupportMenuInflater().inflate(R.menu.editworkout, menu);
+      	  getSupportMenuInflater().inflate(R.menu.editworkout, menu);
           getSupportActionBar().setHomeButtonEnabled(true);
           
           //Set the title to the name of the workout
           getSupportActionBar().setTitle(workoutName);
           return true;
       }
-      
+      /**Is called if a user press the cancel button,
+       * asks the user if it want to close the dialog.*/
     public void cancel_EditWorkoutDialog()
     {
     	final AlertDialog.Builder closeEditWorkout_Dialog = new AlertDialog.Builder(this);
@@ -118,6 +129,7 @@ public class EditWorkout extends SherlockActivity implements OnItemSelectedListe
     	
     	closeEditWorkout_Dialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() 
     	{
+    		/** When the user click the "Yes"-button, go back to ListWorkout*/
     		public void onClick(DialogInterface dialog, int whichButton) 
     		{
     			 finish();
@@ -126,8 +138,8 @@ public class EditWorkout extends SherlockActivity implements OnItemSelectedListe
     	//If pressing "Cancel"
     	closeEditWorkout_Dialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener()
     	{
-			
 			@Override
+			/** When the user click the "Cancel"-button, close the dialog*/
 			public void onClick(DialogInterface dialog, int whichButton) 
 			{
 				dialog.cancel();
@@ -137,15 +149,13 @@ public class EditWorkout extends SherlockActivity implements OnItemSelectedListe
     }
     
       
-    //If you pressed a item on the spinner, do
+    /** When a item in the spinner is selected, do
+     * NOT IMPLEMENTED YET SINCE WE GOT NO DATABASE*/
   	public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
   	{
-  		
+  		//Implement later when we got a working database
   	}
 
   	@Override
-  	public void onNothingSelected(AdapterView<?> arg0)
-  	{
-  
-  	}  
+  	public void onNothingSelected(AdapterView<?> arg0){}  
  }  
