@@ -5,26 +5,30 @@ import java.util.ArrayList;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem.OnMenuItemClickListener;
 
-public class Ovningar extends SherlockActivity implements OnMenuItemClickListener {
+public class Ovningar extends SherlockActivity implements OnClickListener, OnItemClickListener {
 	
 	public final static String EXTRA_EXERCISE_NAME = "com.Grupp01.gymapp.message";
 	private Dialog dialog;
 	private Intent intent;
-	private com.actionbarsherlock.view.MenuItem newExButton;
+	private ArrayList<String> listElements;
+	private ArrayAdapter<String> element_adapter;
+	private ListView listView;
+	private Button add_Button;
+	private Button cancel_Button;
 
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -32,6 +36,13 @@ public class Ovningar extends SherlockActivity implements OnMenuItemClickListene
         setContentView(R.layout.ovningar);
         dialog = new Dialog(this);
         intent = new Intent(this, AddExercise.class);
+        getSupportActionBar().setHomeButtonEnabled(true);
+    	dialog.setContentView(R.layout.dialog);
+    	dialog.setTitle("New Exercise");
+        add_Button = (Button) dialog.findViewById(R.id.add_Button);
+    	add_Button.setOnClickListener(this);
+    	cancel_Button = (Button) dialog.findViewById(R.id.cancel_Button);
+    	cancel_Button.setOnClickListener(this);
         createListView();
     }
 
@@ -39,16 +50,13 @@ public class Ovningar extends SherlockActivity implements OnMenuItemClickListene
     public boolean onCreateOptionsMenu(Menu menu) {
     	MenuInflater inflater = getSupportMenuInflater();
     	inflater.inflate(R.menu.ovningar, menu);
-    	newExButton = menu.add("New exercise");
-    	newExButton.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
-    	newExButton.setOnMenuItemClickListener(this);
         return true;
     }
     
     public void createListView()
     {
-    	ListView listView = (ListView)findViewById(R.id.theList);
-    	ArrayList<String> listElements = new ArrayList<String>();
+    	listView = (ListView)findViewById(R.id.theList);
+    	listElements = new ArrayList<String>();
     	listElements.add("ett");
     	listElements.add("två");
     	listElements.add("tre");
@@ -56,44 +64,55 @@ public class Ovningar extends SherlockActivity implements OnMenuItemClickListene
     	listElements.add("fem");
     	listElements.add("sex");
     	listElements.add("sju");
-    	ArrayAdapter<String> element_adapter = new ArrayAdapter<String>(this, R.layout.thelist_row, listElements);
+    	element_adapter = new ArrayAdapter<String>(this, R.layout.thelist_row, listElements);
     	listView.setAdapter(element_adapter);
+    	listView.setOnItemClickListener(this);
     }
 
+    //lyssnar metoderna börjar här
 	@Override
-	public boolean onMenuItemClick(com.actionbarsherlock.view.MenuItem item) {
-		
-		//if(item.getActionView() == newExButton)
-		//{
+	public boolean onOptionsItemSelected(com.actionbarsherlock.view.MenuItem item) {
+		if(item.getItemId() == R.id.menu_addExe)
+		{
+	    	dialog.show();
+		}
+		else if(item.getItemId() == android.R.id.home)
+		{
+			//Taget från developer.android.com
+			Intent parentActivityIntent = new Intent(this, MainActivity.class);
+            parentActivityIntent.addFlags(
+                    Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                    Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(parentActivityIntent);
+            finish();
 
-		    	dialog.setContentView(R.layout.dialog);
-		    	dialog.setTitle("New Exercise");
-		    	Button cancel_Button = (Button) dialog.findViewById(R.id.cancel_Button);
-		    	Button add_Button = (Button) dialog.findViewById(R.id.add_Button);
-		    	add_Button.setOnClickListener(
-		    			new OnClickListener()
-		    			{
-		    				public void onClick(View view)
-		    				{
-		    					intent.putExtra(EXTRA_EXERCISE_NAME, ((EditText) dialog.findViewById(R.id.exerciseName)).getText().toString());
-		    					dialog.dismiss();
-		    					startActivity(intent);
-		    				}
-		    			});
-		    	
-		    	cancel_Button.setOnClickListener(
-		    			new OnClickListener()
-		    			{
-							@Override
-							public void onClick(View view)
-							{
-								dialog.dismiss();
-							}
-		    				
-		    			});
-		    	dialog.show();
-				return false;
-		//}
-		//return false;
+		}
+			return false;
+	}
+
+	@Override
+	public void onClick(View view)
+	{
+		if(view == add_Button)
+		{
+		intent.putExtra(EXTRA_EXERCISE_NAME, ((EditText) dialog.findViewById(R.id.exerciseName)).getText().toString());
+		dialog.dismiss();
+		startActivity(intent);
+		}
+		else if(view == cancel_Button)
+		{
+			dialog.dismiss();
+		}
+	}
+
+	@Override
+	public void onItemClick(AdapterView<?> adapt, View view, int position, long id)
+	{
+				//listElements.add("åtta");
+				//element_adapter.notifyDataSetChanged();
+				String test = listView.getItemAtPosition(position).toString();
+				Intent intent = new Intent(this, View_Exercise.class);
+				intent.putExtra("test", test);
+				startActivity(intent);
 	}
 }

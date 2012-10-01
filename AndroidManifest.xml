@@ -35,6 +35,9 @@
         <activity
             android:name=".AddExercise"
             android:label="@string/title_activity_main" />
+        <activity
+            android:name=".View_Exercise"
+            android:label="@string/title_activity_main" />
     </application>
 
 </manifest>

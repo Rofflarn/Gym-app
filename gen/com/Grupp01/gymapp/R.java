@@ -834,6 +834,7 @@ containing a value of this type.
         public static final int homeAsUp=0x7f040006;
         public static final int linearLayout1=0x7f040038;
         public static final int listMode=0x7f040002;
+        public static final int menu_addExe=0x7f04003b;
         public static final int menu_settings=0x7f04003a;
         public static final int normal=0x7f040001;
         public static final int selection=0x7f040032;
@@ -886,7 +887,8 @@ containing a value of this type.
         public static final int sherlock_spinner_item=0x7f03001b;
         public static final int statistik=0x7f03001c;
         public static final int thelist_row=0x7f03001d;
-        public static final int workout=0x7f03001e;
+        public static final int view_exercise=0x7f03001e;
+        public static final int workout=0x7f03001f;
     }
     public static final class menu {
         public static final int activity_add_exercise=0x7f0c0000;
@@ -927,7 +929,10 @@ containing a value of this type.
         /**  Description of a share target (both in the list of such or the default share button) in a ShareActionProvider (share UI). [CHAR LIMIT=NONE] 
          */
         public static final int abs__shareactionprovider_share_with_application=0x7f090009;
+        public static final int add=0x7f090017;
         public static final int app_name=0x7f09000a;
+        public static final int cancel=0x7f090016;
+        public static final int exercise_name=0x7f090015;
         public static final int hello_world=0x7f09000b;
         public static final int menu_addExe=0x7f09000f;
         public static final int menu_save=0x7f09000e;
