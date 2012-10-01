@@ -5,22 +5,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 
 public class AddExercise extends SherlockActivity implements AdapterView.OnItemSelectedListener {
-	private TextView comment;
-	private Button button;
 	private String[] items;
-	private Spinner spinner;
-	//private Spinner typeOfTraining;
-	//private static final String[] items={"Cardio", "Static", "Dynamic", "blaj"};
-
+	private Spinner spinnerType;
+	private String currentView;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -29,11 +23,8 @@ public class AddExercise extends SherlockActivity implements AdapterView.OnItemS
 		getSupportActionBar().setHomeButtonEnabled(true);
 
 		Resources res = getResources();
-		items = res.getStringArray(R.array.trainingtype_array);
-		initSpinnerTypeOfTraining();
-		setUpInvisLayout();
-		button = (Button) findViewById(R.id.buttontest);
-		button.setVisibility(View.INVISIBLE);
+		items = res.getStringArray(R.array.trainingtype_array);//get String-array from strings.xml
+		initSpinnerType(0); //initialize spinner with listener and set spinner to static
 	}
 
 	@Override
@@ -43,46 +34,45 @@ public class AddExercise extends SherlockActivity implements AdapterView.OnItemS
 		return true;
 	}
 	
-	public void setUpInvisLayout(){
-		button = (Button) findViewById(R.id.buttontest);
-		button.setVisibility(View.INVISIBLE);
-		
-		comment = (TextView) findViewById(R.id.comment);
-		comment.setVisibility(View.INVISIBLE);
-		
-		
-		
-	}
-	public void initSpinnerTypeOfTraining()
+	public void initSpinnerType(int position)
 	{
-		spinner = (Spinner) findViewById(R.id.spinner_type_of_training);
-		// Create an ArrayAdapter using the string array and a default spinner layout
+		spinnerType = (Spinner) findViewById(R.id.spinner_type_of_training); //Retrieves the view from .xml-file
 		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-		        R.array.trainingtype_array, android.R.layout.simple_spinner_item);
-		// Specify the layout to use when the list of choices appears
+				R.array.trainingtype_array, android.R.layout.simple_spinner_item);//From developer.android.com
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		// Apply the adapter to the spinner
-		spinner.setAdapter(adapter);
-		
-		spinner = (Spinner) findViewById(R.id.spinner_type_of_training);
-		spinner.setOnItemSelectedListener(this);
-		
+		spinnerType.setAdapter(adapter); //Sets the adapter to the spinner
+
+		spinnerType = (Spinner) findViewById(R.id.spinner_type_of_training);
+		spinnerType.setSelection(position); //Sets the spinner default value to selected value
+		spinnerType.setOnItemSelectedListener(this); //Adds listener to spinner spinnterType
 	}
+
 	public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-		if(items[position].equals("Static"))
+		if(!items[position].equals(currentView)) //conditional if to prevent infinite loop
 		{
-			setContentView(R.layout.add_exercise_static);
-			
-			//button.setVisibility(View.VISIBLE);
-		}
-		if(items[position].equals("Dynamic"))
-		{
-			button.setVisibility(View.VISIBLE);
-			comment.setVisibility(View.VISIBLE);
+			if(items[position].equals("Static"))
+			{
+				setContentView(R.layout.add_exercise_static);	//Switches the layout to the selected one
+				initSpinnerType(position);	//After switching view, adds listener to spinner again
+				currentView=items[position];	//Sets currentView to prevent infinite loop
+			}
+
+			else if(items[position].equals("Dynamic"))
+			{
+				setContentView(R.layout.add_exercise_static);	
+				initSpinnerType(position);
+				currentView=items[position];
+			}
+			else if (items[position].equals("Cardio"))
+			{
+				setContentView(R.layout.activity_add_exercise);	
+				initSpinnerType(position);
+				currentView=items[position];
+			}
 		}
 	}
 
 	public void onNothingSelected(AdapterView<?> parent) {
-		// Another interface callback
+
 	}
 }
