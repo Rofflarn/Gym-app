@@ -3,6 +3,7 @@ package com.Grupp01.gymapp;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
 
 public class DbHelper extends SQLiteOpenHelper{
 	
@@ -23,6 +24,7 @@ public class DbHelper extends SQLiteOpenHelper{
 	@Override
 	public void onCreate(SQLiteDatabase db)
 	{
+		
 		createExercises(db);
 		createMeasureDataTypes(db);
 		createExerciseTypes(db);
@@ -31,11 +33,12 @@ public class DbHelper extends SQLiteOpenHelper{
 		createMeasureData(db);		
 		createMuscles(db);
 		createSets(db);
-		createUsers(db);
+		createUsers(db); 
 		createPassTemplates(db);
 		createSetTemplates(db);
 		createSports(db);
 		createMuscleGroups(db);
+		System.out.println("Alla db skapade och instansierade");
 	}
 	
 	/**
@@ -72,6 +75,7 @@ public class DbHelper extends SQLiteOpenHelper{
 	 */
 	private void createExercises(SQLiteDatabase db)
 	{
+		
 		db.execSQL("CREATE TABLE Exercises (ExceriseId INTEGER PRIMARY KEY AUTOINCREMENT, ExercisePri INTEGER, " +
 				"ExerciseSec INTEGER, ExerciseName TEXT NOT NULL, ExerciseDesc TEXT, ExerciseNote Text, " +
 				"ExerciseTypeId INTEGER NOT NULL);");
@@ -79,6 +83,7 @@ public class DbHelper extends SQLiteOpenHelper{
 		db.execSQL("INSERT INTO Exercises(ExercisePri, ExerciseSec, ExerciseName, ExerciseTypeId) VALUES (3, 1, 'Chins', 1);");
 		db.execSQL("INSERT INTO Exercises(ExercisePri, ExerciseSec, ExerciseName, ExerciseTypeId) VALUES (1, 4, 'Bench press', 3);");
 		db.execSQL("INSERT INTO Exercises(ExercisePri, ExerciseSec, ExerciseName, ExerciseTypeId) VALUES (1, 2, 'Push-ups', 1);");
+		
 	}
 	
 	/**
@@ -93,6 +98,7 @@ public class DbHelper extends SQLiteOpenHelper{
 		db.execSQL("insert into ExerciseTypes (ExerciseTypeName) VALUES ('Cardio');");
 		db.execSQL("insert into ExerciseTypes (ExerciseTypeName) VALUES ('Dynamic');");
 		db.execSQL("insert into ExerciseTypes (ExerciseTypeName) VALUES ('Static');");		
+		
 	}
 	
 	/**
@@ -126,8 +132,15 @@ public class DbHelper extends SQLiteOpenHelper{
 	 */
 	private void createPasses(SQLiteDatabase db)
 	{
-		db.execSQL("CREATE TABLE Passes (PassID INTEGER PRIMARY KEY AUTOINCREMENT, PassTime TEXT NOT NULL, Passname TEXT, " +
+		db.execSQL("CREATE TABLE Passes (PassId INTEGER PRIMARY KEY AUTOINCREMENT, PassTime TEXT NOT NULL, PassName TEXT, " +
 				"UserId INTEGER NOT NULL);");
+		db.execSQL("INSERT INTO Passes (PassTime, PassName, UserId) VALUES ('Nutid', 'Pass1', 1);");
+		db.execSQL("INSERT INTO Passes (PassTime, PassName, UserId) VALUES ('Nutid', 'Pass2', 1);");	
+		db.execSQL("INSERT INTO Passes (PassTime, PassName, UserId) VALUES ('Nutid', 'Pass3', 1);");	
+		db.execSQL("INSERT INTO Passes (PassTime, PassName, UserId) VALUES ('Nutid', 'Pass4', 1);");	
+		db.execSQL("INSERT INTO Passes (PassTime, PassName, UserId) VALUES ('Nutid', 'Pass5', 1);");	
+		db.execSQL("INSERT INTO Passes (PassTime, PassName, UserId) VALUES ('Nutid', 'Pass6', 1);");	
+		
 	}
 	
 	/**

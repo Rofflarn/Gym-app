@@ -39,7 +39,7 @@ public class SQLView extends Activity {
     	TextView tv = (TextView) findViewById(R.id.tvSQLinfo);
         Database info = new Database(this);
         info.open();
-        String data = info.getData();
+        String data = info.getListWorkout();
         info.close();
         tv.setText(data);
     }
