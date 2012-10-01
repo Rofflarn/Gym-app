@@ -17,7 +17,6 @@ import android.widget.ListView;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
-import com.actionbarsherlock.view.MenuItem.OnMenuItemClickListener;
 
 public class Ovningar extends SherlockActivity implements OnClickListener, OnItemClickListener {
 	
