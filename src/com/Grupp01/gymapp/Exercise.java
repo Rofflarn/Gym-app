@@ -24,7 +24,7 @@ package com.Grupp01.gymapp;
   public String toString() {  
     return name ;   
   }  
-  public void toggleChecked() {  
+  public void toogleChecked() {  
     checked = !checked ;  
   }  
 }  
