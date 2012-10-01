@@ -35,6 +35,10 @@
         <activity
             android:name=".AddExercise"
             android:label="@string/title_activity_main" />
+        <activity
+            android:name=".SQLView"
+            android:label="@string/title_activity_sqlview" >
+        </activity>
     </application>
 
 </manifest>

@@ -35,5 +35,8 @@
         <item>Running</item>
         <item>Rowing</item>
     </string-array>
+    <string name="menu_addExc">Add Excersice!</string>
+    <string name="title_activity_database">DatabaseActivity</string>
+    <string name="title_activity_sqlview">SQLView</string>
 
 </resources>
