@@ -233,7 +233,7 @@ public class DbHelper extends SQLiteOpenHelper{
 	private void createUsers(SQLiteDatabase db)
 	{
 		 db.execSQL("CREATE TABLE Users (UserId INTEGER PRIMARY KEY AUTOINCREMENT, UserName TEXT NOT NULL, " +
-		 		"UserBirthday NUMERIC NOT NULL, UserInitialWeight REAL);");
+		 		"UserBirthday TEXT NOT NULL, UserInitialWeight REAL);");
 	}
 	
 	/**
