@@ -19,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/spinner_type_of_training"
-            android:text="@string/string_type_of_training"
+            android:text="@string/string_primary_muscle"
             tools:context=".AddExercise" />
 
         <TextView
@@ -27,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/spinner_primary_muscle"
-            android:text="@string/string_type_of_training"
+            android:text="@string/string_secondary_muscle"
             tools:context=".AddExercise" />
 
         <TextView
@@ -51,7 +51,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/textView_type_of_training"
-            android:entries="@array/trainingtype_array"
             android:prompt="@string/trainingtype_prompt" />
 
         <Spinner
@@ -59,7 +58,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/textView_primary_muscle"
-            android:entries="@array/muscle_type"
             android:prompt="@string/primary_muscletype_prompt" />
 
         <Spinner

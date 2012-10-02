@@ -1,5 +1,7 @@
 package com.Grupp01.gymapp;
 
+import java.util.ArrayList;
+
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -13,7 +15,7 @@ public class Database {
 	private DbHelper ourHelper;
 	private final Context ourContext;
 	private SQLiteDatabase ourDatabase;
-	private String[] items;
+	
 
 	public Database(Context c)
 	{
@@ -52,6 +54,8 @@ public class Database {
 
 	public String[] getExerciseTypes(){
 		Cursor c = ourDatabase.rawQuery("SELECT * FROM ExerciseTypes;", null);
+		ArrayList<String> strings = new ArrayList<String>();
+		System.out.println("Runnig Ex erciseTypes");
 		
 		int id = c.getColumnIndex("ExerciseTypeId");
 		int name = c.getColumnIndex("ExerciseTypeName");
@@ -63,10 +67,13 @@ public class Database {
 			
 			//result = result + c.getString(id) + " " + c.getString(name) + "\n";
 			//System.out.println("Id: " + Integer.toString(c.getInt(id)) + " | Name: " + c.getString(name));
-			items[c.getInt(id)] = c.getString(name);
-			System.out.println(items[c.getInt(id)]);
+			//items[c.getInt(0)] = c.getString(1);
+			//System.out.println(""+items[c.getInt(id)]);
+			strings.add(c.getString(name));
 		}
-		return items;
+		System.out.println("Exit ExerciseTypes");
+		//return items;
+		return (String[]) strings.toArray(new String[strings.size()]);
 		//Kanske borde returnera map?
 	}
 	
@@ -81,6 +88,21 @@ public class Database {
 	
 	public Cursor getMusclesByMuscleGroupId(int MuscleGroupId){
 		return ourDatabase.rawQuery("SELECT * FROM Muscles WHERE MuscleGroupId = '" + MuscleGroupId + "';", null);
+	}
+	
+	public String[] getMuscles()
+	{
+		Cursor c = ourDatabase.rawQuery("SELECT * FROM Muscles;", null);
+		ArrayList<String> strings = new ArrayList<String>();
+		System.out.println("Runnig Ex erciseTypes");
+		
+		int id = c.getColumnIndex("MuscleId");
+		int name = c.getColumnIndex("MuscleName");
+
+		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext())
+			strings.add(c.getString(name));
+		
+		return (String[]) strings.toArray(new String[strings.size()]);
 	}
 
 	public Cursor getUsers(){
@@ -97,8 +119,18 @@ public class Database {
 		return ourDatabase.rawQuery("SELECT * FROM Exercises WHERE ExerciseTypeId = '" + ExerciseTypeId + "';", null);
 	}
 
-	public Cursor getSports(){
-		return ourDatabase.rawQuery("SELECT * FROM Sports;", null);
+	public String[] getSports(){
+		Cursor c = ourDatabase.rawQuery("SELECT * FROM Sports;", null);
+		ArrayList<String> strings = new ArrayList<String>();
+		System.out.println("Runnig Ex erciseTypes");
+		
+		int id = c.getColumnIndex("SportId");
+		int name = c.getColumnIndex("SportName");
+
+		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext())
+			strings.add(c.getString(name));
+		
+		return (String[]) strings.toArray(new String[strings.size()]);
 	}
 
 	/**
