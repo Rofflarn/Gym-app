@@ -82,6 +82,11 @@ public class Database {
 	public Cursor getMusclesByMuscleGroupId(int MuscleGroupId){
 		return ourDatabase.rawQuery("SELECT * FROM Muscles WHERE MuscleGroupId = '" + MuscleGroupId + "';", null);
 	}
+	/*
+	 * public Cursor getMusclesByMuscleGroupName(String MuscleGroupName){
+	 *	return ourDatabase.rawQuery("SELECT * FROM Muscles WHERE MuscleGroupId = (SELECT MuscleGroupId FROM MuslceGroups WHERE MuscleGroupName = '" + MuscleGroupName + "');", null);
+	 * }
+	 */
 
 	public Cursor getUsers(){
 		return ourDatabase.rawQuery("SELECT * FROM Users;", null);
@@ -92,11 +97,11 @@ public class Database {
 		ourDatabase.execSQL("INSERT INTO Users (UserName, UserBirthday) VALUES ('" + UserName + "', '" + UserBirthday + "');");
 		//TODO change to insert() instead of execSql()
 	}
-
+	
 	public Cursor getExercisesByTypeId(int ExerciseTypeId){
 		return ourDatabase.rawQuery("SELECT * FROM Exercises WHERE ExerciseTypeId = '" + ExerciseTypeId + "';", null);
 	}
-
+	
 	public Cursor getSports(){
 		return ourDatabase.rawQuery("SELECT * FROM Sports;", null);
 	}
