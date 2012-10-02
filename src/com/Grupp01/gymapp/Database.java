@@ -86,9 +86,10 @@ public class Database {
 		return ourDatabase.rawQuery("SELECT * FROM MuscleGroups;" ,null);
 	}
 	
-	public Cursor getMusclesByMuscleGroupId(int MuscleGroupId){
+	public Cursor getMusclesByMuscleByGroupId(int MuscleGroupId){
 		return ourDatabase.rawQuery("SELECT * FROM Muscles WHERE MuscleGroupId = '" + MuscleGroupId + "';", null);
 	}
+
 	
 	public String[] getMuscles()
 	{
@@ -105,6 +106,13 @@ public class Database {
 		return (String[]) strings.toArray(new String[strings.size()]);
 	}
 
+	/*
+	 * public Cursor getMusclesByMuscleGroupName(String MuscleGroupName){
+	 *	return ourDatabase.rawQuery("SELECT * FROM Muscles WHERE MuscleGroupId = (SELECT MuscleGroupId FROM MuslceGroups WHERE MuscleGroupName = '" + MuscleGroupName + "');", null);
+	 * }
+	 * */
+
+
 	public Cursor getUsers(){
 		return ourDatabase.rawQuery("SELECT * FROM Users;", null);
 		//Kanske borde returnera map?
@@ -114,10 +122,11 @@ public class Database {
 		ourDatabase.execSQL("INSERT INTO Users (UserName, UserBirthday) VALUES ('" + UserName + "', '" + UserBirthday + "');");
 		//TODO change to insert() instead of execSql()
 	}
-
+	
 	public Cursor getExercisesByTypeId(int ExerciseTypeId){
 		return ourDatabase.rawQuery("SELECT * FROM Exercises WHERE ExerciseTypeId = '" + ExerciseTypeId + "';", null);
 	}
+
 
 	public String[] getSports(){
 		Cursor c = ourDatabase.rawQuery("SELECT * FROM Sports;", null);
@@ -132,6 +141,9 @@ public class Database {
 		
 		return (String[]) strings.toArray(new String[strings.size()]);
 	}
+
+	
+
 
 	/**
 	 * Gets all SetTemplates and ExerciseNames that belong to a PassTemplate. Note: only gets SetsId and ExerciseNames.
