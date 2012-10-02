@@ -79,7 +79,7 @@ public class Database {
 		return ourDatabase.rawQuery("SELECT * FROM MuscleGroups;" ,null);
 	}
 	
-	public Cursor getMusclesByMuscleGroupId(int MuscleGroupId){
+	public Cursor getMusclesByMuscleByGroupId(int MuscleGroupId){
 		return ourDatabase.rawQuery("SELECT * FROM Muscles WHERE MuscleGroupId = '" + MuscleGroupId + "';", null);
 	}
 	/*
