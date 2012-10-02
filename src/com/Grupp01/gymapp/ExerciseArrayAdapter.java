@@ -23,7 +23,10 @@ import android.widget.TextView;
   }
 
   
-  //Since we display other things than a TextView we need to Override a getView-method
+  /**Since we display other things than a TextView we need to Override a getView-method.
+   * This method is the one that got the focus on the screen and is returning the View
+   * when the user clicks on a exercise.
+   * @return View*/
   @Override  
   public View getView(int position, View convertView, ViewGroup parent)
   {  
@@ -34,7 +37,9 @@ import android.widget.TextView;
     CheckBox checkBox;
     TextView textView;
       
-    //If the view doesn't exist, we create a new row view
+    //If the view doesn't exist, we create a new row view. Initially
+    //the screen is filled up, when the screen is full the convertview
+    // is not null and will there after go to the else-statement
     if ( convertView == null)
     {
       convertView = inflater.inflate(R.layout.simplerow, null);
@@ -44,12 +49,14 @@ import android.widget.TextView;
       checkBox = (CheckBox) convertView.findViewById( R.id.CheckBox01 );
         
       // Optimization: Tag the row with it's child views, so we don't have to   
-      // call findViewById() later when we reuse the row.  
+      // call findViewById() later when we reuse the row.
       convertView.setTag( new ExerciseViewHolder(textView,checkBox) );
 
       // If CheckBox is toggled, update the Exercise it is tagged with. 
       checkBox.setOnClickListener( new View.OnClickListener()
       {
+    	/** When the user click on a exercise, the checkbox
+    	 *  for the exercise is getting unchecked or checked*/
         public void onClick(View v)
         {  
           CheckBox cb = (CheckBox) v;
@@ -58,7 +65,9 @@ import android.widget.TextView;
         }
       });
     }
-    // Reuse existing row view
+    //Is used when the user are scrolling down or up to list existing views but now the
+    //the elements  in the highest view with another element if the user scroll up or
+    //the lowest view if the user scroll down.
     else
     {
       // Because we use a ViewHolder, we avoid having to call findViewById().  

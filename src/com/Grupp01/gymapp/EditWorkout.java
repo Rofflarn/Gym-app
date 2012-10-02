@@ -26,7 +26,9 @@ public class EditWorkout extends SherlockActivity implements OnItemSelectedListe
 	  private ArrayAdapter<Exercise> listAdapter;
 	  private String workoutName;
 	 
-	  String[] muscleGroups = { "Hej", "detta", "är", "Robert"};
+	  String[] muscleGroups = { "Hej", "detta", "är", "Robert", "och", "Anders",
+			  "och" , "Joel", "och" , "Zotty"};
+	  
 	  
 	@Override
     public void onCreate(Bundle savedInstanceState)
