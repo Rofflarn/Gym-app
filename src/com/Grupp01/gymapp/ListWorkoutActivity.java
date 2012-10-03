@@ -4,18 +4,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -26,17 +23,13 @@ import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 
 public class ListWorkoutActivity extends SherlockActivity {
-	private String  [] listWorkouts = { "Pass 1", "Pass 2", "Pass 3",
-	"Pass 4", "Pass 5","Passg 6","Pass 7","Pass 8","Pass 9","Pass 10","Pass 11","Pass 12"};
+	private String  [] listWorkouts = { "Fejk", "lista", "tills",
+	"databas", "koppling","fungerar"};
 	//list1 is only a string used in testing before fetching data from DB
 	
 	public final static String WORKOUT_NAME = "com.Grupp01.gymapp.WORKOUT";
-	
-	
-	
-	
-	private ListView mainListView ;  				
-	private ArrayAdapter<String> listAdapter ;  
+	private ListView mainListView ;  					//This is the listview where the list of all workouts will be shown
+	private ArrayAdapter<String> listAdapter ;  		//Adapter used for the list
 
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -46,20 +39,102 @@ public class ListWorkoutActivity extends SherlockActivity {
 	}
 	
 	
-	
-	
 	/**
+     * Set up the actionbar (layout xml and title)
+     * @param Menu the actionbar menu
+     * @return true to make the menu visible
+     */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+    	MenuInflater inflater = getSupportMenuInflater();
+    	inflater.inflate(R.menu.list_workout, menu);
+    	//Set the App icon to work as a button in the actionbar
+    	getSupportActionBar().setHomeButtonEnabled(true);
+        return true;
+    }
+  
+    
+    /**
+     * Set up actions for buttons in actionbar
+     * @param MenuItem item - The menuitem thas has been pressed
+     * 
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+    	switch (item.getItemId()){
+    		//Make app icon navigate back to the applications start screen.
+    		case	android.R.id.home:
+    			Intent intent = new Intent(this, MainActivity.class);
+    			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+    			startActivity(intent);
+    			return true;
+    			
+    			
+    		//when clicking "add workout" a dialog pops up with input for the name
+    		case	R.id.menu_addWorkout:
+    			openDialog();
+    			
+    			
+    		default:
+    			return super.onOptionsItemSelected(item);
+    	}
+    }
+    
+
+    
+    /**
+     * This method creates the menu for longclicking a workout in the list
+     * @param menu, v & menuInfo
+     */
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v,
+        ContextMenuInfo menuInfo) {
+    	
+         menu.add(Menu.NONE, 0, 0, "Edit");
+         menu.add(Menu.NONE, 1, 1, "Delete");
+         
+        }
+    
+   /**
+    * Is called when any of the options in the context menu is clicked.
+    * This method will make the selected action.
+    * @param item The context menu item that was clicked
+    */
+    @Override
+    public boolean onContextItemSelected(android.view.MenuItem item) {
+	      AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
+	      int menuItemIndex = item.getItemId();
+	      String workoutName = mainListView.getAdapter().getItem(info.position).toString();
+	      switch(menuItemIndex){
+	      	case 0:
+	      		editWorkouts(workoutName);
+	      		return true;
+	      	case 1:
+	      		
+	      		deleteWorkout(workoutName);
+	      		return true;
+	      }
+	      return true;
+    }
+
+    
+    /**
 	 * Is called from onCreate to build the list with all workouts and
 	 * set correct actions for onClick and also context menus for longclicking.
 	 * 
 	 */
 	private void createWorkoutList() {
-		//Builds the list of all workouts
 		 mainListView = (ListView) findViewById( R.id.ListViewWorkouts );
 		 ArrayList<String> arrayWorkouts = new ArrayList<String>();
-		 arrayWorkouts.addAll( Arrays.asList(listWorkouts) );		
+		 
+		 //Add all the strings from stringarray to the ArrayList
+		 arrayWorkouts.addAll( Arrays.asList(listWorkouts) );	
+		 
+		 //Set the listview layout with strings in array
 		 listAdapter = new ArrayAdapter<String>(this, R.layout.list, arrayWorkouts);
 		 mainListView.setAdapter(listAdapter);   
+		 
+		 //Activate longclick menu in the list
 		 registerForContextMenu(mainListView);
 		 
 		 //Set each row in the list clickable and fetch the title of the workout 
@@ -79,10 +154,6 @@ public class ListWorkoutActivity extends SherlockActivity {
 	}
 
 
-	
-	
-	
-	
 	/**
 	 * Is called with the user selects to create a new workout (clicking the "add workout" button
 	 * in ActionBar. 
@@ -95,82 +166,6 @@ public class ListWorkoutActivity extends SherlockActivity {
     	startActivity(workout);
 	}
 	
-	
-	
-	
-	
-	
-	
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-    	MenuInflater inflater = getSupportMenuInflater();
-    	inflater.inflate(R.menu.list_workout, menu);
-    	//Set the App icon to work as a button in the actionbar
-    	getSupportActionBar().setHomeButtonEnabled(true);
-        return true;
-    }
-    
-    
-    
-    
-    
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item){
-    	switch (item.getItemId()){
-    		//Make app icon navigate back to the applications start screen.
-    		case	android.R.id.home:
-    			Intent intent = new Intent(this, MainActivity.class);
-    			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-    			startActivity(intent);
-    			return true;
-    			
-    			
-    		//when clicking "add workout" a dialog pops up
-    		case	R.id.menu_addWorkout:
-    			openDialog();
-    			
-    			
-    		default:
-    			return super.onOptionsItemSelected(item);
-    	}
-    }
-    
-
-    
-    
-    
-    
-    
-    @Override
-    public void onCreateContextMenu(ContextMenu menu, View v,
-        ContextMenuInfo menuInfo) {
-      if (v.getId()==R.id.ListViewWorkouts) {
-        AdapterView.AdapterContextMenuInfo contextMenuInfo = (AdapterView.AdapterContextMenuInfo)menuInfo;
-       // menu.setHeaderTitle(Countries[info.position]);
-         menu.add(Menu.NONE, 0, 0, "Edit");
-         menu.add(Menu.NONE, 1, 1, "Delete");
-         
-        }
-      }
-   
-    @Override
-    public boolean onContextItemSelected(android.view.MenuItem item) {
-    	AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
-      int menuItemIndex = item.getItemId();
-      String workoutName = mainListView.getAdapter().getItem(info.position).toString();
-      switch(menuItemIndex){
-      	case 0:
-      		editWorkouts(workoutName);
-      		return true;
-      	case 1:
-      		
-      		deleteWorkout(workoutName);
-      		return true;
-      }
-      return true;
-    }
-
-
     
     
     
@@ -192,7 +187,7 @@ public class ListWorkoutActivity extends SherlockActivity {
 	        	  
 	        	   Toast.makeText(ListWorkoutActivity.this, "Not implementet yet!", Toast.LENGTH_SHORT).show();
 	           } //End of onclick method
-			}	//end of newDialogInterface
+			}	//end of DialogInterface
 		);	//End of setPositiveButton
 		
 		//Set action for choosing not to delete (the dialog just closes and no action is taken)
@@ -248,8 +243,7 @@ public class ListWorkoutActivity extends SherlockActivity {
     		 *  */
     		public void onClick(DialogInterface dialog, int whichButton) 
     		{
-    		  Editable value = editText_Dialog.getText();
-    		  String workoutName = value.toString();
+    			String workoutName = editText_Dialog.getText().toString();
 
 		 		if(workoutName.trim().equals(""))
 		 		{

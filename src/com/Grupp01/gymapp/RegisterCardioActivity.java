@@ -41,6 +41,7 @@ public class RegisterCardioActivity extends SherlockActivity {
     /**
      * Set up the actionbar (layout xml and title)
      * @param Menu the actionbar menu
+     * @return true to make the menu visible
      */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
