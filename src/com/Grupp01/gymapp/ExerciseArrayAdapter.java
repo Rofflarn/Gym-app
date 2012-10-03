@@ -11,7 +11,8 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 /** Custom adapter for displaying an array of Exercise objects. */  
- public class ExerciseArrayAdapter extends ArrayAdapter<Exercise> {  
+ public class ExerciseArrayAdapter extends ArrayAdapter<Exercise>
+ {  
     
   private LayoutInflater inflater;  
     
@@ -26,7 +27,8 @@ import android.widget.TextView;
   /**Since we display other things than a TextView we need to Override a getView-method.
    * This method is the one that got the focus on the screen and is returning the View
    * when the user clicks on a exercise.
-   * @return View*/
+   * @return View	Returns the edited object you clicked on,
+   * */
   @Override  
   public View getView(int position, View convertView, ViewGroup parent)
   {  
@@ -48,7 +50,7 @@ import android.widget.TextView;
       textView = (TextView) convertView.findViewById( R.id.rowTextView );
       checkBox = (CheckBox) convertView.findViewById( R.id.CheckBox01 );
         
-      // Optimization: Tag the row with it's child views, so we don't have to   
+      // Optimization: Set a tag with it's child views, so we don't have to   
       // call findViewById() later when we reuse the row.
       convertView.setTag( new ExerciseViewHolder(textView,checkBox) );
 
@@ -76,15 +78,15 @@ import android.widget.TextView;
       textView = viewHolder.getTextView();
     }
 
-    // Tag the CheckBox with the Exercise it is displaying, so that we can  
+    // Tag the CheckBox with the Exercise it is displaying, so that we can
     // access the Exercise in onClick() when the CheckBox is clicked.
-    checkBox.setTag( exercise );   
+    checkBox.setTag( exercise );
       
     // Display Exercise 
-    checkBox.setChecked( exercise.isChecked() );  
-    textView.setText( exercise.getName() );        
+    checkBox.setChecked( exercise.isChecked() );
+    textView.setText( exercise.getName() );   
       
-    return convertView;  
-  }  
-    
+    return convertView;
+  }//End of getView
+ 
 }  

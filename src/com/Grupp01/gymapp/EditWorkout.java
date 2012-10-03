@@ -1,7 +1,6 @@
 package com.Grupp01.gymapp;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -21,11 +20,12 @@ import com.actionbarsherlock.view.Menu;
 public class EditWorkout extends SherlockActivity implements OnItemSelectedListener
 {
 	
-	  private ListView mainListView;
-	  private Exercise[] excercises;
+	  private ListView listView;
 	  private ArrayAdapter<Exercise> listAdapter;
 	  private String workoutName;
-	 
+      public ArrayList<Exercise> exerciseList = new ArrayList<Exercise>();
+	  
+	  
 	  String[] muscleGroups = { "Hej", "detta", "är", "Robert", "och", "Anders",
 			  "och" , "Joel", "och" , "Zotty"};
 	  
@@ -39,11 +39,11 @@ public class EditWorkout extends SherlockActivity implements OnItemSelectedListe
         
         setContentView(R.layout.editworkout);
         // Find the ListView resource.   
-        mainListView = (ListView) findViewById( R.id.mainListView );  
+        listView = (ListView) findViewById( R.id.mainListView );  
           
 
         // When item is tapped, toggle checked properties of CheckBox and Exercise.  
-        mainListView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {
           /*** 
            * Is called when the user press a Exercise in the workout, when
@@ -61,17 +61,24 @@ public class EditWorkout extends SherlockActivity implements OnItemSelectedListe
         });//End of Listener
         
         //Create a spinner and add a listener to it.
-        Spinner spin = (Spinner) findViewById(R.id.spinner1);
-		spin.setOnItemSelectedListener((OnItemSelectedListener) this);
+        Spinner spinnerBody = (Spinner) findViewById(R.id.spinner1);
+		spinnerBody.setOnItemSelectedListener((OnItemSelectedListener) this);
+		
+		Spinner spinnerMuscle = (Spinner) findViewById(R.id.spinner2);
+		spinnerMuscle.setOnItemSelectedListener(this);
+		
 
 		//Creates an ArrayAdapter that contains the String-Array called musclegroups
-		ArrayAdapter<String> muscleGroupsSpinner = new ArrayAdapter<String>
+		ArrayAdapter<String> bodyGroupSpinner = new ArrayAdapter<String>
 		(this,android.R.layout.simple_spinner_item,muscleGroups);
 
+		ArrayAdapter<String> muscleGroupSpinner = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,muscleGroups); 
 		//On click, make a dropdown menu
-		muscleGroupsSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		bodyGroupSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		muscleGroupSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		//Set the Arrayadapter into the spinner
-		spin.setAdapter(muscleGroupsSpinner);
+		spinnerBody.setAdapter(bodyGroupSpinner);
+		spinnerMuscle.setAdapter(muscleGroupSpinner);
         
 		//Not implemented yet since we dont have a database
         Button save_Workout;
@@ -93,23 +100,26 @@ public class EditWorkout extends SherlockActivity implements OnItemSelectedListe
         // Since we don't have a database we manually put in exercises
         //Could use a Arraylist directly but we use a String since we will load
         //String-Arrays from the database we use a String-array here
-        if ( excercises == null )
+        if ( exerciseList.isEmpty() )
         {
-          excercises = new Exercise[]
-        		  {
-        		  new Exercise("Push-ups"), new Exercise("Push-ups"),
-        		  new Exercise("Push-ups"), new Exercise("Dips"),
-        		  new Exercise("Push-ups"), new Exercise("Push-ups"), 
-        		  new Exercise("Push-ups"), new Exercise("sit-ups"),
-        		  };
+        	exerciseList.add(new Exercise("hejja",false));
+        	exerciseList.add(new Exercise("nbvn",false));
+        	exerciseList.add(new Exercise("jyytj",false));
+        	exerciseList.add(new Exercise("eqwe",true));
+        	exerciseList.add(new Exercise("hej",false));
+        	exerciseList.add(new Exercise("hejasd",true));
+        	exerciseList.add(new Exercise("hejf",false));
+        	exerciseList.add(new Exercise("hejzxc",false));
+        	exerciseList.add(new Exercise("31234",false));
+        	exerciseList.add(new Exercise("zxczc",false));
+        	exerciseList.add(new Exercise("dasd",false));
+        	exerciseList.add(new Exercise("hejdå",false));
+        	
         }
-        //Puts the String-array inte a Arraylist
-        ArrayList<Exercise> exerciseList = new ArrayList<Exercise>();
-        exerciseList.addAll( Arrays.asList(excercises) );
-          
+        
         // Set our custom Arrayadapter as the ListView's adapter.
         listAdapter = new ExerciseArrayAdapter(this, exerciseList);
-        mainListView.setAdapter( listAdapter );
+        listView.setAdapter( listAdapter );
 	}
       @Override
       public boolean onCreateOptionsMenu(Menu menu)
@@ -119,7 +129,7 @@ public class EditWorkout extends SherlockActivity implements OnItemSelectedListe
           
           //Set the title to the name of the workout
           getSupportActionBar().setTitle(workoutName);
-          return true;
+          return false;
       }
       /**Is called if a user press the cancel button,
        * asks the user if it want to close the dialog.*/
