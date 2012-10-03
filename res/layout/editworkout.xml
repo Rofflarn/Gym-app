@@ -20,13 +20,13 @@
         android:gravity="bottom">
 
 <Button
-    android:id="@+id/Button_1"
+    android:id="@+id/button_EditWorkout_Save"
 	android:layout_width="wrap_content"
 	android:layout_height="wrap_content"
 	android:text="Save"
 />
 <Button
-    android:id="@+id/Button_2"
+    android:id="@+id/button_Workout_Cancel"
 	android:layout_width="wrap_content"
 	android:layout_height="wrap_content"
 	android:text="Cancel"

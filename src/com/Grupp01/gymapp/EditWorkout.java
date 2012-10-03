@@ -2,190 +2,162 @@ package com.Grupp01.gymapp;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
-import android.content.Context;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
-import android.widget.CheckBox;
+import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.Spinner;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 
-public class EditWorkout extends SherlockActivity {
-
-		private ListView mainListView;  
-	  private Planet[] planets;
-	  private ArrayAdapter<Planet> listAdapter;
+public class EditWorkout extends SherlockActivity implements OnItemSelectedListener
+{
+	
+	  private ListView mainListView;
+	  private Exercise[] excercises;
+	  private ArrayAdapter<Exercise> listAdapter;
 	  private String workoutName;
-	@SuppressWarnings("deprecation")
+	 
+	  String[] muscleGroups = { "Hej", "detta", "är", "Robert", "och", "Anders",
+			  "och" , "Joel", "och" , "Zotty"};
+	  
+	  
 	@Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState)
+	{
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
         workoutName = intent.getStringExtra(ListWorkoutActivity.WORKOUT_NAME);
         
         setContentView(R.layout.editworkout);
-     // Find the ListView resource.   
+        // Find the ListView resource.   
         mainListView = (ListView) findViewById( R.id.mainListView );  
           
-        // When item is tapped, toggle checked properties of CheckBox and Planet.  
-        mainListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {  
+
+        // When item is tapped, toggle checked properties of CheckBox and Exercise.  
+        mainListView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+          /*** 
+           * Is called when the user press a Exercise in the workout, when
+           * a user click on a exercise, the exercise is getting checked
+           * If the exercise already was checked when clicked, it is getting unchecked
+           * */
           @Override  
-          public void onItemClick( AdapterView<?> parent, View item,   
-                                   int position, long id) {  
-            Planet planet = listAdapter.getItem( position );  
-            planet.toggleChecked();  
-            PlanetViewHolder viewHolder = (PlanetViewHolder) item.getTag();  
-            viewHolder.getCheckBox().setChecked( planet.isChecked() );  
-          }  
-        });  
-      
+          public void onItemClick( AdapterView<?> parent, View item,   int position, long id) 
+          {  
+            Exercise Exercise = listAdapter.getItem( position );
+            Exercise.toogleChecked();
+            ExerciseViewHolder viewHolder = (ExerciseViewHolder) item.getTag();
+            viewHolder.getCheckBox().setChecked( Exercise.isChecked() );
+          }//End of onItemClick
+        });//End of Listener
+        
+        //Create a spinner and add a listener to it.
+        Spinner spin = (Spinner) findViewById(R.id.spinner1);
+		spin.setOnItemSelectedListener((OnItemSelectedListener) this);
+
+		//Creates an ArrayAdapter that contains the String-Array called musclegroups
+		ArrayAdapter<String> muscleGroupsSpinner = new ArrayAdapter<String>
+		(this,android.R.layout.simple_spinner_item,muscleGroups);
+
+		//On click, make a dropdown menu
+		muscleGroupsSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		//Set the Arrayadapter into the spinner
+		spin.setAdapter(muscleGroupsSpinner);
+        
+		//Not implemented yet since we dont have a database
+        Button save_Workout;
+        
+        //Creates a cancel button and adds a listener
+        Button cancel_EditWorkout = (Button) findViewById(R.id.button_Workout_Cancel);
+        cancel_EditWorkout.setOnClickListener(new View.OnClickListener() 
+        {
+        	/**When the user clicks on the cancel button a dialog pop up that
+        	 * asks the user if he want to close the "EditWorkout"-session*/
+            public void onClick(View v) 
+            {
+            	cancel_EditWorkoutDialog();
+            }
+        }
+        );
+        
+        
+        // Since we don't have a database we manually put in exercises
+        //Could use a Arraylist directly but we use a String since we will load
+        //String-Arrays from the database we use a String-array here
+        if ( excercises == null )
+        {
+          excercises = new Exercise[]
+        		  {
+        		  new Exercise("Push-ups"), new Exercise("Push-ups"),
+        		  new Exercise("Push-ups"), new Exercise("Dips"),
+        		  new Exercise("Push-ups"), new Exercise("Push-ups"), 
+        		  new Exercise("Push-ups"), new Exercise("sit-ups"),
+        		  };
+        }
+        //Puts the String-array inte a Arraylist
+        ArrayList<Exercise> exerciseList = new ArrayList<Exercise>();
+        exerciseList.addAll( Arrays.asList(excercises) );
           
-        // Create and populate planets.  
-        planets = (Planet[]) getLastNonConfigurationInstance() ;  
-        if ( planets == null ) {  
-          planets = new Planet[] {   
-              new Planet("Mercury"), new Planet("Venus"), new Planet("Earth"),   
-              new Planet("Mars"), new Planet("Jupiter"), new Planet("Saturn"),   
-              new Planet("Uranus"), new Planet("Neptune"), new Planet("Ceres"),  
-              new Planet("Pluto"), new Planet("Haumea"), new Planet("Makemake"),  
-              new Planet("Eris")  
-          };    
-        }  
-        ArrayList<Planet> planetList = new ArrayList<Planet>();  
-        planetList.addAll( Arrays.asList(planets) );  
-          
-        // Set our custom array adapter as the ListView's adapter.  
-        listAdapter = new PlanetArrayAdapter(this, planetList);  
+        // Set our custom Arrayadapter as the ListView's adapter.
+        listAdapter = new ExerciseArrayAdapter(this, exerciseList);
         mainListView.setAdapter( listAdapter );
-      }  
-        
-      /** Holds planet data. */  
-      private static class Planet {  
-        private String name = "" ;  
-        private boolean checked = false ;  
-        public Planet( String name ) {  
-          this.name = name ;  
-        }  
-        public Planet( String name, boolean checked ) {  
-          this.name = name ;  
-          this.checked = checked ;  
-        }  
-        public String getName() {  
-          return name;  
-        }   
-        public boolean isChecked() {  
-          return checked;  
-        }  
-        public void setChecked(boolean checked) {  
-          this.checked = checked;  
-        }  
-        public String toString() {  
-          return name ;   
-        }  
-        public void toggleChecked() {  
-          checked = !checked ;  
-        }  
-      }  
-        
-      /** Holds child views for one row. */  
-      private static class PlanetViewHolder {  
-        private CheckBox checkBox ;  
-        private TextView textView ;
-        public PlanetViewHolder( TextView textView, CheckBox checkBox ) {  
-          this.checkBox = checkBox ;  
-          this.textView = textView ;  
-        }  
-        public CheckBox getCheckBox() {  
-          return checkBox;  
-        }   
-        public TextView getTextView() {  
-          return textView;  
-        }       
-      }  
-        
-      /** Custom adapter for displaying an array of Planet objects. */  
-      private static class PlanetArrayAdapter extends ArrayAdapter<Planet> {  
-          
-        private LayoutInflater inflater;  
-          
-        public PlanetArrayAdapter( Context context, List<Planet> planetList ) {  
-          super( context, R.layout.simplerow, R.id.rowTextView, planetList );  
-          // Cache the LayoutInflate to avoid asking for a new one each time.  
-          inflater = LayoutInflater.from(context) ;  
-        }  
-      
-        @Override  
-        public View getView(int position, View convertView, ViewGroup parent) {  
-          // Planet to display  
-          Planet planet = (Planet) this.getItem( position );   
-      
-          // The child views in each row.  
-          CheckBox checkBox ;   
-          TextView textView ;   
-            
-          // Create a new row view  
-          if ( convertView == null ) {  
-            convertView = inflater.inflate(R.layout.simplerow, null);  
-              
-            // Find the child views.  
-            textView = (TextView) convertView.findViewById( R.id.rowTextView );  
-            checkBox = (CheckBox) convertView.findViewById( R.id.CheckBox01 );  
-              
-            // Optimization: Tag the row with it's child views, so we don't have to   
-            // call findViewById() later when we reuse the row.  
-            convertView.setTag( new PlanetViewHolder(textView,checkBox) );  
-      
-            // If CheckBox is toggled, update the planet it is tagged with.  
-            checkBox.setOnClickListener( new View.OnClickListener() {  
-              public void onClick(View v) {  
-                CheckBox cb = (CheckBox) v ;  
-                Planet planet = (Planet) cb.getTag();  
-                planet.setChecked( cb.isChecked() );  
-              }  
-            });          
-          }  
-          // Reuse existing row view  
-          else {  
-            // Because we use a ViewHolder, we avoid having to call findViewById().  
-            PlanetViewHolder viewHolder = (PlanetViewHolder) convertView.getTag();  
-            checkBox = viewHolder.getCheckBox() ;  
-            textView = viewHolder.getTextView() ;  
-          }  
-      
-          // Tag the CheckBox with the Planet it is displaying, so that we can  
-          // access the planet in onClick() when the CheckBox is toggled.  
-          checkBox.setTag( planet );   
-            
-          // Display planet data  
-          checkBox.setChecked( planet.isChecked() );  
-          textView.setText( planet.getName() );        
-            
-          return convertView;  
-        }  
-          
-      }  
-        
-      public Object onRetainNonConfigurationInstance() {  
-        return planets ;  
-      }  
-      
-      
+	}
       @Override
-      public boolean onCreateOptionsMenu(Menu menu) {
-      	getSupportMenuInflater().inflate(R.menu.editworkout, menu);
+      public boolean onCreateOptionsMenu(Menu menu)
+      {
+      	  getSupportMenuInflater().inflate(R.menu.editworkout, menu);
           getSupportActionBar().setHomeButtonEnabled(true);
           
           //Set the title to the name of the workout
           getSupportActionBar().setTitle(workoutName);
           return true;
       }
-    }  
+      /**Is called if a user press the cancel button,
+       * asks the user if it want to close the dialog.*/
+    public void cancel_EditWorkoutDialog()
+    {
+    	final AlertDialog.Builder closeEditWorkout_Dialog = new AlertDialog.Builder(this);
+    	
+    	closeEditWorkout_Dialog.setMessage("Are you sure you want to close workout?");
+    	
+    	closeEditWorkout_Dialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() 
+    	{
+    		/** When the user click the "Yes"-button, go back to ListWorkout*/
+    		public void onClick(DialogInterface dialog, int whichButton) 
+    		{
+    			 finish();
+    		 }
+    	});
+    	//If pressing "Cancel"
+    	closeEditWorkout_Dialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener()
+    	{
+			@Override
+			/** When the user click the "Cancel"-button, close the dialog*/
+			public void onClick(DialogInterface dialog, int whichButton) 
+			{
+				dialog.cancel();
+			}
+		});
+    	closeEditWorkout_Dialog.show();
+    }
+    
+      
+    /** When a item in the spinner is selected, do
+     * NOT IMPLEMENTED YET SINCE WE GOT NO DATABASE*/
+  	public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+  	{
+  		//Implement later when we got a working database
+  	}
+
+  	@Override
+  	public void onNothingSelected(AdapterView<?> arg0){}  
+ }  
