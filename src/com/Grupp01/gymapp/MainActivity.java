@@ -43,7 +43,7 @@ public class MainActivity extends SherlockActivity {
     
     public void ovningar(View view)
     {
-    	Intent ovningar = new Intent(this, Ovningar.class);
+    	Intent ovningar = new Intent(this, Exercise.class);
     	startActivity(ovningar);
     }
 }

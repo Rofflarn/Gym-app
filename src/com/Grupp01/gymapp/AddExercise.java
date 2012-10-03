@@ -1,5 +1,6 @@
 package com.Grupp01.gymapp;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
@@ -21,6 +22,8 @@ public class AddExercise extends SherlockActivity implements AdapterView.OnItemS
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_exercise);
 		getSupportActionBar().setHomeButtonEnabled(true);
+		Intent get_Title = getIntent();
+		setTitle(get_Title.getStringExtra(Exercise.EXTRA_EXERCISE_NAME));
 
 		Resources res = getResources();
 		items = res.getStringArray(R.array.trainingtype_array);//get String-array from strings.xml
@@ -72,7 +75,12 @@ public class AddExercise extends SherlockActivity implements AdapterView.OnItemS
 		}
 	}
 
-	public void onNothingSelected(AdapterView<?> parent) {
-
+	public void onNothingSelected(AdapterView<?> parent)
+	{
+	}
+	
+	public void cancel(View view)
+	{
+		finish();
 	}
 }

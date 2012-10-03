@@ -896,8 +896,7 @@ containing a value of this type.
         public static final int sherlock_spinner_item=0x7f03001b;
         public static final int statistik=0x7f03001c;
         public static final int thelist_row=0x7f03001d;
-        public static final int view_exercise=0x7f03001e;
-        public static final int workout=0x7f03001f;
+        public static final int workout=0x7f03001e;
     }
     public static final class menu {
         public static final int activity_add_exercise=0x7f0c0000;

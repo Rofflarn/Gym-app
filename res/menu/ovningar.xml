@@ -3,5 +3,5 @@
     <item android:id="@+id/menu_addExe"
           android:title="@string/menu_addExe"
           android:icon="@drawable/plus"
-          android:showAsAction="ifRoom|withText" />
+          android:showAsAction="ifRoom" />
 </menu>
