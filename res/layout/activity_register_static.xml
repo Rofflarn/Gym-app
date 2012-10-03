@@ -15,13 +15,13 @@
         android:id="@+id/staticButtonOK"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
-        android:text="Done"
+        android:text="@string/Done"
         android:onClick="onClick"/>
      <Button
         android:id="@+id/staticButtonCancel"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
-        android:text="Cancel"
+        android:text="@string/Cancel"
         android:onClick="onClick"/>
 
  </LinearLayout>
@@ -43,7 +43,7 @@
 	        android:id="@+id/lastTimeStatic"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:text="Last time: "
+	        android:text="@string/register_last_time"
 	        android:textStyle="bold" />
 	    
 	     <TextView
@@ -62,13 +62,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
-        android:text="Sets: "/>
+        android:text="@string/register_current_sets"/>
     
        <TextView
         android:id="@+id/thisTimeSetsStatic"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/thisTimeStatic"/>
+        android:layout_height="wrap_content"/>
  </LinearLayout>
  
 	 <LinearLayout
@@ -82,14 +81,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
-        android:text="Notes: "/>
+        android:text="@string/register_my_notes"/>
     
        <TextView
         android:id="@+id/myNoteTextStatic"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="bla bla bla "
-        android:layout_toRightOf="@id/noteText"/>
+        android:layout_height="wrap_content"/>
  </LinearLayout>
  
 	 <LinearLayout
@@ -103,27 +100,25 @@
         android:id="@+id/textMinutesStatic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Min."
+        android:text="@string/register_minutes"
         android:textStyle="bold"
-        android:textSize="14sp"/>"
+        android:textSize="14sp"/>
         
         <TextView
         android:id="@+id/textSecondsStatic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
-        android:text="Sec."
+        android:text="@string/register_seconds"
         android:textStyle="bold"
-        android:layout_toRightOf="@id/textMinutesStatic"
-        android:textSize="14sp"/>"
+        android:textSize="14sp"/>
     
        <TextView
         android:id="@+id/textWeight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
-        android:text="Weight"
-        android:layout_toRightOf="@id/textSecondsStatic"
+        android:text="@string/register_weight"
         android:textStyle="bold"
         android:textSize="14sp"/>
  </LinearLayout>
@@ -161,15 +156,15 @@
     android:gravity="center_horizontal">
      <Button
         android:id="@+id/staticFinishSet"
-        android:layout_width="105dp"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:text="Finish set"
+        android:text="@string/register_finish_set"
         android:onClick="onClick"/>
      <Button
         android:id="@+id/staticUndoSet"
-        android:layout_width="105dp"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:text="Undo set"  
+        android:text="@string/register_undo_set"  
         android:onClick="onClick"/>
 
     
