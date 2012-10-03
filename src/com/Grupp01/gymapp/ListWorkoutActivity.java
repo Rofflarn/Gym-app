@@ -27,7 +27,7 @@ import com.actionbarsherlock.view.MenuItem;
 
 public class ListWorkoutActivity extends SherlockActivity {
 	private String  [] listWorkouts = { "Pass 1", "Pass 2", "Pass 3",
-	"Pass 4", "Pass 5","Passg 6","Pass 7","Pass 8","Pass 9","Pass 10","Pass 11","Pass 12",};
+	"Pass 4", "Pass 5","Passg 6","Pass 7","Pass 8","Pass 9","Pass 10","Pass 11","Pass 12"};
 	//list1 is only a string used in testing before fetching data from DB
 	
 	public final static String WORKOUT_NAME = "com.Grupp01.gymapp.WORKOUT";
@@ -185,6 +185,7 @@ public class ListWorkoutActivity extends SherlockActivity {
     /**
      * Is called from contextMenu when the user longclicks a workout and selects 
      * "Delete" from the menu.
+     * @param The name of the workout
      */
 	private void deleteWorkout(String workoutName) {
 		
@@ -220,6 +221,7 @@ public class ListWorkoutActivity extends SherlockActivity {
 	/**
      * Is called from contextMenu when the user longclicks a workout and selects 
      * "Edit" from the menu. Will start EditWorkout to add/remove exercises.
+     * @param workoutName The name of the workout
      */
 	private void editWorkouts(String workoutName) {
 		Intent intent = new Intent(this, EditWorkout.class);

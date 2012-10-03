@@ -6,16 +6,16 @@ import java.util.Arrays;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.ContextMenu;
-import android.view.ContextMenu.ContextMenuInfo;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockActivity;
@@ -25,12 +25,11 @@ import com.actionbarsherlock.view.MenuItem;
 
 
 public class WorkoutActivity extends SherlockActivity {
-	private String  [] listWorkouts = { "Övning 1", "Övning 2", "Övning 3",
-			"Övning 4", "Övning 5","Övning 6","Övning 7","Övning 8","Övning 9","Övning 10","Övning 11","Övning 12",};
+	private String  [] listWorkouts = { "Dynamisk övning", "Statisk övning", "Cardio"};
 			//list1 is only a string used in testing before fetching data from DB
 	private ListView listExercisesView;
 	private String workoutName;
-	
+		
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,13 +56,33 @@ public class WorkoutActivity extends SherlockActivity {
 	            	
 	            	//Get the text label of the row that has been clicked (will be used to open the correct workout)
 	            	String exerciseName = listExercisesView.getAdapter().getItem(position).toString();	
-	            	openInputDialog(exerciseName);
+	            	registerWorkoutResult(exerciseName);
 	            	
 	            	
 	            }// onItemClick end
 			});// setOnItemClickListener end
 		
 	
+    }
+    
+    private void registerWorkoutResult(String exerciseName){
+    	//ONLY FOR TESTING DIFFERENT REGISTER ACTIVITY!!
+    	if(exerciseName.equals("Dynamisk övning")){
+    		Intent intent = new Intent(WorkoutActivity.this, RegisterDynamicActivity.class);
+    		intent.putExtra("exercisename", exerciseName);
+    		startActivity(intent);
+    	}
+    	if(exerciseName.equals("Statisk övning")){
+    		Intent intent = new Intent(WorkoutActivity.this, RegisterStaticActivity.class);
+    		intent.putExtra("exercisename", exerciseName);
+    		startActivity(intent);
+    	}
+    	if(exerciseName.equals("Cardio")){
+    		Intent intent = new Intent(WorkoutActivity.this, RegisterCardioActivity.class);
+    		intent.putExtra("exercisename", exerciseName);
+    		startActivity(intent);
+    	}
+    	
     }
 
 	@Override
@@ -97,38 +116,6 @@ public class WorkoutActivity extends SherlockActivity {
     
     
     
-    /**
-     * Is called when the user clicks on an exercise in the list of exercises in the workout.
-     * Will open the corresponding input dialog depending on which type if exercise it is.
-     * @param workoutName The name of the workout
-     */
-    private void openInputDialog(String exerciseName) {
-    	inputDynamicExercise(exerciseName);
-		
-	}
-    
-    private void inputDynamicExercise(String exerciseName){
-    	// custom dialog
-    				final Dialog dialog = new Dialog(this);
-    				dialog.setContentView(R.layout.dynamic_dialog);
-    				dialog.setTitle(exerciseName);
-    	 
-    				// set the custom dialog components - text, image and button
-    //				TextView text = (TextView) dialog.findViewById(R.id.text);
-    //				text.setText("Android custom dialog example!");
-    	 
-    				Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonOK);
-    				// if button is clicked, close the custom dialog
-    				dialogButton.setOnClickListener(new OnClickListener() {
-    					@Override
-    					public void onClick(View v) {
-    						dialog.dismiss();
-    					}
-    				});
-    	 
-    				dialog.show();
-    }
-    
-}
+   }
     
 

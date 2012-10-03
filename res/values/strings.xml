@@ -12,5 +12,8 @@
     <string name="title_activity_workout">WorkoutActivity</string>
     <string name="menu_editWorkout">Edit workout!</string>
     <string name="menu_createExercise">Create new exercise</string>
+    <string name="title_activity_register_dynamic">RegisterDynamicActivity</string>
+    <string name="title_activity_register_static">RegisterStaticActivity</string>
+    <string name="title_activity_register_cardio">RegisterCardioActivity</string>
 
 </resources>

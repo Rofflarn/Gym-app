@@ -1,20 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    
+    
+     <LinearLayout    
+     android:id="@+id/linearBottom"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:gravity="center_horizontal">
+     <Button
+        android:id="@+id/dynamicButtonOK"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:text="Done"
+        android:onClick="onClick"/>
+     <Button
+        android:id="@+id/dynamicButtonCancel"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:text="Cancel"
+        android:onClick="onClick"/>
+
+ </LinearLayout>
+    
+    
+    
+    
+ <ScrollView
+     android:id="@+id/scrollViewTest"
+     android:layout_width="wrap_content"
+     android:layout_height="match_parent" 
+     android:layout_above="@id/linearBottom"
+     android:isScrollContainer="false">
+
+     <RelativeLayout
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
-
     <TextView
         android:id="@+id/lastTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:text="Last time: "/>
+        android:text="Last time: "
+        android:textStyle="bold" />
     
        <TextView
         android:id="@+id/lastTimeSets"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="8x10, 8x10, 8x10"
+        android:text=""
         android:layout_toRightOf="@id/lastTime"/>
 
 <LinearLayout
@@ -96,7 +132,7 @@
         android:id="@+id/editReps"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:inputType="numberDecimal" />
+        android:inputType="number" />
     
 	<EditText
         android:id="@+id/editWeight"
@@ -113,36 +149,24 @@
     android:layout_marginTop="12dp"
     android:gravity="center_horizontal">
      <Button
-        android:id="@+id/dialogFinishSet"
-        android:layout_width="100dp"
+        android:id="@+id/dynamicFinishSet"
+        android:layout_width="105dp"
         android:layout_height="wrap_content"
-        android:text=" Finish set "/>
+        android:text="Finish set"
+        android:onClick="onClick"/>
      <Button
-        android:id="@+id/dialogUndoSet"
-        android:layout_width="100dp"
+        android:id="@+id/dynamicUndoSet"
+        android:layout_width="105dp"
         android:layout_height="wrap_content"
-        android:text=" Undo set "  />
+        android:text=" Undo set "  
+        android:onClick="onClick"/>
 
+    
  </LinearLayout>
+</RelativeLayout>
+ </ScrollView>
+ 
 
- <LinearLayout    
-     android:id="@+id/linearBottom"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_alignParentBottom="true"
-    android:gravity="center_horizontal">
-     <Button
-        android:id="@+id/dialogButtonOK"
-        android:layout_width="80dp"
-        android:layout_height="wrap_content"
-        android:text="Done"/>
-     <Button
-        android:id="@+id/dialogButtonCancel"
-        android:layout_width="80dp"
-        android:layout_height="wrap_content"
-        android:text="Cancel"/>
-
- </LinearLayout>
 
 
 </RelativeLayout>
