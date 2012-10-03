@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    
+    
+     <LinearLayout    
+     android:id="@+id/linearBottomStatic"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:gravity="center_horizontal">
+     <Button
+        android:id="@+id/staticButtonOK"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:text="Done"
+        android:onClick="onClick"/>
+     <Button
+        android:id="@+id/staticButtonCancel"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:text="Cancel"
+        android:onClick="onClick"/>
+
+ </LinearLayout>
+    
+    
+    
+    
+ <ScrollView
+     android:id="@+id/scrollViewTest"
+     android:layout_width="wrap_content"
+     android:layout_height="match_parent" 
+     android:layout_above="@id/linearBottomStatic"
+     android:isScrollContainer="false">
+
+     <RelativeLayout
+   		 android:layout_width="wrap_content"
+   		 android:layout_height="wrap_content">
+   		 <TextView
+	        android:id="@+id/lastTimeStatic"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="Last time: "
+	        android:textStyle="bold" />
+	    
+	     <TextView
+	        android:id="@+id/lastTimeSetsStatic"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_toRightOf="@id/lastTimeStatic"/>
+	 <LinearLayout
+    android:id="@+id/linearThisTimeStatic"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" 
+    android:layout_below="@id/lastTimeStatic"
+    android:layout_marginTop="3dp">
+    <TextView
+        android:id="@+id/thisTimeStatic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:text="Sets: "/>
+    
+       <TextView
+        android:id="@+id/thisTimeSetsStatic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/thisTimeStatic"/>
+ </LinearLayout>
+ 
+	 <LinearLayout
+    android:id="@+id/linearMyNoteStatic"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" 
+    android:layout_below="@id/linearThisTimeStatic"
+    android:layout_marginTop="3dp">
+    <TextView
+        android:id="@+id/noteTextStatic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:text="Notes: "/>
+    
+       <TextView
+        android:id="@+id/myNoteTextStatic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="bla bla bla "
+        android:layout_toRightOf="@id/noteText"/>
+ </LinearLayout>
+ 
+	 <LinearLayout
+    android:id="@+id/linearTextRepsStatic"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" 
+    android:layout_below="@id/linearMyNoteStatic"
+    android:gravity="center_horizontal"
+    android:layout_marginTop="20dp">
+    <TextView
+        android:id="@+id/textMinutesStatic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Min."
+        android:textStyle="bold"
+        android:textSize="14sp"/>"
+        
+        <TextView
+        android:id="@+id/textSecondsStatic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:text="Sec."
+        android:textStyle="bold"
+        android:layout_toRightOf="@id/textMinutesStatic"
+        android:textSize="14sp"/>"
+    
+       <TextView
+        android:id="@+id/textWeight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:text="Weight"
+        android:layout_toRightOf="@id/textSecondsStatic"
+        android:textStyle="bold"
+        android:textSize="14sp"/>
+ </LinearLayout>
+ 
+	 
+	 <LinearLayout    
+     android:id="@+id/linearEditFieldsStatic"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" 
+    android:layout_below="@id/linearTextRepsStatic"
+    android:gravity="center_horizontal" >
+    <EditText
+        android:id="@+id/editMinutesStatic"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:inputType="number" />
+     <EditText
+        android:id="@+id/editSecondsStatic"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:inputType="number" />
+	<EditText
+        android:id="@+id/editWeight"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"/>
+</LinearLayout>
+
+	 <LinearLayout
+    android:id="@+id/linearButtonStatic"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" 
+    android:layout_below="@id/linearEditFieldsStatic"
+    android:layout_marginTop="12dp"
+    android:gravity="center_horizontal">
+     <Button
+        android:id="@+id/staticFinishSet"
+        android:layout_width="105dp"
+        android:layout_height="wrap_content"
+        android:text="Finish set"
+        android:onClick="onClick"/>
+     <Button
+        android:id="@+id/staticUndoSet"
+        android:layout_width="105dp"
+        android:layout_height="wrap_content"
+        android:text="Undo set"  
+        android:onClick="onClick"/>
+
+    
+ </LinearLayout>
+	 
+
+
+</RelativeLayout>
+ </ScrollView>
+ 
+
+
+
+</RelativeLayout>

@@ -39,6 +39,33 @@
             android:name=".WorkoutActivity"
             android:label="@string/title_activity_workout" >
         </activity>
+        <activity
+            android:name=".RegisterDynamicActivity"
+            android:label="@string/title_activity_register_dynamic" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".RegisterStaticActivity"
+            android:label="@string/title_activity_register_static" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".RegisterCardioActivity"
+            android:label="@string/title_activity_register_cardio" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
