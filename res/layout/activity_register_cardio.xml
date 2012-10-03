@@ -15,13 +15,13 @@
         android:id="@+id/CardioButtonOK"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
-        android:text="Done"
+        android:text="@string/Done"
         android:onClick="onClick"/>
      <Button
         android:id="@+id/CardioButtonCancel"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
-        android:text="Cancel"
+        android:text="@string/Cancel"
         android:onClick="onClick"/>
 
  </LinearLayout>
@@ -43,7 +43,7 @@
 	        android:id="@+id/lastTimeCardio"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:text="Last time: "
+	        android:text="@string/register_last_time"
 	        android:textStyle="bold" />
 	    
 	     <TextView
@@ -62,13 +62,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
-        android:text="Sets: "/>
+        android:text="@string/register_current_sets"/>
     
        <TextView
         android:id="@+id/thisTimeSetsCardio"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/thisTimeCardio"/>
+        android:layout_height="wrap_content"/>
  </LinearLayout>
  
 	 <LinearLayout
@@ -82,14 +81,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
-        android:text="Notes: "/>
+        android:text="@string/register_my_notes"/>
     
        <TextView
         android:id="@+id/myNoteTextCardio"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="bla bla bla "
-        android:layout_toRightOf="@id/noteTextCardio"/>
+        android:layout_height="wrap_content"/>
  </LinearLayout>
  
 	 <LinearLayout
@@ -103,27 +100,25 @@
         android:id="@+id/textMinutesCardio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Min."
+        android:text="@string/register_minutes"
         android:textStyle="bold"
-        android:textSize="14sp"/>"
+        android:textSize="14sp"/>
         
         <TextView
         android:id="@+id/textSecondsCardio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
-        android:text="Sec."
+        android:text="@string/register_seconds"
         android:textStyle="bold"
-        android:layout_toRightOf="@id/textMinutesCardio"
-        android:textSize="14sp"/>"
+        android:textSize="14sp"/>
     
        <TextView
         android:id="@+id/textDistance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
-        android:text="Distance"
-        android:layout_toRightOf="@id/textSecondsCardio"
+        android:text="@string/register_distance"
         android:textStyle="bold"
         android:textSize="14sp"/>
  </LinearLayout>
@@ -161,15 +156,15 @@
     android:gravity="center_horizontal">
      <Button
         android:id="@+id/CardioFinishSet"
-        android:layout_width="105dp"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:text="Finish set"
+        android:text="@string/register_finish_set"
         android:onClick="onClick"/>
      <Button
         android:id="@+id/CardioUndoSet"
-        android:layout_width="105dp"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:text="Undo set"  
+        android:text="@string/register_undo_set"  
         android:onClick="onClick"/>
 
     
