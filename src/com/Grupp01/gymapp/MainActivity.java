@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.Grupp01.gymapp.R;
 import com.actionbarsherlock.view.*;
 
 import com.actionbarsherlock.app.SherlockActivity;
