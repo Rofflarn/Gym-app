@@ -22,6 +22,19 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 
+
+/** 
+ * @author GivDev
+ * @version 0.1
+ * @peer reviewed by
+ * @date 04/10/12
+ *
+ * Class ListWorkoutActivity will show all workout routines that the user has created,
+ *  
+ * <p>This class i a part of the </p><i>View</i><p> package, and a part of the </p><i>Workout</i>
+ * <p> Subpackage</p> 
+ *
+ */
 public class ListWorkoutActivity extends SherlockActivity {
 	private String  [] listWorkouts = { "Fejk", "lista", "tills",
 	"databas", "koppling","fungerar"};

@@ -13,7 +13,20 @@ import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 
-
+/** 
+ * @author GivDev
+ * @version 0.1
+ * @peer reviewed by
+ * @date 04/10/12
+ *
+* Class RegisterDynamicActivity is an activity that enables the user to
+* register his or hers result when performing a dynamic muscle exercise.
+* The user will be able to input repetitions and the weight. 
+ * 
+ * <p>This class i a part of the </p><i>View</i><p> package, and a part of the </p><i>Workout</i>
+ * <p> Subpackage</p> 
+ *
+ */
 public class RegisterDynamicActivity extends SherlockActivity {
 
 	private String workoutName;				//The name of the workout

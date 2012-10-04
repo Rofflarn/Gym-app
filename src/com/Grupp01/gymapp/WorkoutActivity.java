@@ -17,7 +17,20 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 
 
-
+/** 
+ * @author GivDev
+ * @version 0.1
+ * @peer reviewed by
+ * @date 04/10/12
+ *
+ * Class WorkoutActivity will be shown if the user selects a workout routine from the list in
+ * ListWorkoutActivity. It will display all exercises in the specific workout routine
+ * and enables the user to registering workout results by selecting an exercise from the list.
+ *   
+ * <p>This class i a part of the </p><i>View</i><p> package, and a part of the </p><i>Workout</i>
+ * <p> Subpackage</p> 
+ *
+ */
 public class WorkoutActivity extends SherlockActivity {
 	private String  [] listWorkouts = { "Dynamisk övning", "Statisk övning", "Cardio"};
 			//list1 is only a string used in testing before fetching data from DB

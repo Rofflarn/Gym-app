@@ -13,6 +13,20 @@ import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 
+/** 
+ * @author GivDev
+ * @version 0.1
+ * @peer reviewed by
+ * @date 04/10/12
+ *
+* Class RegisterCardioActivity is an activity that enables the user to
+* register his or hers result when performing a cardio exercise.
+* The user will be able to input time (minutes and seconds) and the distance. 
+ * 
+ * <p>This class i a part of the </p><i>View</i><p> package, and a part of the </p><i>Workout</i>
+ * <p> Subpackage</p> 
+ *
+ */
 
 public class RegisterCardioActivity extends SherlockActivity {
 
