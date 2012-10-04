@@ -32,8 +32,7 @@ import com.actionbarsherlock.view.MenuInflater;
  * @version 0.1
  * @peer reviewed by
  * @date 04/10/12
- */
-/**
+ *
  * This class is made exclusively for initiating the part of the GUI that gives the user 
  * a opportunity to add and change exercises
  * 
