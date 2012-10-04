@@ -21,6 +21,8 @@ import com.actionbarsherlock.view.MenuInflater;
 /** 
  * @author GivDev
  * @version 0.1
+ * @peer reviewed by
+ * @date dd/mm/yy
 */
 public class Exercise extends SherlockActivity implements OnClickListener, OnItemClickListener {
 	
