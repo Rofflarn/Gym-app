@@ -20,7 +20,7 @@ import com.actionbarsherlock.view.Menu;
  *  * @author Robert Blomberg
  *  */	
 
-public class EditWorkout extends SherlockActivity implements OnItemSelectedListener
+public class EditWorkoutActivity extends SherlockActivity implements OnItemSelectedListener
 {
 	
 	private ListView listView;

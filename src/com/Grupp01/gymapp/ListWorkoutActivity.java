@@ -224,7 +224,7 @@ public class ListWorkoutActivity extends SherlockActivity {
      * @param workoutName The name of the workout
      */
 	private void editWorkouts(String workoutName) {
-		Intent intent = new Intent(this, EditWorkout.class);
+		Intent intent = new Intent(this, EditWorkoutActivity.class);
 		intent.putExtra(WORKOUT_NAME, workoutName);
 		startActivity(intent);		
 		
@@ -240,7 +240,7 @@ public class ListWorkoutActivity extends SherlockActivity {
     	//Variables for the dialog
     	final AlertDialog.Builder addWorkout_Dialog = new AlertDialog.Builder(this);
     	final EditText editText_Dialog = new EditText(this);
-    	final Intent intent2 = new Intent(this, EditWorkout.class);
+    	final Intent intent2 = new Intent(this, EditWorkoutActivity.class);
     	
     	addWorkout_Dialog.setMessage("Enter name of Workout:");
     	addWorkout_Dialog.setView(editText_Dialog);
