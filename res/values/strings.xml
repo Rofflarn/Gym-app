@@ -14,6 +14,8 @@
     <string name="menu_createExercise">Create new exercise</string>
     <string name="button_cancel">Cancel</string>
     <string name="button_save">Save</string>
+    <string name="textview_musclegroup">Muscle group</string>
+    <string name="textview_muscle">Muscle</string>
     <string name="title_activity_register_dynamic">RegisterDynamicActivity</string>
     <string name="title_activity_register_static">RegisterStaticActivity</string>
     <string name="title_activity_register_cardio">RegisterCardioActivity</string>
