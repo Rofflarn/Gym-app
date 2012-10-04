@@ -27,6 +27,9 @@ import android.widget.TextView;
   /**Since we display other things than a TextView we need to Override a getView-method.
    * This method is the one that got the focus on the screen and is returning the View
    * when the user clicks on a exercise.
+   * @param position
+   * @param convertView
+   * @param parent
    * @return View	Returns the edited object you clicked on,
    * */
   @Override  
