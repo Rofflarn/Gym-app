@@ -31,4 +31,7 @@
 	<string name="register_undo_set">Remove set</string>
 	<string name="register_reps">Reps</string>
 	<string name="register_weight">Weight</string>
+	<string name="textview_musclegroup">Muscle group</string>
+	<string name="textview_muscle">Muscle</string>
+	
 </resources>
