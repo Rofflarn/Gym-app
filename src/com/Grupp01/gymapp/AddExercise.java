@@ -11,7 +11,19 @@ import android.widget.Spinner;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
-
+/** 
+ * @author GivDev
+ * @version 0.1
+ * @peer reviewed by
+ * @date dd/mm/yy
+*/
+/**
+ * This class is made exclusively for initiating the part of the GUI that gives the user 
+ * a opportunity to add and change exercises
+ * 
+ * <p>This class i a part of the </p><i>View</i><p> package, and a part of the </p><i>Exercise</i><p> Subpackage</p> 
+ *
+ */
 public class AddExercise extends SherlockActivity implements AdapterView.OnItemSelectedListener {
 	private String[] items;
 	private Spinner spinnerType;
