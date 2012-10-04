@@ -1,6 +1,15 @@
 package com.Grupp01.gymapp;
-
-/** Holds Exercise data. */  
+ 
+/**@author GivDev
+ * @version 0.1
+ * @peer reviewed by
+ * @date 04/10/12
+ *
+ * Holds Exercise data.
+ * 
+ * <p>This class i a part of the </p><i>View</i><p> package, and a part of the </p><i>Workout</i>
+ * <p> Subpackage</p> 
+ *  */	
  public class Exercise 
 {  
   private String name = "" ;  

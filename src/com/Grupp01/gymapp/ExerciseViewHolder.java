@@ -3,7 +3,16 @@ package com.Grupp01.gymapp;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
-/** Holds child views for one row. */  
+/**@author GivDev
+ * @version 0.1
+ * @peer reviewed by
+ * @date 04/10/12
+ *
+ * Holds child views for one row.
+ * 
+ * <p>This class i a part of the </p><i>View</i><p> package, and a part of the </p><i>Workout</i>
+ * <p> Subpackage</p> 
+ *  */	 
      public class ExerciseViewHolder
      {
         private CheckBox checkBox;

@@ -9,8 +9,16 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.TextView;
-
-/** Custom adapter for displaying an array of Exercise objects. */  
+/**@author GivDev
+ * @version 0.1
+ * @peer reviewed by
+ * @date 04/10/12
+ *
+ * Custom adapter for displaying an array of Exercise objects.
+ * 
+ * <p>This class i a part of the </p><i>View</i><p> package, and a part of the </p><i>Workout</i>
+ * <p> Subpackage</p> 
+ *  */
  public class ExerciseArrayAdapter extends ArrayAdapter<Exercise>
  {  
     
