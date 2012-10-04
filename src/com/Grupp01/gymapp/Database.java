@@ -6,7 +6,11 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-
+/**
+ * Main database-class. Contains methods for creating the database and accessing data.
+ * @author GivDev
+ *
+ */
 public class Database {
 
 	private static final String DATABASE_NAME = "GymAppDatabase"; 
@@ -16,12 +20,20 @@ public class Database {
 	private final Context ourContext;
 	private SQLiteDatabase ourDatabase;
 	
-
+	/**
+	 * 
+	 * @param c
+	 */
 	public Database(Context c)
 	{
 		ourContext = c;
 	}
 
+	/**
+	 * Opens a new connection to the database. 
+	 * @return
+	 * @throws SQLException
+	 */
 	public Database open() throws SQLException
 	{
 		ourHelper = new DbHelper(ourContext);
@@ -29,6 +41,9 @@ public class Database {
 		return this;
 	}
 
+	/**
+	 * 
+	 */
 	public void close()
 	{
 		ourHelper.close();
