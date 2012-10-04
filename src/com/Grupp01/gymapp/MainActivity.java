@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.Grupp01.gymapp.R;
 import com.actionbarsherlock.view.*;
 
 import com.actionbarsherlock.app.SherlockActivity;
@@ -43,7 +44,7 @@ public class MainActivity extends SherlockActivity {
     
     public void ovningar(View view)
     {
-    	Intent ovningar = new Intent(this, Ovningar.class);
+    	Intent ovningar = new Intent(this, Exercise.class);
     	startActivity(ovningar);
     }
 }

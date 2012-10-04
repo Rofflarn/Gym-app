@@ -8,6 +8,11 @@
 package com.Grupp01.gymapp;
 
 public final class R {
+    public static final class array {
+        public static final int muscle_type=0x7f0b0001;
+        public static final int sport_type=0x7f0b0002;
+        public static final int trainingtype_array=0x7f0b0000;
+    }
     public static final class attr {
         /**  Specified if we are forcing an action item overflow menu. 
          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
@@ -785,8 +790,10 @@ containing a value of this type.
         public static final int abs__tab_unselected_pressed_holo=0x7f020054;
         public static final int ic_action_search=0x7f020055;
         public static final int ic_launcher=0x7f020056;
+        public static final int plus=0x7f020057;
     }
     public static final class id {
+        public static final int LL_button=0x7f04002f;
         public static final int abs__action_bar=0x7f040022;
         public static final int abs__action_bar_container=0x7f040021;
         public static final int abs__action_bar_subtitle=0x7f040011;
@@ -816,24 +823,43 @@ containing a value of this type.
         public static final int abs__title=0x7f04001b;
         public static final int abs__titleDivider=0x7f04001c;
         public static final int abs__up=0x7f04000b;
-        public static final int button1=0x7f040027;
-        public static final int button2=0x7f040028;
-        public static final int button3=0x7f040029;
-        public static final int button4=0x7f04002a;
+        public static final int add_Button=0x7f04003c;
+        public static final int button1=0x7f040032;
+        public static final int button2=0x7f040033;
+        public static final int button3=0x7f040034;
+        public static final int button4=0x7f040035;
+        public static final int button_cancel=0x7f040031;
+        public static final int button_done=0x7f040030;
+        public static final int cancel_Button=0x7f04003b;
         public static final int disableHome=0x7f040009;
+        public static final int edit_comment=0x7f04002e;
+        public static final int edit_description=0x7f04002d;
+        public static final int exerciseName=0x7f04003a;
         public static final int homeAsUp=0x7f040006;
-        public static final int linearLayout1=0x7f04002c;
+        public static final int linearLayout1=0x7f04003f;
         public static final int listMode=0x7f040002;
-        public static final int menu_save=0x7f04002f;
+        public static final int menu_addExe=0x7f040043;
+        public static final int menu_settings=0x7f040042;
         public static final int normal=0x7f040001;
         public static final int showCustom=0x7f040008;
         public static final int showHome=0x7f040005;
         public static final int showTitle=0x7f040007;
+        public static final int spinner_primary_muscle=0x7f040038;
+        public static final int spinner_secondary_muscle=0x7f040039;
+        public static final int spinner_sport=0x7f04002b;
+        public static final int spinner_type_of_training=0x7f040029;
         public static final int tabMode=0x7f040003;
-        public static final int textView1=0x7f04002d;
-        public static final int textView2=0x7f04002e;
+        public static final int textView1=0x7f040040;
+        public static final int textView2=0x7f040041;
+        public static final int textView_comment=0x7f04002c;
+        public static final int textView_description=0x7f04002a;
+        public static final int textView_primary_muscle=0x7f040036;
+        public static final int textView_secondary_muscle=0x7f040037;
+        public static final int textView_sport=0x7f040028;
+        public static final int textView_type_of_training=0x7f040027;
+        public static final int theList=0x7f04003d;
+        public static final int theList_rows=0x7f04003e;
         public static final int useLogo=0x7f040004;
-        public static final int visa=0x7f04002b;
         public static final int wrap_content=0x7f040000;
     }
     public static final class integer {
@@ -860,21 +886,25 @@ containing a value of this type.
         public static final int abs__screen_action_bar_overlay=0x7f030011;
         public static final int abs__screen_simple=0x7f030012;
         public static final int abs__screen_simple_overlay_action_mode=0x7f030013;
-        public static final int activity_main=0x7f030014;
-        public static final int dialog=0x7f030015;
-        public static final int historik=0x7f030016;
-        public static final int ovningar=0x7f030017;
-        public static final int sherlock_spinner_dropdown_item=0x7f030018;
-        public static final int sherlock_spinner_item=0x7f030019;
-        public static final int statistik=0x7f03001a;
-        public static final int workout=0x7f03001b;
+        public static final int activity_add_exercise=0x7f030014;
+        public static final int activity_main=0x7f030015;
+        public static final int add_exercise_static=0x7f030016;
+        public static final int dialog=0x7f030017;
+        public static final int exercise=0x7f030018;
+        public static final int historik=0x7f030019;
+        public static final int sherlock_spinner_dropdown_item=0x7f03001a;
+        public static final int sherlock_spinner_item=0x7f03001b;
+        public static final int statistik=0x7f03001c;
+        public static final int thelist_row=0x7f03001d;
+        public static final int workout=0x7f03001e;
     }
     public static final class menu {
-        public static final int activity_main=0x7f0b0000;
-        public static final int historik=0x7f0b0001;
-        public static final int ovningar=0x7f0b0002;
-        public static final int statistik=0x7f0b0003;
-        public static final int workouts=0x7f0b0004;
+        public static final int activity_add_exercise=0x7f0c0000;
+        public static final int activity_main=0x7f0c0001;
+        public static final int historik=0x7f0c0002;
+        public static final int ovningar=0x7f0c0003;
+        public static final int statistik=0x7f0c0004;
+        public static final int workouts=0x7f0c0005;
     }
     public static final class string {
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
@@ -907,12 +937,27 @@ containing a value of this type.
         /**  Description of a share target (both in the list of such or the default share button) in a ShareActionProvider (share UI). [CHAR LIMIT=NONE] 
          */
         public static final int abs__shareactionprovider_share_with_application=0x7f090009;
+        public static final int add=0x7f090017;
         public static final int app_name=0x7f09000a;
+        public static final int cancel=0x7f090016;
+        public static final int comment=0x7f09001c;
+        public static final int description=0x7f09001b;
+        public static final int exercise_name=0x7f090015;
         public static final int hello_world=0x7f09000b;
-        public static final int menu_addExc=0x7f09000f;
+        public static final int hint_comment=0x7f09001e;
+        public static final int hint_description=0x7f09001d;
+        public static final int menu_addExe=0x7f09000f;
         public static final int menu_save=0x7f09000e;
         public static final int menu_settings=0x7f09000c;
+        public static final int primary_muscletype_prompt=0x7f090012;
+        public static final int secondary_muscletype_prompt=0x7f090013;
+        public static final int sport_prompt=0x7f090018;
+        public static final int string_cancel=0x7f09001a;
+        public static final int string_done=0x7f090019;
+        public static final int string_type_of_training=0x7f090014;
+        public static final int title_activity_add_exercise=0x7f090010;
         public static final int title_activity_main=0x7f09000d;
+        public static final int trainingtype_prompt=0x7f090011;
     }
     public static final class style {
         public static final int AppTheme=0x7f0a0058;

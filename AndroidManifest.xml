@@ -30,7 +30,10 @@
             android:name=".Historik"
             android:label="@string/title_activity_main" />
         <activity
-            android:name=".Ovningar"
+            android:name=".Exercise"
+            android:label="@string/title_activity_main" />
+        <activity
+            android:name=".AddExercise"
             android:label="@string/title_activity_main" />
     </application>
 

@@ -2,6 +2,7 @@ package com.Grupp01.gymapp;
 
 import android.os.Bundle;
 
+import com.Grupp01.gymapp.R;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.*;
 
