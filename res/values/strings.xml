@@ -6,5 +6,12 @@
     <string name="title_activity_main">Gym-appen</string>
     <string name="menu_save">SAVE!</string>
     <string name="menu_addExc">Add Excersice!</string>
+    <string name="imagebutton_workout">WorkoutButton</string>
+    <string name="imagebutton_exercises">ExercisesButton</string>
+    <string name="imagebutton_history">HistoryButton</string>
+    <string name="imagebutton_statistics">StatisticsButton</string>
+    <string name="imagebutton_profile">ProfileButton</string>
+    <string name="imagebutton_settings">SettingsButton</string>
+    
 
 </resources>
