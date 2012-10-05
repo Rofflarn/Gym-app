@@ -32,7 +32,7 @@
             android:name=".Historik" 
             android:label="@string/title_activity_main" />
         <activity
-            android:name=".Exercise"
+            android:name=".ListExerciseActivity"
             android:label="@string/title_activity_main" />
         <activity
             android:name=".AddExercise"

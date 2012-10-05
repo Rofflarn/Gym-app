@@ -41,7 +41,7 @@ import com.actionbarsherlock.view.MenuInflater;
  * @peer reviewed by
  * @date dd/mm/yy
 */
-public class Exercise extends SherlockActivity implements OnClickListener, OnItemClickListener {
+public class ListExerciseActivity extends SherlockActivity implements OnClickListener, OnItemClickListener {
 	
 	/** Instansvariabler */
 	public final static String EXTRA_EXERCISE_NAME = "com.Grupp01.gymapp.message";

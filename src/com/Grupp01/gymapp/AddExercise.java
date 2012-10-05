@@ -55,7 +55,7 @@ public class AddExercise extends SherlockActivity implements AdapterView.OnItemS
 		setContentView(R.layout.activity_add_exercise);
 		getSupportActionBar().setHomeButtonEnabled(true);
 		Intent get_Title = getIntent();
-		setTitle(get_Title.getStringExtra(Exercise.EXTRA_EXERCISE_NAME));
+		setTitle(get_Title.getStringExtra(ListExerciseActivity.EXTRA_EXERCISE_NAME));
 
 		Resources res = getResources();
 		items = res.getStringArray(R.array.trainingtype_array);//get String-array from strings.xml
