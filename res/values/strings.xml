@@ -7,9 +7,9 @@
     <string name="menu_save">SAVE!</string>
     <string name="menu_addExe">Add Excersice!</string>
     <string name="title_activity_add_exercise">AddExercise</string>
-	<string name="exercise_name">Exercise name</string>
-	<string name="cancel">Cancel</string>
-	<string name="add">Add</string>
+    <string name="exercise_name">Exercise name</string>
+    <string name="cancel">Cancel</string>
+    <string name="add">Add</string>
     <string name="trainingtype_prompt">Choose type of training</string>
     <string name="primary_muscletype_prompt">Primary muscle</string>
     <string name="secondary_muscletype_prompt">Secondary muscle</string>
@@ -21,6 +21,9 @@
     <string name="comment">Note to self</string>
     <string name="hint_description">Describe your exercise</string>
     <string name="hint_comment">Add a personal comment</string>
+    <string name="string_primary_muscle">Select a primary muscle</string>
+    <string name="string_secondary_muscle">Select a secondary muscle</string>
+
     <string-array name="trainingtype_array">
         <item>Cardio</item>
         <item>Static</item>
@@ -37,6 +40,7 @@
         <item>Running</item>
         <item>Rowing</item>
     </string-array>
+
     <string name="menu_addExc">Add Excersice!</string>
     <string name="imagebutton_workout">WorkoutButton</string>
     <string name="imagebutton_exercises">ExercisesButton</string>
@@ -44,5 +48,5 @@
     <string name="imagebutton_statistics">StatisticsButton</string>
     <string name="imagebutton_profile">ProfileButton</string>
     <string name="imagebutton_settings">SettingsButton</string>
-    
+
 </resources>
