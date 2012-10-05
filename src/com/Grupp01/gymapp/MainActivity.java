@@ -55,8 +55,8 @@ public class MainActivity extends SherlockActivity {
     
     public void statistik(View view)
     {
-    	Intent statistik = new Intent(this, Statistik.class);
-    	startActivity(statistik);
+    	Intent sqlview = new Intent(this, SQLView.class);
+    	startActivity(sqlview);
     }
     
     public void exercise(View view)

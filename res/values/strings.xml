@@ -75,5 +75,7 @@
 	<string name="register_weight">Weight</string>
 	<string name="textview_musclegroup">Muscle group</string>
 	<string name="textview_muscle">Muscle</string>
+    <string name="title_activity_database">DatabaseActivity</string>
+    <string name="title_activity_sqlview">SQLView</string>
 
 </resources>

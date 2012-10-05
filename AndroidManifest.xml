@@ -51,10 +51,14 @@
             android:name=".RegisterStaticActivity"
             android:label="@string/title_activity_register_static" >
         </activity>
+        
         <activity
             android:name=".RegisterCardioActivity"
             android:label="@string/title_activity_register_cardio" >
 
+        <activity
+            android:name=".SQLView"
+            android:label="@string/title_activity_sqlview" >
         </activity>
     </application>
 
