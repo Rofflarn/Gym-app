@@ -28,7 +28,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignBottom="@+id/button1"
         android:src="@drawable/exercises"
-        android:onClick="ovningar"
+        android:onClick="exercise"
         android:background="@null"
          />
 

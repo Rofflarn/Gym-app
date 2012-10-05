@@ -12,7 +12,6 @@ import com.actionbarsherlock.view.MenuInflater;
 
 public class MainActivity extends SherlockActivity {
 	
-	//private ImageButton button1 = (ImageButton) findViewById(R.id.button1);
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -46,9 +45,9 @@ public class MainActivity extends SherlockActivity {
     	startActivity(statistik);
     }
     
-    public void ovningar(View view)
+    public void exercise(View view)
     {
-    	Intent ovningar = new Intent(this, Exercise.class);
-    	startActivity(ovningar);
+    	Intent exercise = new Intent(this, ListExerciseActivity.class);
+    	startActivity(exercise);
     }
 }
