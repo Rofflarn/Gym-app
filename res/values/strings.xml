@@ -48,5 +48,32 @@
     <string name="imagebutton_statistics">StatisticsButton</string>
     <string name="imagebutton_profile">ProfileButton</string>
     <string name="imagebutton_settings">SettingsButton</string>
+    <string name="menu_addWorkout">Add workout</string>
+    <string name="list_workout_favorites">Favorites</string>
+    <string name="list_workout_all">All</string>
+    <string name="title_activity_workout">WorkoutActivity</string>
+    <string name="menu_editWorkout">Edit workout!</string>
+    <string name="menu_createExercise">Create new exercise</string>
+    <string name="button_cancel">Cancel</string>
+    <string name="button_save">Save</string>
+    <string name="textview_musclegroup">Muscle group</string>
+    <string name="textview_muscle">Muscle</string>
+    <string name="title_activity_register_dynamic">RegisterDynamicActivity</string>
+    <string name="title_activity_register_static">RegisterStaticActivity</string>
+    <string name="title_activity_register_cardio">RegisterCardioActivity</string>
+	<string name="Done">Done</string>
+	<string name="Cancel">Cancel</string>
+	<string name="register_last_time">Last time: </string>
+	<string name="register_current_sets">Sets: </string>
+	<string name="register_my_notes">Notes: </string>
+	<string name="register_minutes">Min.</string>
+	<string name="register_seconds">Sec.</string>
+	<string name="register_distance">Distance</string>
+	<string name="register_finish_set">Add set</string>
+	<string name="register_undo_set">Remove set</string>
+	<string name="register_reps">Reps</string>
+	<string name="register_weight">Weight</string>
+	<string name="textview_musclegroup">Muscle group</string>
+	<string name="textview_muscle">Muscle</string>
 
 </resources>

@@ -23,7 +23,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Workout"
+            android:name=".ListWorkoutActivity"
+            android:label="@string/title_activity_main" />
+        <activity
+            android:name=".EditWorkoutActivity"
             android:label="@string/title_activity_main" />
         <activity
             android:name=".Statistik"
@@ -37,6 +40,22 @@
         <activity
             android:name=".AddExercise"
             android:label="@string/title_activity_main" />
-            </application>
+         <activity
+            android:name=".WorkoutActivity"
+            android:label="@string/title_activity_workout" />
+        <activity
+            android:name=".RegisterDynamicActivity"
+            android:label="@string/title_activity_register_dynamic" >
+        </activity>
+        <activity
+            android:name=".RegisterStaticActivity"
+            android:label="@string/title_activity_register_static" >
+        </activity>
+        <activity
+            android:name=".RegisterCardioActivity"
+            android:label="@string/title_activity_register_cardio" >
+
+        </activity>
+    </application>
 
 </manifest>

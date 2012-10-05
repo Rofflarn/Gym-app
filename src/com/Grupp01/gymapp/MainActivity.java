@@ -29,7 +29,7 @@ public class MainActivity extends SherlockActivity {
     
     public void workout(View view)
     {
-    	Intent workout = new Intent(this, Workout.class);
+    	Intent workout = new Intent(this, ListWorkoutActivity.class);
     	startActivity(workout);
     }
     
