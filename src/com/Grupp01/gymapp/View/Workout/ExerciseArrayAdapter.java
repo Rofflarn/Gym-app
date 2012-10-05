@@ -14,10 +14,11 @@
 *  along with Gymapp.  If not, see <http://www.gnu.org/licenses/>.
 *
 */
-package com.Grupp01.gymapp;
+package com.Grupp01.gymapp.View.Workout;
 
 import java.util.List;
 
+import com.Grupp01.gymapp.R;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;

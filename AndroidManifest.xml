@@ -23,10 +23,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ListWorkoutActivity"
+            android:name=".View.Workout.ListWorkoutActivity"
             android:label="@string/title_activity_main" />
         <activity
-            android:name=".EditWorkoutActivity"
+            android:name=".View.Workout.EditWorkoutActivity"
             android:label="@string/title_activity_main" />
         <activity
             android:name=".Statistik"
@@ -35,29 +35,28 @@
             android:name=".Historik" 
             android:label="@string/title_activity_main" />
         <activity
-            android:name=".ListExerciseActivity"
+            android:name=".View.Exercise.ListExerciseActivity"
             android:label="@string/title_activity_main" />
         <activity
-            android:name=".AddExercise"
+            android:name=".View.Exercise.AddExercise"
             android:label="@string/title_activity_main" />
          <activity
-            android:name=".WorkoutActivity"
+            android:name=".View.Workout.WorkoutActivity"
             android:label="@string/title_activity_workout" />
         <activity
-            android:name=".RegisterDynamicActivity"
+            android:name=".View.Workout.RegisterDynamicActivity"
             android:label="@string/title_activity_register_dynamic" >
         </activity>
         <activity
-            android:name=".RegisterStaticActivity"
+            android:name=".View.Workout.RegisterStaticActivity"
             android:label="@string/title_activity_register_static" >
         </activity>
-        
         <activity
-            android:name=".RegisterCardioActivity"
+      		android:name=".View.Workout.RegisterCardioActivity"
             android:label="@string/title_activity_register_cardio" >
 		</activity>
         <activity
-            android:name=".SQLView"
+            android:name=".Model.SQLView"
             android:label="@string/title_activity_sqlview" >
         </activity>
     </application>

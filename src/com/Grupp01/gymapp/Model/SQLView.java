@@ -1,4 +1,8 @@
-package com.Grupp01.gymapp;
+package com.Grupp01.gymapp.Model;
+
+import com.Grupp01.gymapp.R;
+import com.Grupp01.gymapp.R.layout;
+import com.Grupp01.gymapp.R.menu;
 
 import android.app.Activity;
 import android.database.Cursor;

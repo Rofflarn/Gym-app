@@ -14,7 +14,7 @@
 *  along with Gymapp.  If not, see <http://www.gnu.org/licenses/>.
 *
 */
-package com.Grupp01.gymapp;
+package com.Grupp01.gymapp.View.Workout;
  
 /**@author GivDev
  * @version 0.1

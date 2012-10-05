@@ -14,7 +14,7 @@
 *  along with Gymapp.  If not, see <http://www.gnu.org/licenses/>.
 *
 */
-package com.Grupp01.gymapp;
+package com.Grupp01.gymapp.View.Workout;
 
 import android.widget.CheckBox;
 import android.widget.TextView;

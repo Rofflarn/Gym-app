@@ -14,7 +14,7 @@
 *  along with Gymapp.  If not, see <http://www.gnu.org/licenses/>.
 *
 */
-package com.Grupp01.gymapp;
+package com.Grupp01.gymapp.View.Workout;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -33,6 +33,8 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.Grupp01.gymapp.MainActivity;
+import com.Grupp01.gymapp.R;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
@@ -190,7 +192,7 @@ public class ListWorkoutActivity extends SherlockActivity {
 	 * 
 	 */
 	private void startNewWorkout(String workoutName) {
-		Intent workout = new Intent(ListWorkoutActivity.this, WorkoutActivity.class);
+		Intent workout = new Intent(ListWorkoutActivity.this, com.Grupp01.gymapp.View.Workout.WorkoutActivity.class);
 		workout.putExtra("WORKOUT_NAME", workoutName);
     	startActivity(workout);
 	}
@@ -240,7 +242,7 @@ public class ListWorkoutActivity extends SherlockActivity {
      * @param workoutName The name of the workout
      */
 	private void editWorkouts(String workoutName) {
-		Intent intent = new Intent(this, EditWorkoutActivity.class);
+		Intent intent = new Intent(this, com.Grupp01.gymapp.View.Workout.EditWorkoutActivity.class);
 		intent.putExtra(WORKOUT_NAME, workoutName);
 		startActivity(intent);		
 		
@@ -256,7 +258,7 @@ public class ListWorkoutActivity extends SherlockActivity {
     	//Variables for the dialog
     	final AlertDialog.Builder addWorkout_Dialog = new AlertDialog.Builder(this);
     	final EditText editText_Dialog = new EditText(this);
-    	final Intent intent2 = new Intent(this, EditWorkoutActivity.class);
+    	final Intent intent2 = new Intent(this, com.Grupp01.gymapp.View.Workout.EditWorkoutActivity.class);
     	
     	addWorkout_Dialog.setMessage("Enter name of Workout:");
     	addWorkout_Dialog.setView(editText_Dialog);

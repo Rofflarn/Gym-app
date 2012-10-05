@@ -14,7 +14,7 @@
 *  along with Gymapp.  If not, see <http://www.gnu.org/licenses/>.
 *
 */
-package com.Grupp01.gymapp;
+package com.Grupp01.gymapp.View.Workout;
 
 import java.util.ArrayList;
 
@@ -25,6 +25,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.Grupp01.gymapp.MainActivity;
+import com.Grupp01.gymapp.R;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
@@ -35,19 +37,18 @@ import com.actionbarsherlock.view.MenuItem;
  * @peer reviewed by
  * @date 04/10/12
  *
-* Class RegisterStaticActivity is an activity that enables the user to
-* register his or hers result when performing a static exercise.
-* The user will be able to input time (minutes and seconds) and the weight. 
+* Class RegisterDynamicActivity is an activity that enables the user to
+* register his or hers result when performing a dynamic muscle exercise.
+* The user will be able to input repetitions and the weight. 
  * 
  * <p>This class i a part of the </p><i>View</i><p> package, and a part of the </p><i>Workout</i>
  * <p> Subpackage</p> 
  *
  */
-public class RegisterStaticActivity extends SherlockActivity {
+public class RegisterDynamicActivity extends SherlockActivity {
 
 	private String workoutName;				//The name of the workout
 	private ArrayList<String> currentSets;	//The array where new sets is added (in form of REPSxWEIGHT)
-
 	
 	/**
 	 * Set up the default layout and call initiate method that is required. 
@@ -56,9 +57,9 @@ public class RegisterStaticActivity extends SherlockActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         workoutName = getIntent().getStringExtra("exercisename");
-        setContentView(R.layout.activity_register_static);
+        setContentView(R.layout.activity_register_dynamic);
         
-      //Create the array
+        //Create the array
         currentSets = new ArrayList<String>();
         
         //Show the sets (reps and weight) for the last time this
@@ -100,19 +101,19 @@ public class RegisterStaticActivity extends SherlockActivity {
     }
     
     
-
-     /**
+    
+    /**
      * This method will set the TextView in the layout
      * that shows the time and weight for when performing this exercise last time.
      */
     private void setLastSetString() {
-    	TextView lastSetString = (TextView) findViewById(R.id.lastTimeSetsStatic);
+    	TextView lastSetString = (TextView) findViewById(R.id.lastTimeSets);
     	lastSetString.setText("ska hämtas från DB");
 		
 	}
     
-   
-    /**
+    
+  /**
      * Method called when pressing any of the buttons in the view
      * @param View v - The view thas has been clicked
      */
@@ -121,23 +122,23 @@ public class RegisterStaticActivity extends SherlockActivity {
     	switch(v.getId()){
     	
     	//Cancel button pressed, exit without saving
-    	case R.id.staticButtonCancel:
+    	case R.id.dynamicButtonCancel:
     		finish();
     		break;
     		
     	//OK button pressed, exit and save to database
-    	case R.id.staticButtonOK:
+    	case R.id.dynamicButtonOK:
     		saveSetsToDatabase();
     		finish();
     		break;
     		
     	//Finish set pressed, add the reps and weight to the array
-    	case R.id.staticFinishSet:
+    	case R.id.dynamicFinishSet:
     		addNewSet();
     		break;
     		
     	//Undo set pressed, remove the latest set from the array.
-    	case R.id.staticUndoSet:
+    	case R.id.dynamicUndoSet:
     		removeLatestSet();
     		break;
     	}
@@ -160,39 +161,29 @@ public class RegisterStaticActivity extends SherlockActivity {
      * 
      */
     private void addNewSet() {
+    	//Input from the user, the reps and weight
+    	EditText editReps = (EditText) findViewById(R.id.editReps);
+		EditText editWeight = (EditText) findViewById(R.id.editWeight);
     	
-    	//Input from the user, the minutes seconds and weight
-    	EditText editMinutes = (EditText) findViewById(R.id.editMinutesStatic);
-    	EditText editSeconds = (EditText) findViewById(R.id.editSecondsStatic);
-    	EditText editWeight = (EditText) findViewById(R.id.editWeight);
-    	
-    	//Get number of reps
-    	String minutes = editMinutes.getText().toString();
-		if(minutes.equals("")){
-			minutes = "0";
-		}
-		String seconds = editSeconds.getText().toString();
-		if(seconds.equals("")){
-			seconds = "0";
-		}
-		String weight = editWeight.getText().toString();
-		if(weight.equals("")){
-			weight = "0";
+    	//Fetch number of reps
+		String reps = editReps.getText().toString();
 		
-		}
-		//Dont add the set if both minutes and seconds is zero (= no time)
-		if((minutes.equals("0")) && (seconds.equals("0"))){			
+		//Do not add set where the number of repetitions is 0 or blank ("")
+		if(!(reps.equals("")) && !(reps.equals("0"))){
+			
+			//If the weight is blank, set it to zero
+			String weight = editWeight.getText().toString();
+			if(weight.equals(""))
+				weight = "0";
+			
 			//add to the array and update view on the screen
-			Toast.makeText(this, "Cant add set with 0 repetitions", Toast.LENGTH_SHORT).show();
-			
+			currentSets.add(reps + "x" + weight);
+			updateView();
 		
 		}
-		else{
-			currentSets.add(minutes + ":" + seconds + "x" + weight);
-			updateView();
-			
-		}
-			
+		else
+			Toast.makeText(this, "Cant add set with 0 repetitions.", Toast.LENGTH_SHORT).show();
+		
 	}
 		
 	/**
@@ -205,10 +196,11 @@ public class RegisterStaticActivity extends SherlockActivity {
 		String string = new String();
 		
 		//The textview where current sets will be showed (added when button "Finish set" is pressed)
-		TextView currentSetString = (TextView) findViewById(R.id.thisTimeSetsStatic);
+		TextView currentSetString = (TextView) findViewById(R.id.thisTimeSets);
 		
 		//The prefix is used to separate each set in the string.
 		String prefix = new String("");
+		
 		for (String s : currentSets)
 		{
 			string = string + prefix;
@@ -229,3 +221,4 @@ public class RegisterStaticActivity extends SherlockActivity {
 		updateView();
 	}
 }
+

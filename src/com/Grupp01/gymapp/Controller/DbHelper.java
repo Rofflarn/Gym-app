@@ -1,4 +1,4 @@
-package com.Grupp01.gymapp;
+package com.Grupp01.gymapp.Controller;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

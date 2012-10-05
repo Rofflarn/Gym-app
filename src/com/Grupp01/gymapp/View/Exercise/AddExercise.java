@@ -14,7 +14,7 @@
  *  along with Gymapp.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-package com.Grupp01.gymapp;
+package com.Grupp01.gymapp.View.Exercise;
 
 import android.content.Intent;
 import android.content.res.Resources;
@@ -25,6 +25,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import com.Grupp01.gymapp.R;
+import com.Grupp01.gymapp.R.array;
+import com.Grupp01.gymapp.R.id;
+import com.Grupp01.gymapp.R.layout;
+import com.Grupp01.gymapp.R.menu;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;

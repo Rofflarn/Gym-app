@@ -1,6 +1,8 @@
-package com.Grupp01.gymapp;
+package com.Grupp01.gymapp.Model;
 
 import java.util.ArrayList;
+
+import com.Grupp01.gymapp.Controller.DbHelper;
 
 import android.content.Context;
 import android.database.Cursor;

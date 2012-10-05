@@ -1,4 +1,3 @@
-package com.Grupp01.gymapp;
 /*This file is part of Gymapp.
 *
 *   Gymapp is free software: you can redistribute it and/or modify
@@ -15,6 +14,7 @@ package com.Grupp01.gymapp;
 *  along with Gymapp.  If not, see <http://www.gnu.org/licenses/>.
 *
 */
+package com.Grupp01.gymapp.View.Workout;
 
 import java.util.ArrayList;
 
@@ -29,6 +29,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 
+import com.Grupp01.gymapp.R;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 
@@ -36,7 +37,7 @@ import com.actionbarsherlock.view.Menu;
  *  * @author Robert Blomberg
  *  */	
 
-public class EditWorkout extends SherlockActivity implements OnItemSelectedListener
+public class EditWorkoutActivity extends SherlockActivity implements OnItemSelectedListener
 {
 	
 	private ListView listView;

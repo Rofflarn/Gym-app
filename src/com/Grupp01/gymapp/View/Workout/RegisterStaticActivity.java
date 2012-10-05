@@ -14,9 +14,7 @@
 *  along with Gymapp.  If not, see <http://www.gnu.org/licenses/>.
 *
 */
-
-package com.Grupp01.gymapp;
-
+package com.Grupp01.gymapp.View.Workout;
 
 import java.util.ArrayList;
 
@@ -27,6 +25,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.Grupp01.gymapp.MainActivity;
+import com.Grupp01.gymapp.R;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
@@ -37,16 +37,15 @@ import com.actionbarsherlock.view.MenuItem;
  * @peer reviewed by
  * @date 04/10/12
  *
- * Class RegisterCardioActivity is an activity that enables the user to
- * register his or hers result when performing a cardio exercise.
- * The user will be able to input time (minutes and seconds) and the distance. 
+* Class RegisterStaticActivity is an activity that enables the user to
+* register his or hers result when performing a static exercise.
+* The user will be able to input time (minutes and seconds) and the weight. 
  * 
  * <p>This class i a part of the </p><i>View</i><p> package, and a part of the </p><i>Workout</i>
  * <p> Subpackage</p> 
  *
  */
-
-public class RegisterCardioActivity extends SherlockActivity {
+public class RegisterStaticActivity extends SherlockActivity {
 
 	private String workoutName;				//The name of the workout
 	private ArrayList<String> currentSets;	//The array where new sets is added (in form of REPSxWEIGHT)
@@ -59,9 +58,9 @@ public class RegisterCardioActivity extends SherlockActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         workoutName = getIntent().getStringExtra("exercisename");
-        setContentView(R.layout.activity_register_cardio);
+        setContentView(R.layout.activity_register_static);
         
-        //Create the array
+      //Create the array
         currentSets = new ArrayList<String>();
         
         //Show the sets (reps and weight) for the last time this
@@ -73,11 +72,10 @@ public class RegisterCardioActivity extends SherlockActivity {
     /**
      * Set up the actionbar (layout xml and title)
      * @param Menu the actionbar menu
-     * @return true to make the menu visible
      */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getSupportMenuInflater().inflate(R.menu.activity_register_cardio, menu);
+        getSupportMenuInflater().inflate(R.menu.activity_register_dynamic, menu);
         getSupportActionBar().setTitle(workoutName);
         getSupportActionBar().setHomeButtonEnabled(true);
         return true;
@@ -105,45 +103,43 @@ public class RegisterCardioActivity extends SherlockActivity {
     
     
 
-
-    
-    /**
+     /**
      * This method will set the TextView in the layout
-     * that shows the time and distance for when performing this exercise last time.
+     * that shows the time and weight for when performing this exercise last time.
      */
     private void setLastSetString() {
-    	//The textview that will show sets from last time.
-    	TextView lastSetString = (TextView) findViewById(R.id.lastTimeSetsCardio);
+    	TextView lastSetString = (TextView) findViewById(R.id.lastTimeSetsStatic);
     	lastSetString.setText("ska hämtas från DB");
 		
 	}
     
-    
+   
     /**
      * Method called when pressing any of the buttons in the view
-     * @param View v - The view that has been clicked
+     * @param View v - The view thas has been clicked
      */
+    
     public void onClick(View v){
     	switch(v.getId()){
     	
     	//Cancel button pressed, exit without saving
-    	case R.id.CardioButtonCancel:
+    	case R.id.staticButtonCancel:
     		finish();
     		break;
     		
     	//OK button pressed, exit and save to database
-    	case R.id.CardioButtonOK:
+    	case R.id.staticButtonOK:
     		saveSetsToDatabase();
     		finish();
     		break;
     		
-    	//Finish set pressed, add the distance and time to the array
-    	case R.id.CardioFinishSet:
+    	//Finish set pressed, add the reps and weight to the array
+    	case R.id.staticFinishSet:
     		addNewSet();
     		break;
     		
     	//Undo set pressed, remove the latest set from the array.
-    	case R.id.CardioUndoSet:
+    	case R.id.staticUndoSet:
     		removeLatestSet();
     		break;
     	}
@@ -152,7 +148,6 @@ public class RegisterCardioActivity extends SherlockActivity {
     /**
      * THis is called when pressing the "OK" button, will save the sets
      * to the database before this activity terminates.
-     * 
      */
     private void saveSetsToDatabase() {
     	Toast.makeText(this, "will close this activity and save", Toast.LENGTH_SHORT).show();
@@ -162,19 +157,19 @@ public class RegisterCardioActivity extends SherlockActivity {
 
 
 	/**
-     * Will read the input of reps and weight EditTexts, add it to the array and update the view
+     * Will read the input of reps and weight EditTexts, add it to the 
+     * array and update the view
      * 
      */
     private void addNewSet() {
+    	
     	//Input from the user, the minutes seconds and weight
-    	EditText editMinutes = (EditText) findViewById(R.id.editMinutesCardio);
-    	EditText editSeconds = (EditText) findViewById(R.id.editSecondsCardio);
-    	EditText editDistance = (EditText) findViewById(R.id.editDistance);
+    	EditText editMinutes = (EditText) findViewById(R.id.editMinutesStatic);
+    	EditText editSeconds = (EditText) findViewById(R.id.editSecondsStatic);
+    	EditText editWeight = (EditText) findViewById(R.id.editWeight);
     	
-    	
-    	//Read the time (minutes and seconds) and the distance.
-    	//If any of them if blank, set it to zero
-		String minutes = editMinutes.getText().toString();
+    	//Get number of reps
+    	String minutes = editMinutes.getText().toString();
 		if(minutes.equals("")){
 			minutes = "0";
 		}
@@ -182,20 +177,20 @@ public class RegisterCardioActivity extends SherlockActivity {
 		if(seconds.equals("")){
 			seconds = "0";
 		}
-		String distance = editDistance.getText().toString();
-		if(distance.equals("")){
-			distance = "0";
+		String weight = editWeight.getText().toString();
+		if(weight.equals("")){
+			weight = "0";
 		
 		}
 		//Dont add the set if both minutes and seconds is zero (= no time)
 		if((minutes.equals("0")) && (seconds.equals("0"))){			
+			//add to the array and update view on the screen
+			Toast.makeText(this, "Cant add set with 0 repetitions", Toast.LENGTH_SHORT).show();
 			
-			Toast.makeText(this, "Cant add set with no time", Toast.LENGTH_SHORT).show();
-			
-		}  
-		//else add the information to the array and update information in the view
+		
+		}
 		else{
-			currentSets.add(minutes + ":" + seconds + "x" + distance);
+			currentSets.add(minutes + ":" + seconds + "x" + weight);
 			updateView();
 			
 		}
@@ -212,8 +207,8 @@ public class RegisterCardioActivity extends SherlockActivity {
 		String string = new String();
 		
 		//The textview where current sets will be showed (added when button "Finish set" is pressed)
-		TextView currentSetString = (TextView) findViewById(R.id.thisTimeSetsCardio);
-				
+		TextView currentSetString = (TextView) findViewById(R.id.thisTimeSetsStatic);
+		
 		//The prefix is used to separate each set in the string.
 		String prefix = new String("");
 		for (String s : currentSets)
@@ -222,7 +217,6 @@ public class RegisterCardioActivity extends SherlockActivity {
 			prefix = ", ";
 			string = string + s;
 		}
-		//Update the view with the new string
 		currentSetString.setText(string);
 	}
 	
