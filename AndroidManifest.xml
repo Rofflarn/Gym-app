@@ -55,7 +55,7 @@
         <activity
             android:name=".RegisterCardioActivity"
             android:label="@string/title_activity_register_cardio" >
-
+		</activity>
         <activity
             android:name=".SQLView"
             android:label="@string/title_activity_sqlview" >

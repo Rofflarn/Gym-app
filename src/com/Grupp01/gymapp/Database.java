@@ -1,10 +1,16 @@
 package com.Grupp01.gymapp;
 
+import java.util.ArrayList;
+
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-
+/**
+ * Main database-class. Contains methods for creating the database and accessing data.
+ * @author GivDev
+ *
+ */
 public class Database {
 
 	private static final String DATABASE_NAME = "GymAppDatabase"; 
@@ -13,13 +19,21 @@ public class Database {
 	private DbHelper ourHelper;
 	private final Context ourContext;
 	private SQLiteDatabase ourDatabase;
-
-
+	
+	/**
+	 * 
+	 * @param c
+	 */
 	public Database(Context c)
 	{
 		ourContext = c;
 	}
 
+	/**
+	 * Opens a new connection to the database. 
+	 * @return
+	 * @throws SQLException
+	 */
 	public Database open() throws SQLException
 	{
 		ourHelper = new DbHelper(ourContext);
@@ -27,6 +41,9 @@ public class Database {
 		return this;
 	}
 
+	/**
+	 * 
+	 */
 	public void close()
 	{
 		ourHelper.close();
@@ -50,8 +67,28 @@ public class Database {
 		return result;
 	}
 
-	public Cursor getExerciseTypes(){
-		return ourDatabase.rawQuery("SELECT * FROM ExerciseTypes;", null);
+	public String[] getExerciseTypes(){
+		Cursor c = ourDatabase.rawQuery("SELECT * FROM ExerciseTypes;", null);
+		ArrayList<String> strings = new ArrayList<String>();
+		System.out.println("Runnig Ex erciseTypes");
+		
+		int id = c.getColumnIndex("ExerciseTypeId");
+		int name = c.getColumnIndex("ExerciseTypeName");
+		
+		//Forlopp som går igenom hela databasen, alla kolummer
+        //String[] columns = new String[]{ "ExerciseTypeID", "ExerciseTypeName"};
+		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext())
+		{
+			
+			//result = result + c.getString(id) + " " + c.getString(name) + "\n";
+			//System.out.println("Id: " + Integer.toString(c.getInt(id)) + " | Name: " + c.getString(name));
+			//items[c.getInt(0)] = c.getString(1);
+			//System.out.println(""+items[c.getInt(id)]);
+			strings.add(c.getString(name));
+		}
+		System.out.println("Exit ExerciseTypes");
+		//return items;
+		return (String[]) strings.toArray(new String[strings.size()]);
 		//Kanske borde returnera map?
 	}
 	
@@ -64,9 +101,32 @@ public class Database {
 		return ourDatabase.rawQuery("SELECT * FROM MuscleGroups;" ,null);
 	}
 	
-	public Cursor getMusclesByMuscleGroupId(int MuscleGroupId){
+	public Cursor getMusclesByMuscleByGroupId(int MuscleGroupId){
 		return ourDatabase.rawQuery("SELECT * FROM Muscles WHERE MuscleGroupId = '" + MuscleGroupId + "';", null);
 	}
+
+	
+	public String[] getMuscles()
+	{
+		Cursor c = ourDatabase.rawQuery("SELECT * FROM Muscles;", null);
+		ArrayList<String> strings = new ArrayList<String>();
+		System.out.println("Runnig Ex erciseTypes");
+		
+		int id = c.getColumnIndex("MuscleId");
+		int name = c.getColumnIndex("MuscleName");
+
+		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext())
+			strings.add(c.getString(name));
+		
+		return (String[]) strings.toArray(new String[strings.size()]);
+	}
+
+	/*
+	 * public Cursor getMusclesByMuscleGroupName(String MuscleGroupName){
+	 *	return ourDatabase.rawQuery("SELECT * FROM Muscles WHERE MuscleGroupId = (SELECT MuscleGroupId FROM MuslceGroups WHERE MuscleGroupName = '" + MuscleGroupName + "');", null);
+	 * }
+	 * */
+
 
 	public Cursor getUsers(){
 		return ourDatabase.rawQuery("SELECT * FROM Users;", null);
@@ -77,14 +137,28 @@ public class Database {
 		ourDatabase.execSQL("INSERT INTO Users (UserName, UserBirthday) VALUES ('" + UserName + "', '" + UserBirthday + "');");
 		//TODO change to insert() instead of execSql()
 	}
-
+	
 	public Cursor getExercisesByTypeId(int ExerciseTypeId){
 		return ourDatabase.rawQuery("SELECT * FROM Exercises WHERE ExerciseTypeId = '" + ExerciseTypeId + "';", null);
 	}
 
-	public Cursor getSports(){
-		return ourDatabase.rawQuery("SELECT * FROM Sports;", null);
+
+	public String[] getSports(){
+		Cursor c = ourDatabase.rawQuery("SELECT * FROM Sports;", null);
+		ArrayList<String> strings = new ArrayList<String>();
+		System.out.println("Runnig Ex erciseTypes");
+		
+		int id = c.getColumnIndex("SportId");
+		int name = c.getColumnIndex("SportName");
+
+		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext())
+			strings.add(c.getString(name));
+		
+		return (String[]) strings.toArray(new String[strings.size()]);
 	}
+
+	
+
 
 	/**
 	 * Gets all SetTemplates and ExerciseNames that belong to a PassTemplate. Note: only gets SetsId and ExerciseNames.
