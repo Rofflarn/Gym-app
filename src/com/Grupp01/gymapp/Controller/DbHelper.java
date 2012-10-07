@@ -72,13 +72,17 @@ public class DbHelper extends SQLiteOpenHelper{
 	 */
 	private void createExercises(SQLiteDatabase db)
 	{
-		db.execSQL("CREATE TABLE Exercises (ExceriseId INTEGER PRIMARY KEY AUTOINCREMENT, ExercisePri INTEGER, " +
+		db.execSQL("CREATE TABLE Exercises (ExerciseId INTEGER PRIMARY KEY AUTOINCREMENT, ExercisePri INTEGER, " +
 				"ExerciseSec INTEGER, ExerciseName TEXT NOT NULL, ExerciseDesc TEXT, ExerciseNote Text, " +
 				"ExerciseTypeId INTEGER NOT NULL);");
 		//db.execSQL("INSERT INTO Exercises(ExercisePri, ExerciseSec, ExerciseName, ExerciseTypeId) VALUES (2, , 'Sit-ups', 1);");
 		db.execSQL("INSERT INTO Exercises(ExercisePri, ExerciseSec, ExerciseName, ExerciseTypeId) VALUES (3, 1, 'Chins', 1);");
 		db.execSQL("INSERT INTO Exercises(ExercisePri, ExerciseSec, ExerciseName, ExerciseTypeId) VALUES (1, 4, 'Bench press', 3);");
 		db.execSQL("INSERT INTO Exercises(ExercisePri, ExerciseSec, ExerciseName, ExerciseTypeId) VALUES (1, 2, 'Push-ups', 1);");
+		db.execSQL("INSERT INTO Exercises(ExercisePri, ExerciseSec, ExerciseName, ExerciseTypeId) VALUES (1, 2, 'Push-ups', 1);");
+		db.execSQL("INSERT INTO Exercises(ExercisePri, ExerciseSec, ExerciseName, ExerciseTypeId) VALUES (1, 2, 'Joels Ölhäfv', 1);");
+		db.execSQL("INSERT INTO Exercises(ExercisePri, ExerciseSec, ExerciseName, ExerciseTypeId) VALUES (1, 2, 'Schlobbans sjuor', 1);");
+		
 	}
 	
 	/**

@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import android.app.Activity;
+import android.content.Context;
 import android.database.Cursor;
 
 import com.Grupp01.gymapp.Model.Database;
@@ -15,9 +16,9 @@ public class GetIdNameList extends Activity {
 	private static final int DATABASE_VERSION = 1;
 	private Database databas;
 	
-	public GetIdNameList()
-	{	
-		databas = new Database(getApplicationContext());
+	public GetIdNameList(Context c)
+	{
+		databas = new Database(c);
 	}
 	
 	
@@ -28,8 +29,8 @@ public class GetIdNameList extends Activity {
 		databas.open();
 		System.out.println("Opened Database");
 		Cursor c = databas.getExercises();
-		databas.close();
-		System.out.println("Closed Database");
+			
+		
 		List<IdName> idNameList = new LinkedList<IdName>();
 
 		int id = c.getColumnIndex("ExerciseId");
@@ -38,9 +39,14 @@ public class GetIdNameList extends Activity {
 		System.out.println("Before forloop");
 		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext())
 		{
-			idNameList.add(new IdName(c.getInt(id),c.getString(name)));
+			System.out.println("Inne i forloop");
+			idNameList.add(new IdName(c.getInt(0),c.getString(3)));
+			System.out.println(c.getInt(0) + " " + c.getString(3));
 		}
 		System.out.println("After Database");
+		c.close();
+		databas.close();
+		System.out.println("Closed Database");
 		return idNameList;
 	}
 

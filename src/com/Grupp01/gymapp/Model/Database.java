@@ -2,12 +2,13 @@ package com.Grupp01.gymapp.Model;
 
 import java.util.ArrayList;
 
-import com.Grupp01.gymapp.Controller.DbHelper;
-
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.widget.Toast;
+
+import com.Grupp01.gymapp.Controller.DbHelper;
 /**
  * Main database-class. Contains methods for creating the database and accessing data.
  * @author GivDev
@@ -29,6 +30,10 @@ public class Database {
 	public Database(Context c)
 	{
 		ourContext = c;
+		if(c == null)
+		{
+			System.out.println("Context == null");
+		}
 	}
 
 	/**
@@ -52,8 +57,10 @@ public class Database {
 	 */
 	public void close()
 	{
+		ourDatabase.close();
 		ourHelper.close();
 	}
+	
 
 	public String getData() {
 		// TODO Auto-generated method stub
@@ -109,7 +116,7 @@ public class Database {
 	
 	public Cursor getExercises()
 	{
-		return ourDatabase.rawQuery("SELECT * FROM Exerciese;", null);
+		return ourDatabase.rawQuery("SELECT * FROM Exercises;", null);
 	}
 	
 	public Cursor getMusclesByMuscleByGroupId(int MuscleGroupId){

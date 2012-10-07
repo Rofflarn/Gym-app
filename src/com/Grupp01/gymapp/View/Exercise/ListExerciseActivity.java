@@ -100,12 +100,15 @@ public class ListExerciseActivity extends SherlockActivity implements OnClickLis
     {	
     	System.out.println("Inne i createListView()");
     	exercises = new LinkedList<IdName>();
-    	GetIdNameList temp = new GetIdNameList();
-    	exercises.addAll(temp.getExerciseIdName());
-    	/*for(IdName idname: exercises)
+    	GetIdNameList temp = new GetIdNameList(this);
+    	exercises = temp.getExerciseIdName();
+    	System.out.println("INnan forlopp exercises");
+    	for(IdName idname: exercises)
     	{
+    		System.out.println(idname.getName());
     		listElements.add(idname.getName());
-    	}*/
+    	}
+    	elementAdapter.notifyDataSetChanged();
     	
     }
 
