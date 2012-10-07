@@ -36,8 +36,8 @@ import com.actionbarsherlock.view.MenuItem;
 /** 
  * @author GivDev
  * @version 0.1
- * @peer reviewed by
- * @date 04/10/12
+ * @peer reviewed by Joel Olofsson
+ * @date 07/10/12
  *
  * Class RegisterCardioActivity is an activity that enables the user to
  * register his or hers result when performing a cardio exercise.
@@ -103,12 +103,7 @@ public class RegisterCardioActivity extends SherlockActivity {
     		default:
     			return super.onOptionsItemSelected(item);
     	}
-    }
-    
-    
-
-
-    
+    }     
     /**
      * This method will set the TextView in the layout
      * that shows the time and distance for when performing this exercise last time.
@@ -116,10 +111,8 @@ public class RegisterCardioActivity extends SherlockActivity {
     private void setLastSetString() {
     	//The textview that will show sets from last time.
     	TextView lastSetString = (TextView) findViewById(R.id.lastTimeSetsCardio);
-    	lastSetString.setText("ska hämtas från DB");
-		
+    	lastSetString.setText("ska hämtas från DB");		
 	}
-    
     
     /**
      * Method called when pressing any of the buttons in the view

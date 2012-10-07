@@ -34,8 +34,8 @@ import com.actionbarsherlock.view.MenuItem;
 /** 
  * @author GivDev
  * @version 0.1
- * @peer reviewed by
- * @date 04/10/12
+ * @peer reviewed by Joel Olofsson
+ * @date 07/10/12
  *
 * Class RegisterStaticActivity is an activity that enables the user to
 * register his or hers result when performing a static exercise.

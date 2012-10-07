@@ -12,7 +12,8 @@
 *
 *   You should have received a copy of the GNU General Public License
 *  along with Gymapp.  If not, see <http://www.gnu.org/licenses/>.
-*
+*		
+*			Copyright © 2012 GivDev
 */
 package com.Grupp01.gymapp.View.Workout;
 
@@ -34,8 +35,13 @@ import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 
 /** The Graphical layout where the user Edit a Workout
- *  * @author Robert Blomberg
- *  */	
+ * 
+ * @author GivDev
+ * @version 0.1
+ * @peer reviewed by Joel Olofsson
+ * @date 07/10/12
+*/
+ 	
 
 public class EditWorkoutActivity extends SherlockActivity implements OnItemSelectedListener
 {

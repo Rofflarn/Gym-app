@@ -13,6 +13,7 @@
  *   You should have received a copy of the GNU General Public License
  *  along with Gymapp.  If not, see <http://www.gnu.org/licenses/>.
  *
+ *				Copyright © 2012 GivDev
  */
 package com.Grupp01.gymapp.View.Exercise;
 
@@ -35,8 +36,8 @@ import com.actionbarsherlock.view.MenuInflater;
 /** 
  * @author GivDev
  * @version 0.1
- * @peer reviewed by
- * @date 04/10/12
+ * @peer Erik Nyberg
+ * @date 07/10/12
  *
  * This class is made exclusively for initiating the part of the GUI that gives the user 
  * a opportunity to add and change exercises
@@ -52,6 +53,7 @@ public class AddExercise extends SherlockActivity implements AdapterView.OnItemS
 	/**
 	 * Instantiates the class with necessary method calls, setting up the correct layout
 	 * and receiving the intent that started this activity
+	 * @param savedInstanceState
 	 */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -66,8 +68,9 @@ public class AddExercise extends SherlockActivity implements AdapterView.OnItemS
 		initSpinnerType(0); //initialize spinner with listener and set spinner to static
 	}
 	/**
-	 * Sets up the menubar, note the use of actionbarsherlock, making it possible of using
+	 * Sets up the menubar, note the use of actionbarsherlock, making it possible using
 	 * a menubar for APIs lower than 11
+	 * @param menu
 	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
