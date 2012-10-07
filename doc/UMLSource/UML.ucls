@@ -1,0 +1,203 @@
+<class-diagram version="1.0.10" icons="true" automaticImage="PNG" always-add-relationships="false" 
+  generalizations="true" realizations="true" associations="true" dependencies="true" nesting-relationships="true">  
+  <class id="1" corner="TOP_RIGHT" language="java" name="com.Grupp01.gymapp.View.Workout.RegisterStaticActivity" 
+    project="com.Grupp01.gymapp.MainActivity" 
+    file="/com.Grupp01.gymapp.MainActivity/src/com/Grupp01/gymapp/View/Workout/RegisterStaticActivity.java" 
+    binary="false">    
+    <position height="-1" width="-1" x="123" y="230"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="2" corner="BOTTOM_RIGHT" language="java" name="com.Grupp01.gymapp.View.Workout.ExerciseArrayAdapter" 
+    project="com.Grupp01.gymapp.MainActivity" 
+    file="/com.Grupp01.gymapp.MainActivity/src/com/Grupp01/gymapp/View/Workout/ExerciseArrayAdapter.java" binary="false">    
+    <position height="-1" width="-1" x="987" y="435"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="3" corner="BOTTOM_RIGHT" language="java" name="com.Grupp01.gymapp.View.Workout.WorkoutActivity" 
+    project="com.Grupp01.gymapp.MainActivity" 
+    file="/com.Grupp01.gymapp.MainActivity/src/com/Grupp01/gymapp/View/Workout/WorkoutActivity.java" binary="false">    
+    <position height="-1" width="-1" x="437" y="639"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="4" corner="BOTTOM_RIGHT" language="java" name="com.Grupp01.gymapp.View.Workout.ExerciseViewHolder" 
+    project="com.Grupp01.gymapp.MainActivity" 
+    file="/com.Grupp01.gymapp.MainActivity/src/com/Grupp01/gymapp/View/Workout/ExerciseViewHolder.java" binary="false">    
+    <position height="-1" width="-1" x="634" y="161"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="5" corner="BOTTOM_RIGHT" language="java" name="com.Grupp01.gymapp.View.Workout.RegisterDynamicActivity" 
+    project="com.Grupp01.gymapp.MainActivity" 
+    file="/com.Grupp01.gymapp.MainActivity/src/com/Grupp01/gymapp/View/Workout/RegisterDynamicActivity.java" 
+    binary="false">    
+    <position height="-1" width="-1" x="112" y="568"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="6" corner="BOTTOM_RIGHT" language="java" name="com.Grupp01.gymapp.View.Workout.RegisterCardioActivity" 
+    project="com.Grupp01.gymapp.MainActivity" 
+    file="/com.Grupp01.gymapp.MainActivity/src/com/Grupp01/gymapp/View/Workout/RegisterCardioActivity.java" 
+    binary="false">    
+    <position height="-1" width="-1" x="373" y="135"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="7" corner="BOTTOM_RIGHT" language="java" name="com.Grupp01.gymapp.View.Workout.EditWorkoutActivity" 
+    project="com.Grupp01.gymapp.MainActivity" 
+    file="/com.Grupp01.gymapp.MainActivity/src/com/Grupp01/gymapp/View/Workout/EditWorkoutActivity.java" binary="false">    
+    <position height="-1" width="-1" x="919" y="127"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="8" corner="BOTTOM_RIGHT" language="java" name="com.Grupp01.gymapp.View.Workout.ListWorkoutActivity" 
+    project="com.Grupp01.gymapp.MainActivity" 
+    file="/com.Grupp01.gymapp.MainActivity/src/com/Grupp01/gymapp/View/Workout/ListWorkoutActivity.java" binary="false">    
+    <position height="-1" width="-1" x="762" y="661"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="9" corner="BOTTOM_RIGHT" language="java" name="com.Grupp01.gymapp.View.Workout.Exercise" 
+    project="com.Grupp01.gymapp.MainActivity" 
+    file="/com.Grupp01.gymapp.MainActivity/src/com/Grupp01/gymapp/View/Workout/Exercise.java" binary="false">    
+    <position height="-1" width="-1" x="1252" y="205"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <interface id="10" corner="BOTTOM_RIGHT" language="java" name="android.widget.AdapterView.OnItemSelectedListener" 
+    project="com.Grupp01.gymapp.MainActivity" 
+    file="C:/Users/Lerum/AppData/Local/Android/android-sdk/platforms/android-16/android.jar" binary="true">    
+    <position height="-1" width="-1" x="1274" y="41"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </interface>  
+  <class id="11" corner="BOTTOM_RIGHT" language="java" name="com.actionbarsherlock.app.SherlockActivity" 
+    project="com.Grupp01.gymapp.MainActivity" file="C:/Users/Lerum/Gym-app/actionbarsherlock/library/bin/library.jar" 
+    binary="true">    
+    <position height="-1" width="-1" x="545" y="403"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false"/>      
+      <operations public="false" package="false" protected="false" private="false"/>    
+    </display>  
+  </class>  
+  <dependency id="12">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="7"/>  
+  </dependency>  
+  <dependency id="13">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="6"/>  
+  </dependency>  
+  <dependency id="14">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="5"/>  
+  </dependency>  
+  <generalization id="15">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="11"/>  
+  </generalization>  
+  <generalization id="16">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="11"/>  
+  </generalization>  
+  <association id="17">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="18" name="exerciseList"/>      
+      <multiplicity id="19" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="20">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="1"/>  
+  </dependency>  
+  <dependency id="21">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="9"/>  
+  </dependency>  
+  <realization id="22">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="10"/>  
+  </realization>  
+  <dependency id="23">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="2"/>  
+  </dependency>  
+  <dependency id="24">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="8"/>  
+  </dependency>  
+  <dependency id="25">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="7"/>  
+  </dependency>  
+  <dependency id="26">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <dependency id="27">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="3"/>  
+  </dependency>  
+  <generalization id="28">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="11"/>  
+  </generalization>  
+  <generalization id="29">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="11"/>  
+  </generalization>  
+  <dependency id="30">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="7"/>  
+  </dependency>  
+  <dependency id="31">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="8"/>  
+  </dependency>  
+  <dependency id="32">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="3"/>  
+  </dependency>  
+  <dependency id="33">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <generalization id="34">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="11"/>  
+  </generalization>  
+  <generalization id="35">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="11"/>  
+  </generalization>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true"/>    
+    <operations public="true" package="true" protected="true" private="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
