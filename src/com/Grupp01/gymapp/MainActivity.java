@@ -1,4 +1,4 @@
-/*This file is part of Gyma pp.
+/*This file is part of Gymapp.
 *
 *   Gymapp is free software: you can redistribute it and/or modify
 *   it under the terms of the GNU General Public License as published by
@@ -12,6 +12,8 @@
 *
 *   You should have received a copy of the GNU General Public License
 *  along with Gymapp.  If not, see <http://www.gnu.org/licenses/>.
+*	
+*	Copyright © 2012 GivDev
 *
 */
 package com.Grupp01.gymapp;
