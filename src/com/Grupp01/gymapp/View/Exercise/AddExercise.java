@@ -53,6 +53,7 @@ public class AddExercise extends SherlockActivity implements AdapterView.OnItemS
 	/**
 	 * Instantiates the class with necessary method calls, setting up the correct layout
 	 * and receiving the intent that started this activity
+	 * @param savedInstanceState
 	 */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -67,8 +68,9 @@ public class AddExercise extends SherlockActivity implements AdapterView.OnItemS
 		initSpinnerType(0); //initialize spinner with listener and set spinner to static
 	}
 	/**
-	 * Sets up the menubar, note the use of actionbarsherlock, making it possible of using
+	 * Sets up the menubar, note the use of actionbarsherlock, making it possible using
 	 * a menubar for APIs lower than 11
+	 * @param menu
 	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

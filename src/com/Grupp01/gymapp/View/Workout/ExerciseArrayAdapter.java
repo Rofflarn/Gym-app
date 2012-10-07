@@ -28,8 +28,8 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 /**@author GivDev
  * @version 0.1
- * @peer reviewed by
- * @date 04/10/12
+ * @peer reviewed by Joel Olofsson
+ * @date 07/10/12 
  *
  * Custom adapter for displaying an array of Exercise objects.
  * 
