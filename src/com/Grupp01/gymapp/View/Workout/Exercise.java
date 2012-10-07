@@ -18,8 +18,8 @@ package com.Grupp01.gymapp.View.Workout;
  
 /**@author GivDev
  * @version 0.1
- * @peer reviewed by
- * @date 04/10/12
+ * @peer reviewed by Joel Olofsson
+ * @date 07/10/12
  *
  * Holds Exercise data.
  * 

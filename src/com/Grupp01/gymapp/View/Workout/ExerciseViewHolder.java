@@ -21,8 +21,8 @@ import android.widget.TextView;
 
 /**@author GivDev
  * @version 0.1
- * @peer reviewed by
- * @date 04/10/12
+ * @peer reviewed by Joel Olofsson
+ * @date 07/10/12
  *
  * Holds child views for one row.
  * 

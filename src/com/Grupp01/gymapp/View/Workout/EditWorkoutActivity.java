@@ -34,8 +34,13 @@ import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 
 /** The Graphical layout where the user Edit a Workout
- *  * @author Robert Blomberg
- *  */	
+ * 
+ * @author GivDev
+ * @version 0.1
+ * @peer reviewed by Joel Olofsson
+ * @date 07/10/12
+*/
+ 	
 
 public class EditWorkoutActivity extends SherlockActivity implements OnItemSelectedListener
 {
