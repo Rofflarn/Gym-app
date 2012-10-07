@@ -44,7 +44,7 @@ import com.actionbarsherlock.view.MenuItem;
 /** 
  * @author GivDev
  * @version 0.1
- * @peer reviewed by
+ * @peer reviewed by Robert(07/10-2012)
  * @date 04/10/12
  *
  * Class ListWorkoutActivity will show all workout routines that the user has created,
@@ -159,7 +159,7 @@ public class ListWorkoutActivity extends SherlockActivity {
 		 ArrayList<String> arrayWorkouts = new ArrayList<String>();
 		 
 		 //Add all the strings from stringarray to the ArrayList
-		 arrayWorkouts.addAll( Arrays.asList(listWorkouts) );	
+		 arrayWorkouts.addAll( Arrays.asList(listWorkouts) );
 		 
 		 //Set the listview layout with strings in array
 		 listAdapter = new ArrayAdapter<String>(this, R.layout.list, arrayWorkouts);
@@ -186,8 +186,8 @@ public class ListWorkoutActivity extends SherlockActivity {
 
 
 	/**
-	 * Is called with the user selects to create a new workout (clicking the "add workout" button
-	 * in ActionBar. 
+	 * Is called when the user selects "add workout" and this is creating a new workout (clicking the "add workout" button
+	 * in AlertDialog). 
 	 * @param workoutName The name for the new workout.
 	 * 
 	 */

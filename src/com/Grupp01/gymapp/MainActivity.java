@@ -22,10 +22,8 @@ package com.Grupp01.gymapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import com.Grupp01.gymapp.R;
+
 import com.Grupp01.gymapp.View.Exercise.ListExerciseActivity;
-import com.Grupp01.gymapp.View.History.Historik;
-import com.Grupp01.gymapp.View.Statistic.Statistik;
 import com.Grupp01.gymapp.View.Workout.ListWorkoutActivity;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
