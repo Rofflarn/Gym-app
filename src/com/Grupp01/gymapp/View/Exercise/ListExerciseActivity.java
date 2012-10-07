@@ -13,6 +13,8 @@
  *   You should have received a copy of the GNU General Public License
  *  along with Gymapp.  If not, see <http://www.gnu.org/licenses/>.
  *
+ *	Copyright © 2012 GivDev
+ *
  */
 package com.Grupp01.gymapp.View.Exercise;
 
@@ -33,44 +35,44 @@ import android.widget.ListView;
 
 import com.Grupp01.gymapp.MainActivity;
 import com.Grupp01.gymapp.R;
-import com.Grupp01.gymapp.R.id;
-import com.Grupp01.gymapp.R.layout;
-import com.Grupp01.gymapp.R.menu;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 /** 
  * @author GivDev
  * @version 0.1
- * @peer reviewed by
- * @date dd/mm/yy
+ * @peer reviewed by Joel Olofsson
+ * @date 07/10/2012
 */
 public class ListExerciseActivity extends SherlockActivity implements OnClickListener, OnItemClickListener {
 	
-	/** Instansvariabler */
+	/** Instance variables */
 	public final static String EXTRA_EXERCISE_NAME = "com.Grupp01.gymapp.message";
 	private Dialog dialog;
 	private ArrayList<String> listElements;
 	private ArrayAdapter<String> elementAdapter;
 
-	/**Setups the class layout and some instans variables
+	/**Setups the class layout and some instance variables
 	 * @param savedInstanceState
 	*/
 	@Override
     public void onCreate(Bundle savedInstanceState)
 	{
+		//Sets the layout
         super.onCreate(savedInstanceState);
         setContentView(R.layout.exercise);
         
+        //Creates the dialog
         dialog = new Dialog(this);
     	dialog.setContentView(R.layout.dialog);
     	dialog.setTitle("New Exercise");
     	
-        ((Button) dialog.findViewById(R.id.add_Button)).setOnClickListener(this);
+        //Set clicklisteners to the add button and cancel button in the dialog
+    	((Button) dialog.findViewById(R.id.add_Button)).setOnClickListener(this);
     	((Button) dialog.findViewById(R.id.cancel_Button)).setOnClickListener(this);
     	
+    	//Setups the listview
     	listElements = new ArrayList<String>();
-    	
     	elementAdapter = new ArrayAdapter<String>(this, R.layout.thelist_row, listElements);
     	((ListView)findViewById(R.id.theList)).setAdapter(elementAdapter);
     	((ListView)findViewById(R.id.theList)).setOnItemClickListener(this);
@@ -88,12 +90,13 @@ public class ListExerciseActivity extends SherlockActivity implements OnClickLis
     {
     	MenuInflater inflater = getSupportMenuInflater();
     	inflater.inflate(R.menu.ovningar, menu);
+    	//Enables the home button in SherlockActionBar
     	getSupportActionBar().setHomeButtonEnabled(true);
         return true;
     }
     
-    /**Skapar en lista i listViewn
-     * används nu när vi inte har koppla ihop med databasen */
+    //addds list elements to listview
+    //uses until the database is done
     public void createListView()
     {	
     	listElements.add("ett");
@@ -105,7 +108,7 @@ public class ListExerciseActivity extends SherlockActivity implements OnClickLis
     	listElements.add("sju");
     }
 
-    //lyssnar metoderna börjar här
+    //listen methods starts here
     /** The method listens to the home button and to add a new exercise button in the menu
 	 * @param item the item that has been clicked
 	 * @return true
@@ -115,11 +118,12 @@ public class ListExerciseActivity extends SherlockActivity implements OnClickLis
 	{
 		if(item.getItemId() == R.id.menu_addExe)
 		{
+			//shows the dialog if addExe button is pressed
 	    	dialog.show();
 		}
 		else if(item.getItemId() == android.R.id.home)
 		{
-			//Taget från developer.android.com
+			//from developer.android.com
 			Intent parentActivityIntent = new Intent(this, MainActivity.class);
             parentActivityIntent.addFlags(
                     Intent.FLAG_ACTIVITY_CLEAR_TOP |
@@ -139,6 +143,8 @@ public class ListExerciseActivity extends SherlockActivity implements OnClickLis
 	{
 		if(view == ((Button) dialog.findViewById(R.id.add_Button)))
 		{
+			//takes the text from exercise name textfield and puts it to AddExercise intent
+			//if the string is not empty
 			EditText name = (EditText) dialog.findViewById(R.id.exerciseName);
 			String temp = name.getText().toString();
 			if(temp.length() == 0)
@@ -169,6 +175,8 @@ public class ListExerciseActivity extends SherlockActivity implements OnClickLis
 	@Override
 	public void onItemClick(AdapterView<?> adapt, View view, int n, long t)
 	{
+		//takes the text on the item clicked and puts it in the intent that starts AddExercise
+		//and then starts the activity
 		//listElements.add("åtta");
 		//elementAdapter.notifyDataSetChanged();
 		String exercise_Name = ((ListView)findViewById(R.id.theList)).getItemAtPosition(n).toString();
