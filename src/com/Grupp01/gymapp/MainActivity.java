@@ -19,7 +19,8 @@ package com.Grupp01.gymapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import com.Grupp01.gymapp.R;
+
+import com.Grupp01.gymapp.Model.Database;
 import com.Grupp01.gymapp.Model.SQLView;
 import com.Grupp01.gymapp.View.Exercise.ListExerciseActivity;
 import com.Grupp01.gymapp.View.Workout.ListWorkoutActivity;
@@ -29,11 +30,13 @@ import com.actionbarsherlock.view.MenuInflater;
 
 public class MainActivity extends SherlockActivity {
 	
+	public Database databasen = new Database(this);
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        databasen.open();
     }
     //Kommentar
     @Override
@@ -64,6 +67,7 @@ public class MainActivity extends SherlockActivity {
     
     public void exercise(View view)
     {
+    	databasen.close();
     	Intent exercise = new Intent(this, ListExerciseActivity.class);
     	startActivity(exercise);
     }

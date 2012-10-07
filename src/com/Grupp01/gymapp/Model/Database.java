@@ -32,15 +32,19 @@ public class Database {
 	}
 
 	/**
-	 * Opens a new connection to the database. 
+	 * Opens a new connection to the database.  
 	 * @return
 	 * @throws SQLException
 	 */
 	public Database open() throws SQLException
 	{
+		System.out.println("Innan skapning av ourHelper");
 		ourHelper = new DbHelper(ourContext);
+		System.out.println("Skapat ourHelper");
+		
 		ourDatabase = ourHelper.getWritableDatabase();
-		return this;
+		System.out.println("ourdatbase = ourhelper.getdatabase");
+		return this;	
 	}
 
 	/**
@@ -101,6 +105,11 @@ public class Database {
 	
 	public Cursor getMuscleGroups(){
 		return ourDatabase.rawQuery("SELECT * FROM MuscleGroups;" ,null);
+	}
+	
+	public Cursor getExercises()
+	{
+		return ourDatabase.rawQuery("SELECT * FROM Exerciese;", null);
 	}
 	
 	public Cursor getMusclesByMuscleByGroupId(int MuscleGroupId){

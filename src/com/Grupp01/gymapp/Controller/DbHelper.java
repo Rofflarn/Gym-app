@@ -1,4 +1,4 @@
-package com.Grupp01.gymapp.Controller;
+		package com.Grupp01.gymapp.Controller;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -26,7 +26,7 @@ public class DbHelper extends SQLiteOpenHelper{
 		createExercises(db);
 		createMeasureDataTypes(db);
 		createExerciseTypes(db);
-		createPasses(db);
+		createWorkout(db);
 		createMeasures(db);
 		createMeasureData(db);		
 		createMuscles(db);
@@ -52,7 +52,7 @@ public class DbHelper extends SQLiteOpenHelper{
 			db.execSQL("DROP TABLE IF EXIST ExerciseTypes");
 			db.execSQL("DROP TABLE IF EXIST MeasureDataTypes");
 			db.execSQL("DROP TABLE IF EXIST MeasureData");
-			db.execSQL("DROP TABLE IF EXIST Passes");
+			db.execSQL("DROP TABLE IF EXIST Workout");
 			db.execSQL("DROP TABLE IF EXIST Measures");
 			db.execSQL("DROP TABLE IF EXIST Muscles");
 			db.execSQL("DROP TABLE IF EXIST Sets");
@@ -119,14 +119,14 @@ public class DbHelper extends SQLiteOpenHelper{
 	}
 	
 	/**
-	 * Adds table Passes to database.
+	 * Adds table Workout to database.
 	 * 
 	 * @author Anders Gustafsson, Tobias Hallberg
 	 * @param db The SQLite database in which the table is added.
 	 */
-	private void createPasses(SQLiteDatabase db)
+	private void createWorkout(SQLiteDatabase db)
 	{
-		db.execSQL("CREATE TABLE Passes (PassID INTEGER PRIMARY KEY AUTOINCREMENT, PassTime TEXT NOT NULL, Passname TEXT, " +
+		db.execSQL("CREATE TABLE Workout (WorkoutID INTEGER PRIMARY KEY AUTOINCREMENT, WorkoutTime TEXT NOT NULL, WorkoutName TEXT, " +
 				"UserId INTEGER NOT NULL);");
 	}
 	

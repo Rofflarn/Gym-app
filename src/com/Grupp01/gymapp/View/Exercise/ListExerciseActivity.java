@@ -17,6 +17,8 @@
 package com.Grupp01.gymapp.View.Exercise;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -33,9 +35,8 @@ import android.widget.ListView;
 
 import com.Grupp01.gymapp.MainActivity;
 import com.Grupp01.gymapp.R;
-import com.Grupp01.gymapp.R.id;
-import com.Grupp01.gymapp.R.layout;
-import com.Grupp01.gymapp.R.menu;
+import com.Grupp01.gymapp.Controller.GetIdNameList;
+import com.Grupp01.gymapp.Controller.IdName;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
@@ -52,6 +53,7 @@ public class ListExerciseActivity extends SherlockActivity implements OnClickLis
 	private Dialog dialog;
 	private ArrayList<String> listElements;
 	private ArrayAdapter<String> elementAdapter;
+	private List<IdName> exercises;
 
 	/**Setups the class layout and some instans variables
 	 * @param savedInstanceState
@@ -96,13 +98,15 @@ public class ListExerciseActivity extends SherlockActivity implements OnClickLis
      * används nu när vi inte har koppla ihop med databasen */
     public void createListView()
     {	
-    	listElements.add("ett");
-    	listElements.add("två");
-    	listElements.add("tre");
-    	listElements.add("fyra");
-    	listElements.add("fem");
-    	listElements.add("sex");
-    	listElements.add("sju");
+    	System.out.println("Inne i createListView()");
+    	exercises = new LinkedList<IdName>();
+    	GetIdNameList temp = new GetIdNameList();
+    	exercises.addAll(temp.getExerciseIdName());
+    	/*for(IdName idname: exercises)
+    	{
+    		listElements.add(idname.getName());
+    	}*/
+    	
     }
 
     //lyssnar metoderna börjar här
