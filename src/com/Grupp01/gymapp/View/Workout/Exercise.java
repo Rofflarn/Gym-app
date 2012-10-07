@@ -12,6 +12,9 @@
 *
 *   You should have received a copy of the GNU General Public License
 *  along with Gymapp.  If not, see <http://www.gnu.org/licenses/>.
+*  
+*  
+*  			Copyright © 2012 GivDev
 *
 */
 package com.Grupp01.gymapp.View.Workout;
