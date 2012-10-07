@@ -13,6 +13,7 @@
  *   You should have received a copy of the GNU General Public License
  *  along with Gymapp.  If not, see <http://www.gnu.org/licenses/>.
  *
+ *				Copyright © 2012 GivDev
  */
 package com.Grupp01.gymapp.View.Exercise;
 
@@ -35,8 +36,8 @@ import com.actionbarsherlock.view.MenuInflater;
 /** 
  * @author GivDev
  * @version 0.1
- * @peer reviewed by
- * @date 04/10/12
+ * @peer Erik Nyberg
+ * @date 07/10/12
  *
  * This class is made exclusively for initiating the part of the GUI that gives the user 
  * a opportunity to add and change exercises

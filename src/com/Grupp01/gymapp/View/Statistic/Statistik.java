@@ -14,26 +14,29 @@
 *  along with Gymapp.  If not, see <http://www.gnu.org/licenses/>.
 *
 */
-package com.Grupp01.gymapp;
+package com.Grupp01.gymapp.View.Statistic;
 
 import android.os.Bundle;
 
 import com.Grupp01.gymapp.R;
+import com.Grupp01.gymapp.R.layout;
+import com.Grupp01.gymapp.R.menu;
 import com.actionbarsherlock.app.SherlockActivity;
-import com.actionbarsherlock.view.*;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
 
-public class Historik extends SherlockActivity {
+public class Statistik extends SherlockActivity {
 
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.historik);
+        setContentView(R.layout.statistik);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
     	MenuInflater inflater = getSupportMenuInflater();
-    	inflater.inflate(R.menu.historik, menu);
+    	inflater.inflate(R.menu.statistik, menu);
         return true;
     }
 }

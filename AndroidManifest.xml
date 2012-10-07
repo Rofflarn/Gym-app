@@ -24,41 +24,44 @@
         </activity>
         <activity
             android:name=".View.Workout.ListWorkoutActivity"
-            android:label="@string/title_activity_main" />
+            android:label="@string/title_activity_main" 
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".View.Workout.EditWorkoutActivity"
-            android:label="@string/title_activity_main" />
+            android:label="@string/title_activity_main"
+            android:screenOrientation="portrait" />
         <activity
-            android:name=".Statistik"
-            android:label="@string/title_activity_main" />
+            android:name=".View.Statistic.Statistik"
+            android:label="@string/title_activity_main" 
+            android:screenOrientation="portrait"/>
         <activity
-            android:name=".Historik" 
-            android:label="@string/title_activity_main" />
+            android:name=".View.History.Historik" 
+            android:label="@string/title_activity_main" 
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".View.Exercise.ListExerciseActivity"
-            android:label="@string/title_activity_main" />
+            android:label="@string/title_activity_main" 
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".View.Exercise.AddExercise"
-            android:label="@string/title_activity_main" />
+            android:label="@string/title_activity_main" 
+            android:screenOrientation="portrait"/>
          <activity
             android:name=".View.Workout.WorkoutActivity"
-            android:label="@string/title_activity_workout" />
+            android:label="@string/title_activity_workout" 
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".View.Workout.RegisterDynamicActivity"
-            android:label="@string/title_activity_register_dynamic" >
-        </activity>
+            android:label="@string/title_activity_register_dynamic"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".View.Workout.RegisterStaticActivity"
-            android:label="@string/title_activity_register_static" >
-        </activity>
+            android:label="@string/title_activity_register_static"
+            android:screenOrientation="portrait" />
         <activity
       		android:name=".View.Workout.RegisterCardioActivity"
-            android:label="@string/title_activity_register_cardio" >
-		</activity>
-        <activity
-            android:name=".Model.SQLView"
-            android:label="@string/title_activity_sqlview" >
-        </activity>
+            android:label="@string/title_activity_register_cardio" 
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
