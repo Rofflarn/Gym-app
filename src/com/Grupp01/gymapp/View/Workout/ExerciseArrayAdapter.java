@@ -79,10 +79,11 @@ import android.widget.TextView;
       checkBox = (CheckBox) convertView.findViewById( R.id.CheckBox01 );
         
       // Optimization: Set a tag with it's child views, so we don't have to   
-      // call findViewById() later when we reuse the row.
+      // call findViewById() later when we reuse the row
+      //(Reusing a row when the screen is filled, Viewholders in our case).
       convertView.setTag( new ExerciseViewHolder(textView,checkBox) );
 
-      // If CheckBox is toggled, update the Exercise it is tagged with. 
+      // If CheckBox is toggled, update the Exercise it is tagged with.
       checkBox.setOnClickListener( new View.OnClickListener()
       {
     	/** When the user click on a exercise, the checkbox
@@ -100,7 +101,7 @@ import android.widget.TextView;
     //the lowest view if the user scroll down.
     else
     {
-      // Because we use a ViewHolder, we avoid having to call findViewById().  
+      // Since we use a ViewHolder, we don't have to call findViewById().  
       ExerciseViewHolder viewHolder = (ExerciseViewHolder) convertView.getTag();  
       checkBox = viewHolder.getCheckBox();
       textView = viewHolder.getTextView();
