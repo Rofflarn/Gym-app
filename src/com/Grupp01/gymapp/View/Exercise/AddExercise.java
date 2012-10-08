@@ -16,19 +16,17 @@
  */
 package com.Grupp01.gymapp.View.Exercise;
 
-import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.Grupp01.gymapp.R;
-import com.Grupp01.gymapp.R.array;
-import com.Grupp01.gymapp.R.id;
-import com.Grupp01.gymapp.R.layout;
-import com.Grupp01.gymapp.R.menu;
+import com.Grupp01.gymapp.Controller.Exercise;
+import com.Grupp01.gymapp.Controller.GetExercise;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
@@ -49,6 +47,8 @@ public class AddExercise extends SherlockActivity implements AdapterView.OnItemS
 	private String[] items;
 	private Spinner spinnerType;
 	private String currentView;
+	private int exerciseId;
+	private Exercise exercise;
 	/**
 	 * Instantiates the class with necessary method calls, setting up the correct layout
 	 * and receiving the intent that started this activity
@@ -58,12 +58,15 @@ public class AddExercise extends SherlockActivity implements AdapterView.OnItemS
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_exercise);
 		getSupportActionBar().setHomeButtonEnabled(true);
-		Intent get_Title = getIntent();
-		setTitle(get_Title.getStringExtra(ListExerciseActivity.EXTRA_EXERCISE_NAME));
-
+		exerciseId = getIntent().getIntExtra(ListExerciseActivity.EXTRA_EXERCISE_NAME, 0);
+		GetExercise get = new GetExercise(this, exerciseId);
+		exercise = get.getExercise();
+		setTitle(exercise.getName());
+		
 		Resources res = getResources();
 		items = res.getStringArray(R.array.trainingtype_array);//get String-array from strings.xml
 		initSpinnerType(0); //initialize spinner with listener and set spinner to static
+		
 	}
 	/**
 	 * Sets up the menubar, note the use of actionbarsherlock, making it possible of using
@@ -91,6 +94,7 @@ public class AddExercise extends SherlockActivity implements AdapterView.OnItemS
 		spinnerType = (Spinner) findViewById(R.id.spinner_type_of_training);
 		spinnerType.setSelection(position); //Sets the spinner default value to selected value
 		spinnerType.setOnItemSelectedListener(this); //Adds listener to spinner spinnterType
+		setTextViews();
 	}
 
 	/**
@@ -118,6 +122,19 @@ public class AddExercise extends SherlockActivity implements AdapterView.OnItemS
 				initSpinnerType(position);
 				currentView=items[position];
 			}
+		}
+	}
+	
+	
+	public void setTextViews()
+	{
+		
+		if((exercise.getNote() != null) && (exercise.getDesc() != null))
+		{
+			EditText comment = (EditText) findViewById(R.id.edit_comment);
+			EditText desc = (EditText) findViewById(R.id.edit_description);
+			comment.setText(exercise.getNote());
+			desc.setText(exercise.getDesc());
 		}
 	}
 	/**

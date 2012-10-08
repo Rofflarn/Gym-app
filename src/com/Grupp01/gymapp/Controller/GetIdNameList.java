@@ -24,10 +24,7 @@ public class GetIdNameList extends Activity {
 	
 	public List getExerciseIdName()
 	{
-		
-		System.out.println("Before open Database");
 		databas.open();
-		System.out.println("Opened Database");
 		Cursor c = databas.getExercises();
 			
 		
@@ -36,10 +33,8 @@ public class GetIdNameList extends Activity {
 		int id = c.getColumnIndex("ExerciseId");
 		int name = c.getColumnIndex("ExerciseName");
 		//Forlopp som går igenom hela databasen, alla kolummer
-		System.out.println("Before forloop");
 		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext())
 		{
-			System.out.println("Inne i forloop");
 			idNameList.add(new IdName(c.getInt(0),c.getString(3)));
 			System.out.println(c.getInt(0) + " " + c.getString(3));
 		}
@@ -49,5 +44,4 @@ public class GetIdNameList extends Activity {
 		System.out.println("Closed Database");
 		return idNameList;
 	}
-
 }

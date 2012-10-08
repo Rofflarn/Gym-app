@@ -6,7 +6,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-import android.widget.Toast;
 
 import com.Grupp01.gymapp.Controller.DbHelper;
 /**
@@ -16,8 +15,6 @@ import com.Grupp01.gymapp.Controller.DbHelper;
  */
 public class Database {
 
-	private static final String DATABASE_NAME = "GymAppDatabase"; 
-	private static final int DATABASE_VERSION = 1;
 
 	private DbHelper ourHelper;
 	private final Context ourContext;
@@ -64,7 +61,6 @@ public class Database {
 
 	public String getData() {
 		// TODO Auto-generated method stub
-		String[] columns = new String[]{ "ExerciseTypeID", "ExerciseTypeName"};
 		Cursor c = ourDatabase.rawQuery("SELECT * FROM ExerciseTypes;", null);
 		String result = "";
 
@@ -119,8 +115,13 @@ public class Database {
 		return ourDatabase.rawQuery("SELECT * FROM Exercises;", null);
 	}
 	
-	public Cursor getMusclesByMuscleByGroupId(int MuscleGroupId){
-		return ourDatabase.rawQuery("SELECT * FROM Muscles WHERE MuscleGroupId = '" + MuscleGroupId + "';", null);
+	public Cursor getExerciseById(int exerciseId)
+	{
+		return ourDatabase.rawQuery("SELECT * FROM Exercises WHERE ExerciseId= '" + exerciseId + "';", null);
+	}
+	
+	public Cursor getMusclesByMuscleByGroupId(int muscleGroupId){
+		return ourDatabase.rawQuery("SELECT * FROM Muscles WHERE MuscleGroupId = '" + muscleGroupId + "';", null);
 	}
 
 	

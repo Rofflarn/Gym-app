@@ -98,14 +98,11 @@ public class ListExerciseActivity extends SherlockActivity implements OnClickLis
      * används nu när vi inte har koppla ihop med databasen */
     public void createListView()
     {	
-    	System.out.println("Inne i createListView()");
     	exercises = new LinkedList<IdName>();
     	GetIdNameList temp = new GetIdNameList(this);
     	exercises = temp.getExerciseIdName();
-    	System.out.println("INnan forlopp exercises");
     	for(IdName idname: exercises)
     	{
-    		System.out.println(idname.getName());
     		listElements.add(idname.getName());
     	}
     	elementAdapter.notifyDataSetChanged();
@@ -176,11 +173,18 @@ public class ListExerciseActivity extends SherlockActivity implements OnClickLis
 	@Override
 	public void onItemClick(AdapterView<?> adapt, View view, int n, long t)
 	{
-		//listElements.add("åtta");
-		//elementAdapter.notifyDataSetChanged();
-		String exercise_Name = ((ListView)findViewById(R.id.theList)).getItemAtPosition(n).toString();
-		Intent intent_View_Exercise = new Intent(this, AddExercise.class);
-		intent_View_Exercise.putExtra(EXTRA_EXERCISE_NAME, exercise_Name);
-		startActivity(intent_View_Exercise);
+		for(IdName idName: exercises)
+		{
+			if(idName.getName().equals(((ListView)findViewById(R.id.theList)).getItemAtPosition(n).toString()))
+			{
+				int id = idName.getId();
+				System.out.println(id);
+				Intent intentViewExercise = new Intent(this, AddExercise.class);
+				intentViewExercise.putExtra(EXTRA_EXERCISE_NAME, id);
+				startActivity(intentViewExercise);				
+			}
+		}
+	
+		
 	}
 }
