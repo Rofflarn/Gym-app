@@ -38,5 +38,12 @@ public class ListExerciseDbHandler extends Database {
 		return idNameList;
 	}
 	
+<<<<<<< HEAD
 	
+=======
+	public void addExercise(ExerciseData exerciseData)
+	{
+		ourDatabase.execSQL("INSERT INTO Exercises (ExerciseName) VALUES ('" + exerciseData.getName() + "');");
+	}
+>>>>>>> 76fe4ae1e2a9d3c97e3b0ad457c9f8c7df0df41f
 }
