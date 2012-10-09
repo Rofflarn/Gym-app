@@ -37,4 +37,9 @@ public class ListExerciseDbHandler extends Database {
 		close();
 		return idNameList;
 	}
+	
+	public void addExercise(ExerciseData exerciseData)
+	{
+		ourDatabase.execSQL("INSERT INTO Exercises (ExerciseName) VALUES ('" + exerciseData.getName() + "');");
+	}
 }
