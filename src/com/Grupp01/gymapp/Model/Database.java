@@ -7,7 +7,6 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.Grupp01.gymapp.Controller.DbHelper;
 /**
  * Main database-class. Contains methods for creating the database and accessing data.
  * @author GivDev
@@ -59,22 +58,7 @@ public class Database {
 	}
 	
 
-	public String getData() {
-		// TODO Auto-generated method stub
-		Cursor c = ourDatabase.rawQuery("SELECT * FROM ExerciseTypes;", null);
-		String result = "";
-
-		int id = c.getColumnIndex("ExerciseTypeId");
-		int name = c.getColumnIndex("ExerciseTypeName");
-		//Forlopp som går igenom hela databasen, alla kolummer
-		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext())
-		{
-			result = result + c.getString(id) + " " + c.getString(name) + "\n";
-			System.out.println(Integer.toString(c.getInt(id)) + " | " + c.getString(name));
-		}
-
-		return result;
-	}
+	
 
 	public String[] getExerciseTypes(){
 		Cursor c = ourDatabase.rawQuery("SELECT * FROM ExerciseTypes;", null);
@@ -89,16 +73,11 @@ public class Database {
 		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext())
 		{
 			
-			//result = result + c.getString(id) + " " + c.getString(name) + "\n";
-			//System.out.println("Id: " + Integer.toString(c.getInt(id)) + " | Name: " + c.getString(name));
-			//items[c.getInt(0)] = c.getString(1);
-			//System.out.println(""+items[c.getInt(id)]);
+			
 			strings.add(c.getString(name));
 		}
 		System.out.println("Exit ExerciseTypes");
-		//return items;
 		return (String[]) strings.toArray(new String[strings.size()]);
-		//Kanske borde returnera map?
 	}
 	
 	public void addExercise(int ExerciseMusclePri, int ExerciseMuscleSec, String ExerciseName, String ExerciseDesc, String ExerciseNote, int ExerciseSportId, int ExerciseTypeId){
@@ -112,7 +91,7 @@ public class Database {
 	
 	public Cursor getExercises()
 	{
-		return ourDatabase.rawQuery("SELECT * FROM Exercises;", null);
+		return ourDatabase.rawQuery("SELECT ExerciseId, ExerciseName FROM Exercises;", null);
 	}
 	
 	public Cursor getExerciseById(int exerciseId)

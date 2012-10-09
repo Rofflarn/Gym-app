@@ -29,19 +29,16 @@ public class GetIdNameList extends Activity {
 			
 		
 		List<IdName> idNameList = new LinkedList<IdName>();
-
+		c.moveToFirst();
 		int id = c.getColumnIndex("ExerciseId");
 		int name = c.getColumnIndex("ExerciseName");
 		//Forlopp som går igenom hela databasen, alla kolummer
 		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext())
 		{
-			idNameList.add(new IdName(c.getInt(0),c.getString(3)));
-			System.out.println(c.getInt(0) + " " + c.getString(3));
+			idNameList.add(new IdName(c.getInt(0),c.getString(1)));
 		}
-		System.out.println("After Database");
 		c.close();
 		databas.close();
-		System.out.println("Closed Database");
 		return idNameList;
 	}
 }

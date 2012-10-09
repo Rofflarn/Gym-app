@@ -21,7 +21,14 @@ public class GetExercise {
 			databasen.open();
 			Cursor c = databasen.getExerciseById(id);
 			c.moveToFirst();
-			Exercise temp = new Exercise(c.getInt(0), c.getInt(1), c.getInt(2), c.getString(3), c.getString(4), c.getString(5), c.getInt(6));
+			int id = c.getColumnIndex("ExerciseId");
+			int pri = c.getColumnIndex("ExercisePri");
+			int sec = c.getColumnIndex("ExerciseSec");
+			int name = c.getColumnIndex("ExerciseName");
+			int note = c.getColumnIndex("ExerciseDesc");
+			int desc = c.getColumnIndex("ExerciseNote");
+			int type = c.getColumnIndex("ExerciseTypeId");
+			Exercise temp = new Exercise(c.getInt(id), c.getInt(pri), c.getInt(sec), c.getString(name), c.getString(note), c.getString(desc), c.getInt(type));
 			c.close();
 			databasen.close();
 			return temp;
