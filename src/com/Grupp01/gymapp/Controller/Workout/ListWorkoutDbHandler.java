@@ -38,8 +38,9 @@ public class ListWorkoutDbHandler extends Database {
 	
 	public IdName getWorkoutIdNameById(int workoutId)
 	{
+		System.out.println("Inne i getWorkoutIdNameById");
 		open();
-		Cursor c = ourDatabase.rawQuery("SECLECT WorkoutTemplateId, WorkoutTemplateName FROM WorkoutTemplates WHERE " + 
+		Cursor c = ourDatabase.rawQuery("SELECT WorkoutTemplateId, WorkoutTemplateName FROM WorkoutTemplates WHERE " + 
 										"WorkoutTemplateId= '" + workoutId + "';", null);
 		c.moveToFirst();
 		IdName temp = new IdName(c.getInt(c.getColumnIndex("WorkoutTemplateId")),c.getString(c.getColumnIndex("WorkoutTemplateName")));

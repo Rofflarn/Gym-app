@@ -67,6 +67,14 @@ public class WorkoutActivity extends SherlockActivity {
         workoutId = getIntent().getIntExtra("WORKOUT_NAME", 0);
         System.out.println(workoutId);
         setContentView(R.layout.activity_workout);
+        System.out.println("Innan dbHander.open()");
+        dbHandler = new ListWorkoutDbHandler(this);
+        dbHandler.open();
+        String temp = dbHandler.getWorkoutIdNameById(workoutId).getName();
+        System.out.println("Hämtat titlesträngen");
+       // getSupportActionBar().setTitle(temp);
+        dbHandler.close();
+        setTitle(temp);
         listAllExercises();
     }
 
@@ -83,9 +91,7 @@ public class WorkoutActivity extends SherlockActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         
         //Set the title to the name of the workout
-        dbHandler.open();
-        getSupportActionBar().setTitle(dbHandler.getWorkoutIdNameById(workoutId).getName());
-        dbHandler.close();
+        
         return true;
     }
     

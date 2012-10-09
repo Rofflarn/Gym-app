@@ -56,9 +56,7 @@ import com.actionbarsherlock.view.MenuItem;
  *
  */
 public class ListWorkoutActivity extends SherlockActivity {
-	private String  [] listWorkouts = { "Fejk", "lista", "tills",
-	"databas", "koppling","fungerar"};
-	//list1 is only a string used in testing before fetching data from DB
+
 	
 	public final static String WORKOUT_NAME = "com.Grupp01.gymapp.WORKOUT";
 	private ListView mainListView ;  					//This is the listview where the list of all workouts will be shown

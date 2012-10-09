@@ -1,9 +1,6 @@
 package com.Grupp01.gymapp.Controller.Exercise;
 
-<<<<<<< HEAD
-=======
 import java.util.ArrayList;
->>>>>>> 76fe4ae1e2a9d3c97e3b0ad457c9f8c7df0df41f
 import java.util.LinkedList;
 import java.util.List;
 
@@ -39,8 +36,7 @@ public class EditExerciseDbHandler extends Database {
 			return temp;
 		}
 		
-<<<<<<< HEAD
-=======
+
 		public List<IdName> getExerciseTypes()
 		{
 			open();
@@ -114,6 +110,5 @@ public class EditExerciseDbHandler extends Database {
 			close();
 			return ExerciseDataList;
 		}*/
->>>>>>> 76fe4ae1e2a9d3c97e3b0ad457c9f8c7df0df41f
 
 }
