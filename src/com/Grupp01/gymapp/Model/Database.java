@@ -57,29 +57,6 @@ public class Database {
 		ourHelper.close();
 	}
 	
-
-	
-
-	public String[] getExerciseTypes(){
-		Cursor c = ourDatabase.rawQuery("SELECT * FROM ExerciseTypes;", null);
-		ArrayList<String> strings = new ArrayList<String>();
-		System.out.println("Runnig Ex erciseTypes");
-		
-		int id = c.getColumnIndex("ExerciseTypeId");
-		int name = c.getColumnIndex("ExerciseTypeName");
-		
-		//Forlopp som går igenom hela databasen, alla kolummer
-        //String[] columns = new String[]{ "ExerciseTypeID", "ExerciseTypeName"};
-		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext())
-		{
-			
-			
-			strings.add(c.getString(name));
-		}
-		System.out.println("Exit ExerciseTypes");
-		return (String[]) strings.toArray(new String[strings.size()]);
-	}
-	
 	public void addExercise(int ExerciseMusclePri, int ExerciseMuscleSec, String ExerciseName, String ExerciseDesc, String ExerciseNote, int ExerciseSportId, int ExerciseTypeId){
 		ourDatabase.execSQL("INSERT INTO Exercises (ExerciseMusclePri, ExerciseMuscleSec, ExerciseName, ExerciseDesc, ExerciseNote, ExerciseSportId, ExerciseTypeId) " +
 				"VALUES (" + ExerciseMusclePri + ", " + ExerciseMuscleSec + ", " + ExerciseName + ", " + ExerciseDesc + ", " + ExerciseNote + ", " + ExerciseTypeId + ");");
@@ -89,28 +66,8 @@ public class Database {
 		return ourDatabase.rawQuery("SELECT * FROM MuscleGroups;" ,null);
 	}
 	
-	
-	
-	
-	
 	public Cursor getMusclesByMuscleByGroupId(int muscleGroupId){
 		return ourDatabase.rawQuery("SELECT * FROM Muscles WHERE MuscleGroupId = '" + muscleGroupId + "';", null);
-	}
-
-	
-	public String[] getMuscles()
-	{
-		Cursor c = ourDatabase.rawQuery("SELECT * FROM Muscles;", null);
-		ArrayList<String> strings = new ArrayList<String>();
-		System.out.println("Runnig Ex erciseTypes");
-		
-		int id = c.getColumnIndex("MuscleId");
-		int name = c.getColumnIndex("MuscleName");
-
-		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext())
-			strings.add(c.getString(name));
-		
-		return (String[]) strings.toArray(new String[strings.size()]);
 	}
 
 	/*
@@ -129,28 +86,6 @@ public class Database {
 		ourDatabase.execSQL("INSERT INTO Users (UserName, UserBirthday) VALUES ('" + UserName + "', '" + UserBirthday + "');");
 		//TODO change to insert() instead of execSql()
 	}
-	
-	public Cursor getExercisesByTypeId(int ExerciseTypeId){
-		return ourDatabase.rawQuery("SELECT * FROM Exercises WHERE ExerciseTypeId = '" + ExerciseTypeId + "';", null);
-	}
-
-
-	public String[] getSports(){
-		Cursor c = ourDatabase.rawQuery("SELECT * FROM Sports;", null);
-		ArrayList<String> strings = new ArrayList<String>();
-		System.out.println("Runnig Ex erciseTypes");
-		
-		int id = c.getColumnIndex("SportId");
-		int name = c.getColumnIndex("SportName");
-
-		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext())
-			strings.add(c.getString(name));
-		
-		return (String[]) strings.toArray(new String[strings.size()]);
-	}
-
-	
-
 
 	/**
 	 * Gets all SetTemplates and ExerciseNames that belong to a PassTemplate. Note: only gets SetsId and ExerciseNames.
