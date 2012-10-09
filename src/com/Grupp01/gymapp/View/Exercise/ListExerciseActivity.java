@@ -101,6 +101,7 @@ public class ListExerciseActivity extends SherlockActivity implements OnClickLis
     	exercises = new LinkedList<IdName>();
     	ListExerciseDbHandler temp = new ListExerciseDbHandler(this);
     	exercises = temp.getExerciseIdName();
+    	temp.close();
     	for(IdName idname: exercises)
     	{
     		listElements.add(idname.getName());

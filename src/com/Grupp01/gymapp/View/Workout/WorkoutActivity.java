@@ -30,6 +30,7 @@ import android.widget.ListView;
 
 import com.Grupp01.gymapp.MainActivity;
 import com.Grupp01.gymapp.R;
+import com.Grupp01.gymapp.Controller.Workout.ListWorkoutDbHandler;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
@@ -54,6 +55,8 @@ public class WorkoutActivity extends SherlockActivity {
 			//list1 is only a string used in testing before fetching data from DB
 	private ListView listExercisesView;		//The listview that holds all the exercises for the workout
 	private String workoutName;
+	private int workoutId;
+	ListWorkoutDbHandler dbHandler;
 		
 	/**
 	 * Set up the default layout and list all exercises 
@@ -61,7 +64,8 @@ public class WorkoutActivity extends SherlockActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        workoutName = getIntent().getStringExtra("WORKOUT_NAME");
+        workoutId = getIntent().getIntExtra("WORKOUT_NAME", 0);
+        System.out.println(workoutId);
         setContentView(R.layout.activity_workout);
         listAllExercises();
     }
@@ -79,7 +83,9 @@ public class WorkoutActivity extends SherlockActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         
         //Set the title to the name of the workout
-        getSupportActionBar().setTitle(workoutName);
+        dbHandler.open();
+        getSupportActionBar().setTitle(dbHandler.getWorkoutIdNameById(workoutId).getName());
+        dbHandler.close();
         return true;
     }
     

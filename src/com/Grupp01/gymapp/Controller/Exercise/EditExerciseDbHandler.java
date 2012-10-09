@@ -1,8 +1,12 @@
 package com.Grupp01.gymapp.Controller.Exercise;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import android.content.Context;
 import android.database.Cursor;
 
+import com.Grupp01.gymapp.Controller.IdName;
 import com.Grupp01.gymapp.Model.Database;
 
 public class EditExerciseDbHandler extends Database {
@@ -30,7 +34,6 @@ public class EditExerciseDbHandler extends Database {
 			close();
 			return temp;
 		}
-		
 		
 
 }

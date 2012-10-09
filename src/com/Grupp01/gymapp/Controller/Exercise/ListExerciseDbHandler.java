@@ -37,4 +37,6 @@ public class ListExerciseDbHandler extends Database {
 		close();
 		return idNameList;
 	}
+	
+	
 }

@@ -61,6 +61,7 @@ public class EditExerciseAcitivity extends SherlockActivity implements AdapterVi
 		exerciseId = getIntent().getIntExtra(ListExerciseActivity.EXTRA_EXERCISE_NAME, 0);
 		EditExerciseDbHandler get = new EditExerciseDbHandler(this, exerciseId);
 		exercise = get.getExercise(exerciseId);
+		get.close();
 		setTitle(exercise.getName());
 		
 		Resources res = getResources();

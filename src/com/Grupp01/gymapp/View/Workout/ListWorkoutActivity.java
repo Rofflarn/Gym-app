@@ -17,7 +17,7 @@
 package com.Grupp01.gymapp.View.Workout;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.List;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -35,6 +35,8 @@ import android.widget.Toast;
 
 import com.Grupp01.gymapp.MainActivity;
 import com.Grupp01.gymapp.R;
+import com.Grupp01.gymapp.Controller.IdName;
+import com.Grupp01.gymapp.Controller.Workout.ListWorkoutDbHandler;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
@@ -61,11 +63,14 @@ public class ListWorkoutActivity extends SherlockActivity {
 	public final static String WORKOUT_NAME = "com.Grupp01.gymapp.WORKOUT";
 	private ListView mainListView ;  					//This is the listview where the list of all workouts will be shown
 	private ArrayAdapter<String> listAdapter ;  		//Adapter used for the list
+	private List<IdName> idNameList;
+	ListWorkoutDbHandler dbHandler;
 
 	@Override
     public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.list_workout);
+		dbHandler = new ListWorkoutDbHandler(this);
 		createWorkoutList();
 	}
 	
@@ -159,7 +164,15 @@ public class ListWorkoutActivity extends SherlockActivity {
 		 ArrayList<String> arrayWorkouts = new ArrayList<String>();
 		 
 		 //Add all the strings from stringarray to the ArrayList
-		 arrayWorkouts.addAll( Arrays.asList(listWorkouts) );	
+		  
+		 idNameList = dbHandler.getWorkoutIdName();
+		 dbHandler.close();
+		 
+		 for(IdName temp: idNameList)
+		 {
+			 arrayWorkouts.add(temp.getName());
+			 
+		 }
 		 
 		 //Set the listview layout with strings in array
 		 listAdapter = new ArrayAdapter<String>(this, R.layout.list, arrayWorkouts);
@@ -175,8 +188,9 @@ public class ListWorkoutActivity extends SherlockActivity {
 	                    long id) {
 	            	
 	            	//Get the text label of the row that has been clicked (will be used to open the correct workout)
-	            	String workoutName = mainListView.getAdapter().getItem(position).toString();	
-	            	startNewWorkout(workoutName);
+	            	int workoutId = idNameList.get(position).getId();
+	            	//String workoutName = mainListView.getAdapter().getItem(position).toString();	
+	            	startNewWorkout(workoutId);
 	            	
 	            	
 	            }// end of onItemClick
@@ -191,9 +205,9 @@ public class ListWorkoutActivity extends SherlockActivity {
 	 * @param workoutName The name for the new workout.
 	 * 
 	 */
-	private void startNewWorkout(String workoutName) {
+	private void startNewWorkout(int workoutId) {
 		Intent workout = new Intent(ListWorkoutActivity.this, com.Grupp01.gymapp.View.Workout.WorkoutActivity.class);
-		workout.putExtra("WORKOUT_NAME", workoutName);
+		workout.putExtra("WORKOUT_NAME", workoutId);
     	startActivity(workout);
 	}
 	
@@ -267,6 +281,7 @@ public class ListWorkoutActivity extends SherlockActivity {
     	//If pressing "Add Workout" on the dialog
     	addWorkout_Dialog.setPositiveButton("Add Workout", new DialogInterface.OnClickListener() 
     	{
+    		
     		/** When the user clicked "Add workout"
     		 *  go to EditWorkout
     		 *  if nothing is inputed, the dialog closes and
@@ -275,13 +290,16 @@ public class ListWorkoutActivity extends SherlockActivity {
     		public void onClick(DialogInterface dialog, int whichButton) 
     		{
     			String workoutName = editText_Dialog.getText().toString();
-
+    			
 		 		if(workoutName.trim().equals(""))
 		 		{
 		 			dialog.cancel();
 		 			return;
 		 		}
 		 		//Add the name of the workout to the intent so the next activity can get the name
+		 		dbHandler.open();
+		 		dbHandler.putNewWorkout(workoutName);
+		 		dbHandler.close();
 		 		intent2.putExtra(WORKOUT_NAME, workoutName);
 		 		startActivity(intent2);
     		 }

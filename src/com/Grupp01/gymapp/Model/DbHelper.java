@@ -32,8 +32,8 @@ public class DbHelper extends SQLiteOpenHelper{
 		createMuscles(db);
 		createSets(db);
 		createUsers(db);
-		createPassTemplates(db);
-		createSetTemplates(db);
+		createWorkoutTemplates(db);
+		createWorkoutTemplateExercises(db);
 		createSports(db);
 		createMuscleGroups(db);
 	}
@@ -59,8 +59,8 @@ public class DbHelper extends SQLiteOpenHelper{
 			db.execSQL("DROP TABLE IF EXIST Sports");
 			db.execSQL("DROP TABLE IF EXIST MuscleGroups");
 			db.execSQL("DROP TABLE IF EXIST Users");
-			db.execSQL("DROP TABLE IF EXIST PassTemplates");
-			db.execSQL("DROP TABLE IF EXIST SetTemplates");
+			db.execSQL("DROP TABLE IF EXIST WorkoutTemplates");
+			db.execSQL("DROP TABLE IF EXIST WorkoutTemplatesExercise");
 			onCreate(db);//Creates fresh tables
        }
 	
@@ -190,7 +190,7 @@ public class DbHelper extends SQLiteOpenHelper{
 	private void createSets(SQLiteDatabase db)
 	{
 		 db.execSQL("CREATE TABLE Sets (SetId INTEGER PRIMARY KEY AUTOINCREMENT, SetReps INTEGER, SetWeight REAL, " +
-		 		"SetDistance INTEGER, PassId INTEGER, SetDuration TEXT, ExerciseId INTEGER NOT NULL);");
+		 		"SetDistance INTEGER, WorkoutId INTEGER, SetDuration TEXT, ExerciseId INTEGER NOT NULL);");
 	}
 	
 	/**
@@ -228,18 +228,23 @@ public class DbHelper extends SQLiteOpenHelper{
 	}
 	
 	/**
-	 * Adds table PassTemplates to database and adds deafult content.
+	 * Adds table WorkoutTemplates to database and adds deafult content.
 	 * 
 	 * @author Anders Gustafsson, Tobias Hallberg
 	 * @param db The SQLite database in which the table is added.
 	 */
-	private void createPassTemplates(SQLiteDatabase db)
+	private void createWorkoutTemplates(SQLiteDatabase db)
 	{
-		db.execSQL("CREATE TABLE PassTemplates (PassTemplateId INTEGER PRIMARY KEY AUTOINCREMENT, PassTemplateName TEXT NOT NULL);");
-		db.execSQL("INSERT INTO PassTemplates (PassTemplateName) VALUES ('Upper body');");
-		db.execSQL("INSERT INTO PassTemplates (PassTemplateName) VALUES ('Core');");
-		db.execSQL("INSERT INTO PassTemplates (PassTemplateName) VALUES ('Legs');");
-		db.execSQL("INSERT INTO PassTemplates (PassTemplateName) VALUES ('Spinning');");
+		System.out.println("Skapar workouttemplates");
+		db.execSQL("CREATE TABLE WorkoutTemplates (WorkoutTemplateId INTEGER PRIMARY KEY AUTOINCREMENT, WorkoutTemplateName TEXT NOT NULL);");
+		System.out.println("Har skapat workouttemplates");
+		db.execSQL("INSERT INTO WorkoutTemplates (WorkoutTemplateName) VALUES ('Joels pass');");
+		db.execSQL("INSERT INTO WorkoutTemplates (WorkoutTemplateName) VALUES ('Calles pass');");
+		db.execSQL("INSERT INTO WorkoutTemplates (WorkoutTemplateName) VALUES ('Jobbigt pass');");
+		db.execSQL("INSERT INTO WorkoutTemplates (WorkoutTemplateName) VALUES ('Roligt pass');");
+		db.execSQL("INSERT INTO WorkoutTemplates (WorkoutTemplateName) VALUES ('Massa pass');");
+		db.execSQL("INSERT INTO WorkoutTemplates (WorkoutTemplateName) VALUES ('Passets pass');");
+		
 	}
 	
 	/**
@@ -248,14 +253,14 @@ public class DbHelper extends SQLiteOpenHelper{
 	 * @author Anders Gustafsson, Tobias Hallberg
 	 * @param db The SQLite database in which the table is added.
 	 */
-	private void createSetTemplates(SQLiteDatabase db)
+	private void createWorkoutTemplateExercises(SQLiteDatabase db)
 	{
-		db.execSQL("CREATE TABLE SetTemplates (SetTemplateId INTEGER PRIMARY KEY AUTOINCREMENT, SetTemplateReps INTEGER," +
-		 		" SetTemplateWeight REAL, SetTemplateDistance INTEGER,ExerciseId INTEGER NOT NULL, PassTemplateId INTEGER NOT NULL);");
-		db.execSQL("INSERT INTO SetTemplates (SetTemplateReps, SetTemplateWeight, ExerciseId, PassTemplateId) VALUES (10, 10, 3, 1);");
-		db.execSQL("INSERT INTO SetTemplates (SetTemplateReps, SetTemplateWeight, ExerciseId, PassTemplateId) VALUES (25, 10, 2, 1);");
-		db.execSQL("INSERT INTO SetTemplates (SetTemplateReps, SetTemplateWeight, ExerciseId, PassTemplateId) VALUES (10, 12, 3, 2);");
-		db.execSQL("INSERT INTO SetTemplates (SetTemplateReps, SetTemplateWeight, ExerciseId, PassTemplateId) VALUES (10, 10, 1, 1);");
+		db.execSQL("CREATE TABLE WorkoutTemplateExercises (WorkoutTemplateExerciseId INTEGER PRIMARY KEY AUTOINCREMENT, ExerciseId INTEGER NOT NULL, WorkoutTemplateId INTEGER NOT NULL);");
+		db.execSQL("INSERT INTO WorkoutTemplateExercises (ExerciseId, WorkoutTemplateId) VALUES (1, 1);");
+		db.execSQL("INSERT INTO WorkoutTemplateExercises (ExerciseId, WorkoutTemplateId) VALUES (2, 1);");
+		db.execSQL("INSERT INTO WorkoutTemplateExercises (ExerciseId, WorkoutTemplateId) VALUES (3, 1);");
+		db.execSQL("INSERT INTO WorkoutTemplateExercises (ExerciseId, WorkoutTemplateId) VALUES (1, 2);");
+		db.execSQL("INSERT INTO WorkoutTemplateExercises (ExerciseId, WorkoutTemplateId) VALUES (2, 2);");
 	}
 	
 }
