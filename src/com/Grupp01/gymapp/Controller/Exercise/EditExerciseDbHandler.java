@@ -13,7 +13,7 @@ import com.Grupp01.gymapp.Model.Database;
 public class EditExerciseDbHandler extends Database {
 	
 	
-		public EditExerciseDbHandler(Context c, int id)
+		public EditExerciseDbHandler(Context c)
 		{
 			super(c);
 		}
@@ -21,7 +21,7 @@ public class EditExerciseDbHandler extends Database {
 		public ExerciseData getExerciseById(int exerciseId)
 		{
 			open();
-			Cursor c = ourDatabase.rawQuery("SELECT * FROM Exercises WHERE ExerciseId= '" + exerciseId + "';", null);
+			Cursor c = ourDatabase.rawQuery("SELECT * FROM Exercises WHERE ExerciseId='" + exerciseId + "';", null);
 			c.moveToFirst();
 			int id = c.getColumnIndex("ExerciseId");
 			int pri = c.getColumnIndex("ExercisePri");
