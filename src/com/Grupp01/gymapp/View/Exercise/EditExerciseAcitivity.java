@@ -58,9 +58,14 @@ public class EditExerciseAcitivity extends SherlockActivity implements AdapterVi
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_exercise);
 		getSupportActionBar().setHomeButtonEnabled(true);
+		System.out.println("krash getIntent");
 		exerciseId = getIntent().getIntExtra(ListExerciseActivity.EXTRA_EXERCISE_NAME, 0);
-		EditExerciseDbHandler get = new EditExerciseDbHandler(this, exerciseId);
-		exercise = get.getExercise(exerciseId);
+		System.out.println(exerciseId);
+		System.out.println("krash create dbhandler");
+		EditExerciseDbHandler get = new EditExerciseDbHandler(this);
+		System.out.println("krash krashc get exercise");
+		exercise = get.getExerciseById(exerciseId);
+		System.out.println("krash krashc ould not get exercise");
 		setTitle(exercise.getName());
 		
 		Resources res = getResources();
