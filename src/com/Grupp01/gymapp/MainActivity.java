@@ -21,7 +21,6 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.Grupp01.gymapp.Model.Database;
-import com.Grupp01.gymapp.Model.SQLView;
 import com.Grupp01.gymapp.View.Exercise.ListExerciseActivity;
 import com.Grupp01.gymapp.View.Workout.ListWorkoutActivity;
 import com.actionbarsherlock.app.SherlockActivity;
@@ -58,13 +57,13 @@ public class MainActivity extends SherlockActivity {
     	Intent historik = new Intent(this, Historik.class);
     	startActivity(historik);
     }
-    
+    /*
     public void statistik(View view)
     {
     	Intent sqlview = new Intent(this, SQLView.class);
     	startActivity(sqlview);
     }
-    
+    */
     public void exercise(View view)
     {
     	databasen.close();

@@ -25,8 +25,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.Grupp01.gymapp.R;
-import com.Grupp01.gymapp.Controller.Exercise.Exercise;
-import com.Grupp01.gymapp.Controller.Exercise.GetExercise;
+import com.Grupp01.gymapp.Controller.Exercise.ExerciseData;
+import com.Grupp01.gymapp.Controller.Exercise.EditExerciseDbHandler;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
@@ -43,12 +43,12 @@ import com.actionbarsherlock.view.MenuInflater;
  * <p> Subpackage</p> 
  *
  */
-public class AddExercise extends SherlockActivity implements AdapterView.OnItemSelectedListener {
+public class EditExerciseAcitivity extends SherlockActivity implements AdapterView.OnItemSelectedListener {
 	private String[] items;
 	private Spinner spinnerType;
 	private String currentView;
 	private int exerciseId;
-	private Exercise exercise;
+	private ExerciseData exercise;
 	/**
 	 * Instantiates the class with necessary method calls, setting up the correct layout
 	 * and receiving the intent that started this activity
@@ -59,8 +59,8 @@ public class AddExercise extends SherlockActivity implements AdapterView.OnItemS
 		setContentView(R.layout.activity_add_exercise);
 		getSupportActionBar().setHomeButtonEnabled(true);
 		exerciseId = getIntent().getIntExtra(ListExerciseActivity.EXTRA_EXERCISE_NAME, 0);
-		GetExercise get = new GetExercise(this, exerciseId);
-		exercise = get.getExercise();
+		EditExerciseDbHandler get = new EditExerciseDbHandler(this, exerciseId);
+		exercise = get.getExercise(exerciseId);
 		setTitle(exercise.getName());
 		
 		Resources res = getResources();
@@ -95,6 +95,7 @@ public class AddExercise extends SherlockActivity implements AdapterView.OnItemS
 		spinnerType.setSelection(position); //Sets the spinner default value to selected value
 		spinnerType.setOnItemSelectedListener(this); //Adds listener to spinner spinnterType
 		setTextViews();
+		
 	}
 
 	/**
@@ -103,6 +104,7 @@ public class AddExercise extends SherlockActivity implements AdapterView.OnItemS
 	public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 		if(!items[position].equals(currentView)) //conditional if to prevent infinite loop
 		{
+			
 			if(items[position].equals("Static"))
 			{
 				setContentView(R.layout.add_exercise_static);	//Switches the layout to the selected one

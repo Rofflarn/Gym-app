@@ -5,21 +5,18 @@ import android.database.Cursor;
 
 import com.Grupp01.gymapp.Model.Database;
 
-public class GetExercise {
+public class EditExerciseDbHandler extends Database {
 	
-		private Database databasen;
-		private int id;
 	
-		public GetExercise(Context c, int id)
+		public EditExerciseDbHandler(Context c, int id)
 		{
-			databasen = new Database(c);
-			this.id = id;
+			super(c);
 		}
 		
-		public Exercise getExercise()
+		public ExerciseData getExercise(int exerciseId)
 		{
-			databasen.open();
-			Cursor c = databasen.getExerciseById(id);
+			open();
+			Cursor c = ourDatabase.rawQuery("SELECT * FROM Exercises WHERE ExerciseId= '" + exerciseId + "';", null);
 			c.moveToFirst();
 			int id = c.getColumnIndex("ExerciseId");
 			int pri = c.getColumnIndex("ExercisePri");
@@ -28,10 +25,12 @@ public class GetExercise {
 			int note = c.getColumnIndex("ExerciseDesc");
 			int desc = c.getColumnIndex("ExerciseNote");
 			int type = c.getColumnIndex("ExerciseTypeId");
-			Exercise temp = new Exercise(c.getInt(id), c.getInt(pri), c.getInt(sec), c.getString(name), c.getString(note), c.getString(desc), c.getInt(type));
+			ExerciseData temp = new ExerciseData(c.getInt(id), c.getInt(pri), c.getInt(sec), c.getString(name), c.getString(note), c.getString(desc), c.getInt(type));
 			c.close();
-			databasen.close();
+			close();
 			return temp;
 		}
+		
+		
 
 }

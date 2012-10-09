@@ -1,6 +1,6 @@
 package com.Grupp01.gymapp.Controller.Exercise;
 
-public class Exercise {
+public class ExerciseData {
 	
 	private int id;
 	private int pri;
@@ -11,7 +11,7 @@ public class Exercise {
 	private int typeId;
 
 	
-	public Exercise(int id, int exercisePri, int exerciseSec, String exerciseName, String exerciseDesc, String exerciseNote, int exerciseTypeId)
+	public ExerciseData(int id, int exercisePri, int exerciseSec, String exerciseName, String exerciseDesc, String exerciseNote, int exerciseTypeId)
 	{
 		this.id = id;
 		this.pri = exercisePri;

@@ -17,7 +17,7 @@ public class Database {
 
 	private DbHelper ourHelper;
 	private final Context ourContext;
-	private SQLiteDatabase ourDatabase;
+	protected SQLiteDatabase ourDatabase;
 	
 	/**
 	 * 
@@ -89,15 +89,9 @@ public class Database {
 		return ourDatabase.rawQuery("SELECT * FROM MuscleGroups;" ,null);
 	}
 	
-	public Cursor getExercises()
-	{
-		return ourDatabase.rawQuery("SELECT ExerciseId, ExerciseName FROM Exercises;", null);
-	}
 	
-	public Cursor getExerciseById(int exerciseId)
-	{
-		return ourDatabase.rawQuery("SELECT * FROM Exercises WHERE ExerciseId= '" + exerciseId + "';", null);
-	}
+	
+	
 	
 	public Cursor getMusclesByMuscleByGroupId(int muscleGroupId){
 		return ourDatabase.rawQuery("SELECT * FROM Muscles WHERE MuscleGroupId = '" + muscleGroupId + "';", null);

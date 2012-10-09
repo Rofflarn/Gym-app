@@ -36,7 +36,7 @@ import android.widget.ListView;
 import com.Grupp01.gymapp.MainActivity;
 import com.Grupp01.gymapp.R;
 import com.Grupp01.gymapp.Controller.IdName;
-import com.Grupp01.gymapp.Controller.Exercise.GetIdNameList;
+import com.Grupp01.gymapp.Controller.Exercise.ListExerciseDbHandler;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
@@ -99,7 +99,7 @@ public class ListExerciseActivity extends SherlockActivity implements OnClickLis
     public void createListView()
     {	
     	exercises = new LinkedList<IdName>();
-    	GetIdNameList temp = new GetIdNameList(this);
+    	ListExerciseDbHandler temp = new ListExerciseDbHandler(this);
     	exercises = temp.getExerciseIdName();
     	for(IdName idname: exercises)
     	{
@@ -152,7 +152,7 @@ public class ListExerciseActivity extends SherlockActivity implements OnClickLis
 			}
 			else
 			{
-				Intent intent_Add_Exercise = new Intent(this, AddExercise.class);
+				Intent intent_Add_Exercise = new Intent(this, EditExerciseAcitivity.class);
 				intent_Add_Exercise.putExtra(EXTRA_EXERCISE_NAME, temp);
 				dialog.dismiss();
 				startActivity(intent_Add_Exercise);
@@ -179,7 +179,7 @@ public class ListExerciseActivity extends SherlockActivity implements OnClickLis
 			{
 				int id = idName.getId();
 				System.out.println(id);
-				Intent intentViewExercise = new Intent(this, AddExercise.class);
+				Intent intentViewExercise = new Intent(this, EditExerciseAcitivity.class);
 				intentViewExercise.putExtra(EXTRA_EXERCISE_NAME, id);
 				startActivity(intentViewExercise);				
 			}

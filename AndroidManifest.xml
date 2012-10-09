@@ -38,7 +38,7 @@
             android:name=".View.Exercise.ListExerciseActivity"
             android:label="@string/title_activity_main" />
         <activity
-            android:name=".View.Exercise.AddExercise"
+            android:name=".View.Exercise.EditExerciseAcitivity"
             android:label="@string/title_activity_main" />
          <activity
             android:name=".View.Workout.WorkoutActivity"

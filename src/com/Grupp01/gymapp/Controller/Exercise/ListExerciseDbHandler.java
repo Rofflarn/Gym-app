@@ -3,7 +3,6 @@ package com.Grupp01.gymapp.Controller.Exercise;
 import java.util.LinkedList;
 import java.util.List;
 
-import android.app.Activity;
 import android.content.Context;
 import android.database.Cursor;
 
@@ -11,24 +10,20 @@ import com.Grupp01.gymapp.Controller.IdName;
 import com.Grupp01.gymapp.Model.Database;
 
 
-public class GetIdNameList extends Activity {
+public class ListExerciseDbHandler extends Database {
 	
-	private static final String DATABASE_NAME = "GymAppDatabase"; 
-	private static final int DATABASE_VERSION = 1;
-	private Database databas;
 	
-	public GetIdNameList(Context c)
+	
+	public ListExerciseDbHandler(Context c)
 	{
-		databas = new Database(c);
+		super(c);
 	}
 	
 	
-	public List getExerciseIdName()
+	public List<IdName> getExerciseIdName()
 	{
-		databas.open();
-		Cursor c = databas.getExercises();
-			
-		
+		open();
+		Cursor c = ourDatabase.rawQuery("SELECT ExerciseId, ExerciseName FROM Exercises;", null);
 		List<IdName> idNameList = new LinkedList<IdName>();
 		c.moveToFirst();
 		int id = c.getColumnIndex("ExerciseId");
@@ -36,10 +31,10 @@ public class GetIdNameList extends Activity {
 		//Forlopp som går igenom hela databasen, alla kolummer
 		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext())
 		{
-			idNameList.add(new IdName(c.getInt(0),c.getString(1)));
+			idNameList.add(new IdName(c.getInt(id),c.getString(name)));
 		}
 		c.close();
-		databas.close();
+		close();
 		return idNameList;
 	}
 }
