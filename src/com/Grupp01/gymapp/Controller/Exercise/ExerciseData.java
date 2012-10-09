@@ -56,4 +56,39 @@ public class ExerciseData {
 	{
 		return typeId;
 	}
+	
+	public void putId(int id)
+	{
+		this.id = id;
+	}
+	
+	public void putPri(int pri)
+	{
+		this.pri = pri;
+	}
+	
+	public void putSec(int sec)
+	{
+		this.sec = sec;
+	}
+	
+	public void putName(String name)
+	{
+		this.name = name;
+	}
+	
+	public void putDesc(String desc)
+	{
+		this.desc = desc;
+	}
+	
+	public void putNote(String note)
+	{
+		this.note = note;
+	}
+	
+	public void putTyepId(int typeId)
+	{
+		this.typeId = typeId;
+	}
 }
