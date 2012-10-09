@@ -25,8 +25,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.Grupp01.gymapp.R;
-import com.Grupp01.gymapp.Controller.Exercise;
-import com.Grupp01.gymapp.Controller.GetExercise;
+import com.Grupp01.gymapp.Controller.Exercise.Exercise;
+import com.Grupp01.gymapp.Controller.Exercise.GetExercise;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;

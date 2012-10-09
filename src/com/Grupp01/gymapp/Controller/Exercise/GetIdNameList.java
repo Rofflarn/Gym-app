@@ -1,4 +1,4 @@
-package com.Grupp01.gymapp.Controller;
+package com.Grupp01.gymapp.Controller.Exercise;
 //givdev
 import java.util.LinkedList;
 import java.util.List;
@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.database.Cursor;
 
+import com.Grupp01.gymapp.Controller.IdName;
 import com.Grupp01.gymapp.Model.Database;
 
 

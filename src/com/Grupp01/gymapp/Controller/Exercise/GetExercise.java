@@ -1,4 +1,4 @@
-package com.Grupp01.gymapp.Controller;
+package com.Grupp01.gymapp.Controller.Exercise;
 
 import android.content.Context;
 import android.database.Cursor;

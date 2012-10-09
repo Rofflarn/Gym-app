@@ -35,8 +35,8 @@ import android.widget.ListView;
 
 import com.Grupp01.gymapp.MainActivity;
 import com.Grupp01.gymapp.R;
-import com.Grupp01.gymapp.Controller.GetIdNameList;
 import com.Grupp01.gymapp.Controller.IdName;
+import com.Grupp01.gymapp.Controller.Exercise.GetIdNameList;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
