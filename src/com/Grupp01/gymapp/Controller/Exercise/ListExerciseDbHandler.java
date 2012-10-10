@@ -39,9 +39,14 @@ public class ListExerciseDbHandler extends Database {
 	}
 	
 
-	public void addExercise(ExerciseData exerciseData)
+	public int addExercise(ExerciseData exerciseData)
 	{
 		ourDatabase.execSQL("INSERT INTO Exercises (ExerciseName) VALUES ('" + exerciseData.getName() + "');");
+		Cursor c = ourDatabase.rawQuery("SELECT last_insert_rowid();", null);
+		c.moveToFirst();
+		int id = c.getInt(0);
+		System.out.println(id);
+		return id;
 	}
 
 }
