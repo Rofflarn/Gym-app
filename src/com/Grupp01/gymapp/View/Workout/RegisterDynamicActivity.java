@@ -56,7 +56,7 @@ public class RegisterDynamicActivity extends SherlockActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        workoutName = getIntent().getStringExtra("exercisename");
+        //workoutName = getIntent().getStringExtra("exercisename");
         setContentView(R.layout.activity_register_dynamic);
         
         //Create the array
@@ -75,8 +75,6 @@ public class RegisterDynamicActivity extends SherlockActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getSupportMenuInflater().inflate(R.menu.activity_register_dynamic, menu);
-        getSupportActionBar().setTitle(workoutName);
-        getSupportActionBar().setHomeButtonEnabled(true);
         return true;
     }
     

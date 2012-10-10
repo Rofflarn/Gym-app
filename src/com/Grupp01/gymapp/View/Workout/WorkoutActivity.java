@@ -17,7 +17,7 @@
 package com.Grupp01.gymapp.View.Workout;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.List;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -30,6 +30,8 @@ import android.widget.ListView;
 
 import com.Grupp01.gymapp.MainActivity;
 import com.Grupp01.gymapp.R;
+import com.Grupp01.gymapp.Controller.IdName;
+import com.Grupp01.gymapp.Controller.Exercise.ExerciseData;
 import com.Grupp01.gymapp.Controller.Workout.ListWorkoutDbHandler;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
@@ -51,12 +53,16 @@ import com.actionbarsherlock.view.MenuItem;
  *
  */
 public class WorkoutActivity extends SherlockActivity {
+	
+	final int Cardio = 1;
+	final int Dynamic = 2;
+	final int Static = 3;
 	private String  [] listWorkouts = { "Dynamisk övning", "Statisk övning", "Cardio"};
 			//list1 is only a string used in testing before fetching data from DB
 	private ListView listExercisesView;		//The listview that holds all the exercises for the workout
 	private String workoutName;
 	private int workoutId;
-	ListWorkoutDbHandler dbHandler;
+	private List<ExerciseData> exerciseDataList;
 		
 	/**
 	 * Set up the default layout and list all exercises 
@@ -67,14 +73,8 @@ public class WorkoutActivity extends SherlockActivity {
         workoutId = getIntent().getIntExtra("WORKOUT_NAME", 0);
         System.out.println(workoutId);
         setContentView(R.layout.activity_workout);
-        System.out.println("Innan dbHander.open()");
-        dbHandler = new ListWorkoutDbHandler(this);
-        dbHandler.open();
-        String temp = dbHandler.getWorkoutIdNameById(workoutId).getName();
-        System.out.println("Hämtat titlesträngen");
-       // getSupportActionBar().setTitle(temp);
-        dbHandler.close();
-        setTitle(temp);
+        getAndSetTitle();
+        getIdNameList();
         listAllExercises();
     }
 
@@ -131,8 +131,11 @@ public class WorkoutActivity extends SherlockActivity {
 		listExercisesView = (ListView) findViewById(R.id.activeWorkoutList) ;
 		ArrayList<String> listExercises = new ArrayList<String>();
 		
+		for(ExerciseData name: exerciseDataList)
+		{
+			listExercises.add(name.getName());
+		}
 		//Add all the exercises from the stringarray to the ArrayList and build the listview
-		listExercises.addAll(Arrays.asList(listWorkouts));
 		ListAdapter listAdapter = new ArrayAdapter<String>(this, R.layout.list, listExercises);
 		listExercisesView.setAdapter(listAdapter);
 		
@@ -143,8 +146,8 @@ public class WorkoutActivity extends SherlockActivity {
 	                    long id) {
 	            	
 	            	//Get the text label of the row that has been clicked (will be used to open the correct workout)
-	            	String exerciseName = listExercisesView.getAdapter().getItem(position).toString();	
-	            	registerWorkoutResult(exerciseName);
+	            	int exerciseTypeId = exerciseDataList.get(position).getTypeId();	
+	            	registerWorkoutResult(exerciseTypeId);
 	            	
 	            	
 	            }// onItemClick end
@@ -160,26 +163,45 @@ public class WorkoutActivity extends SherlockActivity {
      * it is (dynamic, static or cardio).
      * @param exerciseName The name of the exercise
      */
-    private void registerWorkoutResult(String exerciseName){
+    private void registerWorkoutResult(int exerciseType){
     	//ONLY FOR TESTING DIFFERENT REGISTER ACTIVITY!!
-    	if(exerciseName.equals("Dynamisk övning")){
-    		Intent intent = new Intent(WorkoutActivity.this, RegisterDynamicActivity.class);
-    		intent.putExtra("exercisename", exerciseName);
-    		startActivity(intent);
-    	}
-    	if(exerciseName.equals("Statisk övning")){
-    		Intent intent = new Intent(WorkoutActivity.this, RegisterStaticActivity.class);
-    		intent.putExtra("exercisename", exerciseName);
-    		startActivity(intent);
-    	}
-    	if(exerciseName.equals("Cardio")){
+    	if(exerciseType == 1){
+    		System.out.println("exerciseType == 1");
     		Intent intent = new Intent(WorkoutActivity.this, RegisterCardioActivity.class);
-    		intent.putExtra("exercisename", exerciseName);
+    		intent.putExtra("exercisename", exerciseType);
     		startActivity(intent);
     	}
-    	
+    	if(exerciseType == 2){
+    		System.out.println("exerciseType == 2");
+    		Intent intent = new Intent(WorkoutActivity.this, RegisterDynamicActivity.class);
+    		intent.putExtra("exercisename", exerciseType);
+    		startActivity(intent);
+    	}
+    	if(exerciseType == 3){
+    		System.out.println("exerciseType == 3");
+    		Intent intent = new Intent(WorkoutActivity.this, RegisterStaticActivity.class);
+    		intent.putExtra("exercisename", exerciseType);
+    		startActivity(intent);
+    	}
     }
     
+    private void getAndSetTitle()
+    {
+    	ListWorkoutDbHandler dbHandler = new ListWorkoutDbHandler(this);
+        dbHandler.open();
+        String title = dbHandler.getWorkoutIdNameById(workoutId).getName();
+        setTitle(title);
+        dbHandler.close();
+        
+    }
+    
+    private void getIdNameList()
+    {
+    	ListWorkoutDbHandler dbHandler = new ListWorkoutDbHandler(this);
+    	dbHandler.open();
+    	exerciseDataList = dbHandler.getExerciseIdNameById(dbHandler.getExercisesbyWorkoutId(workoutId));
+    	dbHandler.close();
+    }
     
    }
     

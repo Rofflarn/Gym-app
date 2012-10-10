@@ -295,11 +295,10 @@ public class ListWorkoutActivity extends SherlockActivity {
 		 			return;
 		 		}
 		 		//Add the name of the workout to the intent so the next activity can get the name
-		 		dbHandler.open();
-		 		dbHandler.putNewWorkout(workoutName);
-		 		dbHandler.close();
+		 		newWorkoutToDatabase(workoutName);
 		 		intent2.putExtra(WORKOUT_NAME, workoutName);
 		 		startActivity(intent2);
+		 		
     		 }
     	});
     	//If pressing "Cancel" on the dialog
@@ -314,5 +313,12 @@ public class ListWorkoutActivity extends SherlockActivity {
 			}
 		});
     	addWorkout_Dialog.show();
+    }
+    
+    private void newWorkoutToDatabase(String workoutName)
+    {
+    	dbHandler.open();
+ 		dbHandler.putNewWorkout(workoutName);
+ 		dbHandler.close();
     }
 }

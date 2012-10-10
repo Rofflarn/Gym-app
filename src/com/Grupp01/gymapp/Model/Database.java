@@ -39,11 +39,8 @@ public class Database {
 	 */
 	public Database open() throws SQLException
 	{
-		System.out.println("Innan skapning av ourHelper");
 		ourHelper = new DbHelper(ourContext);
-		System.out.println("Skapat ourHelper");
 		ourDatabase = ourHelper.getWritableDatabase();
-		System.out.println("ourdatbase = ourhelper.getdatabase");
 		return this;	
 	}
 
