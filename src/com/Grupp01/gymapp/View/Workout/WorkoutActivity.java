@@ -57,8 +57,6 @@ public class WorkoutActivity extends SherlockActivity {
 	final int Cardio = 1;
 	final int Dynamic = 2;
 	final int Static = 3;
-	private String  [] listWorkouts = { "Dynamisk övning", "Statisk övning", "Cardio"};
-			//list1 is only a string used in testing before fetching data from DB
 	private ListView listExercisesView;		//The listview that holds all the exercises for the workout
 	private String workoutName;
 	private int workoutId;
@@ -74,7 +72,7 @@ public class WorkoutActivity extends SherlockActivity {
         System.out.println(workoutId);
         setContentView(R.layout.activity_workout);
         getAndSetTitle();
-        getIdNameList();
+        getExerciseDataList();
         listAllExercises();
     }
 
@@ -185,6 +183,9 @@ public class WorkoutActivity extends SherlockActivity {
     	}
     }
     
+    /**
+     * Gets the name of the workout and sets that name to title in activity
+     */
     private void getAndSetTitle()
     {
     	ListWorkoutDbHandler dbHandler = new ListWorkoutDbHandler(this);
@@ -195,7 +196,10 @@ public class WorkoutActivity extends SherlockActivity {
         
     }
     
-    private void getIdNameList()
+    /**
+     * Gets a workouts exercises from database
+     */
+    private void getExerciseDataList()
     {
     	ListWorkoutDbHandler dbHandler = new ListWorkoutDbHandler(this);
     	dbHandler.open();
