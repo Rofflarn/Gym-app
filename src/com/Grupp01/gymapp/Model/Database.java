@@ -13,8 +13,6 @@ import android.database.sqlite.SQLiteDatabase;
  *
  */
 public class Database {
-
-
 	private DbHelper ourHelper;
 	private final Context ourContext;
 	protected SQLiteDatabase ourDatabase;
@@ -42,7 +40,10 @@ public class Database {
 		ourHelper = new DbHelper(ourContext);
 		ourDatabase = ourHelper.getWritableDatabase();
 		return this;	
+		
 	}
+	
+	
 
 	/**
 	 * 

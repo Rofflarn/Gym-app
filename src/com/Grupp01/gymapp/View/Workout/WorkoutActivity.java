@@ -193,7 +193,6 @@ public class WorkoutActivity extends SherlockActivity {
         String title = dbHandler.getWorkoutIdNameById(workoutId).getName();
         setTitle(title);
         dbHandler.close();
-        
     }
     
     /**

@@ -37,9 +37,13 @@ public class ListWorkoutDbHandler extends Database {
 		return idNameList;
 	}
 	
+	/**
+	 * Returns the specific 
+	 * @param workoutId
+	 * @return Id and Name of a workout in a IdName
+	 */
 	public IdName getWorkoutIdNameById(int workoutId)
 	{
-		System.out.println("Inne i getWorkoutIdNameById");
 		open();
 		Cursor c = ourDatabase.rawQuery("SELECT WorkoutTemplateId, WorkoutTemplateName FROM WorkoutTemplates WHERE " + 
 										"WorkoutTemplateId= '" + workoutId + "';", null);
@@ -51,29 +55,45 @@ public class ListWorkoutDbHandler extends Database {
 		
 	}
 	
+	
+	/**
+	 * 
+	 * @param workoutName
+	 */
 	public void putNewWorkout(String workoutName)
 	{
+		open();
 		ourDatabase.execSQL("INSERT INTO WorkoutTemplates (WorkoutTemplateName) VALUES ('" + workoutName + "');");
+		close();
 	}
 	
+	/**
+	 * 
+	 * @param workoutTemplateId
+	 * @return List<Integer> that contains id for all exercises that are in a workout
+	 */
 	public List<Integer> getExercisesbyWorkoutId(int workoutTemplateId)
 	{
 		List<Integer> integerList = new LinkedList<Integer>();
 		open();
-		System.out.println("Inne i getExercisesbyWorkoutId");
 		Cursor c = ourDatabase.rawQuery("SELECT ExerciseId FROM WorkoutTemplateExercises WHERE WorkoutTemplateId='" + workoutTemplateId + "';", null);
 		c.moveToFirst();
 		int id = c.getColumnIndex("ExerciseId");
 		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext())
 		{
 			integerList.add(c.getInt(id));
-			System.out.println(c.getInt(id));
 		}
 		c.close();
 		close();
 		return integerList;
 	}
 	
+	/**
+	 * Returns all exercises in form of ExerciseData that a workout contains.
+	 *  
+	 * @param integerList
+	 * @return LinkedList of ExerciseData, ExerciseData contains ExerciseId, ExerciseName and ExerciseTypeId
+	 */
 	public List<ExerciseData> getExerciseIdNameById(List<Integer> integerList)
 	{
 		List<ExerciseData> exerciseDataList = new LinkedList<ExerciseData>();
@@ -86,7 +106,6 @@ public class ListWorkoutDbHandler extends Database {
 			int name = d.getColumnIndex("ExerciseName");
 			int typeId = d.getColumnIndex("ExerciseTypeId");
 			exerciseDataList.add(new ExerciseData(d.getInt(id), d.getString(name), d.getInt(typeId)));
-			System.out.println(d.getInt(d.getColumnIndex("ExerciseId")) + " " + d.getString(d.getColumnIndex("ExerciseName")));
 			d.close();
 			
 		}

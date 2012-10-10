@@ -315,10 +315,14 @@ public class ListWorkoutActivity extends SherlockActivity {
     	addWorkout_Dialog.show();
     }
     
+    /**
+     * Put the new Workout to database. Only the WorkoutName is put to database
+     * @param workoutName
+     */
     private void newWorkoutToDatabase(String workoutName)
     {
     	dbHandler.open();
  		dbHandler.putNewWorkout(workoutName);
  		dbHandler.close();
-    }
+    } 
 }

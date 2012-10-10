@@ -60,9 +60,7 @@ public class EditExerciseAcitivity extends SherlockActivity implements AdapterVi
 		getSupportActionBar().setHomeButtonEnabled(true);
 		
 		exerciseId = getIntent().getIntExtra(ListExerciseActivity.EXTRA_EXERCISE_NAME, 0);
-		EditExerciseDbHandler get = new EditExerciseDbHandler(this);
-		exercise = get.getExerciseById(exerciseId);
-		setTitle(exercise.getName());
+		getExerciseData();
 		
 		Resources res = getResources();
 		items = res.getStringArray(R.array.trainingtype_array);//get String-array from strings.xml
@@ -95,7 +93,7 @@ public class EditExerciseAcitivity extends SherlockActivity implements AdapterVi
 		spinnerType = (Spinner) findViewById(R.id.spinner_type_of_training);
 		spinnerType.setSelection(position); //Sets the spinner default value to selected value
 		spinnerType.setOnItemSelectedListener(this); //Adds listener to spinner spinnterType
-		setTextViews();
+		setTexts();
 		
 	}
 
@@ -129,8 +127,9 @@ public class EditExerciseAcitivity extends SherlockActivity implements AdapterVi
 	}
 	
 	
-	public void setTextViews()
+	public void setTexts()
 	{
+		setTitle(exercise.getName());
 		
 		if((exercise.getNote() != null) && (exercise.getDesc() != null))
 		{
@@ -161,5 +160,13 @@ public class EditExerciseAcitivity extends SherlockActivity implements AdapterVi
 	public void cancel(View view)
 	{
 		finish();
+	}
+	
+	private void getExerciseData()
+	{
+		EditExerciseDbHandler get = new EditExerciseDbHandler(this);
+		get.open();
+		exercise = get.getExerciseById(exerciseId);
+		get.close();
 	}
 }
