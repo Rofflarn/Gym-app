@@ -141,7 +141,6 @@ public class EditExerciseAcitivity extends SherlockActivity implements AdapterVi
 				initSpinnerType(position);
 				initSpinnerDynamicStatic();
 				currentView = listTrainingType.get(position);
-				System.out.println("dynamic");
 			}
 			else if (listTrainingType.get(position).equals("Cardio"))
 			{
@@ -230,7 +229,7 @@ public class EditExerciseAcitivity extends SherlockActivity implements AdapterVi
 	}
 	
 	
-	private String[] ListIdName2StringArr(List<IdName> list)
+	/*private String[] ListIdName2StringArr(List<IdName> list)
 	{
 		ArrayList<String> getIdName = new ArrayList<String>();
 		for (IdName idname : list)
@@ -238,7 +237,7 @@ public class EditExerciseAcitivity extends SherlockActivity implements AdapterVi
 			getIdName.add(idname.getName());
 		}
 		return (String[]) getIdName.toArray(new String[getIdName.size()]);
-	}
+	}*/
 	
 	private void getExerciseData()
 	{
