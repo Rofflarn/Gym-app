@@ -67,8 +67,8 @@ public class EditExerciseAcitivity extends SherlockActivity implements AdapterVi
 		exerciseId = getIntent().getIntExtra(ListExerciseActivity.EXTRA_EXERCISE_NAME, 0);
 		getExerciseData();
 		
-		Resources res = getResources();
-		items = res.getStringArray(R.array.trainingtype_array);//get String-array from strings.xml
+
+		items = getExerciseTypesFromDb();//get String-array from strings.xml
 		initSpinnerType(0); //initialize spinner with listener and set spinner to static
 		
 	}
@@ -89,9 +89,14 @@ public class EditExerciseAcitivity extends SherlockActivity implements AdapterVi
 	 */
 	public void initSpinnerType(int position)
 	{
-		spinnerType = (Spinner) findViewById(R.id.spinner_type_of_training); //Retrieves the view from .xml-file
+		/*spinnerType = (Spinner) findViewById(R.id.spinner_type_of_training); //Retrieves the view from .xml-file
 		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
 				R.array.trainingtype_array, android.R.layout.simple_spinner_item);//From developer.android.com
+		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		spinnerType.setAdapter(adapter); //Sets the adapter to the spinner*/
+		
+		spinnerType = (Spinner) findViewById(R.id.spinner_type_of_training); //Retrieves the view from .xml-file
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, items);
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		spinnerType.setAdapter(adapter); //Sets the adapter to the spinner
 
@@ -209,7 +214,7 @@ public class EditExerciseAcitivity extends SherlockActivity implements AdapterVi
 	{
 		EditExerciseDbHandler get = new EditExerciseDbHandler(this);
 		get.open();
-		List<IdName>list = get.getMuscles();
+		List<IdName>list = get.getExerciseTypes();
 		get.close();
 		return ListIdName2StringArr(list);
 	}
