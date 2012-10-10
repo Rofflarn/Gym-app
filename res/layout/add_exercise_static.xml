@@ -59,7 +59,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/textView_primary_muscle"
-            android:entries="@array/muscle_type"
             android:prompt="@string/primary_muscletype_prompt" />
 
         <Spinner
@@ -67,7 +66,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/textView_secondary_muscle"
-            android:entries="@array/muscle_type"
             android:prompt="@string/secondary_muscletype_prompt" />
 
         <EditText

@@ -16,6 +16,10 @@
  */
 package com.Grupp01.gymapp.View.Exercise;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
@@ -25,6 +29,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.Grupp01.gymapp.R;
+import com.Grupp01.gymapp.Controller.IdName;
 import com.Grupp01.gymapp.Controller.Exercise.ExerciseData;
 import com.Grupp01.gymapp.Controller.Exercise.EditExerciseDbHandler;
 import com.actionbarsherlock.app.SherlockActivity;
@@ -44,8 +49,8 @@ import com.actionbarsherlock.view.MenuInflater;
  *
  */
 public class EditExerciseAcitivity extends SherlockActivity implements AdapterView.OnItemSelectedListener {
-	private String[] items;
-	private Spinner spinnerType;
+	private String[] items, muscles, sports;
+	private Spinner spinnerType, spinnerPMuscle, spinnerSMuscle, spinnerSport;
 	private String currentView;
 	private int exerciseId;
 	private ExerciseData exercise;
@@ -96,7 +101,26 @@ public class EditExerciseAcitivity extends SherlockActivity implements AdapterVi
 		setTexts();
 		
 	}
-
+	public void initSpinnerDynamicStatic()
+	{
+		muscles = getMusclesFromDb(); 
+		
+		spinnerPMuscle = (Spinner) findViewById(R.id.spinner_primary_muscle); //Retrieves the view from .xml-file
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, muscles);
+		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		spinnerPMuscle.setAdapter(adapter); //Sets the adapter to the spinner
+		
+		spinnerSMuscle = (Spinner) findViewById(R.id.spinner_secondary_muscle);
+		spinnerSMuscle.setAdapter(adapter);
+	}
+	public void initSpinnerCardio()
+	{
+		sports = getSportsFromDb();
+		spinnerSport = (Spinner) findViewById(R.id.spinner_sport); //Retrieves the view from .xml-file
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, sports);
+		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		spinnerSport.setAdapter(adapter); //Sets the adapter to the spinner
+	}
 	/**
 	 * Callback method to be invoked when an item in this view has been selected
 	 */
@@ -108,6 +132,7 @@ public class EditExerciseAcitivity extends SherlockActivity implements AdapterVi
 			{
 				setContentView(R.layout.add_exercise_static);	//Switches the layout to the selected one
 				initSpinnerType(position);	//After switching view, adds listener to spinner again
+				initSpinnerDynamicStatic();
 				currentView=items[position];	//Sets currentView to prevent infinite loop
 			}
 
@@ -115,12 +140,14 @@ public class EditExerciseAcitivity extends SherlockActivity implements AdapterVi
 			{
 				setContentView(R.layout.add_exercise_static);	
 				initSpinnerType(position);
+				initSpinnerDynamicStatic();
 				currentView=items[position];
 			}
 			else if (items[position].equals("Cardio"))
 			{
 				setContentView(R.layout.activity_add_exercise);	
 				initSpinnerType(position);
+				initSpinnerCardio();
 				currentView=items[position];
 			}
 		}
@@ -160,6 +187,42 @@ public class EditExerciseAcitivity extends SherlockActivity implements AdapterVi
 	public void cancel(View view)
 	{
 		finish();
+	}
+	private String[] getMusclesFromDb()
+	{
+		EditExerciseDbHandler get = new EditExerciseDbHandler(this);
+		get.open();
+		List<IdName>list = get.getMuscles();
+		get.close();
+		return ListIdName2StringArr(list);
+	}
+	private String[] getSportsFromDb()
+	{
+		EditExerciseDbHandler get = new EditExerciseDbHandler(this);
+		get.open();
+		List<IdName>list = get.getSports();
+		get.close();
+		return ListIdName2StringArr(list);
+	}
+	
+	private String[] getExerciseTypesFromDb()
+	{
+		EditExerciseDbHandler get = new EditExerciseDbHandler(this);
+		get.open();
+		List<IdName>list = get.getMuscles();
+		get.close();
+		return ListIdName2StringArr(list);
+	}
+	
+	
+	private String[] ListIdName2StringArr(List<IdName> list)
+	{
+		ArrayList<String> getIdName = new ArrayList<String>();
+		for (IdName idname : list)
+		{
+			getIdName.add(idname.getName());
+		}
+		return (String[]) getIdName.toArray(new String[getIdName.size()]);
 	}
 	
 	private void getExerciseData()
