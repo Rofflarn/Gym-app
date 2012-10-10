@@ -59,6 +59,7 @@ public class ListExerciseDbHandler extends Database {
 	public int getExerciseIdFromName(String name)
 	{
 		open();
+		//Cursor c = ourDatabase.rawQuery("SELECT last_insert_rowid();", null);
 		Cursor c = ourDatabase.rawQuery("SELECT ExerciseId FROM Exercises WHERE ExerciseName= '" + name +"';", null);
 		c.moveToFirst();
 		int id = c.getInt(c.getColumnIndex("ExerciseId"));

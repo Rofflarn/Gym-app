@@ -29,6 +29,9 @@ import android.widget.Toast;
 
 import com.Grupp01.gymapp.MainActivity;
 import com.Grupp01.gymapp.R;
+import com.Grupp01.gymapp.Controller.Exercise.ExerciseData;
+import com.Grupp01.gymapp.Controller.Workout.ListWorkoutDbHandler;
+import com.Grupp01.gymapp.View.Exercise.ListExerciseActivity;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
@@ -49,10 +52,10 @@ import com.actionbarsherlock.view.MenuItem;
  */
 
 public class RegisterCardioActivity extends SherlockActivity {
-
-	private String workoutName;				//The name of the workout
+	private ExerciseData exercise; //The name of the workout
 	private ArrayList<String> currentSets;	//The array where new sets is added (in form of REPSxWEIGHT)
-
+	private int exerciseId;
+	private int workoutId;
 	
 	/**
 	 * Set up the default layout and call initiate method that is required. 
@@ -60,15 +63,17 @@ public class RegisterCardioActivity extends SherlockActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       // workoutName = getIntent().getStringExtra("exercisename");
         setContentView(R.layout.activity_register_cardio);
-        
         //Create the array
         currentSets = new ArrayList<String>();
-        
+        exerciseId = getIntent().getIntExtra(WorkoutActivity.EXTRA_EXERCISE_ID, 0);
+        workoutId = getIntent().getIntExtra(WorkoutActivity.EXTRA_WORKOUT_ID, 0);
+        getExerciseData();
+        setTitle(exercise.getName());
         //Show the sets (reps and weight) for the last time this
         //exercise was performed.
         setLastSetString();
+        //setNoteString(exercise.getNote());
      }
     
     
@@ -117,6 +122,12 @@ public class RegisterCardioActivity extends SherlockActivity {
     	lastSetString.setText("ska hämtas från DB");
 		
 	}
+    
+    private void setNoteString(String note)
+    {
+    	TextView notes = (TextView) findViewById(R.id.noteText);
+    	notes.setText(note);
+    }
     
     
     /**
@@ -196,6 +207,12 @@ public class RegisterCardioActivity extends SherlockActivity {
 		//else add the information to the array and update information in the view
 		else{
 			currentSets.add(minutes + ":" + seconds + "x" + distance);
+			ListWorkoutDbHandler dbHandler = new ListWorkoutDbHandler(this);
+			dbHandler.open();
+			Integer min = Integer.parseInt(editMinutes.getText().toString());
+			Integer sec = Integer.parseInt(editSeconds.getText().toString());
+			Integer dist = Integer.parseInt(editDistance.getText().toString());
+			dbHandler.addCardioSet(min, sec, dist, workoutId, exerciseId);
 			updateView();
 			
 		}
@@ -235,5 +252,14 @@ public class RegisterCardioActivity extends SherlockActivity {
 		if(currentSets.size() > 0)
 			currentSets.remove(currentSets.size() -1);
 		updateView();
+	}
+	
+	private void getExerciseData()
+	{
+		ListWorkoutDbHandler dbHandler = new ListWorkoutDbHandler(this);
+        dbHandler.open();
+        exercise = dbHandler.getExerciseDataFromExerciseId(exerciseId);
+        dbHandler.close();
+		
 	}
 }

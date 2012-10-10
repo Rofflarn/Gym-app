@@ -190,7 +190,7 @@ public class DbHelper extends SQLiteOpenHelper{
 	private void createSets(SQLiteDatabase db)
 	{
 		 db.execSQL("CREATE TABLE Sets (SetId INTEGER PRIMARY KEY AUTOINCREMENT, SetReps INTEGER, SetWeight REAL, " +
-		 		"SetDistance INTEGER, WorkoutId INTEGER, SetDuration TEXT, ExerciseId INTEGER NOT NULL);");
+		 		"SetDistance INTEGER, WorkoutId INTEGER, SetDurationSec INTEGER, SetDurationMin INTEGER, SetTime TEXT, ExerciseId INTEGER NOT NULL);");
 	}
 	
 	/**

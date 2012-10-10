@@ -27,6 +27,8 @@ import android.widget.Toast;
 
 import com.Grupp01.gymapp.MainActivity;
 import com.Grupp01.gymapp.R;
+import com.Grupp01.gymapp.Controller.Exercise.ExerciseData;
+import com.Grupp01.gymapp.Controller.Workout.ListWorkoutDbHandler;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
@@ -47,8 +49,9 @@ import com.actionbarsherlock.view.MenuItem;
  */
 public class RegisterDynamicActivity extends SherlockActivity {
 
-	private String workoutName;				//The name of the workout
 	private ArrayList<String> currentSets;	//The array where new sets is added (in form of REPSxWEIGHT)
+	private int exerciseId;
+	private ExerciseData exercise;
 	
 	/**
 	 * Set up the default layout and call initiate method that is required. 
@@ -58,7 +61,9 @@ public class RegisterDynamicActivity extends SherlockActivity {
         super.onCreate(savedInstanceState);
         //workoutName = getIntent().getStringExtra("exercisename");
         setContentView(R.layout.activity_register_dynamic);
-        
+        exerciseId = getIntent().getIntExtra(WorkoutActivity.EXTRA_EXERCISE_ID, 0);
+        getExerciseData();
+        setTitle(exercise.getName());
         //Create the array
         currentSets = new ArrayList<String>();
         
@@ -217,6 +222,14 @@ public class RegisterDynamicActivity extends SherlockActivity {
 		if(currentSets.size() > 0)
 			currentSets.remove(currentSets.size() -1);
 		updateView();
+	}
+	
+	private void getExerciseData()
+	{
+		ListWorkoutDbHandler dbHandler = new ListWorkoutDbHandler(this);
+        dbHandler.open();
+        exercise = dbHandler.getExerciseDataFromExerciseId(exerciseId);
+        dbHandler.close();
 	}
 }
 

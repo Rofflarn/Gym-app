@@ -5,6 +5,7 @@ import java.util.List;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 
 import com.Grupp01.gymapp.Controller.IdName;
 import com.Grupp01.gymapp.Controller.Exercise.ExerciseData;
@@ -111,5 +112,40 @@ public class ListWorkoutDbHandler extends Database {
 		}
 		close();
 		return exerciseDataList;
+
 	}
+	
+	public ExerciseData getExerciseDataFromExerciseId(int exerciseId)
+	{
+		open();
+		Cursor c = ourDatabase.rawQuery("SELECT * FROM Exercises WHERE ExerciseId='" + exerciseId + "';", null);
+		c.moveToFirst();
+		int id = c.getColumnIndex("ExerciseId");
+		int pri = c.getColumnIndex("ExercisePri");
+		int sec = c.getColumnIndex("ExerciseSec");
+		int name = c.getColumnIndex("ExerciseName");
+		int note = c.getColumnIndex("ExerciseDesc");
+		int desc = c.getColumnIndex("ExerciseNote");
+		int type = c.getColumnIndex("ExerciseTypeId");
+		ExerciseData temp = new ExerciseData(c.getInt(id), c.getInt(pri), c.getInt(sec), c.getString(name), c.getString(note), c.getString(desc), c.getInt(type));
+		c.close();
+		
+		close();
+		return temp;
+	}
+	
+	
+	public void addCardioSet(int min, int sec, float distance, int workoutId, int exerciseId)
+	{
+		String tmp = "INSERT INTO Sets (SetDistance, WorkoutId, SetDurationMin, SetDurationSec, SetTime, ExerciseId) VALUES "+
+				"('" + distance + "', '" + workoutId + "', '" + min + "', '" + sec + ", " + "datetime('now'), " + "'" + exerciseId + "');";
+		System.out.println(tmp);
+		//ourDatabase.execSQL("INSERT INTO Sets(SetDistance, WorkoutId, SetDurationMin, SetDurationSec, SetTime, ExerciseId) VALUES "+
+					//		"(" + distance + ", " + workoutId + ", " + min + ", " + sec + ", " + "DATETIME('NOW'), " + "" + exerciseId + ");");	
+		//db.execSQL("INSERT INTO Exercises(ExercisePri, ExerciseSec, ExerciseName, ExerciseTypeId) VALUES (1, 2, 'Schlobbans sjuor', 2);");
+
+	ourDatabase.execSQL("INSERT INTO Sets (SetDistance, WorkoutId, SetDurationMin, SetDurationSec, SetTime, ExerciseId) VALUES "
+			+ "(" + distance + ", " + workoutId + ", " + min + ", " + sec + ", " + "datetime('now')" + ", " + exerciseId + ");");
+	}
+	
 }
