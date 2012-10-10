@@ -60,7 +60,7 @@ public class RegisterCardioActivity extends SherlockActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        workoutName = getIntent().getStringExtra("exercisename");
+       // workoutName = getIntent().getStringExtra("exercisename");
         setContentView(R.layout.activity_register_cardio);
         
         //Create the array
@@ -80,8 +80,6 @@ public class RegisterCardioActivity extends SherlockActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getSupportMenuInflater().inflate(R.menu.activity_register_cardio, menu);
-        getSupportActionBar().setTitle(workoutName);
-        getSupportActionBar().setHomeButtonEnabled(true);
         return true;
     }
     

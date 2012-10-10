@@ -22,6 +22,13 @@ public class ExerciseData {
 		this.typeId = exerciseTypeId;
 	}
 	
+	public ExerciseData(int id, String exerciseName, int exerciseTypeId)
+	{
+		this.id = id;
+		this.name = exerciseName;
+		this.typeId = exerciseTypeId;
+	}
+	
 	public int getId()
 	{
 		return id;
@@ -52,7 +59,7 @@ public class ExerciseData {
 		return note;
 	}
 	
-	public int getTyepId()
+	public int getTypeId()
 	{
 		return typeId;
 	}
