@@ -228,17 +228,6 @@ public class EditExerciseAcitivity extends SherlockActivity implements AdapterVi
 		return getIdName;
 	}
 	
-	
-	/*private String[] ListIdName2StringArr(List<IdName> list)
-	{
-		ArrayList<String> getIdName = new ArrayList<String>();
-		for (IdName idname : list)
-		{
-			getIdName.add(idname.getName());
-		}
-		return (String[]) getIdName.toArray(new String[getIdName.size()]);
-	}*/
-	
 	private void getExerciseData()
 	{
 		EditExerciseDbHandler get = new EditExerciseDbHandler(this);
