@@ -31,7 +31,6 @@ import com.Grupp01.gymapp.MainActivity;
 import com.Grupp01.gymapp.R;
 import com.Grupp01.gymapp.Controller.Exercise.ExerciseData;
 import com.Grupp01.gymapp.Controller.Workout.ListWorkoutDbHandler;
-import com.Grupp01.gymapp.View.Exercise.ListExerciseActivity;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
@@ -70,10 +69,12 @@ public class RegisterCardioActivity extends SherlockActivity {
         workoutId = getIntent().getIntExtra(WorkoutActivity.EXTRA_WORKOUT_ID, 0);
         getExerciseData();
         setTitle(exercise.getName());
+        //System.out.println(exercise.getNote());
+        //setNoteString(exercise.getNote());
         //Show the sets (reps and weight) for the last time this
         //exercise was performed.
         setLastSetString();
-        //setNoteString(exercise.getNote());
+        
      }
     
     
@@ -254,6 +255,9 @@ public class RegisterCardioActivity extends SherlockActivity {
 		updateView();
 	}
 	
+	/**
+	 * Gets information from database about the current exercise in a ExerciseData object.
+	 */
 	private void getExerciseData()
 	{
 		ListWorkoutDbHandler dbHandler = new ListWorkoutDbHandler(this);
