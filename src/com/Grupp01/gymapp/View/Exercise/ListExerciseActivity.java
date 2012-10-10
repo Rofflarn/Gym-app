@@ -155,8 +155,8 @@ public class ListExerciseActivity extends SherlockActivity implements OnClickLis
 			{
 				ListExerciseDbHandler dbHandler = new ListExerciseDbHandler(this);
 				dbHandler.open();
-				dbHandler.addExercise(temp);
-				int id = dbHandler.getExerciseIdFromName(temp);
+				int id = dbHandler.addExercise(temp);
+				//int id = dbHandler.getExerciseIdFromName(temp);
 				Intent intent_Add_Exercise = new Intent(this, EditExerciseAcitivity.class);
 				intent_Add_Exercise.putExtra(EXTRA_EXERCISE_NAME, id);
 				dialog.dismiss();

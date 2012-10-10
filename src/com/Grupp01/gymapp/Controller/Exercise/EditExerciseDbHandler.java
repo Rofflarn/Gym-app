@@ -29,8 +29,9 @@ public class EditExerciseDbHandler extends Database {
 			int name = c.getColumnIndex("ExerciseName");
 			int note = c.getColumnIndex("ExerciseDesc");
 			int desc = c.getColumnIndex("ExerciseNote");
+			int sport = c.getColumnIndex("ExerciseSportId");
 			int type = c.getColumnIndex("ExerciseTypeId");
-			ExerciseData temp = new ExerciseData(c.getInt(id), c.getInt(pri), c.getInt(sec), c.getString(name), c.getString(note), c.getString(desc), c.getInt(type));
+			ExerciseData temp = new ExerciseData(c.getInt(id), c.getInt(pri), c.getInt(sec), c.getString(name), c.getString(note), c.getString(desc), c.getInt(sport), c.getInt(type));
 			c.close();
 			close();
 			return temp;
@@ -87,6 +88,20 @@ public class EditExerciseDbHandler extends Database {
 			}
 			
 			return idNameList;
+		}
+		public void editExercise(ExerciseData exerciseData)
+		{
+			open();
+			//int id, int exercisePri, int exerciseSec, String exerciseName, String exerciseDesc, String exerciseNote, int sportId, int exerciseTypeId)
+			//ExerciseData test = new ExerciseData(1, 2, 3, "Testing", "EditedD2325esc", "EditedN234ote", 1, 2);
+			//exerciseData = test;
+			//ourDatabase.update(Exercises, values, whereClause, whereArgs)
+			
+			String tmp2 = "UPDATE Exercises SET ExercisePri = '" + exerciseData.getPri() + "', ExerciseSec = '" + exerciseData.getSec() + "', ExerciseDesc = '" + exerciseData.getDesc() + "', ExerciseNote = '" + exerciseData.getNote() + "', ExerciseSportId = '" + exerciseData.getSportId() + "', ExerciseTypeId = '" + exerciseData.getTypeId() + "' WHERE ExerciseId = '" + exerciseData.getId() + "';";
+			System.out.println(tmp2);
+					
+			ourDatabase.execSQL(tmp2);
+			close();
 		}
 		/*
 		public List<ExerciseData> getExercisesByTypeId(int ExerciseTypeId){

@@ -3,6 +3,7 @@ package com.Grupp01.gymapp.Controller.Exercise;
 import java.util.LinkedList;
 import java.util.List;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 
@@ -39,22 +40,35 @@ public class ListExerciseDbHandler extends Database {
 	}
 	
 
-	public int addExercise(ExerciseData exerciseData)
+	/*public long addExercise(ExerciseData exerciseData)
 	{
-		ourDatabase.execSQL("INSERT INTO Exercises (ExerciseName) VALUES ('" + exerciseData.getName() + "');");
+		ContentValues values = new ContentValues();
+	    values.put("ExerciseName", exerciseData.getName());
+		/*ourDatabase.execSQL("INSERT INTO Exercises (ExerciseName) VALUES ('" + exerciseData.getName() + "');");
 		Cursor c = ourDatabase.rawQuery("SELECT last_insert_rowid();", null);
 		c.moveToFirst();
 		int id = c.getInt(0);
-		System.out.println(id);
+	    return ourDatabase.insert("Exercises", null, values);
+		/*System.out.println(id);
+		return id;
+	}*/
+	
+	/**
+	 * Adds new Exercise to database.
+	 * @param name
+	 * @return
+	 */
+	public int addExercise(String name)
+	{
+		open();
+		ContentValues values = new ContentValues();
+	    values.put("ExerciseName", name);
+		int id = (int) ourDatabase.insert("Exercises", null, values);
+		close();
 		return id;
 	}
 	
-	public void addExercise(String name)
-	{
-		open();
-		ourDatabase.execSQL("INSERT INTO Exercises (ExerciseName) VALUES ('" + name + "');");
-		close();
-	}
+
 	
 	public int getExerciseIdFromName(String name)
 	{
