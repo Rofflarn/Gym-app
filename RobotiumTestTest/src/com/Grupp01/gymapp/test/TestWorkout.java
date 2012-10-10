@@ -1,9 +1,11 @@
 package com.Grupp01.gymapp.test;
 
 import android.test.ActivityInstrumentationTestCase2;
+import android.widget.TextView;
 
 import com.Grupp01.gymapp.View.Workout.EditWorkoutActivity;
 import com.Grupp01.gymapp.View.Workout.ListWorkoutActivity;
+import com.Grupp01.gymapp.View.Workout.RegisterCardioActivity;
 import com.Grupp01.gymapp.View.Workout.RegisterDynamicActivity;
 import com.Grupp01.gymapp.View.Workout.RegisterStaticActivity;
 import com.actionbarsherlock.app.SherlockActivity;
@@ -132,4 +134,56 @@ public class TestWorkout extends ActivityInstrumentationTestCase2<ListWorkoutAct
 		solo.finishOpenedActivities();
 	}
 
+	public void testRegisterCardioExercise()
+	{
+		solo.clickOnText("Fejk");
+		solo.clickOnText("Cardio");
+		solo.assertCurrentActivity("Failed to launch cardio exercise", RegisterCardioActivity.class);
+	}
+	
+	public void testRegisterCardioValidTime()
+	{
+		solo.clickOnText("Fejk");
+		solo.clickOnText("Cardio");
+
+		//Add one set with invalid time and make sure nothing has changed
+		solo.enterText(0, "0");
+		solo.enterText(1, "0");
+		solo.enterText(2, "3");
+		solo.clickOnButton("Add set");
+		TextView text = (TextView) solo.getView(com.Grupp01.gymapp.R.id.thisTimeSetsCardio);
+		assertEquals("", text.getText().toString());
+	}
+	/*  This will fail
+	 * 
+		public void testRegisterCardioTimeNoLetters()
+	{
+		solo.clickOnText("Fejk");
+		solo.clickOnText("Cardio");
+
+		//Add one set with invalid time and make sure nothing has changed
+		solo.enterText(0, "abc");
+		solo.enterText(1, "abc");
+		solo.enterText(2, "3");
+		solo.clickOnButton("Add set");
+		TextView text = (TextView) solo.getView(com.Grupp01.gymapp.R.id.thisTimeSetsCardio);
+		assertEquals("", text.getText().toString());
+	}
+	*/
+	
+	public void testRegisterCardioTimeValidTime()
+	{
+		solo.clickOnText("Fejk");
+		solo.clickOnText("Cardio");
+
+		//Add one set with invalid time and make sure nothing has changed
+		solo.enterText(0, "16");
+		solo.enterText(1, "10");
+		solo.enterText(2, "8");
+		solo.clickOnButton("Add set");
+		TextView text = (TextView) solo.getView(com.Grupp01.gymapp.R.id.thisTimeSetsCardio);
+		assertEquals("16:10x8", text.getText().toString());
+	}
+	
+	
 }
