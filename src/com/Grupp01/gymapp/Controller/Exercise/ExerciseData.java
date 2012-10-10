@@ -8,10 +8,11 @@ public class ExerciseData {
 	private String name;
 	private String desc;
 	private String note;
+	private int sportId;
 	private int typeId;
 
 	
-	public ExerciseData(int id, int exercisePri, int exerciseSec, String exerciseName, String exerciseDesc, String exerciseNote, int exerciseTypeId)
+	public ExerciseData(int id, int exercisePri, int exerciseSec, String exerciseName, String exerciseDesc, String exerciseNote, int sportId, int exerciseTypeId)
 	{
 		this.id = id;
 		this.pri = exercisePri;
@@ -19,6 +20,7 @@ public class ExerciseData {
 		this.name = exerciseName;
 		this.desc = exerciseDesc;
 		this.note = exerciseNote;
+		this.sportId = sportId;
 		this.typeId = exerciseTypeId;
 	}
 	
@@ -59,6 +61,11 @@ public class ExerciseData {
 		return note;
 	}
 	
+	public int getSportId()
+	{
+		return sportId;
+	}
+	
 	public int getTypeId()
 	{
 		return typeId;
@@ -87,6 +94,11 @@ public class ExerciseData {
 	public void putDesc(String desc)
 	{
 		this.desc = desc;
+	}
+	
+	public void putSport(int sportId)
+	{
+		this.sportId = sportId;
 	}
 	
 	public void putNote(String note)

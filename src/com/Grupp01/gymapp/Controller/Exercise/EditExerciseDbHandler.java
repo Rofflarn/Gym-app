@@ -29,8 +29,9 @@ public class EditExerciseDbHandler extends Database {
 			int name = c.getColumnIndex("ExerciseName");
 			int note = c.getColumnIndex("ExerciseDesc");
 			int desc = c.getColumnIndex("ExerciseNote");
+			int sport = c.getColumnIndex("ExerciseSportId");
 			int type = c.getColumnIndex("ExerciseTypeId");
-			ExerciseData temp = new ExerciseData(c.getInt(id), c.getInt(pri), c.getInt(sec), c.getString(name), c.getString(note), c.getString(desc), c.getInt(type));
+			ExerciseData temp = new ExerciseData(c.getInt(id), c.getInt(pri), c.getInt(sec), c.getString(name), c.getString(note), c.getString(desc), c.getInt(sport), c.getInt(type));
 			c.close();
 			close();
 			return temp;

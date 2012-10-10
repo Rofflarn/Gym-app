@@ -53,15 +53,37 @@ public class ListExerciseDbHandler extends Database {
 		return id;
 	}*/
 	
+	/**
+	 * Adds new Exercise to database.
+	 * @param name
+	 * @return
+	 */
 	public int addExercise(String name)
 	{
 		open();
-		//ourDatabase.execSQL("INSERT INTO Exercises (ExerciseName) VALUES ('" + name + "');");
 		ContentValues values = new ContentValues();
 	    values.put("ExerciseName", name);
 		int id = (int) ourDatabase.insert("Exercises", null, values);
 		close();
 		return id;
+	}
+	
+	public void editExercise(ExerciseData exerciseData)
+	{
+		open();
+		//int id, int exercisePri, int exerciseSec, String exerciseName, String exerciseDesc, String exerciseNote, int sportId, int exerciseTypeId)
+		//ExerciseData test = new ExerciseData(1, 2, 3, "Testing", "EditedD2325esc", "EditedN234ote", 1, 2);
+		//exerciseData = test;
+		//ourDatabase.update(Exercises, values, whereClause, whereArgs)
+		String tmp = "UPDATE Exercises (ExerciseMusclePri, ExerciseMuscleSec, ExerciseDesc, ExerciseNote, ExerciseSportId, ExerciseTypeId) " +
+				"VALUES ('" + exerciseData.getPri() + "', '" + exerciseData.getSec() + "', '" + exerciseData.getDesc() + "', '" +
+				"" + exerciseData.getNote() + "', '" + exerciseData.getSportId() + "', '" + exerciseData.getTypeId() + "') " +
+				"WHERE ExerciseId = '" + exerciseData.getId() + "';";
+		String tmp2 = "UPDATE Exercises SET ExercisePri = '" + exerciseData.getPri() + "', ExerciseSec = '" + exerciseData.getSec() + "', ExerciseDesc = '" + exerciseData.getDesc() + "', ExerciseNote = '" + exerciseData.getNote() + "', ExerciseSportId = '" + exerciseData.getSportId() + "', ExerciseTypeId = '" + exerciseData.getTypeId() + "' WHERE ExerciseId = '" + exerciseData.getId() + "';";
+		System.out.println(tmp2);
+				
+		ourDatabase.execSQL(tmp2);
+		close();
 	}
 	
 	public int getExerciseIdFromName(String name)
