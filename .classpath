@@ -5,5 +5,10 @@
 	<classpathentry kind="src" path="/library"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
+	<classpathentry kind="lib" path="RobotiumTestTest/Robotium/robotium-solo-3.4.1.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:platform:/resource/com.Grupp01.gymapp.MainActivity/RobotiumTestTest/Robotium/robotium-solo-3.4.1-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>
