@@ -177,13 +177,23 @@ public class WorkoutDbHandler extends Database {
 		close();
 	}
 	
-	public int getLastetCardioSetId()
+	public int getLatestCardioSetId()
 	{
-		return 1;
+		open();
+		Cursor c = ourDatabase.rawQuery("SELECT MAX(SetId) FROM Sets", null);
+		c.moveToFirst();
+		int latestRowId = c.getInt(0);
+		System.out.println(c.getInt(0));
+		c.close();
+		close();
+		return latestRowId;
 	}
 	
-	public void removeCardioSet()
+	public void removeLatestCardioSet(int setCardioId)
 	{
-		
+		open();
+		ourDatabase.execSQL("DELETE FROM Sets WHERE SetId="+setCardioId+";");
+		getLatestCardioSetId();
+		close();
 	}
 }

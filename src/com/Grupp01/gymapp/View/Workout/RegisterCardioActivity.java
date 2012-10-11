@@ -76,6 +76,7 @@ public class RegisterCardioActivity extends SherlockActivity {
         setLastSetString();
         setNoteString();
         
+        
      }
     
     
@@ -253,6 +254,7 @@ public class RegisterCardioActivity extends SherlockActivity {
 	private void removeLatestSet() {
 		if(currentSets.size() > 0)
 			currentSets.remove(currentSets.size() -1);
+		removeLatestCardioSet(getLatestSetId());	//Deletes the latest added Cardioset from database	
 		updateView();
 	}
 	
@@ -266,5 +268,31 @@ public class RegisterCardioActivity extends SherlockActivity {
         exercise = dbHandler.getExerciseDataFromExerciseId(exerciseId);
         dbHandler.close();
 		
+	}
+	
+	private int getLatestSetId()
+	{
+		WorkoutDbHandler dbHandler = new WorkoutDbHandler(this);
+        dbHandler.open();
+        int latestSetId = dbHandler.getLatestCardioSetId();
+        dbHandler.close();
+        if(latestSetId > 0)
+        {
+        	return latestSetId;
+        }
+        else
+        {
+        	Toast.makeText(this, "No Set to Delete", Toast.LENGTH_SHORT).show();
+        	return 0;
+        }
+        
+	}
+	
+	private void removeLatestCardioSet(int cardioSetId)
+	{
+		WorkoutDbHandler dbHandler = new WorkoutDbHandler(this);
+        dbHandler.open();
+        dbHandler.removeLatestCardioSet(cardioSetId);
+        dbHandler.close();
 	}
 }
