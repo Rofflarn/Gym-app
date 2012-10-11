@@ -18,7 +18,7 @@ public class ListWorkoutDbHandler extends Database {
 		super(c);
 	}
 	
-	public List<IdName> getWorkoutIdName()
+	public List<IdName> getWorkoutsIdName()
 	{
 		
 		open();
@@ -141,5 +141,7 @@ public class ListWorkoutDbHandler extends Database {
 			+ "(" + distance + ", " + workoutId + ", " + min + ", " + sec + ", " + "datetime('now')" + ", " + exerciseId + ");");
 		close();
 	}
+	
+	//SELECT * FROM SETS WHERE WorkoutId = '' AND ExerciseId = '';
 	
 }

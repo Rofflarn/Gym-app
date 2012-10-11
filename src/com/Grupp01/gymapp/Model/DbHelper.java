@@ -42,7 +42,7 @@ public class DbHelper extends SQLiteOpenHelper{
 		createExercises(db);
 		createMeasureDataTypes(db);
 		createExerciseTypes(db);
-		createWorkout(db);
+		createWorkouts(db);
 		createMeasures(db);
 		createMeasureData(db);		
 		createMuscles(db);
@@ -68,7 +68,7 @@ public class DbHelper extends SQLiteOpenHelper{
 			db.execSQL("DROP TABLE IF EXIST ExerciseTypes");
 			db.execSQL("DROP TABLE IF EXIST MeasureDataTypes");
 			db.execSQL("DROP TABLE IF EXIST MeasureData");
-			db.execSQL("DROP TABLE IF EXIST Workout");
+			db.execSQL("DROP TABLE IF EXIST Workouts");
 			db.execSQL("DROP TABLE IF EXIST Measures");
 			db.execSQL("DROP TABLE IF EXIST Muscles");
 			db.execSQL("DROP TABLE IF EXIST Sets");
@@ -91,7 +91,6 @@ public class DbHelper extends SQLiteOpenHelper{
 		db.execSQL("CREATE TABLE Exercises (ExerciseId INTEGER PRIMARY KEY AUTOINCREMENT, ExercisePri INTEGER, " +
 				"ExerciseSec INTEGER, ExerciseName TEXT NOT NULL, ExerciseDesc TEXT, ExerciseNote Text, " +
 				"ExerciseSportId INTEGER, ExerciseTypeId INTEGER);");
-		//db.execSQL("INSERT INTO Exercises(ExercisePri, ExerciseSec, ExerciseName, ExerciseTypeId) VALUES (2, , 'Sit-ups', 1);");
 		db.execSQL("INSERT INTO Exercises(ExercisePri, ExerciseSec, ExerciseName, ExerciseDesc, ExerciseNote, ExerciseTypeId) VALUES (3, 1, 'Chins', 'Desc', 'Note', 1);");
 		db.execSQL("INSERT INTO Exercises(ExercisePri, ExerciseSec, ExerciseName, ExerciseDesc, ExerciseNote, ExerciseTypeId) VALUES (1, 4, 'Bench press', 'Desc', 'Note', 2);");
 		db.execSQL("INSERT INTO Exercises(ExercisePri, ExerciseSec, ExerciseName, ExerciseTypeId) VALUES (1, 2, 'Push-ups', 3);");
@@ -144,9 +143,9 @@ public class DbHelper extends SQLiteOpenHelper{
 	 * @author Anders Gustafsson, Tobias Hallberg
 	 * @param db The SQLite database in which the table is added.
 	 */
-	private void createWorkout(SQLiteDatabase db)
+	private void createWorkouts(SQLiteDatabase db)
 	{
-		db.execSQL("CREATE TABLE Workout (WorkoutID INTEGER PRIMARY KEY AUTOINCREMENT, WorkoutTime TEXT NOT NULL, WorkoutName TEXT, " +
+		db.execSQL("CREATE TABLE Workouts (WorkoutID INTEGER PRIMARY KEY AUTOINCREMENT, WorkoutTime TEXT NOT NULL, WorkoutName TEXT, " +
 				"UserId INTEGER NOT NULL);");
 	}
 	
