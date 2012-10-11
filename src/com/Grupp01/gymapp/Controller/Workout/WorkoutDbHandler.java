@@ -40,7 +40,7 @@ public class WorkoutDbHandler extends Database {
 	 * Gets all exercises id and name from databasetable Exercises and puts these values into an IdName object. 
 	 * @return a LinkedList with type of IdName
 	 */
-	public List<IdName> getWorkoutIdName()
+	public List<IdName> getWorkoutsIdName()
 	{
 		
 		open();
@@ -178,8 +178,17 @@ public class WorkoutDbHandler extends Database {
 		close();
 	}
 	
-	//SELECT * FROM SETS WHERE WorkoutId = '' AND ExerciseId = '';
+	//SELECT * FROM SETS WHERE WorkoutId = '' AND ExerciseId = '' ORDER BY SetId DESC LIMIT 4;
 	
+	public void getExercises()
+	{
+		
+	}
+	
+	public void getExercisesCheckedByWorkoutTemplateId()
+	{
+		
+	}
 
 	public int getLastetCardioSetId()
 	{

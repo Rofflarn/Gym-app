@@ -160,12 +160,11 @@ public class ListWorkoutActivity extends SherlockActivity {
 		 mainListView = (ListView) findViewById( R.id.ListViewWorkouts );
 		 ArrayList<String> arrayWorkouts = new ArrayList<String>();
 		 
+		 
 		 //Add all the strings from stringarray to the ArrayList
-		  
-		 idNameList = dbHandler.getWorkoutsIdName();
 		 WorkoutDbHandler dbHandler = new WorkoutDbHandler(this); 
 		 dbHandler.open();
-		 idNameList = dbHandler.getWorkoutIdName();
+		 idNameList = dbHandler.getWorkoutsIdName();
 		 dbHandler.close();
 		 
 		 for(IdName temp: idNameList)
