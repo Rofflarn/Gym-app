@@ -62,6 +62,10 @@
       		android:name=".View.Workout.RegisterCardioActivity"
             android:label="@string/title_activity_register_cardio" 
             android:screenOrientation="portrait"/>
+        <activity
+      		android:name=".View.Profile.ProfileActivity"
+            android:label="@string/title_activity_profile" 
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
