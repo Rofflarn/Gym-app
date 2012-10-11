@@ -54,6 +54,8 @@ public class EditExerciseAcitivity extends SherlockActivity implements AdapterVi
 	private int exerciseId;
 	private ExerciseData exercise;
 	private ArrayList<String> listMuscles, listSports, listTrainingType;
+	private EditText comment, desc;
+	private List<IdName> idNameListMuscles, idNameListSports, idNameListTrainingType;
 	/**
 	 * Instantiates the class with necessary method calls, setting up the correct layout
 	 * and receiving the intent that started this activity
@@ -66,10 +68,9 @@ public class EditExerciseAcitivity extends SherlockActivity implements AdapterVi
 		
 		exerciseId = getIntent().getIntExtra(ListExerciseActivity.EXTRA_EXERCISE_NAME, 0);
 		getExerciseData();
-		
 
 		listTrainingType = getExerciseTypesFromDb();//get String-array from strings.xml
-		initSpinnerType(0); //initialize spinner with listener and set spinner to static
+		initSpinnerType(getPosById(exercise.getTypeId(), idNameListTrainingType)); //initialize spinner with listener and set spinner to static
 		
 	}
 	/**
@@ -108,9 +109,11 @@ public class EditExerciseAcitivity extends SherlockActivity implements AdapterVi
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, listMuscles);
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		spinnerPMuscle.setAdapter(adapter); //Sets the adapter to the spinner
+		spinnerPMuscle.setSelection(getPosById(exercise.getPri(), idNameListMuscles));
 		
 		spinnerSMuscle = (Spinner) findViewById(R.id.spinner_secondary_muscle);
 		spinnerSMuscle.setAdapter(adapter);
+		spinnerSMuscle.setSelection(getPosById(exercise.getSec(), idNameListMuscles));
 	}
 	public void initSpinnerCardio()
 	{
@@ -119,6 +122,7 @@ public class EditExerciseAcitivity extends SherlockActivity implements AdapterVi
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, listSports);
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		spinnerSport.setAdapter(adapter); //Sets the adapter to the spinner
+		spinnerSport.setSelection(getPosById(exercise.getSportId(),idNameListSports));
 	}
 	/**
 	 * Callback method to be invoked when an item in this view has been selected
@@ -152,15 +156,14 @@ public class EditExerciseAcitivity extends SherlockActivity implements AdapterVi
 		}
 	}
 	
-	
 	public void setTexts()
 	{
 		setTitle(exercise.getName());
 		
 		if((exercise.getNote() != null) && (exercise.getDesc() != null))
 		{
-			EditText comment = (EditText) findViewById(R.id.edit_comment);
-			EditText desc = (EditText) findViewById(R.id.edit_description);
+			comment = (EditText) findViewById(R.id.edit_comment);
+			desc = (EditText) findViewById(R.id.edit_description);
 			comment.setText(exercise.getNote());
 			desc.setText(exercise.getDesc());
 		}
@@ -178,6 +181,12 @@ public class EditExerciseAcitivity extends SherlockActivity implements AdapterVi
 	public void done(View view)
 	{
 		//Send data to database
+		putExerciseData();
+		EditExerciseDbHandler dbHandler = new EditExerciseDbHandler(this);
+		dbHandler.open();
+		dbHandler.editExercise(exercise);
+		dbHandler.close();
+		finish();
 	}
 	/**
 	 * <p>Callback method to be invoked when the </p><i>cancel-button</i><p> has been clicked, making the activity
@@ -191,10 +200,10 @@ public class EditExerciseAcitivity extends SherlockActivity implements AdapterVi
 	{
 		EditExerciseDbHandler get = new EditExerciseDbHandler(this);
 		get.open();
-		List<IdName>list = get.getMuscles();
+		idNameListMuscles = get.getMuscles();
 		get.close();
 		ArrayList<String> getIdName = new ArrayList<String>();
-		for (IdName idname : list)
+		for (IdName idname : idNameListMuscles)
 		{
 			getIdName.add(idname.getName());
 		}
@@ -204,10 +213,10 @@ public class EditExerciseAcitivity extends SherlockActivity implements AdapterVi
 	{
 		EditExerciseDbHandler get = new EditExerciseDbHandler(this);
 		get.open();
-		List<IdName>list = get.getSports();
+		idNameListSports = get.getSports();
 		get.close();
 		ArrayList<String> getIdName = new ArrayList<String>();
-		for (IdName idname : list)
+		for (IdName idname : idNameListSports)
 		{
 			getIdName.add(idname.getName());
 		}
@@ -218,10 +227,10 @@ public class EditExerciseAcitivity extends SherlockActivity implements AdapterVi
 	{
 		EditExerciseDbHandler get = new EditExerciseDbHandler(this);
 		get.open();
-		List<IdName>list = get.getExerciseTypes();
+		idNameListTrainingType = get.getExerciseTypes();
 		get.close();
 		ArrayList<String> getIdName = new ArrayList<String>();
-		for (IdName idname : list)
+		for (IdName idname : idNameListTrainingType)
 		{
 			getIdName.add(idname.getName());
 		}
@@ -234,5 +243,48 @@ public class EditExerciseAcitivity extends SherlockActivity implements AdapterVi
 		get.open();
 		exercise = get.getExerciseById(exerciseId);
 		get.close();
+	}
+	
+	private void putExerciseData()
+	{			
+		comment = (EditText) findViewById(R.id.edit_comment);
+		desc = (EditText) findViewById(R.id.edit_description);
+		spinnerType = (Spinner) findViewById(R.id.spinner_type_of_training);
+		spinnerPMuscle = (Spinner) findViewById(R.id.spinner_primary_muscle);
+		spinnerSMuscle = (Spinner) findViewById(R.id.spinner_secondary_muscle);
+		spinnerSport = (Spinner) findViewById(R.id.spinner_sport);
+		
+		System.out.println("andrar desc");
+		exercise.putDesc( (String)desc.getText().toString());
+		exercise.putNote( (String)comment.getText().toString());
+		System.out.println("andrar type");
+		exercise.putTypeId(idNameListTrainingType.get((Integer)spinnerType.getSelectedItemPosition()).getId());
+		System.out.println("krasch type");
+		if (!currentView.equals("Cardio"))
+		{
+			exercise.putPri(getIdByName((Integer)spinnerPMuscle.getSelectedItemPosition(), idNameListMuscles));
+			exercise.putSec(getIdByName((Integer)spinnerSMuscle.getSelectedItemPosition(), idNameListMuscles));
+		}
+		else
+			exercise.putSport(getIdByName((Integer)spinnerSport.getSelectedItemPosition(), idNameListSports));
+		
+		System.out.println("andring klar");
+	}
+	private int getIdByName(int pos, List<IdName> list)
+	{
+		return list.get(pos).getId();
+	}
+	private int getPosById(int id, List<IdName> list)
+	{
+		int pos = 0;
+		for (IdName idName : list)
+		{
+			if(idName.getId()==id)
+			{
+				return pos; 
+			}
+			pos++;
+		}
+		return 0;
 	}
 }

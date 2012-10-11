@@ -19,6 +19,8 @@ package com.Grupp01.gymapp.View.Workout;
 
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -30,6 +32,7 @@ import android.widget.Toast;
 import com.Grupp01.gymapp.MainActivity;
 import com.Grupp01.gymapp.R;
 import com.Grupp01.gymapp.Controller.Exercise.ExerciseData;
+import com.Grupp01.gymapp.Controller.Workout.CardioSets;
 import com.Grupp01.gymapp.Controller.Workout.WorkoutDbHandler;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
@@ -55,6 +58,7 @@ public class RegisterCardioActivity extends SherlockActivity {
 	private ArrayList<String> currentSets;	//The array where new sets is added (in form of REPSxWEIGHT)
 	private int exerciseId;
 	private int workoutId;
+	private List<CardioSets> cardioSetsList = new LinkedList<CardioSets>();
 	
 	/**
 	 * Set up the default layout and call initiate method that is required. 
@@ -75,7 +79,7 @@ public class RegisterCardioActivity extends SherlockActivity {
         //exercise was performed.
         setLastSetString();
         setNoteString();
-        
+        setLastestSetsString();        
      }
     
     
@@ -146,7 +150,11 @@ public class RegisterCardioActivity extends SherlockActivity {
     		
     	//OK button pressed, exit and save to database
     	case R.id.CardioButtonOK:
-    		saveSetsToDatabase();
+    		//adds all the added sets to database
+    		for(CardioSets cardiosets: cardioSetsList)
+    		{
+    			addCardioSet(cardiosets);
+    		}
     		finish();
     		break;
     		
@@ -167,10 +175,7 @@ public class RegisterCardioActivity extends SherlockActivity {
      * to the database before this activity terminates.
      * 
      */
-    private void saveSetsToDatabase() {
-    	Toast.makeText(this, "will close this activity and save", Toast.LENGTH_SHORT).show();
-		
-	}
+  
 
 
 
@@ -209,12 +214,11 @@ public class RegisterCardioActivity extends SherlockActivity {
 		//else add the information to the array and update information in the view
 		else{
 			currentSets.add(minutes + ":" + seconds + "x" + distance);
-			WorkoutDbHandler dbHandler = new WorkoutDbHandler(this);
-			dbHandler.open();
+			
 			Integer min = Integer.parseInt(editMinutes.getText().toString());
 			Integer sec = Integer.parseInt(editSeconds.getText().toString());
 			Integer dist = Integer.parseInt(editDistance.getText().toString());
-			dbHandler.addCardioSet(sec, min, dist, workoutId, exerciseId);
+			cardioSetsList.add(new CardioSets(sec,min,dist,workoutId,exerciseId));
 			updateView();
 			
 		}
@@ -253,6 +257,16 @@ public class RegisterCardioActivity extends SherlockActivity {
 	private void removeLatestSet() {
 		if(currentSets.size() > 0)
 			currentSets.remove(currentSets.size() -1);
+		//removeLatestCardioSet(getLatestSetId());	//Deletes the latest added Cardioset from database	
+		if(cardioSetsList.size() == 0)
+		{
+			Toast.makeText(this, "No Set to Delete", Toast.LENGTH_SHORT).show();
+		}
+		else
+		{
+			cardioSetsList.remove((cardioSetsList.size()-1));
+		}
+		
 		updateView();
 	}
 	
@@ -266,5 +280,65 @@ public class RegisterCardioActivity extends SherlockActivity {
         exercise = dbHandler.getExerciseDataFromExerciseId(exerciseId);
         dbHandler.close();
 		
+	}
+	
+	private void setLastestSetsString()
+	{
+		List<CardioSets> cardioSetsList = new LinkedList<CardioSets>();
+		WorkoutDbHandler dbHandler = new WorkoutDbHandler(this);
+		StringBuffer sets = new StringBuffer();
+		TextView latestSets = (TextView) findViewById(R.id.lastTimeSetsCardio);
+        dbHandler.open();
+        cardioSetsList = dbHandler.getPreviouslySets(workoutId, exerciseId);
+		for(CardioSets cardioSet: cardioSetsList)
+		{
+			sets.append(cardioSet.getDuration());
+			sets.append(" ");
+			sets.append(cardioSet.getDistance());
+			sets.append("km | ");
+		}
+		dbHandler.close();
+		latestSets.setText(sets);       
+	}
+	
+	private int getLatestSetId()
+	{
+		WorkoutDbHandler dbHandler = new WorkoutDbHandler(this);
+        dbHandler.open();
+        int latestSetId = dbHandler.getLatestCardioSetId();
+        dbHandler.close();
+        if(latestSetId > 0)
+        {
+        	return latestSetId;
+        }
+        else
+        {
+        	
+        	return 0;
+        }
+        
+	}
+	
+	private void removeLatestCardioSet(int cardioSetId)
+	{
+		if(cardioSetId==0)
+		{
+			
+		}
+		else
+		{
+		WorkoutDbHandler dbHandler = new WorkoutDbHandler(this);
+        dbHandler.open();
+        dbHandler.removeLatestCardioSet(cardioSetId);
+        dbHandler.close();
+		}
+	}
+	
+	private void addCardioSet(CardioSets cardioSet)
+	{
+		WorkoutDbHandler dbHandler = new WorkoutDbHandler(this);
+		dbHandler.open();
+		dbHandler.addCardioSet(cardioSet.getSec(), cardioSet.getMin(), cardioSet.getDistance(), cardioSet.getworkoutId(), cardioSet.getexerciseid());
+		dbHandler.close();
 	}
 }

@@ -180,12 +180,29 @@ public class WorkoutDbHandler extends Database {
 		close();
 	}
 	
-	//SELECT * FROM SETS WHERE WorkoutId = '' AND ExerciseId = '' ORDER BY SetId DESC LIMIT 4;
-	
-	public void getExercises()
+
+	public List<CardioSets> getPreviouslySets(int workoutId, int exerciseId)
 	{
-		
+		System.out.println("Inne i get PreviouslySets");
+		List<CardioSets> cardioSetsList = new LinkedList<CardioSets>();
+		open();
+		Cursor c = ourDatabase.rawQuery("SELECT * FROM SETS WHERE WorkoutId = " +"workoutId" +" AND ExerciseId = " + exerciseId + " ORDER BY SetId "
+				+"DESC LIMIT 4;", null);
+		c.moveToFirst();
+		int duration = c.getColumnIndex("SetDuration");
+		int distance = c.getColumnIndex("SetDistance");
+		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext())
+		{
+			System.out.println("Inne i get PreviouslySetsFoorloop");
+			String durationString = (((int) (c.getInt(duration) / 3600)) + ":" + (((int) (c.getInt(duration) / 60)) % 60) + ":" + (c.getInt(duration) % 60)); 
+			cardioSetsList.add(new CardioSets(durationString,c.getInt(distance)));
+		}
+		System.out.println("Efter Lopp");
+		c.close();
+		close();
+		return cardioSetsList;
 	}
+	
 	
 	public ArrayList<ExerciseListElementData> getExercisesCheckedByWorkoutTemplateId(int WorkoutTemplateId)
 	{
@@ -220,13 +237,24 @@ public class WorkoutDbHandler extends Database {
 		return list;
 	}
 
-	public int getLastetCardioSetId()
+	public int getLatestCardioSetId()
+
 	{
-		return 1;
+		open();
+		Cursor c = ourDatabase.rawQuery("SELECT MAX(SetId) FROM Sets", null);
+		c.moveToFirst();
+		int latestRowId = c.getInt(0);
+		System.out.println(c.getInt(0));
+		c.close();
+		close();
+		return latestRowId;
 	}
 	
-	public void removeCardioSet()
+	public void removeLatestCardioSet(int setCardioId)
 	{
-		
+		open();
+		ourDatabase.execSQL("DELETE FROM Sets WHERE SetId="+setCardioId+";");
+		getLatestCardioSetId();
+		close();
 	}
 }
