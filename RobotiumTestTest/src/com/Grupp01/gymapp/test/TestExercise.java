@@ -3,6 +3,8 @@ package com.Grupp01.gymapp.test;
 import android.test.ActivityInstrumentationTestCase2;
 
 import com.Grupp01.gymapp.MainActivity;
+import com.Grupp01.gymapp.View.Exercise.AddExercise;
+import com.Grupp01.gymapp.View.Exercise.ListExerciseActivity;
 import com.jayway.android.robotium.solo.Solo;
 
 public class TestExercise extends ActivityInstrumentationTestCase2<MainActivity> {
@@ -20,12 +22,14 @@ public class TestExercise extends ActivityInstrumentationTestCase2<MainActivity>
 	public void testViewAllExercises()
 	{
 		solo.clickOnImageButton(1);
+		solo.assertCurrentActivity("View Exercise activity", ListExerciseActivity.class);
 	}
 	
 	public void testExerciseHomeButton()
 	{
 		solo.clickOnImageButton(1);
 		solo.clickOnActionBarHomeButton();
+		solo.assertCurrentActivity("View Main activity", MainActivity.class);
 	}
 	
 	public void testEnterNameNewExercise()
@@ -34,6 +38,7 @@ public class TestExercise extends ActivityInstrumentationTestCase2<MainActivity>
 		solo.clickOnMenuItem("ADD EXCERSICE!");
 		solo.enterText(0, "Exercise Name");
 		solo.clickOnButton(1);
+		solo.assertCurrentActivity("View Add exercise activity", AddExercise.class);
 	}
 	
 	public void testAddExerciseMinimalSettingsCardio()
@@ -138,6 +143,7 @@ public class TestExercise extends ActivityInstrumentationTestCase2<MainActivity>
 		solo.enterText(0, "Exercise Name");
 		solo.clickOnButton(1);
 		solo.clickOnButton(1);
+		solo.assertCurrentActivity("View ListExercise Activity", ListExerciseActivity.class);
 	}
 	
 	public void testAbortingEditExercise()
@@ -145,6 +151,7 @@ public class TestExercise extends ActivityInstrumentationTestCase2<MainActivity>
 		solo.clickOnImageButton(1);
 		solo.clickInList(0);
 		solo.clickOnButton(1);
+		solo.assertCurrentActivity("View ListExercise Activity", ListExerciseActivity.class);
 	}
 
 	protected void tearDown() throws Exception {
