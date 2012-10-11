@@ -106,7 +106,7 @@ public class ExerciseData {
 		this.note = note;
 	}
 	
-	public void putTyepId(int typeId)
+	public void putTypeId(int typeId)
 	{
 		this.typeId = typeId;
 	}
