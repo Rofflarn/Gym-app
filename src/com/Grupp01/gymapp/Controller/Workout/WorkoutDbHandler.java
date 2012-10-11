@@ -1,3 +1,20 @@
+/*This file is part of Gymapp.
+*
+*   Gymapp is free software: you can redistribute it and/or modify
+*   it under the terms of the GNU General Public License as published by
+*   the Free Software Foundation, either version 3 of the License, or
+*   (at your option) any later version.
+*
+*   Gymapp is distributed in the hope that it will be useful,
+*   but WITHOUT ANY WARRANTY; without even the implied warranty of
+*   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+*   GNU General Public License for more details.
+*
+*   You should have received a copy of the GNU General Public License
+*  along with Gymapp.  If not, see <http://www.gnu.org/licenses/>.
+*
+*/
+
 package com.Grupp01.gymapp.Controller.Workout;
 
 import java.util.LinkedList;
@@ -10,14 +27,18 @@ import com.Grupp01.gymapp.Controller.IdName;
 import com.Grupp01.gymapp.Controller.Exercise.ExerciseData;
 import com.Grupp01.gymapp.Model.Database;
 
-public class ListWorkoutDbHandler extends Database {
+public class WorkoutDbHandler extends Database {
 
 	
-	public ListWorkoutDbHandler(Context c)
+	public WorkoutDbHandler(Context c)
 	{
 		super(c);
 	}
 	
+	/**
+	 * Gets all exercises id and name from databasetable Exercises and puts these values into an IdName object. 
+	 * @return a LinkedList with type of IdName
+	 */
 	public List<IdName> getWorkoutIdName()
 	{
 		
@@ -114,6 +135,12 @@ public class ListWorkoutDbHandler extends Database {
 
 	}
 	
+	/**
+	 * Gets an Exercise by ExerciseId from Exercises table in database.
+	 * 
+	 * @param exerciseId
+	 * @return a Exercise in form of a ExerciseData object
+	 */
 	public ExerciseData getExerciseDataFromExerciseId(int exerciseId)
 	{
 		open();
@@ -123,23 +150,40 @@ public class ListWorkoutDbHandler extends Database {
 		int pri = c.getColumnIndex("ExercisePri");
 		int sec = c.getColumnIndex("ExerciseSec");
 		int name = c.getColumnIndex("ExerciseName");
-		int note = c.getColumnIndex("ExerciseDesc");
-		int desc = c.getColumnIndex("ExerciseNote");
+		int desc = c.getColumnIndex("ExerciseDesc");
+		int note = c.getColumnIndex("ExerciseNote");
+		int sportid = c.getColumnIndex("ExerciseSportId");
 		int type = c.getColumnIndex("ExerciseTypeId");
-		int sportid = c.getColumnIndex("SportId");
-		ExerciseData temp = new ExerciseData(c.getInt(id), c.getInt(pri), c.getInt(sec), c.getString(name), c.getString(note), c.getString(desc), c.getInt(sportid), c.getInt(type));
+		ExerciseData temp = new ExerciseData(c.getInt(id), c.getInt(pri), c.getInt(sec), c.getString(name), c.getString(desc), c.getString(note), c.getInt(sportid), c.getInt(type));
 		c.close();
 		close();
 		return temp;
 	}
 	
-	
-	public void addCardioSet(int min, int sec, float distance, int workoutId, int exerciseId)
+	/**
+	 * Adds a Cardioset into Databasetable Sets
+	 * @param min
+	 * @param sec
+	 * @param distance
+	 * @param workoutId
+	 * @param exerciseId
+	 */
+	public void addCardioSet(int sec, int min, float distance, int workoutId, int exerciseId)
 	{
+		int duration = sec + (min*60);
 		open();
-	ourDatabase.execSQL("INSERT INTO Sets (SetDistance, WorkoutId, SetDurationMin, SetDurationSec, SetTime, ExerciseId) VALUES "
-			+ "(" + distance + ", " + workoutId + ", " + min + ", " + sec + ", " + "datetime('now')" + ", " + exerciseId + ");");
+	ourDatabase.execSQL("INSERT INTO Sets (SetDistance, WorkoutId, SetDuration, SetTime, ExerciseId) VALUES "
+			+ "(" + distance + ", " + workoutId + ", " + duration +  ", " + "datetime('now')" + ", " + exerciseId + ");");
 		close();
 	}
 	
+	public int getLastetCardioSetId()
+	{
+		return 1;
+	}
+	
+	public void removeCardioSet()
+	{
+		
+	}
 }
