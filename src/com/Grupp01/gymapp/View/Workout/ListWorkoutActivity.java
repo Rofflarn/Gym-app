@@ -164,7 +164,7 @@ public class ListWorkoutActivity extends SherlockActivity {
 		  
 		 WorkoutDbHandler dbHandler = new WorkoutDbHandler(this); 
 		 dbHandler.open();
-		 idNameList = dbHandler.getWorkoutIdName();
+		 idNameList = dbHandler.getWorkoutsIdName();
 		 dbHandler.close();
 		 
 		 for(IdName temp: idNameList)
