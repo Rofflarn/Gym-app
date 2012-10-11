@@ -73,7 +73,7 @@ public class ListExerciseActivity extends SherlockActivity implements OnClickLis
     	
     	//Setups the listview
     	listElements = new ArrayList<String>();
-    	elementAdapter = new ArrayAdapter<String>(this, R.layout.thelist_row, listElements);
+    	elementAdapter = new ArrayAdapter<String>(this, R.layout.list_simple_row, listElements);
     	((ListView)findViewById(R.id.theList)).setAdapter(elementAdapter);
     	((ListView)findViewById(R.id.theList)).setOnItemClickListener(this);
     	
