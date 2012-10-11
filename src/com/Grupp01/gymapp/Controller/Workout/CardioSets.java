@@ -7,6 +7,7 @@ public class CardioSets {
 	private int distance;
 	private int workoutId;
 	private int exerciseId;
+	private String duration;
 	
 	public CardioSets(int min, int sec,int dist, int workoutId, int exerciseId)
 	{
@@ -15,6 +16,12 @@ public class CardioSets {
 		this.distance = dist;
 		this.workoutId = workoutId;
 		this.exerciseId = exerciseId;
+	}
+	
+	public CardioSets(String duration, int distance)
+	{
+		this.duration = duration;
+		this.distance = distance;
 	}
 	
 	public int getMin()
@@ -40,6 +47,11 @@ public class CardioSets {
 	public int getexerciseid()
 	{
 		return exerciseId;
+	}
+	
+	public String getDuration()
+	{
+		return duration;
 	}
 	
 	

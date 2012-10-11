@@ -79,8 +79,7 @@ public class RegisterCardioActivity extends SherlockActivity {
         //exercise was performed.
         setLastSetString();
         setNoteString();
-        
-        
+        setLastestSetsString();        
      }
     
     
@@ -220,7 +219,6 @@ public class RegisterCardioActivity extends SherlockActivity {
 			Integer sec = Integer.parseInt(editSeconds.getText().toString());
 			Integer dist = Integer.parseInt(editDistance.getText().toString());
 			cardioSetsList.add(new CardioSets(sec,min,dist,workoutId,exerciseId));
-			
 			updateView();
 			
 		}
@@ -282,6 +280,25 @@ public class RegisterCardioActivity extends SherlockActivity {
         exercise = dbHandler.getExerciseDataFromExerciseId(exerciseId);
         dbHandler.close();
 		
+	}
+	
+	private void setLastestSetsString()
+	{
+		List<CardioSets> cardioSetsList = new LinkedList<CardioSets>();
+		WorkoutDbHandler dbHandler = new WorkoutDbHandler(this);
+		StringBuffer sets = new StringBuffer();
+		TextView latestSets = (TextView) findViewById(R.id.lastTimeSetsCardio);
+        dbHandler.open();
+        cardioSetsList = dbHandler.getPreviouslySets(workoutId, exerciseId);
+		for(CardioSets cardioSet: cardioSetsList)
+		{
+			sets.append(cardioSet.getDuration());
+			sets.append(" ");
+			sets.append(cardioSet.getDistance());
+			sets.append("km | ");
+		}
+		dbHandler.close();
+		latestSets.setText(sets);       
 	}
 	
 	private int getLatestSetId()

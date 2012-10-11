@@ -56,7 +56,6 @@ public class EditWorkoutActivity extends SherlockActivity implements OnItemSelec
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
         workoutName = intent.getStringExtra(ListWorkoutActivity.WORKOUT_NAME);
-        
         setContentView(R.layout.editworkout);
         createEditWorkout();
         
