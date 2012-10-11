@@ -161,6 +161,7 @@ public class ListWorkoutActivity extends SherlockActivity {
 		 ArrayList<String> arrayWorkouts = new ArrayList<String>();
 		 
 		 //Add all the strings from stringarray to the ArrayList
+		  
 		 WorkoutDbHandler dbHandler = new WorkoutDbHandler(this); 
 		 dbHandler.open();
 		 idNameList = dbHandler.getWorkoutIdName();

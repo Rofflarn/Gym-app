@@ -19,6 +19,7 @@ package com.Grupp01.gymapp.Controller.Exercise;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -52,7 +53,6 @@ public class EditExerciseDbHandler extends Database {
 			close();
 			return temp;
 		}
-		
 
 		public List<IdName> getExerciseTypes()
 		{
@@ -109,15 +109,10 @@ public class EditExerciseDbHandler extends Database {
 		public void editExercise(ExerciseData exerciseData)
 		{
 			open();
-			//int id, int exercisePri, int exerciseSec, String exerciseName, String exerciseDesc, String exerciseNote, int sportId, int exerciseTypeId)
-			//ExerciseData test = new ExerciseData(1, 2, 3, "Testing", "EditedD2325esc", "EditedN234ote", 1, 2);
-			//exerciseData = test;
-			//ourDatabase.update(Exercises, values, whereClause, whereArgs)
-			
-			String tmp2 = "UPDATE Exercises SET ExercisePri = '" + exerciseData.getPri() + "', ExerciseSec = '" + exerciseData.getSec() + "', ExerciseDesc = '" + exerciseData.getDesc() + "', ExerciseNote = '" + exerciseData.getNote() + "', ExerciseSportId = '" + exerciseData.getSportId() + "', ExerciseTypeId = '" + exerciseData.getTypeId() + "' WHERE ExerciseId = '" + exerciseData.getId() + "';";
-			System.out.println(tmp2);
-					
-			ourDatabase.execSQL(tmp2);
+			ourDatabase.execSQL("UPDATE Exercises SET ExercisePri = '" + exerciseData.getPri() + "', ExerciseSec = '" +
+					exerciseData.getSec() + "', ExerciseDesc = '" + exerciseData.getDesc() + "', ExerciseNote = '" + 
+					exerciseData.getNote() + "', ExerciseSportId = '" + exerciseData.getSportId() + "', ExerciseTypeId = '" + 
+					exerciseData.getTypeId() + "' WHERE ExerciseId = '" + exerciseData.getId() + "';");
 			close();
 		}
 		/*

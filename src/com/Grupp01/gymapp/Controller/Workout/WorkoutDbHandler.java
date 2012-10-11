@@ -35,6 +35,7 @@ public class WorkoutDbHandler extends Database {
 		super(c);
 	}
 	
+
 	/**
 	 * Gets all exercises id and name from databasetable Exercises and puts these values into an IdName object. 
 	 * @return a LinkedList with type of IdName
@@ -177,7 +178,14 @@ public class WorkoutDbHandler extends Database {
 		close();
 	}
 	
+
+
+
+	//SELECT * FROM SETS WHERE WorkoutId = '' AND ExerciseId = '';
+	
+
 	public int getLatestCardioSetId()
+
 	{
 		open();
 		Cursor c = ourDatabase.rawQuery("SELECT MAX(SetId) FROM Sets", null);
