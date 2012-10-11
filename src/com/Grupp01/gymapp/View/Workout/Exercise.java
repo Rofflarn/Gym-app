@@ -31,6 +31,7 @@ package com.Grupp01.gymapp.View.Workout;
  *  */	
  public class Exercise 
 {  
+ 
   private String name = "" ;  
   private boolean checked = false ;
   

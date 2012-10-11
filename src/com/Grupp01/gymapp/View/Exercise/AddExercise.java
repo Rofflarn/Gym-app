@@ -21,15 +21,12 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import com.Grupp01.gymapp.R;
-import com.Grupp01.gymapp.R.array;
-import com.Grupp01.gymapp.R.id;
-import com.Grupp01.gymapp.R.layout;
-import com.Grupp01.gymapp.R.menu;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;

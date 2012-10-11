@@ -9,6 +9,6 @@
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/Gymapp"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/com.Grupp01.gymapp.MainActivity"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>
