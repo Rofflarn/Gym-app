@@ -19,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/spinner_type_of_training"
-            android:text="@string/string_type_of_training"
+            android:text="@string/string_primary_muscle"
             tools:context=".AddExercise" />
 
         <TextView
@@ -27,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/spinner_primary_muscle"
-            android:text="@string/string_type_of_training"
+            android:text="@string/string_secondary_muscle"
             tools:context=".AddExercise" />
 
         <TextView
@@ -101,6 +101,7 @@
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="1.0"
+                android:onClick="done"
                 android:text="@string/string_done" />
 
             <Button
@@ -108,8 +109,8 @@
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="1.0"
-                android:text="@string/string_cancel"
-                android:onClick="cancel" />
+                android:onClick="cancel"
+                android:text="@string/string_cancel" />
         </LinearLayout>
     </RelativeLayout>
 
