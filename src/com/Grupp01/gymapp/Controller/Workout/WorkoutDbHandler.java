@@ -17,6 +17,7 @@
 
 package com.Grupp01.gymapp.Controller.Workout;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -26,6 +27,7 @@ import android.database.Cursor;
 import com.Grupp01.gymapp.Controller.IdName;
 import com.Grupp01.gymapp.Controller.Exercise.ExerciseData;
 import com.Grupp01.gymapp.Model.Database;
+import com.Grupp01.gymapp.View.Workout.ExerciseListElementData;
 
 public class WorkoutDbHandler extends Database {
 
@@ -185,9 +187,37 @@ public class WorkoutDbHandler extends Database {
 		
 	}
 	
-	public void getExercisesCheckedByWorkoutTemplateId()
+	public ArrayList<ExerciseListElementData> getExercisesCheckedByWorkoutTemplateId(int WorkoutTemplateId)
 	{
+		open();
 		
+		ArrayList<ExerciseListElementData> list = new ArrayList<ExerciseListElementData>();
+		
+		Cursor c1 = ourDatabase.rawQuery("SELECT ExerciseId, ExerciseName FROM Exercises;", null);
+		Cursor c2 = ourDatabase.rawQuery("SELECT * FROM WorkoutTemplateExercises WHERE WorkoutTemplateId = '" + WorkoutTemplateId + "';" , null);
+		
+		int c1Id = c1.getColumnIndex("ExerciseId");
+		int c2Id = c2.getColumnIndex("ExerciseId");
+		int name = c1.getColumnIndex("ExerciseName");
+		
+		for(c1.moveToFirst(); !c1.isAfterLast(); c1.moveToNext())
+		{
+			boolean isChecked = false;
+			
+			for(c2.moveToFirst(); !c2.isAfterLast(); c2.moveToNext())
+			{
+				if(c1.getInt(c1Id) == c2.getInt(c2Id))
+				{
+					isChecked = true;
+				}
+			}
+			
+			ExerciseListElementData exerciseListElementData = new ExerciseListElementData(c1.getInt(c1Id), c1.getString(name), isChecked);
+			list.add(exerciseListElementData);
+		}
+		close();
+		
+		return list;
 	}
 
 	public int getLastetCardioSetId()

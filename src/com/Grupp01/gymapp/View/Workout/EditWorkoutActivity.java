@@ -30,6 +30,7 @@ import android.widget.ListView;
 import android.widget.Spinner;
 
 import com.Grupp01.gymapp.R;
+import com.Grupp01.gymapp.Controller.Workout.WorkoutDbHandler;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 
@@ -41,9 +42,9 @@ public class EditWorkoutActivity extends SherlockActivity implements OnItemSelec
 {
 	
 	private ListView listView;
-	private ArrayAdapter<Exercise> listAdapter;
-	private String workoutName;
-    public ArrayList<Exercise> exerciseList = new ArrayList<Exercise>();
+	private ArrayAdapter<ExerciseListElementData> listAdapter;
+	private int workoutId;
+    public ArrayList<ExerciseListElementData> exerciseList = new ArrayList<ExerciseListElementData>();
 	  
 	  
 	String[] muscleGroups = { "Hej", "detta", "är", "Robert", "och", "Anders",
@@ -55,7 +56,7 @@ public class EditWorkoutActivity extends SherlockActivity implements OnItemSelec
 	{
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
-        workoutName = intent.getStringExtra(ListWorkoutActivity.WORKOUT_NAME);
+        workoutId = intent.getIntExtra(WorkoutActivity.EXTRA_EXERCISE_ID, 0);
         
         setContentView(R.layout.editworkout);
         createEditWorkout();
@@ -69,7 +70,7 @@ public class EditWorkoutActivity extends SherlockActivity implements OnItemSelec
           getSupportActionBar().setHomeButtonEnabled(true);
           
           //Set the title to the name of the workout
-          getSupportActionBar().setTitle(workoutName);
+          //getSupportActionBar().setTitle(workoutName);
           return false;
       }
       public void createEditWorkout()
@@ -81,7 +82,7 @@ public class EditWorkoutActivity extends SherlockActivity implements OnItemSelec
 	        listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
 	        {
 	            /*** 
-	             * Is called when the user press a Exercise in the workout, when
+	         u    * Is called when the user press a Exercise in the workout, when
 	             * a user click on a exercise, the exercise is getting checked
 	             * If the exercise already was checked when clicked, it is getting unchecked
 	             * * 
@@ -92,7 +93,7 @@ public class EditWorkoutActivity extends SherlockActivity implements OnItemSelec
 	            @Override  
 	            public void onItemClick( AdapterView<?> parent, View item,   int position, long id) 
 	            {  
-	              Exercise Exercise = listAdapter.getItem( position );
+	              ExerciseListElementData Exercise = listAdapter.getItem( position );
 	              Exercise.toogleChecked();
 	              ExerciseViewHolder viewHolder = (ExerciseViewHolder) item.getTag();
 	              viewHolder.getCheckBox().setChecked( Exercise.isChecked() );
@@ -103,9 +104,11 @@ public class EditWorkoutActivity extends SherlockActivity implements OnItemSelec
 	    //Create spinners and add listeners to them.
 	    Spinner spinnerMuscleGroup = (Spinner) findViewById(R.id.spinnermusclegroup);
 	  	spinnerMuscleGroup.setOnItemSelectedListener((OnItemSelectedListener) this);
+	  	spinnerMuscleGroup.setVisibility(View.GONE);
 	  		
 	  	Spinner spinnerMuscle = (Spinner) findViewById(R.id.spinnermuscle);
 	  	spinnerMuscle.setOnItemSelectedListener(this);
+	  	spinnerMuscle.setVisibility(View.GONE);
 	  		
 	
 	  	//Creates ArrayAdapters that contains a String-Array	
@@ -125,19 +128,17 @@ public class EditWorkoutActivity extends SherlockActivity implements OnItemSelec
           // Since we don't have a database we manually put in exercises
           //Could use a Arraylist directly but we use a String since we will load
           //String-Arrays from the database we use a String-array here
-          if ( exerciseList.isEmpty() )
+          /*if ( exerciseList.isEmpty() )
           {
-          	exerciseList.add(new Exercise("hejja",false));
-          	exerciseList.add(new Exercise("nbvn",false));
-          	exerciseList.add(new Exercise("jyytj",false));
-          	exerciseList.add(new Exercise("eqwe",true));
-          	exerciseList.add(new Exercise("hej",false));
-          	exerciseList.add(new Exercise("hejasd",true));
-          	exerciseList.add(new Exercise("hejf",false));
-          	exerciseList.add(new Exercise("hejzxc",false));
-          	exerciseList.add(new Exercise("31234",false));
-          	exerciseList.add(new Exercise("zxczc",false));	
-          }
+          	exerciseList.add(new ExerciseListElementData(2, "hejja",false));
+          	
+          }*/
+	  	
+	  	 WorkoutDbHandler dbHandler = new WorkoutDbHandler(this); 
+		 dbHandler.open();
+		 exerciseList = dbHandler.getExercisesCheckedByWorkoutTemplateId(workoutId);
+		 dbHandler.close();
+	  	
           
           // Set our custom Arrayadapter as the ListView's adapter.
           listAdapter = new ExerciseArrayAdapter(this, exerciseList);
