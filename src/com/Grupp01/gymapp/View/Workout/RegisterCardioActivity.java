@@ -30,7 +30,7 @@ import android.widget.Toast;
 import com.Grupp01.gymapp.MainActivity;
 import com.Grupp01.gymapp.R;
 import com.Grupp01.gymapp.Controller.Exercise.ExerciseData;
-import com.Grupp01.gymapp.Controller.Workout.ListWorkoutDbHandler;
+import com.Grupp01.gymapp.Controller.Workout.WorkoutDbHandler;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
@@ -74,6 +74,7 @@ public class RegisterCardioActivity extends SherlockActivity {
         //Show the sets (reps and weight) for the last time this
         //exercise was performed.
         setLastSetString();
+        setNoteString();
         
      }
     
@@ -124,10 +125,10 @@ public class RegisterCardioActivity extends SherlockActivity {
 		
 	}
     
-    private void setNoteString(String note)
+    private void setNoteString()
     {
-    	TextView notes = (TextView) findViewById(R.id.noteText);
-    	notes.setText(note);
+    	TextView notes = (TextView) findViewById(R.id.myNoteTextCardio);
+    	notes.setText(exercise.getNote());
     }
     
     
@@ -208,12 +209,12 @@ public class RegisterCardioActivity extends SherlockActivity {
 		//else add the information to the array and update information in the view
 		else{
 			currentSets.add(minutes + ":" + seconds + "x" + distance);
-			ListWorkoutDbHandler dbHandler = new ListWorkoutDbHandler(this);
+			WorkoutDbHandler dbHandler = new WorkoutDbHandler(this);
 			dbHandler.open();
 			Integer min = Integer.parseInt(editMinutes.getText().toString());
 			Integer sec = Integer.parseInt(editSeconds.getText().toString());
 			Integer dist = Integer.parseInt(editDistance.getText().toString());
-			dbHandler.addCardioSet(min, sec, dist, workoutId, exerciseId);
+			dbHandler.addCardioSet(sec, min, dist, workoutId, exerciseId);
 			updateView();
 			
 		}
@@ -260,7 +261,7 @@ public class RegisterCardioActivity extends SherlockActivity {
 	 */
 	private void getExerciseData()
 	{
-		ListWorkoutDbHandler dbHandler = new ListWorkoutDbHandler(this);
+		WorkoutDbHandler dbHandler = new WorkoutDbHandler(this);
         dbHandler.open();
         exercise = dbHandler.getExerciseDataFromExerciseId(exerciseId);
         dbHandler.close();

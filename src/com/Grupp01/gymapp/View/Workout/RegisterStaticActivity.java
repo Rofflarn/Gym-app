@@ -28,7 +28,7 @@ import android.widget.Toast;
 import com.Grupp01.gymapp.MainActivity;
 import com.Grupp01.gymapp.R;
 import com.Grupp01.gymapp.Controller.Exercise.ExerciseData;
-import com.Grupp01.gymapp.Controller.Workout.ListWorkoutDbHandler;
+import com.Grupp01.gymapp.Controller.Workout.WorkoutDbHandler;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
@@ -236,7 +236,7 @@ public class RegisterStaticActivity extends SherlockActivity {
 	
 	private void getExerciseData()
 	{
-		ListWorkoutDbHandler dbHandler = new ListWorkoutDbHandler(this);
+		WorkoutDbHandler dbHandler = new WorkoutDbHandler(this);
         dbHandler.open();
         exercise = dbHandler.getExerciseDataFromExerciseId(exerciseId);
         dbHandler.close();

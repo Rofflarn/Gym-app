@@ -36,7 +36,7 @@ import android.widget.Toast;
 import com.Grupp01.gymapp.MainActivity;
 import com.Grupp01.gymapp.R;
 import com.Grupp01.gymapp.Controller.IdName;
-import com.Grupp01.gymapp.Controller.Workout.ListWorkoutDbHandler;
+import com.Grupp01.gymapp.Controller.Workout.WorkoutDbHandler;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
@@ -62,13 +62,12 @@ public class ListWorkoutActivity extends SherlockActivity {
 	private ListView mainListView ;  					//This is the listview where the list of all workouts will be shown
 	private ArrayAdapter<String> listAdapter ;  		//Adapter used for the list
 	private List<IdName> idNameList;
-	ListWorkoutDbHandler dbHandler;
+	
 
 	@Override
     public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.list_workout);
-		dbHandler = new ListWorkoutDbHandler(this);
 		createWorkoutList();
 	}
 	
@@ -164,6 +163,9 @@ public class ListWorkoutActivity extends SherlockActivity {
 		 //Add all the strings from stringarray to the ArrayList
 		  
 		 idNameList = dbHandler.getWorkoutsIdName();
+		 WorkoutDbHandler dbHandler = new WorkoutDbHandler(this); 
+		 dbHandler.open();
+		 idNameList = dbHandler.getWorkoutIdName();
 		 dbHandler.close();
 		 
 		 for(IdName temp: idNameList)
@@ -321,6 +323,7 @@ public class ListWorkoutActivity extends SherlockActivity {
      */
     private void newWorkoutToDatabase(String workoutName)
     {
+    	WorkoutDbHandler dbHandler = new WorkoutDbHandler(this);
     	dbHandler.open();
  		dbHandler.putNewWorkout(workoutName);
  		dbHandler.close();
