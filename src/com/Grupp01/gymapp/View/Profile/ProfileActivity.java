@@ -88,6 +88,11 @@ public class ProfileActivity extends SherlockActivity {
     	}
     }
     
+    /**
+     * When the user pushs cancel.
+     * 
+     * @param view
+     */
     public void cancel(View view)
     {
     	finish();
