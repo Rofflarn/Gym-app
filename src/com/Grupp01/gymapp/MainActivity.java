@@ -35,7 +35,6 @@ public class MainActivity extends SherlockActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        databasen.open();
     }
     //Kommentar
     @Override
@@ -66,7 +65,6 @@ public class MainActivity extends SherlockActivity {
     */
     public void exercise(View view)
     {
-    	databasen.close();
     	Intent exercise = new Intent(this, ListExerciseActivity.class);
     	startActivity(exercise);
     }

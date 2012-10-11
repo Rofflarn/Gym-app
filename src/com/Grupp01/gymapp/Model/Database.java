@@ -1,6 +1,21 @@
+/*This file is part of Gymapp.
+*
+*   Gymapp is free software: you can redistribute it and/or modify
+*   it under the terms of the GNU General Public License as published by
+*   the Free Software Foundation, either version 3 of the License, or
+*   (at your option) any later version.
+*
+*   Gymapp is distributed in the hope that it will be useful,
+*   but WITHOUT ANY WARRANTY; without even the implied warranty of
+*   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+*   GNU General Public License for more details.
+*
+*   You should have received a copy of the GNU General Public License
+*  along with Gymapp.  If not, see <http://www.gnu.org/licenses/>.
+*
+*/
 package com.Grupp01.gymapp.Model;
 
-import java.util.ArrayList;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -41,17 +56,18 @@ public class Database {
 		ourDatabase = ourHelper.getWritableDatabase();
 		return this;	
 		
+		
 	}
-	
 	
 
 	/**
-	 * 
+	 * Closes connection to database and closes connection to DatabaseHelper.
 	 */
 	public void close()
 	{
 		ourDatabase.close();
 		ourHelper.close();
+		//close();
 	}
 	
 	public void addExercise(int ExerciseMusclePri, int ExerciseMuscleSec, String ExerciseName, String ExerciseDesc, String ExerciseNote, int ExerciseSportId, int ExerciseTypeId){

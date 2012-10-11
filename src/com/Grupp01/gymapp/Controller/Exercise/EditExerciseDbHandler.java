@@ -1,8 +1,25 @@
+/*This file is part of Gymapp.
+*
+*   Gymapp is free software: you can redistribute it and/or modify
+*   it under the terms of the GNU General Public License as published by
+*   the Free Software Foundation, either version 3 of the License, or
+*   (at your option) any later version.
+*
+*   Gymapp is distributed in the hope that it will be useful,
+*   but WITHOUT ANY WARRANTY; without even the implied warranty of
+*   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+*   GNU General Public License for more details.
+*
+*   You should have received a copy of the GNU General Public License
+*  along with Gymapp.  If not, see <http://www.gnu.org/licenses/>.
+*
+*/
 package com.Grupp01.gymapp.Controller.Exercise;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -36,7 +53,6 @@ public class EditExerciseDbHandler extends Database {
 			close();
 			return temp;
 		}
-		
 
 		public List<IdName> getExerciseTypes()
 		{
@@ -86,21 +102,17 @@ public class EditExerciseDbHandler extends Database {
 			{
 				idNameList.add(new IdName(c.getInt(id),c.getString(name)));
 			}
-			
+			c.close();
+			close();
 			return idNameList;
 		}
 		public void editExercise(ExerciseData exerciseData)
 		{
 			open();
-			//int id, int exercisePri, int exerciseSec, String exerciseName, String exerciseDesc, String exerciseNote, int sportId, int exerciseTypeId)
-			//ExerciseData test = new ExerciseData(1, 2, 3, "Testing", "EditedD2325esc", "EditedN234ote", 1, 2);
-			//exerciseData = test;
-			//ourDatabase.update(Exercises, values, whereClause, whereArgs)
-			
-			String tmp2 = "UPDATE Exercises SET ExercisePri = '" + exerciseData.getPri() + "', ExerciseSec = '" + exerciseData.getSec() + "', ExerciseDesc = '" + exerciseData.getDesc() + "', ExerciseNote = '" + exerciseData.getNote() + "', ExerciseSportId = '" + exerciseData.getSportId() + "', ExerciseTypeId = '" + exerciseData.getTypeId() + "' WHERE ExerciseId = '" + exerciseData.getId() + "';";
-			System.out.println(tmp2);
-					
-			ourDatabase.execSQL(tmp2);
+			ourDatabase.execSQL("UPDATE Exercises SET ExercisePri = '" + exerciseData.getPri() + "', ExerciseSec = '" +
+					exerciseData.getSec() + "', ExerciseDesc = '" + exerciseData.getDesc() + "', ExerciseNote = '" + 
+					exerciseData.getNote() + "', ExerciseSportId = '" + exerciseData.getSportId() + "', ExerciseTypeId = '" + 
+					exerciseData.getTypeId() + "' WHERE ExerciseId = '" + exerciseData.getId() + "';");
 			close();
 		}
 		/*

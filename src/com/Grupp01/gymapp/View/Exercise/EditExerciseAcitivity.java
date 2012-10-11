@@ -47,7 +47,7 @@ import com.actionbarsherlock.view.MenuInflater;
  * <p>This class i a part of the </p><i>View</i><p> package, and a part of the </p><i>Exercise</i>
  * <p> Subpackage</p> 
  *
- */
+ */	
 public class EditExerciseAcitivity extends SherlockActivity implements AdapterView.OnItemSelectedListener {
 	private Spinner spinnerType, spinnerPMuscle, spinnerSMuscle, spinnerSport;
 	private String currentView;
