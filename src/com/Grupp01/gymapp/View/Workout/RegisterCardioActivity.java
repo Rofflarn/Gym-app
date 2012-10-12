@@ -32,7 +32,7 @@ import android.widget.Toast;
 import com.Grupp01.gymapp.MainActivity;
 import com.Grupp01.gymapp.R;
 import com.Grupp01.gymapp.Controller.Exercise.ExerciseData;
-import com.Grupp01.gymapp.Controller.Workout.CardioSets;
+import com.Grupp01.gymapp.Controller.Workout.SetsData;
 import com.Grupp01.gymapp.Controller.Workout.WorkoutDbHandler;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
@@ -58,7 +58,7 @@ public class RegisterCardioActivity extends SherlockActivity {
 	private ArrayList<String> currentSets;	//The array where new sets is added (in form of REPSxWEIGHT)
 	private int exerciseId;
 	private int workoutId;
-	private List<CardioSets> cardioSetsList = new LinkedList<CardioSets>();
+	private List<SetsData> cardioSetsList = new LinkedList<SetsData>();
 	
 	/**
 	 * Set up the default layout and call initiate method that is required. 
@@ -151,7 +151,7 @@ public class RegisterCardioActivity extends SherlockActivity {
     	//OK button pressed, exit and save to database
     	case R.id.CardioButtonOK:
     		//adds all the added sets to database
-    		for(CardioSets cardiosets: cardioSetsList)
+    		for(SetsData cardiosets: cardioSetsList)
     		{
     			addCardioSet(cardiosets);
     		}
@@ -218,7 +218,8 @@ public class RegisterCardioActivity extends SherlockActivity {
 			Integer min = Integer.parseInt(editMinutes.getText().toString());
 			Integer sec = Integer.parseInt(editSeconds.getText().toString());
 			Integer dist = Integer.parseInt(editDistance.getText().toString());
-			cardioSetsList.add(new CardioSets(sec,min,dist,workoutId,exerciseId));
+			//Adds new sets to cardioSetsList
+			cardioSetsList.add(new SetsData(sec,min,dist,workoutId,exerciseId));
 			updateView();
 			
 		}
@@ -282,15 +283,18 @@ public class RegisterCardioActivity extends SherlockActivity {
 		
 	}
 	
+	/**
+	 * gets information about the 4 latest sets in this exercise and puts this information on the screen
+	 */
 	private void setLastestSetsString()
 	{
-		List<CardioSets> cardioSetsList = new LinkedList<CardioSets>();
+		List<SetsData> cardioSetsList = new LinkedList<SetsData>();
 		WorkoutDbHandler dbHandler = new WorkoutDbHandler(this);
 		StringBuffer sets = new StringBuffer();
 		TextView latestSets = (TextView) findViewById(R.id.lastTimeSetsCardio);
         dbHandler.open();
-        cardioSetsList = dbHandler.getPreviouslySets(workoutId, exerciseId);
-		for(CardioSets cardioSet: cardioSetsList)
+        cardioSetsList = dbHandler.getPreviouslyCardioSets(workoutId, exerciseId);
+		for(SetsData cardioSet: cardioSetsList)
 		{
 			sets.append(cardioSet.getDuration());
 			sets.append(" ");
@@ -301,40 +305,8 @@ public class RegisterCardioActivity extends SherlockActivity {
 		latestSets.setText(sets);       
 	}
 	
-	private int getLatestSetId()
-	{
-		WorkoutDbHandler dbHandler = new WorkoutDbHandler(this);
-        dbHandler.open();
-        int latestSetId = dbHandler.getLatestCardioSetId();
-        dbHandler.close();
-        if(latestSetId > 0)
-        {
-        	return latestSetId;
-        }
-        else
-        {
-        	
-        	return 0;
-        }
-        
-	}
 	
-	private void removeLatestCardioSet(int cardioSetId)
-	{
-		if(cardioSetId==0)
-		{
-			
-		}
-		else
-		{
-		WorkoutDbHandler dbHandler = new WorkoutDbHandler(this);
-        dbHandler.open();
-        dbHandler.removeLatestCardioSet(cardioSetId);
-        dbHandler.close();
-		}
-	}
-	
-	private void addCardioSet(CardioSets cardioSet)
+	private void addCardioSet(SetsData cardioSet)
 	{
 		WorkoutDbHandler dbHandler = new WorkoutDbHandler(this);
 		dbHandler.open();
