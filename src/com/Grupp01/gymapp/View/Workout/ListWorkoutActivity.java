@@ -59,6 +59,7 @@ public class ListWorkoutActivity extends SherlockActivity {
 
 	
 	public final static String WORKOUT_NAME = "com.Grupp01.gymapp.WORKOUT";
+	public final static String WORKOUT_ID = "com.Grupp01.gymapp.WORKOUT";
 	private ListView mainListView ;  					//This is the listview where the list of all workouts will be shown
 	private ArrayAdapter<String> listAdapter ;  		//Adapter used for the list
 	private List<IdName> idNameList;
@@ -160,8 +161,9 @@ public class ListWorkoutActivity extends SherlockActivity {
 		 mainListView = (ListView) findViewById( R.id.ListViewWorkouts );
 		 ArrayList<String> arrayWorkouts = new ArrayList<String>();
 		 
+		 
 		 //Add all the strings from stringarray to the ArrayList
-		  
+
 		 WorkoutDbHandler dbHandler = new WorkoutDbHandler(this); 
 		 dbHandler.open();
 		 idNameList = dbHandler.getWorkoutsIdName();

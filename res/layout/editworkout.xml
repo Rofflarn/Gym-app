@@ -2,23 +2,23 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical">
-	    <TextView
+	    <!-- <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
         android:layout_marginLeft="0dp"
         android:layout_marginTop="8dp"
-        android:text="@string/textview_musclegroup" />
+        android:text="@string/textview_musclegroup" />-->
 	    <Spinner
         android:id="@+id/spinnermusclegroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
-	    <TextView
+	    <!-- <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="0dp"
         android:layout_marginTop="8dp"
-        android:text="@string/textview_muscle"/>
+        android:text="@string/textview_muscle"/>-->
 	    <Spinner
         android:id="@+id/spinnermuscle"
         android:layout_width="match_parent"

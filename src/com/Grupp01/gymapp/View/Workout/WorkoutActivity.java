@@ -112,7 +112,7 @@ public class WorkoutActivity extends SherlockActivity {
     			return true;
     		case R.id.menu_editWorkout:
     			Intent intent2 = new Intent(this, EditWorkoutActivity.class);
-    			intent2.putExtra(ListWorkoutActivity.WORKOUT_NAME, workoutName);
+    			intent2.putExtra(WorkoutActivity.EXTRA_WORKOUT_ID, workoutId);
     			startActivity(intent2);
     			return true;    			
     		default:

@@ -36,12 +36,12 @@ import android.widget.TextView;
  * <p>This class i a part of the </p><i>View</i><p> package, and a part of the </p><i>Workout</i>
  * <p> Subpackage</p> 
  *  */
- public class ExerciseArrayAdapter extends ArrayAdapter<Exercise>
+ public class ExerciseArrayAdapter extends ArrayAdapter<ExerciseListElementData>
  {  
     
   private LayoutInflater inflater;  
     
-  public ExerciseArrayAdapter( Context context, List<Exercise> exerciseList )
+  public ExerciseArrayAdapter( Context context, List<ExerciseListElementData> exerciseList )
   {  
     super( context, R.layout.simplerow, R.id.rowTextView, exerciseList );  
     // Cache the LayoutInflate to avoid asking for a new one each time.  
@@ -61,7 +61,7 @@ import android.widget.TextView;
   public View getView(int position, View convertView, ViewGroup parent)
   {  
     // Exercise to display  
-    Exercise exercise = (Exercise) this.getItem( position );   
+    ExerciseListElementData exercise = (ExerciseListElementData) this.getItem( position );   
 
     //What each view contains. 
     CheckBox checkBox;
@@ -90,7 +90,7 @@ import android.widget.TextView;
         public void onClick(View v)
         {  
           CheckBox cb = (CheckBox) v;
-          Exercise exercise = (Exercise) cb.getTag();
+          ExerciseListElementData exercise = (ExerciseListElementData) cb.getTag();
           exercise.setChecked( cb.isChecked() );
         }
       });

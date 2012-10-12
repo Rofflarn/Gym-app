@@ -17,6 +17,8 @@
 
 package com.Grupp01.gymapp.Controller.Workout;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -26,6 +28,7 @@ import android.database.Cursor;
 import com.Grupp01.gymapp.Controller.IdName;
 import com.Grupp01.gymapp.Controller.Exercise.ExerciseData;
 import com.Grupp01.gymapp.Model.Database;
+import com.Grupp01.gymapp.View.Workout.ExerciseListElementData;
 
 public class WorkoutDbHandler extends Database {
 
@@ -199,10 +202,18 @@ public class WorkoutDbHandler extends Database {
 		c.moveToFirst();
 		int duration = c.getColumnIndex("SetDuration");
 		int distance = c.getColumnIndex("SetDistance");
+		
+		SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");
+		
 		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext())
 		{
 			System.out.println("Inne i get PreviouslySetsFoorloop");
-			String durationString = (((int) (c.getInt(duration) / 3600)) + ":" + (((int) (c.getInt(duration) / 60)) % 60) + ":" + (c.getInt(duration) % 60)); 
+
+			//String durationString = (((int) (c.getInt(duration) / 3600)) + ":" + (((int) (c.getInt(duration) / 60)) % 60) + ":" + (c.getInt(duration) % 60)); 
+			//cardioSetsList.add(new SetsData(durationString,c.getInt(distance)));
+			//String durationString = (((int) (c.getInt(duration) / 3600)) + ":" + (((int) (c.getInt(duration) / 60)) % 60) + ":" + (c.getInt(duration) % 60)); 
+			String durationString = df.format(c.getInt(duration));
+			System.out.println(durationString);
 			cardioSetsList.add(new SetsData(durationString,c.getInt(distance)));
 		}
 		System.out.println("Efter Lopp");
@@ -212,6 +223,38 @@ public class WorkoutDbHandler extends Database {
 	}
 	
 	
+	public ArrayList<ExerciseListElementData> getExercisesCheckedByWorkoutTemplateId(int WorkoutTemplateId)
+	{
+		open();
+		
+		ArrayList<ExerciseListElementData> list = new ArrayList<ExerciseListElementData>();
+		
+		Cursor c1 = ourDatabase.rawQuery("SELECT ExerciseId, ExerciseName FROM Exercises;", null);
+		Cursor c2 = ourDatabase.rawQuery("SELECT * FROM WorkoutTemplateExercises WHERE WorkoutTemplateId = '" + WorkoutTemplateId + "';" , null);
+		
+		int c1Id = c1.getColumnIndex("ExerciseId");
+		int c2Id = c2.getColumnIndex("ExerciseId");
+		int name = c1.getColumnIndex("ExerciseName");
+		
+		for(c1.moveToFirst(); !c1.isAfterLast(); c1.moveToNext())
+		{
+			boolean isChecked = false;
+			
+			for(c2.moveToFirst(); !c2.isAfterLast(); c2.moveToNext())
+			{
+				if(c1.getInt(c1Id) == c2.getInt(c2Id))
+				{
+					isChecked = true;
+				}
+			}
+			
+			ExerciseListElementData exerciseListElementData = new ExerciseListElementData(c1.getInt(c1Id), c1.getString(name), isChecked);
+			list.add(exerciseListElementData);
+		}
+		close();
+		
+		return list;
+	}
 
 	public int getLatestCardioSetId()
 
@@ -231,6 +274,36 @@ public class WorkoutDbHandler extends Database {
 		open();
 		ourDatabase.execSQL("DELETE FROM Sets WHERE SetId="+setCardioId+";");
 		getLatestCardioSetId();
+		close();
+	}
+	
+	public int getExerciseLastTimePerformed(int ExerciseId)
+	{
+		open();
+		Cursor c = ourDatabase.rawQuery("SELECT WorkoutTime FROM Workouts WHERE WorkoutId = Sets.WorkoutId AND Sets.ExerciseId = '" + ExerciseId + "';", null);
+		int WorkoutTime = c.getColumnIndex("WorkoutTime");
+		c.moveToFirst();
+		close();
+		return c.getInt(WorkoutTime);
+	}
+	
+	public void editWorkoutTemplate(ExerciseListElementData exerciseListItemData, int WorkoutTemplateId)
+	{
+		System.out.println(exerciseListItemData.getName());
+		open();
+		if(exerciseListItemData.isChecked())
+		{
+			//add
+			String tmp = "INSERT INTO WorkoutTemplateExercises (WorkoutTemplateId, ExerciseId) VALUES ('" + WorkoutTemplateId + "', '" + exerciseListItemData.getId() + "');";
+			System.out.println(tmp);
+			ourDatabase.execSQL(tmp);
+		} else
+		{
+			//remove
+			String tmp = "DELETE FROM WorkoutTemplateExercises WHERE WorkoutTemplateId = '" + WorkoutTemplateId + "' AND ExerciseId = '" + exerciseListItemData.getId() + "';";
+			System.out.println(tmp);
+			ourDatabase.execSQL(tmp);
+		}
 		close();
 	}
 }

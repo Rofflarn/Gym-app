@@ -145,7 +145,7 @@ public class DbHelper extends SQLiteOpenHelper{
 	 */
 	private void createWorkouts(SQLiteDatabase db)
 	{
-		db.execSQL("CREATE TABLE Workouts (WorkoutID INTEGER PRIMARY KEY AUTOINCREMENT, WorkoutTime TEXT NOT NULL, WorkoutName TEXT, " +
+		db.execSQL("CREATE TABLE Workouts (WorkoutID INTEGER PRIMARY KEY AUTOINCREMENT, WorkoutTime INTEGER NOT NULL, WorkoutName TEXT, " +
 				"UserId INTEGER NOT NULL);");
 	}
 	
