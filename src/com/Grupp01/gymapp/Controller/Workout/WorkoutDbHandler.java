@@ -266,9 +266,26 @@ public class WorkoutDbHandler extends Database {
 	
 	public int getExerciseLastTimePerformed(int ExerciseId)
 	{
+		open();
 		Cursor c = ourDatabase.rawQuery("SELECT WorkoutTime FROM Workouts WHERE WorkoutId = Sets.WorkoutId AND Sets.ExerciseId = '" + ExerciseId + "';", null);
 		int WorkoutTime = c.getColumnIndex("WorkoutTime");
 		c.moveToFirst();
+		close();
 		return c.getInt(WorkoutTime);
+	}
+	
+	public void editWorkoutTemplate(ExerciseListElementData exerciseListItemData, int WorkoutTemplateId)
+	{
+		open();
+		if(exerciseListItemData.isChecked())
+		{
+			//add
+			ourDatabase.execSQL("INSERT INTO WorkoutTemplateExercises (WorkoutTemplateId, ExerciseId) VALUES ('" + WorkoutTemplateId + "', '" + exerciseListItemData.getId() + "');");
+		} else
+		{
+			//remove
+			ourDatabase.execSQL("DELETE FROM WorkoutTemplateExercises WHERE WorkoutTemplateId = '" + WorkoutTemplateId + " AND ExerciseId = '" + exerciseListItemData.getId() + "'';");
+		}
+		close();
 	}
 }
