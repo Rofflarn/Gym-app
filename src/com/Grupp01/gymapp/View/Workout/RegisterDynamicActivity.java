@@ -267,6 +267,9 @@ public class RegisterDynamicActivity extends SherlockActivity {
 		updateView();
 	}
 
+	/**
+	 * Gets information about the exercise in a ExerciseData object
+	 */
 	private void getExerciseData()
 	{
 		WorkoutDbHandler dbHandler = new WorkoutDbHandler(this);

@@ -189,6 +189,14 @@ public class WorkoutDbHandler extends Database {
 		close();
 	}
 	
+	public void addStaticSet(int min, int sec, int weight, int workoutId, int exerciseId)
+	{
+		int duration = sec + (min*60);
+		open();
+		ourDatabase.execSQL("INSERT INTO Sets(SetsWeight, WorkoutId, SetDuration, ExerciseId) VALUES " +
+							"(" + weight + ", " + workoutId + ", " + duration + ", " + exerciseId + ");");
+		close();
+	}
 
 
 
@@ -203,17 +211,11 @@ public class WorkoutDbHandler extends Database {
 		int duration = c.getColumnIndex("SetDuration");
 		int distance = c.getColumnIndex("SetDistance");
 		
-		SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");
-		
 		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext())
 		{
 			System.out.println("Inne i get PreviouslySetsFoorloop");
 
-			//String durationString = (((int) (c.getInt(duration) / 3600)) + ":" + (((int) (c.getInt(duration) / 60)) % 60) + ":" + (c.getInt(duration) % 60)); 
-			//cardioSetsList.add(new SetsData(durationString,c.getInt(distance)));
-			//String durationString = (((int) (c.getInt(duration) / 3600)) + ":" + (((int) (c.getInt(duration) / 60)) % 60) + ":" + (c.getInt(duration) % 60)); 
-			String durationString = df.format(c.getInt(duration));
-			System.out.println(durationString);
+			String durationString = (((int) (c.getInt(duration) / 3600)) + ":" + (((int) (c.getInt(duration) / 60)) % 60) + ":" + (c.getInt(duration) % 60)); 
 			cardioSetsList.add(new SetsData(durationString,c.getInt(distance)));
 		}
 		System.out.println("Efter Lopp");
