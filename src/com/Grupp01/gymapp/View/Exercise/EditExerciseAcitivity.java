@@ -1,4 +1,6 @@
-/*This file is part of Gymapp.
+/*Copyright 2012 GivDev
+ * 
+ * This file is part of Gymapp.
  *
  *   Gymapp is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -66,11 +68,15 @@ public class EditExerciseAcitivity extends SherlockActivity implements AdapterVi
 		setContentView(R.layout.activity_add_exercise);
 		getSupportActionBar().setHomeButtonEnabled(true);
 		
+		//get the id for the exercise that started this activity
 		exerciseId = getIntent().getIntExtra(ListExerciseActivity.EXTRA_EXERCISE_NAME, 0);
-		getExerciseData();
-
-		listTrainingType = getExerciseTypesFromDb();//get String-array from strings.xml
-		initSpinnerType(getPosById(exercise.getTypeId(), idNameListTrainingType)); //initialize spinner with listener and set spinner to static
+		//Retrieves the exercise from database using exerciseId
+		getExerciseData(); 
+		
+		//Get ArrayList<String> with training types from database
+		listTrainingType = getExerciseTypesFromDb(); 
+		//initialize spinner with listener and set spinner to the first post
+		initSpinnerType(getPosById(exercise.getTypeId(), idNameListTrainingType)); 
 		
 	}
 	/**
@@ -85,27 +91,36 @@ public class EditExerciseAcitivity extends SherlockActivity implements AdapterVi
 	}
 
 	/**
-	 * This method initializes the spinners, populating them with items and adds listener
+	 * This method initializes the type of training spinner, populating them with items and adds listener
 	 * @param position used for changing the default value due to the previous selection in a spinner
 	 */
 	public void initSpinnerType(int position)
 	{	
-		spinnerType = (Spinner) findViewById(R.id.spinner_type_of_training); //Retrieves the view from .xml-file
+		//Retrieves the view from .xml-file
+		spinnerType = (Spinner) findViewById(R.id.spinner_type_of_training); 
+		//Create ArrayAdapter, setting up the layout for spinner items and adding arraylist containing items
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, listTrainingType);
-		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		spinnerType.setAdapter(adapter); //Sets the adapter to the spinner
-
-		spinnerType = (Spinner) findViewById(R.id.spinner_type_of_training);
-		spinnerType.setSelection(position); //Sets the spinner default value to selected value
-		spinnerType.setOnItemSelectedListener(this); //Adds listener to spinner spinnterType
+		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); 
+		//Sets the adapter to the spinner
+		spinnerType.setAdapter(adapter); 
+		
+		//Sets the spinner default value to selected value
+		spinnerType.setSelection(position);
+		//Adds listener to spinner spinnterType
+		spinnerType.setOnItemSelectedListener(this); 
+		//Calling setTexts to set the EditText-fields with data from the exercise-object
 		setTexts();
 		
 	}
+	/**
+	 * This method initializes the spinners for selecting primary and secondary muscles, populating them with items and adds listener
+	 * 
+	 */
 	public void initSpinnerDynamicStatic()
 	{
 		listMuscles = getMusclesFromDb(); 
 		
-		spinnerPMuscle = (Spinner) findViewById(R.id.spinner_primary_muscle); //Retrieves the view from .xml-file
+		spinnerPMuscle = (Spinner) findViewById(R.id.spinner_primary_muscle); 
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, listMuscles);
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		spinnerPMuscle.setAdapter(adapter); //Sets the adapter to the spinner
@@ -115,6 +130,10 @@ public class EditExerciseAcitivity extends SherlockActivity implements AdapterVi
 		spinnerSMuscle.setAdapter(adapter);
 		spinnerSMuscle.setSelection(getPosById(exercise.getSec(), idNameListMuscles));
 	}
+	/**
+	 * This method initializes the spinner for selecting sport, populating them with items and adds listener
+	 * 
+	 */
 	public void initSpinnerCardio()
 	{
 		listSports = getSportsFromDb();
@@ -133,37 +152,56 @@ public class EditExerciseAcitivity extends SherlockActivity implements AdapterVi
 			
 			if(listTrainingType.get(position).equals("Static"))
 			{
-				setContentView(R.layout.add_exercise_static);	//Switches the layout to the selected one
-				initSpinnerType(position);	//After switching view, adds listener to spinner again
+				//Switches the layout to the one that is used for static and dynamic
+				setContentView(R.layout.add_exercise_static);
+				//After switching view, adds listener to spinner again
+				initSpinnerType(position);
+				//Dynamic or static was selected, setting up the spinners for primary and secondary muscle
 				initSpinnerDynamicStatic();
-				currentView = listTrainingType.get(position);	//Sets currentView to prevent infinite loop
+				//Sets variable currentView to prevent infinite loop
+				currentView = listTrainingType.get(position);	
 			}
 
 			else if(listTrainingType.get(position).equals("Dynamic"))
 			{
+				//Switches the layout to the one that is used for static and dynamic
 				setContentView(R.layout.add_exercise_static);	
+				//After switching view, adds listener to spinner again
 				initSpinnerType(position);
+				//Dynamic or static was selected, setting up the spinners for primary and secondary muscle
 				initSpinnerDynamicStatic();
+				//Sets variable currentView to prevent infinite loop
 				currentView = listTrainingType.get(position);
 			}
 			else if (listTrainingType.get(position).equals("Cardio"))
 			{
+				//Switches the layout to the one that is used for cardio
 				setContentView(R.layout.activity_add_exercise);	
+				//After switching view, adds listener to spinner again
 				initSpinnerType(position);
+				//Setting up the spinner for selecting sport
 				initSpinnerCardio();
+				//Sets variable currentView to prevent infinite loop
 				currentView=listTrainingType.get(position);
 			}
 		}
 	}
-	
+	/**
+	 * Sets the title for this exercise, using the name for the exercise.
+	 * Sets the editTextFields for description and note to self, using data from exercise object
+	 */
 	public void setTexts()
 	{
 		setTitle(exercise.getName());
 		
 		if((exercise.getNote() != null) && (exercise.getDesc() != null))
 		{
+			//Retrieves the view from .xml-file
 			comment = (EditText) findViewById(R.id.edit_comment);
+			//Retrieves the view from .xml-file
 			desc = (EditText) findViewById(R.id.edit_description);
+			
+			//Sets the text for the editText-fields
 			comment.setText(exercise.getNote());
 			desc.setText(exercise.getDesc());
 		}
@@ -180,12 +218,15 @@ public class EditExerciseAcitivity extends SherlockActivity implements AdapterVi
 	 */
 	public void done(View view)
 	{
-		//Send data to database
+		//Gets and puts the added/changed data into the exercis object
 		putExerciseData();
+		//creates a EditExerciseDbHandler
 		EditExerciseDbHandler dbHandler = new EditExerciseDbHandler(this);
 		dbHandler.open();
+		//Push the changed exercise-object int the database
 		dbHandler.editExercise(exercise);
 		dbHandler.close();
+		//Kills this activity
 		finish();
 	}
 	/**
@@ -194,97 +235,139 @@ public class EditExerciseAcitivity extends SherlockActivity implements AdapterVi
 	 */
 	public void cancel(View view)
 	{
+		//Kills this activity
 		finish();
 	}
+	/**
+	 * Retrives a List<IdName> of musclesfrom the database and adds the names of the muscles to an ArrayList<String>
+	 * @return ArrayList that spinners need to populate with items
+	 */
 	private ArrayList<String> getMusclesFromDb()
 	{
+		//creates a EditExerciseDbHandler
 		EditExerciseDbHandler get = new EditExerciseDbHandler(this);
 		get.open();
+		//puts the list from database into a local list
 		idNameListMuscles = get.getMuscles();
 		get.close();
 		ArrayList<String> getIdName = new ArrayList<String>();
+		//for-each idname in idNameListMuscles
 		for (IdName idname : idNameListMuscles)
-		{
+		{	
+			//adds the name if the IdName-object into the arraylist
 			getIdName.add(idname.getName());
 		}
 		return getIdName;
 	}
+	/**
+	 * Retrives a List<IdName> of sports from the database and adds the names of the muscles to an ArrayList<String>
+	 * @return ArrayList that spinners need to populate with items
+	 */
 	private ArrayList<String> getSportsFromDb()
 	{
+		//creates a EditExerciseDbHandler
 		EditExerciseDbHandler get = new EditExerciseDbHandler(this);
 		get.open();
+		//puts the list from database into a local list
 		idNameListSports = get.getSports();
 		get.close();
 		ArrayList<String> getIdName = new ArrayList<String>();
+		//for-each idname in idNameListMuscles
 		for (IdName idname : idNameListSports)
 		{
+			//adds the name if the IdName-object into the arraylist
 			getIdName.add(idname.getName());
 		}
 		return getIdName;
 	}
 	
+	/**
+	 * Retrives a List<IdName> of training types from the database and adds the names of the muscles to an ArrayList<String>
+	 * @return ArrayList that spinners need to populate with items
+	 */
 	private ArrayList<String> getExerciseTypesFromDb()
 	{
+		//creates a EditExerciseDbHandler
 		EditExerciseDbHandler get = new EditExerciseDbHandler(this);
 		get.open();
+		//puts the list from database into a local list
 		idNameListTrainingType = get.getExerciseTypes();
 		get.close();
 		ArrayList<String> getIdName = new ArrayList<String>();
+		//for-each idname in idNameListMuscles
 		for (IdName idname : idNameListTrainingType)
 		{
+			//adds the name if the IdName-object into the arraylist
 			getIdName.add(idname.getName());
 		}
 		return getIdName;
 	}
 	
+	/**
+	 * Method for retrieving the exercise selected from database, using the 
+	 * ID from the intent that start the activity
+	 */
 	private void getExerciseData()
 	{
+		//creates a EditExerciseDbHandler
 		EditExerciseDbHandler get = new EditExerciseDbHandler(this);
 		get.open();
+		//retrieves the exercise-object
 		exercise = get.getExerciseById(exerciseId);
 		get.close();
 	}
 	
+	/**
+	 * Method for putting data that has been changed/added to this exercise object
+	 */
 	private void putExerciseData()
-	{			
-		comment = (EditText) findViewById(R.id.edit_comment);
+	{
+		//needed, otherwhise the toString will return null
+		comment = (EditText) findViewById(R.id.edit_comment); 
 		desc = (EditText) findViewById(R.id.edit_description);
-		spinnerType = (Spinner) findViewById(R.id.spinner_type_of_training);
-		spinnerPMuscle = (Spinner) findViewById(R.id.spinner_primary_muscle);
-		spinnerSMuscle = (Spinner) findViewById(R.id.spinner_secondary_muscle);
-		spinnerSport = (Spinner) findViewById(R.id.spinner_sport);
 		
-		System.out.println("andrar desc");
+		//Puts description into the exercise
 		exercise.putDesc( (String)desc.getText().toString());
+		//Puts note to self into the exercise
 		exercise.putNote( (String)comment.getText().toString());
-		System.out.println("andrar type");
+		//Puts the training type selected from spinner into the exercise
 		exercise.putTypeId(idNameListTrainingType.get((Integer)spinnerType.getSelectedItemPosition()).getId());
-		System.out.println("krasch type");
+		
+		//If the spinners for primary and secondary muscle havent been drawed yet, there is no data to retrieve
 		if (!currentView.equals("Cardio"))
 		{
-			exercise.putPri(getIdByName((Integer)spinnerPMuscle.getSelectedItemPosition(), idNameListMuscles));
-			exercise.putSec(getIdByName((Integer)spinnerSMuscle.getSelectedItemPosition(), idNameListMuscles));
+			//puts the primary muscle selected in spinner into the exercise
+			exercise.putPri(idNameListMuscles.get((Integer)spinnerPMuscle.getSelectedItemPosition()).getId());
+			//puts the secondary muscle selected in spinner into the exercise
+			exercise.putSec(idNameListMuscles.get((Integer)spinnerSMuscle.getSelectedItemPosition()).getId());
 		}
+		//If the spinner for sport havent been drawed yet, there is no data to retrieve
 		else
-			exercise.putSport(getIdByName((Integer)spinnerSport.getSelectedItemPosition(), idNameListSports));
-		
-		System.out.println("andring klar");
+			//puts the sport selected in spinner into the exercise
+			exercise.putSport(idNameListSports.get((Integer)spinnerSport.getSelectedItemPosition()).getId());
 	}
-	private int getIdByName(int pos, List<IdName> list)
-	{
-		return list.get(pos).getId();
-	}
+/**
+ * The database uses a unique id for every items in its list, this method simply retrieves the position in a 
+ * local list that holds this id
+ * @param id Id for the IdName-object which position we want
+ * @param list List that holds the idname-objects 
+ * @return Position in the list wich holds the specified idname
+ */
 	private int getPosById(int id, List<IdName> list)
 	{
 		int pos = 0;
+		//for-each idname in list
 		for (IdName idName : list)
-		{
+		{	
+			//When id is found, return position
 			if(idName.getId()==id)
 			{
 				return pos; 
 			}
+			//Not found, increment position
 			pos++;
 		}
 		return 0;
 	}
+
 }
