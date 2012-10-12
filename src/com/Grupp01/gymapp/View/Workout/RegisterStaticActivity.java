@@ -17,6 +17,8 @@
 package com.Grupp01.gymapp.View.Workout;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -28,6 +30,7 @@ import android.widget.Toast;
 import com.Grupp01.gymapp.MainActivity;
 import com.Grupp01.gymapp.R;
 import com.Grupp01.gymapp.Controller.Exercise.ExerciseData;
+import com.Grupp01.gymapp.Controller.Workout.SetsData;
 import com.Grupp01.gymapp.Controller.Workout.WorkoutDbHandler;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
@@ -49,8 +52,9 @@ import com.actionbarsherlock.view.MenuItem;
  */
 public class RegisterStaticActivity extends SherlockActivity {
 			
-	private ArrayList<String> currentSets;	//The array where new sets is added (in form of REPSxWEIGHT)
+	private List<SetsData> staticSetsList = new LinkedList<SetsData>();//The list where new sets are added and removed.
 	private int exerciseId;
+	private int workoutId;
 	private ExerciseData exercise;
 	
 	/**
@@ -62,11 +66,9 @@ public class RegisterStaticActivity extends SherlockActivity {
         //workoutName = getIntent().getStringExtra("exercisename");
         setContentView(R.layout.activity_register_static);
         exerciseId = getIntent().getIntExtra(WorkoutActivity.EXTRA_EXERCISE_ID, 0);
+        workoutId = getIntent().getIntExtra(WorkoutActivity.EXTRA_WORKOUT_ID, 0);
         getExerciseData();
         setTitle(exercise.getName());
-        
-      //Create the array
-        currentSets = new ArrayList<String>();
         
         //Show the sets (reps and weight) for the last time this
         //exercise was performed.
@@ -153,8 +155,13 @@ public class RegisterStaticActivity extends SherlockActivity {
      * to the database before this activity terminates.
      */
     private void saveSetsToDatabase() {
-    	Toast.makeText(this, "will close this activity and save", Toast.LENGTH_SHORT).show();
-		
+    	WorkoutDbHandler dbHandler = new WorkoutDbHandler(this);
+		dbHandler.open();
+    	for(SetsData setData: staticSetsList)
+    	{
+    		dbHandler.addStaticSet(setData.getMin(), setData.getSec(), setData.getWeight(), workoutId, exerciseId);
+    	}
+    	dbHandler.close();		
 	}
 
 
@@ -193,7 +200,11 @@ public class RegisterStaticActivity extends SherlockActivity {
 		
 		}
 		else{
-			currentSets.add(minutes + ":" + seconds + "x" + weight);
+			//Parses strings to Integer
+			Integer minInt = Integer.parseInt(editMinutes.getText().toString());
+			Integer secInt = Integer.parseInt(editSeconds.getText().toString());
+			Integer weightInt = Integer.parseInt(editWeight.getText().toString());
+			staticSetsList.add(new SetsData(minInt, secInt, weightInt));
 			updateView();
 			
 		}
@@ -213,14 +224,18 @@ public class RegisterStaticActivity extends SherlockActivity {
 		TextView currentSetString = (TextView) findViewById(R.id.thisTimeSetsStatic);
 		
 		//The prefix is used to separate each set in the string.
-		String prefix = new String("");
-		for (String s : currentSets)
+		StringBuffer setsString = new StringBuffer();
+		for (SetsData setData : staticSetsList)
 		{
-			string = string + prefix;
-			prefix = ", ";
-			string = string + s;
+			setsString.append(setData.getMin());
+			setsString.append(":");
+			setsString.append(setData.getSec());
+			setsString.append(" ");
+			setsString.append(setData.getWeight());
+			setsString.append(" | ");
+			
 		}
-		currentSetString.setText(string);
+		currentSetString.setText(setsString);
 	}
 	
 	
@@ -229,11 +244,15 @@ public class RegisterStaticActivity extends SherlockActivity {
 	 * 
 	 */
 	private void removeLatestSet() {
-		if(currentSets.size() > 0)
-			currentSets.remove(currentSets.size() -1);
+		if(staticSetsList.size() > 0)
+				staticSetsList.remove(staticSetsList.size() -1);
 		updateView();
 	}
 	
+	
+	/**
+	 * Gets information about the exercise in a ExerciseData object
+	 */
 	private void getExerciseData()
 	{
 		WorkoutDbHandler dbHandler = new WorkoutDbHandler(this);

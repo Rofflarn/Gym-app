@@ -17,11 +17,11 @@
 
 package com.Grupp01.gymapp.Controller.Workout;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 
@@ -181,11 +181,29 @@ public class WorkoutDbHandler extends Database {
 		close();
 	}
 	
+	public void addDynamicSet(int weight, int reps, int workoutId, int exerciseId)
+	{
+		open();
+		ourDatabase.execSQL("INSERT INTO Sets(SetReps, SetWeight, WorkoutId, ExerciseId) VALUES " +
+							 "(" + reps + ", " + weight + ", " + workoutId + ", " + exerciseId + ");");
+		close();
+	}
+	
+	public void addStaticSet(int min, int sec, int weight, int workoutId, int exerciseId)
+	{
+		int duration = sec + (min*60);
+		open();
+		ourDatabase.execSQL("INSERT INTO Sets(SetsWeight, WorkoutId, SetDuration, ExerciseId) VALUES " +
+							"(" + weight + ", " + workoutId + ", " + duration + ", " + exerciseId + ");");
+		close();
+	}
 
-	public List<CardioSets> getPreviouslySets(int workoutId, int exerciseId)
+
+
+	public List<SetsData> getPreviouslyCardioSets(int workoutId, int exerciseId)
 	{
 		System.out.println("Inne i get PreviouslySets");
-		List<CardioSets> cardioSetsList = new LinkedList<CardioSets>();
+		List<SetsData> cardioSetsList = new LinkedList<SetsData>();
 		open();
 		Cursor c = ourDatabase.rawQuery("SELECT * FROM SETS WHERE WorkoutId = " +"workoutId" +" AND ExerciseId = " + exerciseId + " ORDER BY SetId "
 				+"DESC LIMIT 4;", null);
@@ -193,20 +211,38 @@ public class WorkoutDbHandler extends Database {
 		int duration = c.getColumnIndex("SetDuration");
 		int distance = c.getColumnIndex("SetDistance");
 		
-		SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");
-		
 		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext())
 		{
 			System.out.println("Inne i get PreviouslySetsFoorloop");
-			//String durationString = (((int) (c.getInt(duration) / 3600)) + ":" + (((int) (c.getInt(duration) / 60)) % 60) + ":" + (c.getInt(duration) % 60)); 
-			String durationString = df.format(c.getInt(duration));
-			System.out.println(durationString);
-			cardioSetsList.add(new CardioSets(durationString,c.getInt(distance)));
+
+			String durationString = (((int) (c.getInt(duration) / 3600)) + ":" + (((int) (c.getInt(duration) / 60)) % 60) + ":" + (c.getInt(duration) % 60)); 
+			cardioSetsList.add(new SetsData(durationString,c.getInt(distance)));
 		}
 		System.out.println("Efter Lopp");
 		c.close();
 		close();
 		return cardioSetsList;
+	}
+	
+	public List<SetsData> getPreviouslyDynamicSets(int workoutId, int exerciseId)
+	{
+		List<SetsData> dynamicSetsList = new LinkedList<SetsData>();
+		open();
+		Cursor c = ourDatabase.rawQuery("SELECT * FROM SETS WHERE WorkoutId = " +"workoutId" +" AND ExerciseId = " + exerciseId + " ORDER BY SetId "
+				+"DESC LIMIT 4;", null);
+		c.moveToFirst();
+		int weight = c.getColumnIndex("SetWeight");
+		int reps = c.getColumnIndex("SetReps");
+			
+		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext())
+		{
+			dynamicSetsList.add(new SetsData(c.getInt(weight),c.getInt(reps)));
+			System.out.println(c.getInt(weight) + " " + c.getInt(reps));
+		}
+		
+		c.close();
+		close();
+		return dynamicSetsList;
 	}
 	
 	
@@ -291,6 +327,48 @@ public class WorkoutDbHandler extends Database {
 			System.out.println(tmp);
 			ourDatabase.execSQL(tmp);
 		}
+		close();
+	}
+	
+	public int addWorkout(String WorkoutName)
+	{
+		open();
+		ContentValues values = new ContentValues();
+		values.put("WorkoutName", WorkoutName);
+		int WorkoutId = (int) (long) ourDatabase.insert("Workouts", null, values);
+		close();
+		return WorkoutId;
+	}
+	
+	public void deleteWorkout(int WorkoutId)
+	{
+		open();
+		//Delete sets associated with workout
+		ourDatabase.execSQL("DELETE FROM Sets WHERE WorkoutId = '" + WorkoutId + "';");
+		//Delete the workout
+		ourDatabase.execSQL("DELETE FROM Workouts WHERE WorkoutId = '" + WorkoutId + "';");
+		close();
+	}
+	
+	public void deleteWorkoutTemplate(int WorkoutTemplateId)
+	{
+		open();
+		//Delete exercise associations to WorkoutTemplate
+		ourDatabase.execSQL("DELETE FROM WorkoutTemplateExercises WHERE WorkoutTemplateId = '" + WorkoutTemplateId + "';");
+		//Delete WorkoutTemplate
+		ourDatabase.execSQL("DELETE FROM WorkoutTemplates WHERE WorkoutTemplateId = '" + WorkoutTemplateId + "';");
+		close();
+	}
+	
+	public void deleteExercise(int ExerciseId)
+	{
+		open();
+		//Delete WorkoutTemplateExercises associated with Exercise
+		ourDatabase.execSQL("DELETE FROM WorkoutTemplateExercises WHERE ExerciseId = '" + ExerciseId + "';");
+		//Delete sets associated with Exercise
+		ourDatabase.execSQL("DELETE FROM Sets WHERE ExerciseId = '" + ExerciseId + "';");
+		//Delete Exercises
+		ourDatabase.execSQL("DELETE FROM WorkoutTemplates WHERE WorkoutTemplateId = '" + ExerciseId + "';");
 		close();
 	}
 }
