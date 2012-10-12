@@ -17,6 +17,7 @@
 
 package com.Grupp01.gymapp.Controller.Workout;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -191,10 +192,15 @@ public class WorkoutDbHandler extends Database {
 		c.moveToFirst();
 		int duration = c.getColumnIndex("SetDuration");
 		int distance = c.getColumnIndex("SetDistance");
+		
+		SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");
+		
 		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext())
 		{
 			System.out.println("Inne i get PreviouslySetsFoorloop");
-			String durationString = (((int) (c.getInt(duration) / 3600)) + ":" + (((int) (c.getInt(duration) / 60)) % 60) + ":" + (c.getInt(duration) % 60)); 
+			//String durationString = (((int) (c.getInt(duration) / 3600)) + ":" + (((int) (c.getInt(duration) / 60)) % 60) + ":" + (c.getInt(duration) % 60)); 
+			String durationString = df.format(c.getInt(duration));
+			System.out.println(durationString);
 			cardioSetsList.add(new CardioSets(durationString,c.getInt(distance)));
 		}
 		System.out.println("Efter Lopp");
@@ -256,5 +262,13 @@ public class WorkoutDbHandler extends Database {
 		ourDatabase.execSQL("DELETE FROM Sets WHERE SetId="+setCardioId+";");
 		getLatestCardioSetId();
 		close();
+	}
+	
+	public int getExerciseLastTimePerformed(int ExerciseId)
+	{
+		Cursor c = ourDatabase.rawQuery("SELECT WorkoutTime FROM Workouts WHERE WorkoutId = Sets.WorkoutId AND Sets.ExerciseId = '" + ExerciseId + "';", null);
+		int WorkoutTime = c.getColumnIndex("WorkoutTime");
+		c.moveToFirst();
+		return c.getInt(WorkoutTime);
 	}
 }
