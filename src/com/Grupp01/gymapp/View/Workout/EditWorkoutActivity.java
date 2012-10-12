@@ -45,6 +45,7 @@ public class EditWorkoutActivity extends SherlockActivity implements OnItemSelec
 	private ArrayAdapter<ExerciseListElementData> listAdapter;
 	private int workoutId;
     public ArrayList<ExerciseListElementData> exerciseList = new ArrayList<ExerciseListElementData>();
+    public WorkoutDbHandler dbHandler = new WorkoutDbHandler(this); 
 	  
 	  
 	String[] muscleGroups = { "Hej", "detta", "är", "Robert", "och", "Anders",
@@ -93,10 +94,13 @@ public class EditWorkoutActivity extends SherlockActivity implements OnItemSelec
 	            @Override  
 	            public void onItemClick( AdapterView<?> parent, View item,   int position, long id) 
 	            {  
-	              ExerciseListElementData Exercise = listAdapter.getItem( position );
-	              Exercise.toogleChecked();
+	              ExerciseListElementData exercise = listAdapter.getItem( position );
+	              exercise.toogleChecked();
 	              ExerciseViewHolder viewHolder = (ExerciseViewHolder) item.getTag();
-	              viewHolder.getCheckBox().setChecked( Exercise.isChecked() );
+	              viewHolder.getCheckBox().setChecked( exercise.isChecked() );
+	              dbHandler.open();
+	              dbHandler.editWorkoutTemplate(exercise, workoutId);
+	              dbHandler.close();
 	            }//End of onItemClick
 	        });//End of Listener
           
@@ -134,7 +138,7 @@ public class EditWorkoutActivity extends SherlockActivity implements OnItemSelec
           	
           }*/
 	  	
-	  	 WorkoutDbHandler dbHandler = new WorkoutDbHandler(this); 
+	  	 
 		 dbHandler.open();
 		 exerciseList = dbHandler.getExercisesCheckedByWorkoutTemplateId(workoutId);
 		 dbHandler.close();

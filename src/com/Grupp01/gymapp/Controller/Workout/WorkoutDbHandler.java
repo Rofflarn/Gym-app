@@ -276,15 +276,20 @@ public class WorkoutDbHandler extends Database {
 	
 	public void editWorkoutTemplate(ExerciseListElementData exerciseListItemData, int WorkoutTemplateId)
 	{
+		System.out.println(exerciseListItemData.getName());
 		open();
 		if(exerciseListItemData.isChecked())
 		{
 			//add
-			ourDatabase.execSQL("INSERT INTO WorkoutTemplateExercises (WorkoutTemplateId, ExerciseId) VALUES ('" + WorkoutTemplateId + "', '" + exerciseListItemData.getId() + "');");
+			String tmp = "INSERT INTO WorkoutTemplateExercises (WorkoutTemplateId, ExerciseId) VALUES ('" + WorkoutTemplateId + "', '" + exerciseListItemData.getId() + "');";
+			System.out.println(tmp);
+			ourDatabase.execSQL(tmp);
 		} else
 		{
 			//remove
-			ourDatabase.execSQL("DELETE FROM WorkoutTemplateExercises WHERE WorkoutTemplateId = '" + WorkoutTemplateId + " AND ExerciseId = '" + exerciseListItemData.getId() + "'';");
+			String tmp = "DELETE FROM WorkoutTemplateExercises WHERE WorkoutTemplateId = '" + WorkoutTemplateId + "' AND ExerciseId = '" + exerciseListItemData.getId() + "';";
+			System.out.println(tmp);
+			ourDatabase.execSQL(tmp);
 		}
 		close();
 	}
