@@ -17,6 +17,8 @@
 package com.Grupp01.gymapp.View.Workout;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -28,6 +30,7 @@ import android.widget.Toast;
 import com.Grupp01.gymapp.MainActivity;
 import com.Grupp01.gymapp.R;
 import com.Grupp01.gymapp.Controller.Exercise.ExerciseData;
+import com.Grupp01.gymapp.Controller.Workout.SetsData;
 import com.Grupp01.gymapp.Controller.Workout.WorkoutDbHandler;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
@@ -49,9 +52,10 @@ import com.actionbarsherlock.view.MenuItem;
  */
 public class RegisterDynamicActivity extends SherlockActivity {
 
-	private ArrayList<String> currentSets;	//The array where new sets is added (in form of REPSxWEIGHT)
 	private int exerciseId;
+	private int workoutId;
 	private ExerciseData exercise;
+	private List<SetsData> dynamicSetsList = new LinkedList<SetsData>();//The list where new sets are added and removed.
 	
 	/**
 	 * Set up the default layout and call initiate method that is required. 
@@ -62,10 +66,9 @@ public class RegisterDynamicActivity extends SherlockActivity {
         //workoutName = getIntent().getStringExtra("exercisename");
         setContentView(R.layout.activity_register_dynamic);
         exerciseId = getIntent().getIntExtra(WorkoutActivity.EXTRA_EXERCISE_ID, 0);
+        workoutId = getIntent().getIntExtra(WorkoutActivity.EXTRA_WORKOUT_ID, 0);
         getExerciseData();
         setTitle(exercise.getName());
-        //Create the array
-        currentSets = new ArrayList<String>();
         
         //Show the sets (reps and weight) for the last time this
         //exercise was performed.
@@ -152,8 +155,12 @@ public class RegisterDynamicActivity extends SherlockActivity {
      * to the database before this activity terminates.
      */
     private void saveSetsToDatabase() {
-    	Toast.makeText(this, "will close this activity and save", Toast.LENGTH_SHORT).show();
-		
+    	WorkoutDbHandler dbHandler = new WorkoutDbHandler(this);
+    	dbHandler.open();
+    	for(SetsData setData: dynamicSetsList)
+    	{
+    		dbHandler.addDynamicSet(setData.getWeight(), setData.getReps(), setData.getworkoutId(), setData.getexerciseid());
+    	}	
 	}
 
 
@@ -167,6 +174,7 @@ public class RegisterDynamicActivity extends SherlockActivity {
     	//Input from the user, the reps and weight
     	EditText editReps = (EditText) findViewById(R.id.editReps);
 		EditText editWeight = (EditText) findViewById(R.id.editWeight);
+		
     	
     	//Fetch number of reps
 		String reps = editReps.getText().toString();
@@ -179,8 +187,11 @@ public class RegisterDynamicActivity extends SherlockActivity {
 			if(weight.equals(""))
 				weight = "0";
 			
-			//add to the array and update view on the screen
-			currentSets.add(reps + "x" + weight);
+			//Parses strings input to Integer.
+			Integer repsInt = Integer.parseInt(editReps.getText().toString());
+			Integer weightInt = Integer.parseInt(editWeight.getText().toString());
+			//Adds new sets to cardioSetsList
+			dynamicSetsList.add(new SetsData(weightInt,repsInt,workoutId,exerciseId));
 			updateView();
 		
 		}
@@ -196,21 +207,22 @@ public class RegisterDynamicActivity extends SherlockActivity {
 	 * 
 	 */
 	private void updateView() {
-		String string = new String();
 		
 		//The textview where current sets will be showed (added when button "Finish set" is pressed)
 		TextView currentSetString = (TextView) findViewById(R.id.thisTimeSets);
 		
-		//The prefix is used to separate each set in the string.
-		String prefix = new String("");
+		//Strinbuffer that is shown in Sets
+		StringBuffer prefix = new StringBuffer();
 		
-		for (String s : currentSets)
+		for (SetsData setData : dynamicSetsList)
 		{
-			string = string + prefix;
-			prefix = ", ";
-			string = string + s;
+			prefix.append(" ");
+			prefix.append(setData.getReps());
+			prefix.append("x");
+			prefix.append(setData.getWeight());
+			prefix.append(", ");
 		}
-		currentSetString.setText(string);
+		currentSetString.setText(prefix);
 	}
 	
 	
@@ -219,8 +231,8 @@ public class RegisterDynamicActivity extends SherlockActivity {
 	 * 
 	 */
 	private void removeLatestSet() {
-		if(currentSets.size() > 0)
-			currentSets.remove(currentSets.size() -1);
+		if(dynamicSetsList.size() > 0)
+			dynamicSetsList.remove(dynamicSetsList.size() -1);
 		updateView();
 	}
 	

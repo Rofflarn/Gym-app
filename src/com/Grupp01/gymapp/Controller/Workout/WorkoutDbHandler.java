@@ -178,13 +178,21 @@ public class WorkoutDbHandler extends Database {
 		close();
 	}
 	
+	public void addDynamicSet(int weight, int reps, int workoutId, int exerciseId)
+	{
+		open();
+		ourDatabase.execSQL("INSER INTO Sets(SetsReps, SetsWeight, WorkoutId, ExerciseId) VALUES " +
+							 "(" + reps + ", " + weight + ", " + workoutId + ", " + exerciseId + ");");
+		close();
+	}
+	
 
 
 
-	public List<CardioSets> getPreviouslySets(int workoutId, int exerciseId)
+	public List<SetsData> getPreviouslySets(int workoutId, int exerciseId)
 	{
 		System.out.println("Inne i get PreviouslySets");
-		List<CardioSets> cardioSetsList = new LinkedList<CardioSets>();
+		List<SetsData> cardioSetsList = new LinkedList<SetsData>();
 		open();
 		Cursor c = ourDatabase.rawQuery("SELECT * FROM SETS WHERE WorkoutId = " +"workoutId" +" AND ExerciseId = " + exerciseId + " ORDER BY SetId "
 				+"DESC LIMIT 4;", null);
@@ -195,7 +203,7 @@ public class WorkoutDbHandler extends Database {
 		{
 			System.out.println("Inne i get PreviouslySetsFoorloop");
 			String durationString = (((int) (c.getInt(duration) / 3600)) + ":" + (((int) (c.getInt(duration) / 60)) % 60) + ":" + (c.getInt(duration) % 60)); 
-			cardioSetsList.add(new CardioSets(durationString,c.getInt(distance)));
+			cardioSetsList.add(new SetsData(durationString,c.getInt(distance)));
 		}
 		System.out.println("Efter Lopp");
 		c.close();
