@@ -20,8 +20,6 @@ package com.Grupp01.gymapp.View.History;
 import android.os.Bundle;
 
 import com.Grupp01.gymapp.R;
-import com.Grupp01.gymapp.R.layout;
-import com.Grupp01.gymapp.R.menu;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.*;
 
@@ -36,7 +34,7 @@ public class Historik extends SherlockActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
     	MenuInflater inflater = getSupportMenuInflater();
-    	inflater.inflate(R.menu.historik, menu);
+    	inflater.inflate(R.menu.universal_menu, menu);
         return true;
     }
 }

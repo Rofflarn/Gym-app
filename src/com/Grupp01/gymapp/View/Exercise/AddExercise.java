@@ -26,10 +26,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import com.Grupp01.gymapp.R;
-import com.Grupp01.gymapp.R.array;
-import com.Grupp01.gymapp.R.id;
-import com.Grupp01.gymapp.R.layout;
-import com.Grupp01.gymapp.R.menu;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
@@ -75,7 +71,7 @@ public class AddExercise extends SherlockActivity implements AdapterView.OnItemS
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getSupportMenuInflater();
-		inflater.inflate(R.menu.activity_add_exercise, menu);
+		inflater.inflate(R.menu.universal_menu, menu);
 		return true;
 	}
 
