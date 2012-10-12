@@ -30,7 +30,6 @@ import android.widget.ListView;
 
 import com.Grupp01.gymapp.MainActivity;
 import com.Grupp01.gymapp.R;
-import com.Grupp01.gymapp.Controller.IdName;
 import com.Grupp01.gymapp.Controller.Exercise.ExerciseData;
 import com.Grupp01.gymapp.Controller.Workout.WorkoutDbHandler;
 import com.actionbarsherlock.app.SherlockActivity;
@@ -70,6 +69,16 @@ public class WorkoutActivity extends SherlockActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        workoutId = getIntent().getIntExtra("WORKOUT_NAME", 0);
+        System.out.println(workoutId);
+        setContentView(R.layout.activity_workout);
+        getAndSetTitle();
+        getExerciseDataList();
+        listAllExercises();
+    }
+    private void onResume(Bundle savedInstanceState)
+    {
+    	super.onResume();
         workoutId = getIntent().getIntExtra("WORKOUT_NAME", 0);
         System.out.println(workoutId);
         setContentView(R.layout.activity_workout);
