@@ -183,7 +183,6 @@ public class EditWorkoutActivity extends SherlockActivity implements OnItemSelec
 		});
     	closeEditWorkoutDialog.show();
     }
-    
       
     /** When a item in the spinners is selected, do
      * NOT IMPLEMENTED YET SINCE WE GOT NO DATABASE*/
