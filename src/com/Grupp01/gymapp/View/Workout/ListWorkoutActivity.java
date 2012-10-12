@@ -162,7 +162,7 @@ public class ListWorkoutActivity extends SherlockActivity {
 		 arrayWorkouts.addAll( Arrays.asList(listWorkouts) );
 		 
 		 //Set the listview layout with strings in array
-		 listAdapter = new ArrayAdapter<String>(this, R.layout.list, arrayWorkouts);
+		 listAdapter = new ArrayAdapter<String>(this, R.layout.list_simple_row, arrayWorkouts);
 		 mainListView.setAdapter(listAdapter);   
 		 
 		 //Activate longclick menu in the list

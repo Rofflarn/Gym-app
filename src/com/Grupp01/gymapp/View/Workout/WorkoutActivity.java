@@ -121,7 +121,7 @@ public class WorkoutActivity extends SherlockActivity {
 		
 		//Add all the exercises from the stringarray to the ArrayList and build the listview
 		listExercises.addAll(Arrays.asList(listWorkouts));
-		ListAdapter listAdapter = new ArrayAdapter<String>(this, R.layout.list, listExercises);
+		ListAdapter listAdapter = new ArrayAdapter<String>(this, R.layout.list_simple_row, listExercises);
 		listExercisesView.setAdapter(listAdapter);
 		
 	
