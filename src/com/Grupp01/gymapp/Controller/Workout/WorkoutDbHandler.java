@@ -184,7 +184,7 @@ public class WorkoutDbHandler extends Database {
 	public void addDynamicSet(int weight, int reps, int workoutId, int exerciseId)
 	{
 		open();
-		ourDatabase.execSQL("INSER INTO Sets(SetsReps, SetsWeight, WorkoutId, ExerciseId) VALUES " +
+		ourDatabase.execSQL("INSERT INTO Sets(SetReps, SetWeight, WorkoutId, ExerciseId) VALUES " +
 							 "(" + reps + ", " + weight + ", " + workoutId + ", " + exerciseId + ");");
 		close();
 	}
@@ -192,7 +192,7 @@ public class WorkoutDbHandler extends Database {
 
 
 
-	public List<SetsData> getPreviouslySets(int workoutId, int exerciseId)
+	public List<SetsData> getPreviouslyCardioSets(int workoutId, int exerciseId)
 	{
 		System.out.println("Inne i get PreviouslySets");
 		List<SetsData> cardioSetsList = new LinkedList<SetsData>();
@@ -220,6 +220,27 @@ public class WorkoutDbHandler extends Database {
 		c.close();
 		close();
 		return cardioSetsList;
+	}
+	
+	public List<SetsData> getPreviouslyDynamicSets(int workoutId, int exerciseId)
+	{
+		List<SetsData> dynamicSetsList = new LinkedList<SetsData>();
+		open();
+		Cursor c = ourDatabase.rawQuery("SELECT * FROM SETS WHERE WorkoutId = " +"workoutId" +" AND ExerciseId = " + exerciseId + " ORDER BY SetId "
+				+"DESC LIMIT 4;", null);
+		c.moveToFirst();
+		int weight = c.getColumnIndex("SetWeight");
+		int reps = c.getColumnIndex("SetReps");
+			
+		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext())
+		{
+			dynamicSetsList.add(new SetsData(c.getInt(weight),c.getInt(reps)));
+			System.out.println(c.getInt(weight) + " " + c.getInt(reps));
+		}
+		
+		c.close();
+		close();
+		return dynamicSetsList;
 	}
 	
 	

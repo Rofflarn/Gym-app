@@ -34,6 +34,12 @@ public class SetsData {
 		this.exerciseId = exerciseId;
 	}
 	
+	public SetsData(int weight, int reps)
+	{
+		this.weight = weight;
+		this.reps = reps;
+	}
+	
 	/**
 	 * 
 	 * @return number of minutes that the set has taken.

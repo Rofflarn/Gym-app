@@ -293,7 +293,7 @@ public class RegisterCardioActivity extends SherlockActivity {
 		StringBuffer sets = new StringBuffer();
 		TextView latestSets = (TextView) findViewById(R.id.lastTimeSetsCardio);
         dbHandler.open();
-        cardioSetsList = dbHandler.getPreviouslySets(workoutId, exerciseId);
+        cardioSetsList = dbHandler.getPreviouslyCardioSets(workoutId, exerciseId);
 		for(SetsData cardioSet: cardioSetsList)
 		{
 			sets.append(cardioSet.getDuration());
