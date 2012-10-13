@@ -24,7 +24,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.Grupp01.gymapp.View.Exercise.ListExerciseActivity;
-import com.Grupp01.gymapp.View.History.Historik;
+import com.Grupp01.gymapp.View.History.ListHistoryActivity;
 import com.Grupp01.gymapp.View.Statistic.Statistik;
 import com.Grupp01.gymapp.View.Workout.ListWorkoutActivity;
 import com.actionbarsherlock.app.SherlockActivity;
@@ -87,7 +87,7 @@ public class MainActivity extends SherlockActivity {
      */
     public void historik(View view)
     {
-    	Intent historik = new Intent(this, Historik.class);
+    	Intent historik = new Intent(this, ListHistoryActivity.class);
     	startActivity(historik);
     }
     
