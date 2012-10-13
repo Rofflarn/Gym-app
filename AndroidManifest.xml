@@ -58,6 +58,7 @@
             android:label="@string/title_activity_register_static"
             android:screenOrientation="portrait" />
         <activity
+<<<<<<< HEAD
             android:name=".View.Workout.RegisterCardioActivity"
             android:label="@string/title_activity_register_cardio"
             android:screenOrientation="portrait" />
@@ -70,6 +71,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+=======
+      		android:name=".View.Workout.RegisterCardioActivity"
+            android:label="@string/title_activity_register_cardio" 
+            android:screenOrientation="portrait"/>
+        <activity
+      		android:name=".View.Profile.ProfileActivity"
+            android:label="@string/title_activity_profile" 
+            android:screenOrientation="portrait"/>
+>>>>>>> implement_profile
     </application>
 
 </manifest>

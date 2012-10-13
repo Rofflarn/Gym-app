@@ -24,7 +24,12 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.Grupp01.gymapp.View.Exercise.ListExerciseActivity;
+<<<<<<< HEAD
 import com.Grupp01.gymapp.View.History.ListHistoryActivity;
+=======
+import com.Grupp01.gymapp.View.History.Historik;
+import com.Grupp01.gymapp.View.Profile.ProfileActivity;
+>>>>>>> implement_profile
 import com.Grupp01.gymapp.View.Statistic.Statistik;
 import com.Grupp01.gymapp.View.Workout.ListWorkoutActivity;
 import com.actionbarsherlock.app.SherlockActivity;
@@ -111,5 +116,11 @@ public class MainActivity extends SherlockActivity {
     {
     	Intent exercise = new Intent(this, ListExerciseActivity.class);
     	startActivity(exercise);
+    }
+    
+    public void profile(View view)
+    {
+    	Intent profile = new Intent(this, ProfileActivity.class);
+    	startActivity(profile);
     }
 }
