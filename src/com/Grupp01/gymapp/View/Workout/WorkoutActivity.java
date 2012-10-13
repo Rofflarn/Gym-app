@@ -57,8 +57,8 @@ public class WorkoutActivity extends SherlockActivity {
 	final int Cardio = 1;
 	final int Dynamic = 2;
 	final int Static = 3;
-	public final static String EXTRA_EXERCISE_ID = "com.Grupp01.gymapp.message";
-	public final static String EXTRA_WORKOUT_ID = "com.Grupp01.gymapp.message";
+	public final static String EXTRA_EXERCISE_ID = "com.Grupp01.gymapp.message.exercise";
+	public final static String EXTRA_WORKOUT_ID = "com.Grupp01.gymapp.message.workout";
 	private ListView listExercisesView;		//The listview that holds all the exercises for the workout
 	private String workoutName;
 	private int workoutId;
@@ -144,6 +144,7 @@ public class WorkoutActivity extends SherlockActivity {
 	            	
 	            	//Get the text label of the row that has been clicked (will be used to open the correct workout)
 	            	ExerciseData exercise = exerciseDataList.get(position);
+	            	System.out.println(exercise.getId() + "From position");
 	            	registerWorkoutResult(exercise);
 	            	
 	            	
@@ -161,26 +162,29 @@ public class WorkoutActivity extends SherlockActivity {
      * @param exerciseName The name of the exercise
      */
     private void registerWorkoutResult(ExerciseData exercise){
+    	int temp = exercise.getId();
     	//ONLY FOR TESTING DIFFERENT REGISTER ACTIVITY!!
     	if(exercise.getTypeId() == 1){
     		System.out.println("exerciseType == 1");
-    		System.out.println(exercise.getId());
+    		System.out.println(exercise.getId() + "from 3 if sats");
     		Intent intent1 = new Intent(WorkoutActivity.this, RegisterCardioActivity.class);
-    		intent1.putExtra(EXTRA_EXERCISE_ID, exercise.getId());
+    		intent1.putExtra(EXTRA_EXERCISE_ID, temp);
     		intent1.putExtra(EXTRA_WORKOUT_ID, workoutId);
     		startActivity(intent1);
     	}
     	if(exercise.getTypeId() == 2){
     		System.out.println("exerciseType == 2");
+    		System.out.println(exercise.getId() + "from 3 if sats");
     		Intent intent2 = new Intent(WorkoutActivity.this, RegisterDynamicActivity.class);
-    		intent2.putExtra(EXTRA_EXERCISE_ID, exercise.getId());
+    		intent2.putExtra(EXTRA_EXERCISE_ID, temp);
     		intent2.putExtra(EXTRA_WORKOUT_ID, workoutId);
     		startActivity(intent2);
     	}
     	if(exercise.getTypeId() == 3){
     		System.out.println("exerciseType == 3");
+    		System.out.println(exercise.getId() + "from 3 if sats");
     		Intent intent3 = new Intent(WorkoutActivity.this, RegisterStaticActivity.class);
-    		intent3.putExtra(EXTRA_EXERCISE_ID, exercise.getId());
+    		intent3.putExtra(EXTRA_EXERCISE_ID, temp);
     		intent3.putExtra(EXTRA_WORKOUT_ID, workoutId);
     		startActivity(intent3);
     	}

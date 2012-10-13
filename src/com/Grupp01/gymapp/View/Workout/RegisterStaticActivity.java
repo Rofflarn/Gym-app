@@ -66,6 +66,7 @@ public class RegisterStaticActivity extends SherlockActivity {
         //workoutName = getIntent().getStringExtra("exercisename");
         setContentView(R.layout.activity_register_static);
         exerciseId = getIntent().getIntExtra(WorkoutActivity.EXTRA_EXERCISE_ID, 0);
+        System.out.println(exerciseId + "från intent");
         workoutId = getIntent().getIntExtra(WorkoutActivity.EXTRA_WORKOUT_ID, 0);
         getExerciseData();
         setTitle(exercise.getName());

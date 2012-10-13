@@ -1,181 +1,183 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent" >
 
-    
-    
-     <LinearLayout    
-     android:id="@+id/linearBottomStatic"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_alignParentBottom="true"
-    android:gravity="center_horizontal">
-     <Button
-        android:id="@+id/staticButtonOK"
-        android:layout_width="80dp"
+    <LinearLayout
+        android:id="@+id/linearBottomStatic"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/Done"
-        android:onClick="onClick"/>
-     <Button
-        android:id="@+id/staticButtonCancel"
-        android:layout_width="80dp"
-        android:layout_height="wrap_content"
-        android:text="@string/Cancel"
-        android:onClick="onClick"/>
+        android:layout_alignParentBottom="true"
+        android:gravity="center_horizontal" >
 
- </LinearLayout>
-    
-    
-    
-    
- <ScrollView
-     android:id="@+id/scrollViewTest"
-     android:layout_width="wrap_content"
-     android:layout_height="match_parent" 
-     android:layout_above="@id/linearBottomStatic"
-     android:isScrollContainer="false">
+        <Button
+            android:id="@+id/staticButtonOK"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:onClick="onClick"
+            android:text="@string/Done" />
 
-     <RelativeLayout
-   		 android:layout_width="wrap_content"
-   		 android:layout_height="wrap_content">
-   		 <TextView
-	        android:id="@+id/lastTimeStatic"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:text="@string/register_last_time"
-	        android:textStyle="bold" />
-	    
-	     <TextView
-	        android:id="@+id/lastTimeSetsStatic"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_toRightOf="@id/lastTimeStatic"/>
-	 <LinearLayout
-    android:id="@+id/linearThisTimeStatic"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content" 
-    android:layout_below="@id/lastTimeStatic"
-    android:layout_marginTop="3dp">
-    <TextView
-        android:id="@+id/thisTimeStatic"
+        <Button
+            android:id="@+id/staticButtonCancel"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:onClick="onClick"
+            android:text="@string/Cancel" />
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/scrollViewTest"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:text="@string/register_current_sets"/>
-    
-       <TextView
-        android:id="@+id/thisTimeSetsStatic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
- </LinearLayout>
- 
-	 <LinearLayout
-    android:id="@+id/linearMyNoteStatic"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content" 
-    android:layout_below="@id/linearThisTimeStatic"
-    android:layout_marginTop="3dp">
-    <TextView
-        android:id="@+id/noteTextStatic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:text="@string/register_my_notes"/>
-    
-       <TextView
-        android:id="@+id/myNoteTextStatic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
- </LinearLayout>
- 
-	 <LinearLayout
-    android:id="@+id/linearTextRepsStatic"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content" 
-    android:layout_below="@id/linearMyNoteStatic"
-    android:gravity="center_horizontal"
-    android:layout_marginTop="20dp">
-    <TextView
-        android:id="@+id/textMinutesStatic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/register_minutes"
-        android:textStyle="bold"
-        android:textSize="14sp"/>
-        
-        <TextView
-        android:id="@+id/textSecondsStatic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:text="@string/register_seconds"
-        android:textStyle="bold"
-        android:textSize="14sp"/>
-    
-       <TextView
-        android:id="@+id/textWeight"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:text="@string/register_weight"
-        android:textStyle="bold"
-        android:textSize="14sp"/>
- </LinearLayout>
- 
-	 
-	 <LinearLayout    
-     android:id="@+id/linearEditFieldsStatic"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content" 
-    android:layout_below="@id/linearTextRepsStatic"
-    android:gravity="center_horizontal" >
-    <EditText
-        android:id="@+id/editMinutesStatic"
-        android:layout_width="60dp"
-        android:layout_height="wrap_content"
-        android:inputType="number" />
-     <EditText
-        android:id="@+id/editSecondsStatic"
-        android:layout_width="60dp"
-        android:layout_height="wrap_content"
-        android:inputType="number" />
-	<EditText
-        android:id="@+id/editWeight"
-        android:layout_width="60dp"
-        android:layout_height="wrap_content"
-        android:inputType="numberDecimal"/>
-</LinearLayout>
+        android:layout_height="match_parent"
+        android:layout_above="@id/linearBottomStatic"
+        android:isScrollContainer="false" >
 
-	 <LinearLayout
-    android:id="@+id/linearButtonStatic"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content" 
-    android:layout_below="@id/linearEditFieldsStatic"
-    android:layout_marginTop="12dp"
-    android:gravity="center_horizontal">
-     <Button
-        android:id="@+id/staticFinishSet"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:text="@string/register_finish_set"
-        android:onClick="onClick"/>
-     <Button
-        android:id="@+id/staticUndoSet"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:text="@string/register_undo_set"  
-        android:onClick="onClick"/>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
 
-    
- </LinearLayout>
-	 
+            <LinearLayout
+                android:id="@+id/linearLastTimeStatic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
 
+                <TextView
+                    android:id="@+id/lastTimeStatic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/register_last_time"
+                    android:textStyle="bold" />
 
-</RelativeLayout>
- </ScrollView>
- 
+                <TextView
+                    android:id="@+id/lastTimeSetsStatic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/linearThisTimeStatic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/linearLastTimeStatic"
+                android:layout_marginTop="3dp" >
 
+                <TextView
+                    android:id="@+id/thisTimeStatic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/register_current_sets"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/thisTimeSetsStatic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearMyNoteStatic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/linearThisTimeStatic"
+                android:layout_marginTop="3dp" >
+
+                <TextView
+                    android:id="@+id/noteTextStatic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/register_my_notes"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/myNoteTextStatic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearTextRepsStatic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/linearMyNoteStatic"
+                android:layout_marginTop="20dp"
+                android:gravity="center_horizontal" >
+
+                <TextView
+                    android:id="@+id/textMinutesStatic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/register_minutes"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textSecondsStatic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:text="@string/register_seconds"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textWeight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:text="@string/register_weight"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearEditFieldsStatic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/linearTextRepsStatic"
+                android:gravity="center_horizontal" >
+
+                <EditText
+                    android:id="@+id/editMinutesStatic"
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="number" />
+
+                <EditText
+                    android:id="@+id/editSecondsStatic"
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="number" />
+
+                <EditText
+                    android:id="@+id/editWeight"
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearButtonStatic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/linearEditFieldsStatic"
+                android:layout_marginTop="12dp"
+                android:gravity="center_horizontal" >
+
+                <Button
+                    android:id="@+id/staticFinishSet"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:onClick="onClick"
+                    android:text="@string/register_finish_set" />
+
+                <Button
+                    android:id="@+id/staticUndoSet"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:onClick="onClick"
+                    android:text="@string/register_undo_set" />
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
 
 </RelativeLayout>

@@ -66,6 +66,7 @@ public class RegisterDynamicActivity extends SherlockActivity {
 		//workoutName = getIntent().getStringExtra("exercisename");
 		setContentView(R.layout.activity_register_dynamic);
 		exerciseId = getIntent().getIntExtra(WorkoutActivity.EXTRA_EXERCISE_ID, 0);
+		System.out.println(exerciseId);
 		workoutId = getIntent().getIntExtra(WorkoutActivity.EXTRA_WORKOUT_ID, 0);
 		getExerciseData();
 		setTitle(exercise.getName());

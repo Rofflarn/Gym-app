@@ -69,8 +69,9 @@ public class RegisterCardioActivity extends SherlockActivity {
         setContentView(R.layout.activity_register_cardio);
         //Create the array
         currentSets = new ArrayList<String>();
-        exerciseId = getIntent().getIntExtra(WorkoutActivity.EXTRA_EXERCISE_ID, 0);
         workoutId = getIntent().getIntExtra(WorkoutActivity.EXTRA_WORKOUT_ID, 0);
+        exerciseId = getIntent().getIntExtra(WorkoutActivity.EXTRA_EXERCISE_ID, 0);
+        System.out.println(exerciseId + "Från intent");
         getExerciseData();
         setTitle(exercise.getName());
         //System.out.println(exercise.getNote());
