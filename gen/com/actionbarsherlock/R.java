@@ -10,21 +10,27 @@ package com.actionbarsherlock;
 public final class R {
     public static final class array {
         /**  Array for displaying distance units 
+ Array for displaying distance units 
          */
         public static final int entry_distance_array=0x7f0c0002;
         /**  Array for displaying language 
+ Array for displaying language 
          */
         public static final int entry_language_array=0x7f0c0000;
         /**  Array for displaying weight units 
+ Array for displaying weight units 
          */
         public static final int entry_weight_array=0x7f0c0004;
         /**  Values for distance units 
+ Values for distance units 
          */
         public static final int entryvalues_distance_array=0x7f0c0003;
         /**  Values for language 
+ Values for language 
          */
         public static final int entryvalues_language_array=0x7f0c0001;
         /**  Values for weight units 
+ Values for weight units 
          */
         public static final int entryvalues_weight_array=0x7f0c0005;
         public static final int muscle_type=0x7f0c0007;
@@ -821,9 +827,9 @@ containing a value of this type.
         public static final int CardioButtonOK=0x7f05003f;
         public static final int CardioFinishSet=0x7f050054;
         public static final int CardioUndoSet=0x7f050055;
-        public static final int CheckBox01=0x7f050089;
+        public static final int CheckBox01=0x7f05008b;
         public static final int LL_button=0x7f05002f;
-        public static final int ListViewWorkouts=0x7f05008d;
+        public static final int ListViewWorkouts=0x7f05008f;
         public static final int abs__action_bar=0x7f050022;
         public static final int abs__action_bar_container=0x7f050021;
         public static final int abs__action_bar_subtitle=0x7f050011;
@@ -853,9 +859,9 @@ containing a value of this type.
         public static final int abs__title=0x7f05001b;
         public static final int abs__titleDivider=0x7f05001c;
         public static final int abs__up=0x7f05000b;
-        public static final int activeWorkoutList=0x7f050080;
-        public static final int add_Button=0x7f050087;
-        public static final int age=0x7f05008f;
+        public static final int activeWorkoutList=0x7f050082;
+        public static final int add_Button=0x7f050089;
+        public static final int age=0x7f050091;
         public static final int button1=0x7f050038;
         public static final int button2=0x7f050039;
         public static final int button3=0x7f05003a;
@@ -866,108 +872,110 @@ containing a value of this type.
         public static final int button_Workout_Cancel=0x7f050036;
         public static final int button_cancel=0x7f050031;
         public static final int button_done=0x7f050030;
-        public static final int cancel_Button=0x7f050086;
+        public static final int cancel_Button=0x7f050088;
         public static final int disableHome=0x7f050009;
         public static final int dynamicButtonCancel=0x7f050058;
         public static final int dynamicButtonOK=0x7f050057;
-        public static final int dynamicFinishSet=0x7f050068;
-        public static final int dynamicUndoSet=0x7f050069;
+        public static final int dynamicFinishSet=0x7f050069;
+        public static final int dynamicUndoSet=0x7f05006a;
         public static final int editDistance=0x7f050052;
         public static final int editMinutesCardio=0x7f050050;
-        public static final int editMinutesStatic=0x7f050079;
-        public static final int editReps=0x7f050065;
+        public static final int editMinutesStatic=0x7f05007b;
+        public static final int editReps=0x7f050066;
         public static final int editSecondsCardio=0x7f050051;
-        public static final int editSecondsStatic=0x7f05007a;
-        public static final int editWeight=0x7f050066;
+        public static final int editSecondsStatic=0x7f05007c;
+        public static final int editWeight=0x7f050067;
         public static final int edit_comment=0x7f05002e;
         public static final int edit_description=0x7f05002d;
         public static final int empty_list=0x7f050037;
-        public static final int exerciseName=0x7f050085;
-        public static final int historyDate=0x7f05008c;
-        public static final int historyName=0x7f05008b;
+        public static final int exerciseName=0x7f050087;
+        public static final int historyDate=0x7f05008e;
+        public static final int historyName=0x7f05008d;
         public static final int homeAsUp=0x7f050006;
-        public static final int lastTime=0x7f050059;
+        public static final int lastTime=0x7f05005a;
         public static final int lastTimeCardio=0x7f050043;
-        public static final int lastTimeSets=0x7f05005a;
+        public static final int lastTimeLinear=0x7f050059;
+        public static final int lastTimeSets=0x7f05005b;
         public static final int lastTimeSetsCardio=0x7f050044;
-        public static final int lastTimeSetsStatic=0x7f05006e;
-        public static final int lastTimeStatic=0x7f05006d;
-        public static final int length=0x7f050090;
-        public static final int linear1=0x7f05005b;
-        public static final int linear1_1=0x7f05005e;
-        public static final int linear2=0x7f050061;
-        public static final int linear3=0x7f050064;
-        public static final int linear4=0x7f050067;
+        public static final int lastTimeSetsStatic=0x7f050070;
+        public static final int lastTimeStatic=0x7f05006f;
+        public static final int length=0x7f050092;
+        public static final int linear1=0x7f05005c;
+        public static final int linear1_1=0x7f05005f;
+        public static final int linear2=0x7f050062;
+        public static final int linear3=0x7f050065;
+        public static final int linear4=0x7f050068;
         public static final int linearBottom=0x7f050056;
         public static final int linearBottomCardio=0x7f05003e;
-        public static final int linearBottomStatic=0x7f05006a;
+        public static final int linearBottomStatic=0x7f05006b;
         public static final int linearButtonCardio=0x7f050053;
-        public static final int linearButtonStatic=0x7f05007b;
+        public static final int linearButtonStatic=0x7f05007d;
         public static final int linearEditFieldsCardio=0x7f05004f;
-        public static final int linearEditFieldsStatic=0x7f050078;
+        public static final int linearEditFieldsStatic=0x7f05007a;
         public static final int linearLastTimeCardio=0x7f050042;
+        public static final int linearLastTimeStatic=0x7f05006e;
         public static final int linearMyNoteCardio=0x7f050048;
-        public static final int linearMyNoteStatic=0x7f050072;
+        public static final int linearMyNoteStatic=0x7f050074;
         public static final int linearTextRepsCardio=0x7f05004b;
-        public static final int linearTextRepsStatic=0x7f050075;
+        public static final int linearTextRepsStatic=0x7f050077;
         public static final int linearThisTimeCardio=0x7f050045;
-        public static final int linearThisTimeStatic=0x7f05006f;
+        public static final int linearThisTimeStatic=0x7f050071;
         public static final int listMode=0x7f050002;
         public static final int mainListView=0x7f050034;
-        public static final int menu_about=0x7f050092;
-        public static final int menu_addExe=0x7f050097;
-        public static final int menu_addWorkout=0x7f050096;
-        public static final int menu_createExcercise=0x7f050095;
-        public static final int menu_editWorkout=0x7f050094;
-        public static final int menu_settings=0x7f050093;
-        public static final int myNoteText=0x7f050060;
+        public static final int menu_about=0x7f050094;
+        public static final int menu_addExe=0x7f050099;
+        public static final int menu_addWorkout=0x7f050098;
+        public static final int menu_createExcercise=0x7f050097;
+        public static final int menu_editWorkout=0x7f050096;
+        public static final int menu_settings=0x7f050095;
+        public static final int myNoteText=0x7f050061;
         public static final int myNoteTextCardio=0x7f05004a;
-        public static final int myNoteTextStatic=0x7f050074;
-        public static final int name=0x7f05008e;
+        public static final int myNoteTextStatic=0x7f050076;
+        public static final int name=0x7f050090;
         public static final int normal=0x7f050001;
-        public static final int noteText=0x7f05005f;
+        public static final int noteText=0x7f050060;
         public static final int noteTextCardio=0x7f050049;
-        public static final int noteTextStatic=0x7f050073;
-        public static final int rowTextView=0x7f050088;
+        public static final int noteTextStatic=0x7f050075;
+        public static final int rowTextView=0x7f05008a;
         public static final int scrollViewTest=0x7f050041;
         public static final int showCustom=0x7f050008;
         public static final int showHome=0x7f050005;
         public static final int showTitle=0x7f050007;
-        public static final int spinner_primary_muscle=0x7f050083;
-        public static final int spinner_secondary_muscle=0x7f050084;
+        public static final int spinner_primary_muscle=0x7f050085;
+        public static final int spinner_secondary_muscle=0x7f050086;
         public static final int spinner_sport=0x7f05002b;
         public static final int spinner_type_of_training=0x7f050029;
         public static final int spinnermuscle=0x7f050033;
         public static final int spinnermusclegroup=0x7f050032;
-        public static final int staticButtonCancel=0x7f05006c;
-        public static final int staticButtonOK=0x7f05006b;
-        public static final int staticFinishSet=0x7f05007c;
-        public static final int staticUndoSet=0x7f05007d;
+        public static final int staticButtonCancel=0x7f05006d;
+        public static final int staticButtonOK=0x7f05006c;
+        public static final int staticFinishSet=0x7f05007e;
+        public static final int staticUndoSet=0x7f05007f;
         public static final int tabMode=0x7f050003;
-        public static final int tableLayout1=0x7f05007e;
+        public static final int tableLayout1=0x7f050080;
         public static final int textDistance=0x7f05004e;
         public static final int textMinutesCardio=0x7f05004c;
-        public static final int textMinutesStatic=0x7f050076;
-        public static final int textReps=0x7f050062;
+        public static final int textMinutesStatic=0x7f050078;
+        public static final int textReps=0x7f050063;
         public static final int textSecondsCardio=0x7f05004d;
-        public static final int textSecondsStatic=0x7f050077;
+        public static final int textSecondsStatic=0x7f050079;
         public static final int textView_comment=0x7f05002c;
         public static final int textView_description=0x7f05002a;
-        public static final int textView_primary_muscle=0x7f050081;
-        public static final int textView_secondary_muscle=0x7f050082;
+        public static final int textView_primary_muscle=0x7f050083;
+        public static final int textView_secondary_muscle=0x7f050084;
         public static final int textView_sport=0x7f050028;
         public static final int textView_type_of_training=0x7f050027;
-        public static final int textWeight=0x7f050063;
-        public static final int theList=0x7f05008a;
-        public static final int thisTime=0x7f05005c;
+        public static final int textWeight=0x7f050064;
+        public static final int theList=0x7f05008c;
+        public static final int thisTime=0x7f05005d;
         public static final int thisTimeCardio=0x7f050046;
-        public static final int thisTimeSets=0x7f05005d;
+        public static final int thisTimeSets=0x7f05005e;
         public static final int thisTimeSetsCardio=0x7f050047;
-        public static final int thisTimeSetsStatic=0x7f050071;
-        public static final int thisTimeStatic=0x7f050070;
-        public static final int tvSQLinfo=0x7f05007f;
+        public static final int thisTimeSetsStatic=0x7f050073;
+        public static final int thisTimeStatic=0x7f050072;
+        public static final int tvSQLinfo=0x7f050081;
         public static final int useLogo=0x7f050004;
-        public static final int weigh=0x7f050091;
+        public static final int weigh=0x7f050093;
         public static final int wrap_content=0x7f050000;
     }
     public static final class integer {
@@ -1015,7 +1023,8 @@ containing a value of this type.
         public static final int profile=0x7f030026;
         public static final int sherlock_spinner_dropdown_item=0x7f030027;
         public static final int sherlock_spinner_item=0x7f030028;
-        public static final int statistik=0x7f030029;
+        public static final int simplerow=0x7f030029;
+        public static final int statistik=0x7f03002a;
     }
     public static final class menu {
         public static final int activity_list_history=0x7f0d0000;
@@ -1066,38 +1075,42 @@ containing a value of this type.
         public static final int age=0x7f0a0013;
         public static final int app_name=0x7f0a000a;
         public static final int buttonUppdate=0x7f0a0016;
-        public static final int button_cancel=0x7f0a004f;
+        public static final int button_cancel=0x7f0a0057;
         public static final int button_save=0x7f0a0011;
         public static final int cancel=0x7f0a000e;
         public static final int comment=0x7f0a001d;
-        public static final int delete=0x7f0a0054;
+        public static final int delete=0x7f0a005b;
         public static final int description=0x7f0a001c;
         public static final int dialog_new_workout_title=0x7f0a0038;
+        public static final int distance=0x7f0a003f;
+        public static final int distance_select=0x7f0a0040;
         public static final int done=0x7f0a0010;
-        public static final int edit=0x7f0a0055;
+        public static final int edit=0x7f0a005c;
         public static final int exercise_name=0x7f0a000d;
-        public static final int hello_world=0x7f0a0043;
+        public static final int hello_world=0x7f0a004b;
         public static final int hint_comment=0x7f0a001f;
         public static final int hint_description=0x7f0a001e;
-        public static final int imagebutton_exercises=0x7f0a003e;
-        public static final int imagebutton_history=0x7f0a003f;
-        public static final int imagebutton_profile=0x7f0a0041;
-        public static final int imagebutton_settings=0x7f0a0042;
-        public static final int imagebutton_statistics=0x7f0a0040;
-        public static final int imagebutton_workout=0x7f0a003d;
+        public static final int imagebutton_exercises=0x7f0a0045;
+        public static final int imagebutton_history=0x7f0a0046;
+        public static final int imagebutton_profile=0x7f0a0048;
+        public static final int imagebutton_settings=0x7f0a0049;
+        public static final int imagebutton_statistics=0x7f0a0047;
+        public static final int imagebutton_workout=0x7f0a0044;
+        public static final int language=0x7f0a003d;
+        public static final int language_select=0x7f0a003e;
         public static final int length=0x7f0a0014;
-        public static final int list_workout_all=0x7f0a004d;
-        public static final int list_workout_favorites=0x7f0a004c;
-        public static final int menu_addExc=0x7f0a004b;
+        public static final int list_workout_all=0x7f0a0055;
+        public static final int list_workout_favorites=0x7f0a0054;
+        public static final int menu_addExc=0x7f0a0053;
         public static final int menu_addExe=0x7f0a000c;
         public static final int menu_addWorkout=0x7f0a0021;
-        public static final int menu_createExercise=0x7f0a004e;
+        public static final int menu_createExercise=0x7f0a0056;
         public static final int menu_editWorkout=0x7f0a0023;
-        public static final int menu_save=0x7f0a0045;
-        public static final int menu_settings=0x7f0a0044;
+        public static final int menu_save=0x7f0a004d;
+        public static final int menu_settings=0x7f0a004c;
         public static final int name=0x7f0a0012;
-        public static final int no=0x7f0a0052;
-        public static final int not_implemented=0x7f0a0053;
+        public static final int no=0x7f0a005a;
+        public static final int not_implemented=0x7f0a004a;
         public static final int ok=0x7f0a003c;
         public static final int primary_muscletype_prompt=0x7f0a0018;
         public static final int register_current_sets=0x7f0a002a;
@@ -1110,17 +1123,17 @@ containing a value of this type.
         public static final int register_seconds=0x7f0a002d;
         public static final int register_undo_set=0x7f0a0030;
         public static final int register_weight=0x7f0a0032;
-        public static final int remove_workout=0x7f0a0050;
+        public static final int remove_workout=0x7f0a0058;
         public static final int secondary_muscletype_prompt=0x7f0a0019;
         public static final int sport_prompt=0x7f0a001a;
-        public static final int string_cancel=0x7f0a0048;
-        public static final int string_done=0x7f0a0047;
-        public static final int string_primary_muscle=0x7f0a0049;
-        public static final int string_secondary_muscle=0x7f0a004a;
+        public static final int string_cancel=0x7f0a0050;
+        public static final int string_done=0x7f0a004f;
+        public static final int string_primary_muscle=0x7f0a0051;
+        public static final int string_secondary_muscle=0x7f0a0052;
         public static final int string_type_of_training=0x7f0a001b;
         public static final int textview_muscle=0x7f0a0034;
         public static final int textview_musclegroup=0x7f0a0033;
-        public static final int title_activity_add_exercise=0x7f0a0046;
+        public static final int title_activity_add_exercise=0x7f0a004e;
         public static final int title_activity_database=0x7f0a0035;
         public static final int title_activity_main=0x7f0a000b;
         public static final int title_activity_profile=0x7f0a0020;
@@ -1132,8 +1145,11 @@ containing a value of this type.
         public static final int title_activity_sqlview=0x7f0a0036;
         public static final int title_activity_workout=0x7f0a0022;
         public static final int trainingtype_prompt=0x7f0a0017;
+        public static final int unit=0x7f0a0043;
         public static final int weigh=0x7f0a0015;
-        public static final int yes=0x7f0a0051;
+        public static final int weight=0x7f0a0041;
+        public static final int weight_select=0x7f0a0042;
+        public static final int yes=0x7f0a0059;
     }
     public static final class style {
         public static final int AppTheme=0x7f0b0058;
