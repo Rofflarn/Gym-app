@@ -19,12 +19,18 @@
 package com.Grupp01.gymapp;
 
 
+import java.util.Locale;
+
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 
 import com.Grupp01.gymapp.View.Exercise.ListExerciseActivity;
 import com.Grupp01.gymapp.View.History.ListHistoryActivity;
+import com.Grupp01.gymapp.View.Settings.SettingsActivity;
 import com.Grupp01.gymapp.View.Profile.ProfileActivity;
 import com.Grupp01.gymapp.View.Statistic.Statistik;
 import com.Grupp01.gymapp.View.Workout.ListWorkoutActivity;
@@ -39,13 +45,13 @@ import com.actionbarsherlock.view.MenuInflater;
  * @peer reviewed by
  * @date 05/10/12
  *
- * Class MainActivity starts when the applicition starts and shows the mainmenu with buttons to the available activities. 
+ * Class MainActivity starts when the application starts and shows the mainmenu with buttons to the available activities. 
  *  
  */
 public class MainActivity extends SherlockActivity {
 	
 	/**
-	 * Instanciate the class with nessecary method calls.
+	 * Instantiate the class with necessary method calls.
 	 * 
 	 * @param savedInstanceState
 	 */
@@ -53,6 +59,14 @@ public class MainActivity extends SherlockActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        
+        //Set default values for the apps settings
+        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
+   
+       
+        
+        changeLang();
+       
     }
     
     
@@ -69,6 +83,12 @@ public class MainActivity extends SherlockActivity {
     	
         return true;
     }
+    
+    @Override protected void onResume() {
+    	
+    		changeLang();
+    		super.onResume();
+    	}  
     
     /**
      * When button Workout is pressed ListWorkoutActivity is started.
@@ -113,7 +133,58 @@ public class MainActivity extends SherlockActivity {
     	Intent exercise = new Intent(this, ListExerciseActivity.class);
     	startActivity(exercise);
     }
+
+    /**
+     * When button Settings is pressed SettingsActivity is started.
+     * 
+     * @param view
+     */
+    public void settings(View view)
+    {
+    	Intent settings = new Intent(this, SettingsActivity.class);
+    	startActivity(settings);
+    }
     
+    
+    /**
+     * This method will change the language of the application depending on the users
+     * choice in the menu in Settings.
+     * If the user chooses "System default" this method will fetch the information about the default setting
+     * for the phone.
+     * Otherwise it will set the language according to the choice.
+     * If no choice is made, the default is set to be the phones default laguage.
+     */
+    private void changeLang(){
+    	
+    	//Get the stored default language from sharedpreferences.
+    	 SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+         String lang = sharedPref.getString("pref_key_language", "default");
+         
+         //If its set to default, set the language to the phones default laguage.
+    	if(lang.equals("default)")){
+    		Locale locale = Locale.getDefault();
+    		Locale.setDefault(locale);
+            Configuration config = new Configuration();
+            config.locale = locale;
+            getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+    	}
+    	
+    	//Otherwise set it to the user selected language.
+    	else{
+    		Locale locale = new Locale(lang);
+            Locale.setDefault(locale);
+            Configuration config = new Configuration();
+            config.locale = locale;
+            getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+    	}
+        
+    }
+    
+    /**
+     * When button Profile is pressed the profile activity will be started.
+     * 
+     * @param view
+     */
     public void profile(View view)
     {
     	Intent profile = new Intent(this, ProfileActivity.class);

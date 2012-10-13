@@ -76,6 +76,7 @@
         android:layout_alignTop="@+id/button5"
         android:layout_alignRight="@+id/button2"
         android:src="@drawable/settings" 
+        android:onClick="settings"
         android:background="@null"/>
 
 </RelativeLayout>
