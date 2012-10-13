@@ -121,8 +121,8 @@ public class ListWorkoutActivity extends SherlockActivity {
     public void onCreateContextMenu(ContextMenu menu, View v,
         ContextMenuInfo menuInfo) {
     	
-         menu.add(Menu.NONE, 0, 0, "Edit");
-         menu.add(Menu.NONE, 1, 1, "Delete");
+         menu.add(Menu.NONE, 0, 0, getString(R.string.edit));
+         menu.add(Menu.NONE, 1, 1, getString(R.string.delete));
          
         }
     
@@ -162,7 +162,7 @@ public class ListWorkoutActivity extends SherlockActivity {
 		 arrayWorkouts.addAll( Arrays.asList(listWorkouts) );
 		 
 		 //Set the listview layout with strings in array
-		 listAdapter = new ArrayAdapter<String>(this, R.layout.list, arrayWorkouts);
+		 listAdapter = new ArrayAdapter<String>(this, R.layout.list_simple_row, arrayWorkouts);
 		 mainListView.setAdapter(listAdapter);   
 		 
 		 //Activate longclick menu in the list
@@ -209,20 +209,19 @@ public class ListWorkoutActivity extends SherlockActivity {
 		
 		//Show a confirmation dialog before deleting
 		AlertDialog.Builder deleteDialog = new AlertDialog.Builder(this);
-		deleteDialog.setMessage("Are you sure you want to delete workout " + workoutName +"?");
-		deleteDialog.setCancelable(false);
+		deleteDialog.setMessage(getString(R.string.remove_workout) + workoutName +"?");
 		
 		//Set action for clicking "Yes" (the user wants to delete)
-		deleteDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+		deleteDialog.setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
 	           public void onClick(DialogInterface dialog, int id) {
 	        	  
-	        	   Toast.makeText(ListWorkoutActivity.this, "Not implementet yet!", Toast.LENGTH_SHORT).show();
+	        	   Toast.makeText(ListWorkoutActivity.this, getString(R.string.not_implemented), Toast.LENGTH_SHORT).show();
 	           } //End of onclick method
 			}	//end of DialogInterface
 		);	//End of setPositiveButton
 		
 		//Set action for choosing not to delete (the dialog just closes and no action is taken)
-		deleteDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+		deleteDialog.setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {
 	           public void onClick(DialogInterface dialog, int id) {
 	        	   dialog.cancel();
 	           } //End of onclick method
@@ -260,12 +259,13 @@ public class ListWorkoutActivity extends SherlockActivity {
     	final EditText editText_Dialog = new EditText(this);
     	final Intent intent2 = new Intent(this, com.Grupp01.gymapp.View.Workout.EditWorkoutActivity.class);
     	
-    	addWorkout_Dialog.setMessage("Enter name of Workout:");
+    	
+    	addWorkout_Dialog.setMessage(getString(R.string.dialog_new_workout_title));
     	addWorkout_Dialog.setView(editText_Dialog);
     	
     	
     	//If pressing "Add Workout" on the dialog
-    	addWorkout_Dialog.setPositiveButton("Add Workout", new DialogInterface.OnClickListener() 
+    	addWorkout_Dialog.setPositiveButton(getString(R.string.add), new DialogInterface.OnClickListener() 
     	{
     		/** When the user clicked "Add workout"
     		 *  go to EditWorkout
@@ -287,7 +287,7 @@ public class ListWorkoutActivity extends SherlockActivity {
     		 }
     	});
     	//If pressing "Cancel" on the dialog
-    	addWorkout_Dialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener()
+    	addWorkout_Dialog.setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener()
     	{
 			
     		/** Close dialog if the user press cancel*/

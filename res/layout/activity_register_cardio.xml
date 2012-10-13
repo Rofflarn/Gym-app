@@ -15,13 +15,13 @@
         android:id="@+id/CardioButtonOK"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
-        android:text="@string/Done"
+        android:text="@string/done"
         android:onClick="onClick"/>
      <Button
         android:id="@+id/CardioButtonCancel"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
-        android:text="@string/Cancel"
+        android:text="@string/cancel"
         android:onClick="onClick"/>
 
  </LinearLayout>
@@ -39,6 +39,11 @@
      <RelativeLayout
    		 android:layout_width="wrap_content"
    		 android:layout_height="wrap_content">
+   		 <LinearLayout
+ 		  	 android:id="@+id/linearLastTimeCardio"
+  		 	 android:layout_width="match_parent"
+   			 android:layout_height="wrap_content" 
+   			 android:layout_marginTop="3dp">
    		 <TextView
 	        android:id="@+id/lastTimeCardio"
 	        android:layout_width="wrap_content"
@@ -51,11 +56,12 @@
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:layout_toRightOf="@id/lastTimeCardio"/>
+	     </LinearLayout>
 	 <LinearLayout
     android:id="@+id/linearThisTimeCardio"
     android:layout_width="match_parent"
     android:layout_height="wrap_content" 
-    android:layout_below="@id/lastTimeCardio"
+    android:layout_below="@id/linearLastTimeCardio"
     android:layout_marginTop="3dp">
     <TextView
         android:id="@+id/thisTimeCardio"

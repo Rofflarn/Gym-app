@@ -20,23 +20,22 @@ package com.Grupp01.gymapp.View.History;
 import android.os.Bundle;
 
 import com.Grupp01.gymapp.R;
-import com.Grupp01.gymapp.R.layout;
-import com.Grupp01.gymapp.R.menu;
 import com.actionbarsherlock.app.SherlockActivity;
-import com.actionbarsherlock.view.*;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
 
 public class Historik extends SherlockActivity {
 
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.historik);
+        setContentView(R.layout.history_list_layout);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
     	MenuInflater inflater = getSupportMenuInflater();
-    	inflater.inflate(R.menu.historik, menu);
+    	inflater.inflate(R.menu.universal_menu, menu);
         return true;
     }
 }

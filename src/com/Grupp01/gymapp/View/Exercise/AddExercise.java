@@ -17,6 +17,7 @@
  */
 package com.Grupp01.gymapp.View.Exercise;
 
+
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -72,7 +73,7 @@ public class AddExercise extends SherlockActivity implements AdapterView.OnItemS
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getSupportMenuInflater();
-		inflater.inflate(R.menu.activity_add_exercise, menu);
+		inflater.inflate(R.menu.universal_menu, menu);
 		return true;
 	}
 

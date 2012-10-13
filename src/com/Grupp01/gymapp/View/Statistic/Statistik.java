@@ -20,8 +20,6 @@ package com.Grupp01.gymapp.View.Statistic;
 import android.os.Bundle;
 
 import com.Grupp01.gymapp.R;
-import com.Grupp01.gymapp.R.layout;
-import com.Grupp01.gymapp.R.menu;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
@@ -37,7 +35,7 @@ public class Statistik extends SherlockActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
     	MenuInflater inflater = getSupportMenuInflater();
-    	inflater.inflate(R.menu.statistik, menu);
+    	inflater.inflate(R.menu.universal_menu, menu);
         return true;
     }
 }

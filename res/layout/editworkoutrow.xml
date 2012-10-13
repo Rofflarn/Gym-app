@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--/*This file is part of Gymapp.
+*
+*   Gymapp is free software: you can redistribute it and/or modify
+*   it under the terms of the GNU General Public License as published by
+*   the Free Software Foundation, either version 3 of the License, or
+*   (at your option) any later version.
+*
+*   Gymapp is distributed in the hope that it will be useful,
+*   but WITHOUT ANY WARRANTY; without even the implied warranty of
+*   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+*   GNU General Public License for more details.
+*
+*   You should have received a copy of the GNU General Public License
+*  along with Gymapp.  If not, see <http://www.gnu.org/licenses/>.
+*
+*			Copyright © 2012 GivDev
+*/  -->
+ <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"	 
+		android:orientation="vertical"
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent">
+  <TextView android:id="@+id/rowTextView" 
+      		android:layout_width="wrap_content" 
+      		android:layout_height="wrap_content" 
+      		android:padding="10dp" 
+      		android:textSize="16sp" /> 
+  <CheckBox android:id="@+id/CheckBox01" 
+      		android:layout_width="wrap_content" 
+      		android:layout_height="wrap_content" 
+      		android:padding="10dp" 
+      		android:layout_alignParentRight="true" 
+      		android:layout_marginRight="6sp" 
+      		android:focusable="false" />
+  </RelativeLayout>
