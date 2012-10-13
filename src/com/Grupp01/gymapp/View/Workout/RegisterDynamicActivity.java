@@ -118,7 +118,7 @@ public class RegisterDynamicActivity extends SherlockActivity {
 		StringBuffer sets = new StringBuffer();
 		TextView latestSets = (TextView) findViewById(R.id.lastTimeSets);
 		dbHandler.open();
-		dynamicSetsList = dbHandler.getPreviouslyDynamicSets(workoutId, exerciseId);
+		dynamicSetsList = dbHandler.getPreviouslyDynamicSets(workoutId, exerciseId, exercise.getTypeId());
 		if(dynamicSetsList.size() == 0)
 		{
 			latestSets.setText("");
@@ -188,6 +188,7 @@ public class RegisterDynamicActivity extends SherlockActivity {
 		{
 			dbHandler.addDynamicSet(setData.getWeight(), setData.getReps(), setData.getworkoutId(), setData.getexerciseid());
 		}	
+		dbHandler.close();
 	}
 
 

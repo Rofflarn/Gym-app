@@ -113,10 +113,32 @@ public class RegisterStaticActivity extends SherlockActivity {
      * that shows the time and weight for when performing this exercise last time.
      */
     private void setLastSetString() {
-    	TextView lastSetString = (TextView) findViewById(R.id.lastTimeSetsStatic);
-    	lastSetString.setText("ska hämtas från DB");
-		
+    	TextView lastSet = (TextView) findViewById(R.id.lastTimeSetsStatic);
+    	List<SetsData> dynamicSetsList = new LinkedList<SetsData>();
+		WorkoutDbHandler dbHandler = new WorkoutDbHandler(this);
+		StringBuffer sets = new StringBuffer();
+		dbHandler.open();
+		dynamicSetsList = dbHandler.getPreviouslyStaticSets(workoutId, exerciseId, exercise.getTypeId());
+		if(dynamicSetsList.size() == 0)
+		{
+			lastSet.setText("");
+		}
+		else
+		{
+			for (SetsData setData : dynamicSetsList)
+			{
+				sets.append(" ");
+				sets.append(setData.getDuration());
+				sets.append(" ");
+				sets.append(setData.getWeight());
+				sets.append(" kg,");
+			}
+
+			lastSet.setText(sets); 
+		}
+		dbHandler.close();
 	}
+		
     
    
     /**
@@ -204,6 +226,7 @@ public class RegisterStaticActivity extends SherlockActivity {
 			Integer minInt = Integer.parseInt(editMinutes.getText().toString());
 			Integer secInt = Integer.parseInt(editSeconds.getText().toString());
 			Integer weightInt = Integer.parseInt(editWeight.getText().toString());
+			System.out.println(weightInt); 
 			staticSetsList.add(new SetsData(minInt, secInt, weightInt));
 			updateView();
 			
@@ -218,7 +241,7 @@ public class RegisterStaticActivity extends SherlockActivity {
 	 * 
 	 */
 	private void updateView() {
-		String string = new String();
+	
 		
 		//The textview where current sets will be showed (added when button "Finish set" is pressed)
 		TextView currentSetString = (TextView) findViewById(R.id.thisTimeSetsStatic);
@@ -231,6 +254,7 @@ public class RegisterStaticActivity extends SherlockActivity {
 			setsString.append(":");
 			setsString.append(setData.getSec());
 			setsString.append(" ");
+			System.out.println(setData.getWeight());
 			setsString.append(setData.getWeight());
 			setsString.append(" | ");
 			

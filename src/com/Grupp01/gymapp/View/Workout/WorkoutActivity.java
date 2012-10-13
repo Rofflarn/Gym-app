@@ -168,24 +168,24 @@ public class WorkoutActivity extends SherlockActivity {
     	if(exercise.getTypeId() == 1){
     		System.out.println("exerciseType == 1");
     		System.out.println(exercise.getId());
-    		Intent intent = new Intent(WorkoutActivity.this, RegisterCardioActivity.class);
-    		intent.putExtra(EXTRA_EXERCISE_ID, exercise.getId());
-    		intent.putExtra(EXTRA_WORKOUT_ID, workoutId);
-    		startActivity(intent);
+    		Intent intent1 = new Intent(WorkoutActivity.this, RegisterCardioActivity.class);
+    		intent1.putExtra(EXTRA_EXERCISE_ID, exercise.getId());
+    		intent1.putExtra(EXTRA_WORKOUT_ID, workoutId);
+    		startActivity(intent1);
     	}
     	if(exercise.getTypeId() == 2){
     		System.out.println("exerciseType == 2");
-    		Intent intent = new Intent(WorkoutActivity.this, RegisterDynamicActivity.class);
-    		intent.putExtra(EXTRA_EXERCISE_ID, exercise.getId());
-    		intent.putExtra(EXTRA_WORKOUT_ID, workoutId);
-    		startActivity(intent);
+    		Intent intent2 = new Intent(WorkoutActivity.this, RegisterDynamicActivity.class);
+    		intent2.putExtra(EXTRA_EXERCISE_ID, exercise.getId());
+    		intent2.putExtra(EXTRA_WORKOUT_ID, workoutId);
+    		startActivity(intent2);
     	}
     	if(exercise.getTypeId() == 3){
     		System.out.println("exerciseType == 3");
-    		Intent intent = new Intent(WorkoutActivity.this, RegisterStaticActivity.class);
-    		intent.putExtra(EXTRA_EXERCISE_ID, exercise.getId());
-    		intent.putExtra(EXTRA_WORKOUT_ID, workoutId);
-    		startActivity(intent);
+    		Intent intent3 = new Intent(WorkoutActivity.this, RegisterStaticActivity.class);
+    		intent3.putExtra(EXTRA_EXERCISE_ID, exercise.getId());
+    		intent3.putExtra(EXTRA_WORKOUT_ID, workoutId);
+    		startActivity(intent3);
     	}
     }
     

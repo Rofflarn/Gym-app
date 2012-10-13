@@ -26,6 +26,12 @@ public class SetsData {
 		this.distance = distance;
 	}
 	
+	public SetsData(int weight, String duration)
+	{
+		this.duration = duration;
+		this.weight = weight;
+	}
+	
 	public SetsData(int weight, int reps, int workoutId, int exerciseId)
 	{
 		this.weight = weight;
@@ -44,6 +50,7 @@ public class SetsData {
 	{
 		this.min = min;
 		this.sec = sec;
+		System.out.println(weight);
 		this.weight = weight;
 	}
 	
