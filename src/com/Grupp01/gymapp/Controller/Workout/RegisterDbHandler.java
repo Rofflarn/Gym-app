@@ -1,3 +1,22 @@
+/*Copyright © 2012 GivDev
+ * 
+ * This file is part of Gymapp.
+ *
+ *   Gymapp is free software: you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation, either version 3 of the License, or
+ *   (at your option) any later version.
+ *
+ *   Gymapp is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *  along with Gymapp.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+
 package com.Grupp01.gymapp.Controller.Workout;
 
 import java.util.LinkedList;
@@ -45,7 +64,6 @@ public class RegisterDbHandler extends Database {
 
 	public List<SetsData> getPreviouslyCardioSets(int workoutId, int exerciseId, int exerciseTypeId)
 	{
-		System.out.println("Inne i get PreviouslySets");
 		List<SetsData> cardioSetsList = new LinkedList<SetsData>();
 		open();	
 		Cursor c = ourDatabase.rawQuery("SELECT Sets.SetDuration, Sets.SetDistance FROM Sets, Exercises WHERE Sets.WorkoutId = " + workoutId +" AND " +
@@ -57,12 +75,9 @@ public class RegisterDbHandler extends Database {
 
 		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext())
 		{
-			System.out.println("Inne i get PreviouslySetsFoorloop");
-
 			String durationString = (((int) (c.getInt(duration) / 3600)) + ":" + (((int) (c.getInt(duration) / 60)) % 60) + ":" + (c.getInt(duration) % 60)); 
 			cardioSetsList.add(new SetsData(durationString,c.getInt(distance)));
 		}
-		System.out.println("Efter Lopp");
 		c.close();
 		close();
 		return cardioSetsList;
@@ -82,7 +97,6 @@ public class RegisterDbHandler extends Database {
 		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext())
 		{
 			dynamicSetsList.add(new SetsData(c.getInt(weight),c.getInt(reps)));
-			System.out.println(c.getInt(weight) + " " + c.getInt(reps));
 		}
 
 		c.close();
@@ -128,7 +142,6 @@ public class RegisterDbHandler extends Database {
 		Cursor c = ourDatabase.rawQuery("SELECT MAX(SetId) FROM Sets", null);
 		c.moveToFirst();
 		int latestRowId = c.getInt(0);
-		System.out.println(c.getInt(0));
 		c.close();
 		close();
 		return latestRowId;

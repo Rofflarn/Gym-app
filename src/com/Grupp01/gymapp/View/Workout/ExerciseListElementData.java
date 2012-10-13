@@ -1,4 +1,6 @@
-/*This file is part of Gymapp.
+/*Copyright © 2012 GivDev
+ * 
+ * This file is part of Gymapp.
  *
  *   Gymapp is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -38,12 +40,12 @@ public class ExerciseListElementData
 		this.name = name ;  
 		this.checked = checked ;  
 	}
-	
+
 	public int getId()
 	{
 		return id;
 	}
-	
+
 	/** Get the name of the exercise into a string
 	 * @return string*/
 	public String getName() 
@@ -66,7 +68,7 @@ public class ExerciseListElementData
 	{  
 		checked = !checked ;  
 	}
-	
+
 	public void setId(int id)
 	{
 		this.id = id;

@@ -1,17 +1,19 @@
-/*This file is part of Gymapp.
+/*Copyright © 2012 GivDev
+ * 
+ * This file is part of Gymapp.
  *
- * Gymapp is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ *   Gymapp is free software: you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation, either version 3 of the License, or
+ *   (at your option) any later version.
  *
- * Gymapp is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
+ *   Gymapp is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
  *
- * You should have received a copy of the GNU General Public License
- * along with Gymapp. If not, see <http://www.gnu.org/licenses/>.
+ *   You should have received a copy of the GNU General Public License
+ *  along with Gymapp.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
 package com.Grupp01.gymapp.View.Workout;
@@ -27,7 +29,6 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.Grupp01.gymapp.MainActivity;
 import com.Grupp01.gymapp.R;
@@ -70,7 +71,6 @@ public class WorkoutActivity extends SherlockActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		workoutId = getIntent().getIntExtra(ListWorkoutActivity.WORKOUT_ID, 0);
-		System.out.println(workoutId);
 		setContentView(R.layout.activity_workout);
 		getAndSetTitle();
 		getExerciseDataList();
@@ -162,22 +162,18 @@ public class WorkoutActivity extends SherlockActivity {
 	private void registerWorkoutResult(ExerciseData exercise){
 		//ONLY FOR TESTING DIFFERENT REGISTER ACTIVITY!!
 		if(exercise.getTypeId() == 1){
-			System.out.println("exerciseType == 1");
-			System.out.println(exercise.getId());
 			Intent intent = new Intent(WorkoutActivity.this, RegisterCardioActivity.class);
 			intent.putExtra(EXTRA_EXERCISE_ID, exercise.getId());
 			intent.putExtra(EXTRA_WORKOUT_ID, workoutId);
 			startActivity(intent);
 		}
 		if(exercise.getTypeId() == 2){
-			System.out.println("exerciseType == 2");
 			Intent intent = new Intent(WorkoutActivity.this, RegisterDynamicActivity.class);
 			intent.putExtra(EXTRA_EXERCISE_ID, exercise.getId());
 			intent.putExtra(EXTRA_WORKOUT_ID, workoutId);
 			startActivity(intent);
 		}
 		if(exercise.getTypeId() == 3){
-			System.out.println("exerciseType == 3");
 			Intent intent = new Intent(WorkoutActivity.this, RegisterStaticActivity.class);
 			intent.putExtra(EXTRA_EXERCISE_ID, exercise.getId());
 			intent.putExtra(EXTRA_WORKOUT_ID, workoutId);

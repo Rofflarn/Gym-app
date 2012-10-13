@@ -1,4 +1,6 @@
-/*This file is part of Gymapp.
+/*Copyright © 2012 GivDev
+ * 
+ * This file is part of Gymapp.
  *
  *   Gymapp is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -170,12 +172,12 @@ public class RegisterDynamicActivity extends SherlockActivity {
 			break;
 		}
 	}
-	
+
 	private void setNoteText()
-    {
-    	TextView notes = (TextView) findViewById(R.id.myNoteText);
-    	notes.setText(exercise.getNote());
-    }
+	{
+		TextView notes = (TextView) findViewById(R.id.myNoteText);
+		notes.setText(exercise.getNote());
+	}
 
 	/**
 	 * THis is called when pressing the "OK" button, will save the sets

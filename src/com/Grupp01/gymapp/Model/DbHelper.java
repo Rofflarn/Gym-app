@@ -1,19 +1,21 @@
-/*This file is part of Gymapp.
-*
-*   Gymapp is free software: you can redistribute it and/or modify
-*   it under the terms of the GNU General Public License as published by
-*   the Free Software Foundation, either version 3 of the License, or
-*   (at your option) any later version.
-*
-*   Gymapp is distributed in the hope that it will be useful,
-*   but WITHOUT ANY WARRANTY; without even the implied warranty of
-*   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-*   GNU General Public License for more details.
-*
-*   You should have received a copy of the GNU General Public License
-*  along with Gymapp.  If not, see <http://www.gnu.org/licenses/>.
-*
-*/
+/*Copyright © 2012 GivDev
+ * 
+ * This file is part of Gymapp.
+ *
+ *   Gymapp is free software: you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation, either version 3 of the License, or
+ *   (at your option) any later version.
+ *
+ *   Gymapp is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *  along with Gymapp.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
 package com.Grupp01.gymapp.Model;
 
 import android.content.Context;
@@ -21,16 +23,16 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class DbHelper extends SQLiteOpenHelper{
-	
+
 	private static final String DATABASE_NAME = "GymAppDatabase"; 
 	private static final int DATABASE_VERSION = 1;
 
-	
+
 	public DbHelper(Context context)
 	{	
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 	}
-	
+
 	/**
 	 * Creates new tables in database.
 	 * 
@@ -53,7 +55,7 @@ public class DbHelper extends SQLiteOpenHelper{
 		createSports(db);
 		createMuscleGroups(db);
 	}
-	
+
 	/**
 	 * Deletes all the old tables and creates fresh ones.
 	 * 
@@ -64,22 +66,22 @@ public class DbHelper extends SQLiteOpenHelper{
 	 */
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-			db.execSQL("DROP TABLE IF EXIST Exercises");
-			db.execSQL("DROP TABLE IF EXIST ExerciseTypes");
-			db.execSQL("DROP TABLE IF EXIST MeasureDataTypes");
-			db.execSQL("DROP TABLE IF EXIST MeasureData");
-			db.execSQL("DROP TABLE IF EXIST Workouts");
-			db.execSQL("DROP TABLE IF EXIST Measures");
-			db.execSQL("DROP TABLE IF EXIST Muscles");
-			db.execSQL("DROP TABLE IF EXIST Sets");
-			db.execSQL("DROP TABLE IF EXIST Sports");
-			db.execSQL("DROP TABLE IF EXIST MuscleGroups");
-			db.execSQL("DROP TABLE IF EXIST Users");
-			db.execSQL("DROP TABLE IF EXIST WorkoutTemplates");
-			db.execSQL("DROP TABLE IF EXIST WorkoutTemplatesExercise");
-			onCreate(db);//Creates fresh tables
-       }
-	
+		db.execSQL("DROP TABLE IF EXIST Exercises");
+		db.execSQL("DROP TABLE IF EXIST ExerciseTypes");
+		db.execSQL("DROP TABLE IF EXIST MeasureDataTypes");
+		db.execSQL("DROP TABLE IF EXIST MeasureData");
+		db.execSQL("DROP TABLE IF EXIST Workouts");
+		db.execSQL("DROP TABLE IF EXIST Measures");
+		db.execSQL("DROP TABLE IF EXIST Muscles");
+		db.execSQL("DROP TABLE IF EXIST Sets");
+		db.execSQL("DROP TABLE IF EXIST Sports");
+		db.execSQL("DROP TABLE IF EXIST MuscleGroups");
+		db.execSQL("DROP TABLE IF EXIST Users");
+		db.execSQL("DROP TABLE IF EXIST WorkoutTemplates");
+		db.execSQL("DROP TABLE IF EXIST WorkoutTemplatesExercise");
+		onCreate(db);//Creates fresh tables
+	}
+
 	/**
 	 * Adds table Exercises database and adds default content.
 	 * 
@@ -97,9 +99,9 @@ public class DbHelper extends SQLiteOpenHelper{
 		db.execSQL("INSERT INTO Exercises(ExercisePri, ExerciseSec, ExerciseName, ExerciseTypeId) VALUES (1, 2, 'Push-ups', 1);");
 		db.execSQL("INSERT INTO Exercises(ExercisePri, ExerciseSec, ExerciseName, ExerciseTypeId) VALUES (1, 2, 'Joels Ölhäfv', 1);");
 		db.execSQL("INSERT INTO Exercises(ExercisePri, ExerciseSec, ExerciseName, ExerciseTypeId) VALUES (1, 2, 'Schlobbans sjuor', 2);");
-		
+
 	}
-	
+
 	/**
 	 * Adds table ExerciseTypes to database and adds default content.
 	 * 
@@ -113,7 +115,7 @@ public class DbHelper extends SQLiteOpenHelper{
 		db.execSQL("insert into ExerciseTypes (ExerciseTypeName) VALUES ('Dynamic');");
 		db.execSQL("insert into ExerciseTypes (ExerciseTypeName) VALUES ('Static');");		
 	}
-	
+
 	/**
 	 * Adds table MeasureDataTypes to database.
 	 * 
@@ -124,7 +126,7 @@ public class DbHelper extends SQLiteOpenHelper{
 	{
 		db.execSQL("CREATE TABLE MeasureDataTypes (MeasureDataTypeId INTEGER PRIMARY KEY AUTOINCREMENT, MeasureDataTypeName TEXT);");
 	}
-	
+
 	/**
 	 * Adds table MeasureData to database.
 	 * 
@@ -134,9 +136,9 @@ public class DbHelper extends SQLiteOpenHelper{
 	private void createMeasureData(SQLiteDatabase db)
 	{
 		db.execSQL("CREATE TABLE MeasureData (MeasureDataId INTEGER PRIMARY KEY AUTOINCREMENT, MeasureData REAL NOT NULL, " +
-					"MeasureDataTypeId INTEGER NOT NULL, MeasureId INTEGER NOT NULL);");
+				"MeasureDataTypeId INTEGER NOT NULL, MeasureId INTEGER NOT NULL);");
 	}
-	
+
 	/**
 	 * Adds table Workout to database.
 	 * 
@@ -148,7 +150,7 @@ public class DbHelper extends SQLiteOpenHelper{
 		db.execSQL("CREATE TABLE Workouts (WorkoutID INTEGER PRIMARY KEY AUTOINCREMENT, WorkoutDate TEXT DEFAULT current_timestamp, WorkoutName TEXT, " +
 				"UserId INTEGER NOT NULL);");
 	}
-	
+
 	/**
 	 * Adds table Measures to database.
 	 * 
@@ -160,7 +162,7 @@ public class DbHelper extends SQLiteOpenHelper{
 		db.execSQL("CREATE TABLE Measures (MeasureId INTEGER PRIMARY KEY AUTOINCREMENT, MeasureData REAL NOT NULL, " +
 				"UserId INTEGER NOT NULL);");
 	}
-	
+
 	/**
 	 * Adds table MuscleGroups to database and adds default content.
 	 * 
@@ -177,7 +179,7 @@ public class DbHelper extends SQLiteOpenHelper{
 		db.execSQL("INSERT INTO MuscleGroups(MuscleGroupName) VALUES ('Abdomen');");
 		db.execSQL("INSERT INTO MuscleGroups(MuscleGroupName) VALUES ('Legs');");
 	}
-	
+
 	/**
 	 * Adds table Muscles to database and adds default content.
 	 * 
@@ -195,7 +197,7 @@ public class DbHelper extends SQLiteOpenHelper{
 		db.execSQL("INSERT INTO Muscles (MuscleName, MuscleGroupId) VALUES ('Straight thigh', 6);");
 		db.execSQL("INSERT INTO Muscles (MuscleName, MuscleGroupId) VALUES ('Tailor', 6);");
 	}
-	
+
 	/**
 	 * Adds table Sets to database.
 	 * 
@@ -204,10 +206,10 @@ public class DbHelper extends SQLiteOpenHelper{
 	 */
 	private void createSets(SQLiteDatabase db)
 	{
-		 db.execSQL("CREATE TABLE Sets (SetId INTEGER PRIMARY KEY AUTOINCREMENT, SetReps INTEGER, SetWeight REAL, " +
-		 		"SetDistance INTEGER, WorkoutId INTEGER, SetDuration INTEGER, SetTime TEXT, ExerciseId INTEGER NOT NULL);");
+		db.execSQL("CREATE TABLE Sets (SetId INTEGER PRIMARY KEY AUTOINCREMENT, SetReps INTEGER, SetWeight REAL, " +
+				"SetDistance INTEGER, WorkoutId INTEGER, SetDuration INTEGER, SetTime TEXT, ExerciseId INTEGER NOT NULL);");
 	}
-	
+
 	/**
 	 * Adds table Sports to database and adds default content.
 	 * 
@@ -216,20 +218,20 @@ public class DbHelper extends SQLiteOpenHelper{
 	 */
 	private void createSports(SQLiteDatabase db)
 	{
-		 db.execSQL("CREATE TABLE Sports (SportId  INTEGER PRIMARY KEY AUTOINCREMENT, SportName TEXT NOT NULL);");
-		 db.execSQL("INSERT INTO Sports (SportName) VALUES ('Cycling');");
-		 db.execSQL("INSERT INTO Sports (SportName) VALUES ('Powerwalking');");
-		 db.execSQL("INSERT INTO Sports (SportName) VALUES ('Mountainbiking');");
-		 db.execSQL("INSERT INTO Sports (SportName) VALUES ('Orienteering');");
-		 db.execSQL("INSERT INTO Sports (SportName) VALUES ('Running');");
-		 db.execSQL("INSERT INTO Sports (SportName) VALUES ('Spinning');");
-		 db.execSQL("INSERT INTO Sports (SportName) VALUES ('Walking');");
-		 db.execSQL("INSERT INTO Sports (SportName) VALUES ('Skiing');");
-		 db.execSQL("INSERT INTO Sports (SportName) VALUES ('Swimming');");
-		 db.execSQL("INSERT INTO Sports (SportName) VALUES ('Rowing');");
-		 db.execSQL("INSERT INTO Sports (SportName) VALUES ('Floorball');");
+		db.execSQL("CREATE TABLE Sports (SportId  INTEGER PRIMARY KEY AUTOINCREMENT, SportName TEXT NOT NULL);");
+		db.execSQL("INSERT INTO Sports (SportName) VALUES ('Cycling');");
+		db.execSQL("INSERT INTO Sports (SportName) VALUES ('Powerwalking');");
+		db.execSQL("INSERT INTO Sports (SportName) VALUES ('Mountainbiking');");
+		db.execSQL("INSERT INTO Sports (SportName) VALUES ('Orienteering');");
+		db.execSQL("INSERT INTO Sports (SportName) VALUES ('Running');");
+		db.execSQL("INSERT INTO Sports (SportName) VALUES ('Spinning');");
+		db.execSQL("INSERT INTO Sports (SportName) VALUES ('Walking');");
+		db.execSQL("INSERT INTO Sports (SportName) VALUES ('Skiing');");
+		db.execSQL("INSERT INTO Sports (SportName) VALUES ('Swimming');");
+		db.execSQL("INSERT INTO Sports (SportName) VALUES ('Rowing');");
+		db.execSQL("INSERT INTO Sports (SportName) VALUES ('Floorball');");
 	}
-	
+
 	/**
 	 * Adds table Users to database.
 	 * 
@@ -238,10 +240,10 @@ public class DbHelper extends SQLiteOpenHelper{
 	 */
 	private void createUsers(SQLiteDatabase db)
 	{
-		 db.execSQL("CREATE TABLE Users (UserId INTEGER PRIMARY KEY AUTOINCREMENT, UserName TEXT NOT NULL, " +
-		 		"UserBirthday TEXT NOT NULL, UserInitialWeight REAL);");
+		db.execSQL("CREATE TABLE Users (UserId INTEGER PRIMARY KEY AUTOINCREMENT, UserName TEXT NOT NULL, " +
+				"UserBirthday TEXT NOT NULL, UserInitialWeight REAL);");
 	}
-	
+
 	/**
 	 * Adds table WorkoutTemplates to database and adds deafult content.
 	 * 
@@ -250,18 +252,16 @@ public class DbHelper extends SQLiteOpenHelper{
 	 */
 	private void createWorkoutTemplates(SQLiteDatabase db)
 	{
-		System.out.println("Skapar workouttemplates");
 		db.execSQL("CREATE TABLE WorkoutTemplates (WorkoutTemplateId INTEGER PRIMARY KEY AUTOINCREMENT, WorkoutTemplateName TEXT NOT NULL);");
-		System.out.println("Har skapat workouttemplates");
 		db.execSQL("INSERT INTO WorkoutTemplates (WorkoutTemplateName) VALUES ('Joels pass');");
 		db.execSQL("INSERT INTO WorkoutTemplates (WorkoutTemplateName) VALUES ('Calles pass');");
 		db.execSQL("INSERT INTO WorkoutTemplates (WorkoutTemplateName) VALUES ('Jobbigt pass');");
 		db.execSQL("INSERT INTO WorkoutTemplates (WorkoutTemplateName) VALUES ('Roligt pass');");
 		db.execSQL("INSERT INTO WorkoutTemplates (WorkoutTemplateName) VALUES ('Massa pass');");
 		db.execSQL("INSERT INTO WorkoutTemplates (WorkoutTemplateName) VALUES ('Passets pass');");
-		
+
 	}
-	
+
 	/**
 	 * Adds table SetTemplates to database and adds default content.
 	 * 
@@ -277,5 +277,5 @@ public class DbHelper extends SQLiteOpenHelper{
 		db.execSQL("INSERT INTO WorkoutTemplateExercises (ExerciseId, WorkoutTemplateId) VALUES (1, 2);");
 		db.execSQL("INSERT INTO WorkoutTemplateExercises (ExerciseId, WorkoutTemplateId) VALUES (2, 2);");
 	}
-	
+
 }
