@@ -328,5 +328,5 @@ public class ListWorkoutActivity extends SherlockActivity {
     	dbHandler.open();
  		dbHandler.putNewWorkout(workoutName);
  		dbHandler.close();
-    } 
+    }
 }

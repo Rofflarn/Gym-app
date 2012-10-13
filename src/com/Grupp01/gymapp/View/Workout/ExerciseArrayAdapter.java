@@ -85,7 +85,7 @@ import android.widget.TextView;
       // If CheckBox is toggled, update the Exercise it is tagged with. 
       checkBox.setOnClickListener( new View.OnClickListener()
       {
-    	/** When the user click on a exercise, the checkbox
+    	/** When the user click on a checkbox, the checkbox
     	 *  for the exercise is getting unchecked or checked*/
         public void onClick(View v)
         {  

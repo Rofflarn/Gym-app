@@ -27,10 +27,10 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.Grupp01.gymapp.MainActivity;
 import com.Grupp01.gymapp.R;
-import com.Grupp01.gymapp.Controller.IdName;
 import com.Grupp01.gymapp.Controller.Exercise.ExerciseData;
 import com.Grupp01.gymapp.Controller.Workout.WorkoutDbHandler;
 import com.actionbarsherlock.app.SherlockActivity;
@@ -77,9 +77,6 @@ public class WorkoutActivity extends SherlockActivity {
         getExerciseDataList();
         listAllExercises();
     }
-
-    
-    
     /**
      * Set up the actionbar (layout xml and title)
      * @param Menu the actionbar menu
@@ -113,7 +110,7 @@ public class WorkoutActivity extends SherlockActivity {
     		case R.id.menu_editWorkout:
     			Intent intent2 = new Intent(this, EditWorkoutActivity.class);
     			intent2.putExtra(WorkoutActivity.EXTRA_WORKOUT_ID, workoutId);
-    			startActivity(intent2);
+    			startActivityForResult(intent2, 0);
     			return true;    			
     		default:
     			return super.onOptionsItemSelected(item);
@@ -211,7 +208,14 @@ public class WorkoutActivity extends SherlockActivity {
     	exerciseDataList = dbHandler.getExerciseIdNameById(dbHandler.getExercisesbyWorkoutId(workoutId));
     	dbHandler.close();
     }
-    
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        getExerciseDataList();
+        listAllExercises();
+    }
+      
+  
    }
     
 

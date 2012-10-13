@@ -45,8 +45,7 @@ public class EditWorkoutActivity extends SherlockActivity implements OnItemSelec
 	private ArrayAdapter<ExerciseListElementData> listAdapter;
 	private int workoutId;
     public ArrayList<ExerciseListElementData> exerciseList = new ArrayList<ExerciseListElementData>();
-    public WorkoutDbHandler dbHandler = new WorkoutDbHandler(this); 
-	  
+    public WorkoutDbHandler dbHandler = new WorkoutDbHandler(this);
 	  
 	String[] muscleGroups = { "Hej", "detta", "är", "Robert", "och", "Anders",
 			  "och" , "Joel", "och" , "Zotty"};
@@ -88,7 +87,7 @@ public class EditWorkoutActivity extends SherlockActivity implements OnItemSelec
 	             * If the exercise already was checked when clicked, it is getting unchecked
 	             * * 
 	             * @param parent		
-	             * @param item		
+	             * @param item
 	             * @param position	
 	             * @param id*/
 	            @Override  
@@ -98,9 +97,6 @@ public class EditWorkoutActivity extends SherlockActivity implements OnItemSelec
 	              exercise.toogleChecked();
 	              ExerciseViewHolder viewHolder = (ExerciseViewHolder) item.getTag();
 	              viewHolder.getCheckBox().setChecked( exercise.isChecked() );
-	              dbHandler.open();
-	              dbHandler.editWorkoutTemplate(exercise, workoutId);
-	              dbHandler.close();
 	            }//End of onItemClick
 	        });//End of Listener
           
@@ -150,7 +146,13 @@ public class EditWorkoutActivity extends SherlockActivity implements OnItemSelec
     }
     public void saveToDatabase(View view)
     {
-    	//Implement later when we got a working database
+    	for(ExerciseListElementData exercise: exerciseList)
+    	{
+    		dbHandler.open();
+    		dbHandler.editWorkoutTemplate(exercise, workoutId);
+    		dbHandler.close();
+    	}
+		finish();
     }
       
       /**Is called if a user press the cancel button,
@@ -181,7 +183,6 @@ public class EditWorkoutActivity extends SherlockActivity implements OnItemSelec
 		});
     	closeEditWorkoutDialog.show();
     }
-    
       
     /** When a item in the spinners is selected, do
      * NOT IMPLEMENTED YET SINCE WE GOT NO DATABASE*/
