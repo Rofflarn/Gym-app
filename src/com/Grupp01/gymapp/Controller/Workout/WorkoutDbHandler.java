@@ -31,6 +31,8 @@ import com.Grupp01.gymapp.Model.Database;
 import com.Grupp01.gymapp.View.Workout.ExerciseListElementData;
 
 public class WorkoutDbHandler extends Database {
+	
+	
 
 	
 	public WorkoutDbHandler(Context c)
