@@ -1,44 +1,40 @@
-/*This file is part of Gymapp.
-*
-*   Gymapp is free software: you can redistribute it and/or modify
-*   it under the terms of the GNU General Public License as published by
-*   the Free Software Foundation, either version 3 of the License, or
-*   (at your option) any later version.
-*
-*   Gymapp is distributed in the hope that it will be useful,
-*   but WITHOUT ANY WARRANTY; without even the implied warranty of
-*   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-*   GNU General Public License for more details.
-*
-*   You should have received a copy of the GNU General Public License
-*  along with Gymapp.  If not, see <http://www.gnu.org/licenses/>.
-*		
-*			Copyright © 2012 GivDev
-*/
+/*Copyright © 2012 GivDev
+ * 
+ * This file is part of Gymapp.
+ *
+ *   Gymapp is free software: you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation, either version 3 of the License, or
+ *   (at your option) any later version.
+ *
+ *   Gymapp is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *  along with Gymapp.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+
 package com.Grupp01.gymapp.Model;
 
-import java.util.ArrayList;
-
-import com.Grupp01.gymapp.Controller.DbHelper;
 
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+
 /**
  * Main database-class. Contains methods for creating the database and accessing data.
  * @author GivDev
  *
  */
 public class Database {
-
-	private static final String DATABASE_NAME = "GymAppDatabase"; 
-	private static final int DATABASE_VERSION = 1;
-
 	private DbHelper ourHelper;
 	private final Context ourContext;
-	private SQLiteDatabase ourDatabase;
-	
+	protected SQLiteDatabase ourDatabase;
+
 	/**
 	 * 
 	 * @param c
@@ -49,7 +45,7 @@ public class Database {
 	}
 
 	/**
-	 * Opens a new connection to the database. 
+	 * Opens a new connection to the database.  
 	 * @return
 	 * @throws SQLException
 	 */
@@ -57,87 +53,33 @@ public class Database {
 	{
 		ourHelper = new DbHelper(ourContext);
 		ourDatabase = ourHelper.getWritableDatabase();
-		return this;
+		return this;	
+
+
 	}
 
+
 	/**
-	 * 
+	 * Closes connection to database and closes connection to DatabaseHelper.
 	 */
 	public void close()
 	{
+		ourDatabase.close();
 		ourHelper.close();
+		//close();
 	}
 
-	public String getData() {
-		// TODO Auto-generated method stub
-		String[] columns = new String[]{ "ExerciseTypeID", "ExerciseTypeName"};
-		Cursor c = ourDatabase.rawQuery("SELECT * FROM ExerciseTypes;", null);
-		String result = "";
-
-		int id = c.getColumnIndex("ExerciseTypeId");
-		int name = c.getColumnIndex("ExerciseTypeName");
-		//Forlopp som går igenom hela databasen, alla kolummer
-		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext())
-		{
-			result = result + c.getString(id) + " " + c.getString(name) + "\n";
-			System.out.println(Integer.toString(c.getInt(id)) + " | " + c.getString(name));
-		}
-
-		return result;
-	}
-
-	public String[] getExerciseTypes(){
-		Cursor c = ourDatabase.rawQuery("SELECT * FROM ExerciseTypes;", null);
-		ArrayList<String> strings = new ArrayList<String>();
-		System.out.println("Runnig Ex erciseTypes");
-		
-		int id = c.getColumnIndex("ExerciseTypeId");
-		int name = c.getColumnIndex("ExerciseTypeName");
-		
-		//Forlopp som går igenom hela databasen, alla kolummer
-        //String[] columns = new String[]{ "ExerciseTypeID", "ExerciseTypeName"};
-		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext())
-		{
-			
-			//result = result + c.getString(id) + " " + c.getString(name) + "\n";
-			//System.out.println("Id: " + Integer.toString(c.getInt(id)) + " | Name: " + c.getString(name));
-			//items[c.getInt(0)] = c.getString(1);
-			//System.out.println(""+items[c.getInt(id)]);
-			strings.add(c.getString(name));
-		}
-		System.out.println("Exit ExerciseTypes");
-		//return items;
-		return (String[]) strings.toArray(new String[strings.size()]);
-		//Kanske borde returnera map?
-	}
-	
 	public void addExercise(int ExerciseMusclePri, int ExerciseMuscleSec, String ExerciseName, String ExerciseDesc, String ExerciseNote, int ExerciseSportId, int ExerciseTypeId){
 		ourDatabase.execSQL("INSERT INTO Exercises (ExerciseMusclePri, ExerciseMuscleSec, ExerciseName, ExerciseDesc, ExerciseNote, ExerciseSportId, ExerciseTypeId) " +
 				"VALUES (" + ExerciseMusclePri + ", " + ExerciseMuscleSec + ", " + ExerciseName + ", " + ExerciseDesc + ", " + ExerciseNote + ", " + ExerciseTypeId + ");");
 	}
-	
+
 	public Cursor getMuscleGroups(){
 		return ourDatabase.rawQuery("SELECT * FROM MuscleGroups;" ,null);
 	}
-	
-	public Cursor getMusclesByMuscleByGroupId(int MuscleGroupId){
-		return ourDatabase.rawQuery("SELECT * FROM Muscles WHERE MuscleGroupId = '" + MuscleGroupId + "';", null);
-	}
 
-	
-	public String[] getMuscles()
-	{
-		Cursor c = ourDatabase.rawQuery("SELECT * FROM Muscles;", null);
-		ArrayList<String> strings = new ArrayList<String>();
-		System.out.println("Runnig Ex erciseTypes");
-		
-		int id = c.getColumnIndex("MuscleId");
-		int name = c.getColumnIndex("MuscleName");
-
-		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext())
-			strings.add(c.getString(name));
-		
-		return (String[]) strings.toArray(new String[strings.size()]);
+	public Cursor getMusclesByMuscleByGroupId(int muscleGroupId){
+		return ourDatabase.rawQuery("SELECT * FROM Muscles WHERE MuscleGroupId = '" + muscleGroupId + "';", null);
 	}
 
 	/*
@@ -156,28 +98,6 @@ public class Database {
 		ourDatabase.execSQL("INSERT INTO Users (UserName, UserBirthday) VALUES ('" + UserName + "', '" + UserBirthday + "');");
 		//TODO change to insert() instead of execSql()
 	}
-	
-	public Cursor getExercisesByTypeId(int ExerciseTypeId){
-		return ourDatabase.rawQuery("SELECT * FROM Exercises WHERE ExerciseTypeId = '" + ExerciseTypeId + "';", null);
-	}
-
-
-	public String[] getSports(){
-		Cursor c = ourDatabase.rawQuery("SELECT * FROM Sports;", null);
-		ArrayList<String> strings = new ArrayList<String>();
-		System.out.println("Runnig Ex erciseTypes");
-		
-		int id = c.getColumnIndex("SportId");
-		int name = c.getColumnIndex("SportName");
-
-		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext())
-			strings.add(c.getString(name));
-		
-		return (String[]) strings.toArray(new String[strings.size()]);
-	}
-
-	
-
 
 	/**
 	 * Gets all SetTemplates and ExerciseNames that belong to a PassTemplate. Note: only gets SetsId and ExerciseNames.

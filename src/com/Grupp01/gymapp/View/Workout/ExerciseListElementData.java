@@ -1,4 +1,6 @@
-/*This file is part of Gymapp.
+/*Copyright © 2012 GivDev
+ * 
+ * This file is part of Gymapp.
  *
  *   Gymapp is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -12,34 +14,38 @@
  *
  *   You should have received a copy of the GNU General Public License
  *  along with Gymapp.  If not, see <http://www.gnu.org/licenses/>.
- *  
- *  
- *  			Copyright © 2012 GivDev
  *
  */
 package com.Grupp01.gymapp.View.Workout;
 
 /**@author GivDev
  * @version 0.1
- * @peer reviewed by Joel Olofsson
- * @date 07/10/12
+ * @peer reviewed by
+ * @date 04/10/12
  *
  * Holds Exercise data.
  * 
  * <p>This class i a part of the </p><i>View</i><p> package, and a part of the </p><i>Workout</i>
  * <p> Subpackage</p> 
  *  */	
-public class Exercise 
+public class ExerciseListElementData 
 {  
-
+	private int id;
 	private String name = "" ;  
 	private boolean checked = false ;
 
-	public Exercise( String name, boolean checked )
+	public ExerciseListElementData( int id, String name, boolean checked )
 	{  
+		this.id = id;
 		this.name = name ;  
 		this.checked = checked ;  
 	}
+
+	public int getId()
+	{
+		return id;
+	}
+
 	/** Get the name of the exercise into a string
 	 * @return string*/
 	public String getName() 
@@ -61,5 +67,10 @@ public class Exercise
 	public void toogleChecked()
 	{  
 		checked = !checked ;  
-	}  
+	}
+
+	public void setId(int id)
+	{
+		this.id = id;
+	}
 }  

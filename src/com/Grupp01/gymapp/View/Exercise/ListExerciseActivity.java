@@ -1,4 +1,6 @@
-/*This file is part of Gymapp.
+/*Copyright © 2012 GivDev
+ * 
+ * This file is part of Gymapp.
  *
  *   Gymapp is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -19,6 +21,8 @@
 package com.Grupp01.gymapp.View.Exercise;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -35,6 +39,8 @@ import android.widget.ListView;
 
 import com.Grupp01.gymapp.MainActivity;
 import com.Grupp01.gymapp.R;
+import com.Grupp01.gymapp.Controller.IdName;
+import com.Grupp01.gymapp.Controller.Exercise.ListExerciseDbHandler;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
@@ -43,93 +49,109 @@ import com.actionbarsherlock.view.MenuInflater;
  * @version 0.1
  * @peer reviewed by Joel Olofsson
  * @date 07/10/2012
-*/
+ */
 public class ListExerciseActivity extends SherlockActivity implements OnClickListener, OnItemClickListener {
-	
-	/** Instance variables */
+
+	/** Instansvariabler */
 	public final static String EXTRA_EXERCISE_NAME = "com.Grupp01.gymapp.message";
 	private Dialog dialog;
 	private ArrayList<String> listElements;
 	private ArrayAdapter<String> elementAdapter;
+	private List<IdName> exercises;
 
 	/**Setups the class layout and some instance variables
 	 * @param savedInstanceState
-	*/
+	 */
 	@Override
-    public void onCreate(Bundle savedInstanceState)
+	public void onCreate(Bundle savedInstanceState)
 	{
 		//Sets the layout
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.exercise);
-        
-        //Creates the dialog
-        dialog = new Dialog(this);
-    	dialog.setContentView(R.layout.dialog);
-    	dialog.setTitle("New Exercise");
-    	
-        //Set clicklisteners to the add button and cancel button in the dialog
-    	((Button) dialog.findViewById(R.id.add_Button)).setOnClickListener(this);
-    	((Button) dialog.findViewById(R.id.cancel_Button)).setOnClickListener(this);
-    	
-    	//Setups the listview
-    	listElements = new ArrayList<String>();
-    	elementAdapter = new ArrayAdapter<String>(this, R.layout.list_simple_row, listElements);
-    	((ListView)findViewById(R.id.theList)).setAdapter(elementAdapter);
-    	((ListView)findViewById(R.id.theList)).setOnItemClickListener(this);
-    	
-    	setTitle("Exercise");
-        createListView();
-    }
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.exercise);
+
+		initDialogue();
+		initListView();
+		setTitle("Exercise");
+		createListView();
+
+	}
+
+
+
 
 	/**Setups the menu of the class
 	 * @param menu
 	 * @return true = menu shown false = menu hidden
-	*/
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
-    	MenuInflater inflater = getSupportMenuInflater();
-    	inflater.inflate(R.menu.ovningar, menu);
-    	//Enables the home button in SherlockActionBar
-    	getSupportActionBar().setHomeButtonEnabled(true);
-        return true;
-    }
-    
-    //addds list elements to listview
-    //uses until the database is done
-    public void createListView()
-    {	
-    	listElements.add("ett");
-    	listElements.add("två");
-    	listElements.add("tre");
-    	listElements.add("fyra");
-    	listElements.add("fem");
-    	listElements.add("sex");
-    	listElements.add("sju");
-    }
+	 */
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu)
+	{
+		MenuInflater inflater = getSupportMenuInflater();
+		inflater.inflate(R.menu.ovningar, menu);
+		//Enables the home button in SherlockActionBar
+		getSupportActionBar().setHomeButtonEnabled(true);
+		return true;
+	}
 
-    //listen methods starts here
-    /** The method listens to the home button and to add a new exercise button in the menu
+	public void initDialogue()
+	{
+		dialog = new Dialog(this);
+		dialog.setContentView(R.layout.dialog);
+		dialog.setTitle("New Exercise");
+
+		((Button) dialog.findViewById(R.id.add_Button)).setOnClickListener(this);
+		((Button) dialog.findViewById(R.id.cancel_Button)).setOnClickListener(this);
+	}
+	public void initListView()
+	{		
+		listElements = new ArrayList<String>();
+
+		elementAdapter = new ArrayAdapter<String>(this, R.layout.list_simple_row, listElements);
+		((ListView)findViewById(R.id.theList)).setAdapter(elementAdapter);
+		((ListView)findViewById(R.id.theList)).setOnItemClickListener(this);
+
+	}
+	/**Skapar en lista i listViewn
+	 * används nu när vi inte har koppla ihop med databasen */
+
+	public void createListView()
+	{	
+		exercises = new LinkedList<IdName>();
+		ListExerciseDbHandler temp = new ListExerciseDbHandler(this);
+		temp.open();
+		exercises = temp.getExerciseIdName();
+		temp.close();
+		for(IdName idname: exercises)
+		{
+			listElements.add(idname.getName());
+		}
+		elementAdapter.notifyDataSetChanged();
+
+	}
+
+	//lyssnar metoderna börjar här
+	/** The method listens to the home button and to add a new exercise button in the menu
 	 * @param item the item that has been clicked
 	 * @return true
-	*/     
+	 */     
 	@Override
 	public boolean onOptionsItemSelected(com.actionbarsherlock.view.MenuItem item)
 	{
 		if(item.getItemId() == R.id.menu_addExe)
 		{
 			//shows the dialog if addExe button is pressed
-	    	dialog.show();
+			dialog.show();
+
 		}
 		else if(item.getItemId() == android.R.id.home)
 		{
 			//from developer.android.com
 			Intent parentActivityIntent = new Intent(this, MainActivity.class);
-            parentActivityIntent.addFlags(
-                    Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                    Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(parentActivityIntent);
-            finish();
+			parentActivityIntent.addFlags(
+					Intent.FLAG_ACTIVITY_CLEAR_TOP |
+					Intent.FLAG_ACTIVITY_NEW_TASK);
+			startActivity(parentActivityIntent);
+			finish();
 
 		}
 		return true;
@@ -137,7 +159,7 @@ public class ListExerciseActivity extends SherlockActivity implements OnClickLis
 
 	/** Listens to the add and cancel button in the dialog
 	 * @param view the view that is clicked
-	*/
+	 */
 	@Override
 	public void onClick(View view)
 	{
@@ -154,8 +176,12 @@ public class ListExerciseActivity extends SherlockActivity implements OnClickLis
 			}
 			else
 			{
-				Intent intent_Add_Exercise = new Intent(this, AddExercise.class);
-				intent_Add_Exercise.putExtra(EXTRA_EXERCISE_NAME, temp);
+				ListExerciseDbHandler dbHandler = new ListExerciseDbHandler(this);
+				dbHandler.open();
+				int id = dbHandler.addExercise(temp);
+				//int id = dbHandler.getExerciseIdFromName(temp);
+				Intent intent_Add_Exercise = new Intent(this, EditExerciseAcitivity.class);
+				intent_Add_Exercise.putExtra(EXTRA_EXERCISE_NAME, id);
 				dialog.dismiss();
 				startActivity(intent_Add_Exercise);
 			}
@@ -171,7 +197,7 @@ public class ListExerciseActivity extends SherlockActivity implements OnClickLis
 	 * @param view
 	 * @param n the position of the clicked element
 	 * @param t
-	*/
+	 */
 	@Override
 	public void onItemClick(AdapterView<?> adapt, View view, int n, long t)
 	{
@@ -183,5 +209,25 @@ public class ListExerciseActivity extends SherlockActivity implements OnClickLis
 		Intent intent_View_Exercise = new Intent(this, AddExercise.class);
 		intent_View_Exercise.putExtra(EXTRA_EXERCISE_NAME, exercise_Name);
 		startActivity(intent_View_Exercise);
+		for(IdName idName: exercises)
+		{
+			if(idName.getName().equals(((ListView)findViewById(R.id.theList)).getItemAtPosition(n).toString()))
+			{
+				int id = idName.getId();
+				Intent intentViewExercise = new Intent(this, EditExerciseAcitivity.class);
+				intentViewExercise.putExtra(EXTRA_EXERCISE_NAME, id);
+				startActivity(intentViewExercise);				
+			}
+		}
+	}
+	/**
+	 * Method for refreshing the list of exercises after adding a new one
+	 */
+	@Override
+	protected void onResume()
+	{  
+		super.onResume();
+		initListView();
+		createListView();
 	}
 }

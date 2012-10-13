@@ -19,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/spinner_type_of_training"
-            android:text="@string/string_type_of_training"
+            android:text="@string/string_primary_muscle"
             tools:context=".AddExercise" />
 
         <TextView
@@ -27,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/spinner_primary_muscle"
-            android:text="@string/string_type_of_training"
+            android:text="@string/string_secondary_muscle"
             tools:context=".AddExercise" />
 
         <TextView
@@ -51,7 +51,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/textView_type_of_training"
-            android:entries="@array/trainingtype_array"
             android:prompt="@string/trainingtype_prompt" />
 
         <Spinner
@@ -59,7 +58,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/textView_primary_muscle"
-            android:entries="@array/muscle_type"
             android:prompt="@string/primary_muscletype_prompt" />
 
         <Spinner
@@ -67,7 +65,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/textView_secondary_muscle"
-            android:entries="@array/muscle_type"
             android:prompt="@string/secondary_muscletype_prompt" />
 
         <EditText
@@ -104,15 +101,16 @@
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="1.0"
-                android:text="@string/done" />
+                android:onClick="done"
+                android:text="@string/string_done" />
 
             <Button
                 android:id="@+id/button_cancel"
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="1.0"
-                android:text="@string/cancel"
-                android:onClick="cancel" />
+                android:onClick="cancel"
+                android:text="@string/string_cancel" />
         </LinearLayout>
     </RelativeLayout>
 

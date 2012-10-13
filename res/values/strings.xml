@@ -77,6 +77,7 @@
     <string name="imagebutton_statistics">StatisticsButton</string>
     <string name="imagebutton_profile">ProfileButton</string>
     <string name="imagebutton_settings">SettingsButton</string>
+    <string name="not_implemented">Not implemented</string>
     
 
     <string-array name="trainingtype_array">
