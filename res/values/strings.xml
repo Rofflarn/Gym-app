@@ -1,69 +1,31 @@
 <resources>
 
     <string name="app_name">Gymapp</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="menu_settings">Settings</string>
     <string name="title_activity_main">Gym-appen</string>
-    <string name="menu_save">SAVE!</string>
     <string name="menu_addExe">Add Excersice!</string>
-    <string name="title_activity_add_exercise">AddExercise</string>
     <string name="exercise_name">Exercise name</string>
     <string name="cancel">Cancel</string>
     <string name="add">Add</string>
-    <string name="trainingtype_prompt">Choose type of training</string>
-    <string name="primary_muscletype_prompt">Primary muscle</string>
-    <string name="secondary_muscletype_prompt">Secondary muscle</string>
-    <string name="sport_prompt">Select sport</string>
-    <string name="string_type_of_training">Select type of training</string>
-    <string name="string_done">Done</string>
-    <string name="string_cancel">Cancel</string>
-    <string name="description">Description</string>
-    <string name="comment">Note to self</string>
-    <string name="hint_description">Describe your exercise</string>
-    <string name="hint_comment">Add a personal comment</string>
-    <string name="string_primary_muscle">Select a primary muscle</string>
-    <string name="string_secondary_muscle">Select a secondary muscle</string>
-    <string name="title_activity_profile">Profile</string>
+    <string name="done">Done</string>
+    <string name="button_save">Save</string>
     <string name="name">Name</string>
     <string name="age">Age</string>
     <string name="length">Length</string>
     <string name="weigh">Weigh</string>
     <string name="buttonUppdate">Uppdate Profile</string>
-    <string name="buttonCancel">Cancel</string>
-    
-
-    <string-array name="trainingtype_array">
-        <item>Cardio</item>
-        <item>Static</item>
-        <item>Dynamic</item>
-    </string-array>
-    <string-array name="muscle_type">
-        <item>Biceps</item>
-        <item>Triceps</item>
-        <item>Deltoid</item>
-        <item>Lats</item>
-    </string-array>
-    <string-array name="sport_type">
-        <item>Cycling</item>
-        <item>Running</item>
-        <item>Rowing</item>
-    </string-array>
-
-    <string name="menu_addExc">Add Excersice!</string>
-    <string name="imagebutton_workout">WorkoutButton</string>
-    <string name="imagebutton_exercises">ExercisesButton</string>
-    <string name="imagebutton_history">HistoryButton</string>
-    <string name="imagebutton_statistics">StatisticsButton</string>
-    <string name="imagebutton_profile">ProfileButton</string>
-    <string name="imagebutton_settings">SettingsButton</string>
+    <string name="trainingtype_prompt">Choose type of training</string>
+    <string name="primary_muscletype_prompt">Primary muscle</string>
+    <string name="secondary_muscletype_prompt">Secondary muscle</string>
+    <string name="sport_prompt">Select sport</string>
+    <string name="string_type_of_training">Select type of training</string>
+    <string name="description">Description</string>
+    <string name="comment">Note to self</string>
+    <string name="hint_description">Describe your exercise</string>
+    <string name="hint_comment">Add a personal comment</string>
+    <string name="title_activity_profile">Profile</string>
     <string name="menu_addWorkout">Add workout</string>
-    <string name="list_workout_favorites">Favorites</string>
-    <string name="list_workout_all">All</string>
     <string name="title_activity_workout">WorkoutActivity</string>
     <string name="menu_editWorkout">Edit workout!</string>
-    <string name="menu_createExercise">Create new exercise</string>
-    <string name="button_cancel">Cancel</string>
-    <string name="button_save">Save</string>
     <string name="title_activity_register_dynamic">RegisterDynamicActivity</string>
     <string name="title_activity_register_static">RegisterStaticActivity</string>
     <string name="title_activity_register_cardio">RegisterCardioActivity</string>
@@ -97,5 +59,40 @@
 	<string name="weight">Weight</string>
 	<string name="weight_select">Select desired weight unit</string>
 	<string name="unit">Units</string>
-	
+	<string name="register_last_time">Last time: </string>
+	<string name="register_current_sets">Sets: </string>
+	<string name="register_my_notes">Notes: </string>
+	<string name="register_minutes">Min.</string>
+	<string name="register_seconds">Sec.</string>
+	<string name="register_distance">Distance</string>
+	<string name="register_finish_set">Add set</string>
+	<string name="register_undo_set">Remove set</string>
+	<string name="register_reps">Reps</string>
+	<string name="register_weight">Weight</string>
+	<string name="textview_musclegroup">Muscle group</string>
+	<string name="textview_muscle">Muscle</string>
+    <string name="imagebutton_workout">WorkoutButton</string>
+    <string name="imagebutton_exercises">ExercisesButton</string>
+    <string name="imagebutton_history">HistoryButton</string>
+    <string name="imagebutton_statistics">StatisticsButton</string>
+    <string name="imagebutton_profile">ProfileButton</string>
+    <string name="imagebutton_settings">SettingsButton</string>
+    
+
+    <string-array name="trainingtype_array">
+        <item>Cardio</item>
+        <item>Static</item>
+        <item>Dynamic</item>
+    </string-array>
+    <string-array name="muscle_type">
+        <item>Biceps</item>
+        <item>Triceps</item>
+        <item>Deltoid</item>
+        <item>Lats</item>
+    </string-array>
+    <string-array name="sport_type">
+        <item>Cycling</item>
+        <item>Running</item>
+        <item>Rowing</item>
+    </string-array>
 </resources>

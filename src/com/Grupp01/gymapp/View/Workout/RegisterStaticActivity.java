@@ -75,7 +75,7 @@ public class RegisterStaticActivity extends SherlockActivity {
      */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getSupportMenuInflater().inflate(R.menu.activity_register_dynamic, menu);
+        getSupportMenuInflater().inflate(R.menu.universal_menu, menu);
         getSupportActionBar().setTitle(workoutName);
         getSupportActionBar().setHomeButtonEnabled(true);
         return true;

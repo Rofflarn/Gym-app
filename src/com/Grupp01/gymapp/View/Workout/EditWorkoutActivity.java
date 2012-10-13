@@ -56,6 +56,9 @@ public class EditWorkoutActivity extends SherlockActivity implements OnItemSelec
 			  "och" , "Joel", "och" , "Zotty"};
 	  
 	  
+	/**Builds the layout
+	 * @savedInstanceState	gets the info from the previous activity
+	 */
 	@Override
     public void onCreate(Bundle savedInstanceState)
 	{
@@ -63,11 +66,14 @@ public class EditWorkoutActivity extends SherlockActivity implements OnItemSelec
         Intent intent = getIntent();
         workoutName = intent.getStringExtra(ListWorkoutActivity.WORKOUT_NAME);
         
-        setContentView(R.layout.editworkout);
+        setContentView(R.layout.activity_editworkout);
         createEditWorkout();
         
 	}
-	
+	/**
+     * Build the menu in the actionbar.
+     * @menu The menu item to be used.
+     */
       @Override
       public boolean onCreateOptionsMenu(Menu menu)
       {
@@ -78,6 +84,8 @@ public class EditWorkoutActivity extends SherlockActivity implements OnItemSelec
           getSupportActionBar().setTitle(workoutName);
           return false;
       }
+      /** Creates the layout
+       */
       public void createEditWorkout()
       {
     	// Find the ListView resource.   
@@ -164,7 +172,8 @@ public class EditWorkoutActivity extends SherlockActivity implements OnItemSelec
     	
     	closeEditWorkoutDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() 
     	{
-    		/** When the user click the "Yes"-button, go back to ListWorkout*/
+    		/** When the user click the "Yes"-button, go back to ListWorkout.
+    		 * When doing this, no actions are saved to the database*/
     		public void onClick(DialogInterface dialog, int whichButton) 
     		{
     			 finish();

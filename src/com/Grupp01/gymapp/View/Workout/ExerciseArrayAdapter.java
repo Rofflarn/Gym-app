@@ -42,9 +42,14 @@ import android.widget.TextView;
     
   private LayoutInflater inflater;  
     
+  /**The constructor of the 
+   * 
+   * @param context			gets the current state of the object
+   * @param exerciseList	a list with all the exercises
+   */
   public ExerciseArrayAdapter( Context context, List<Exercise> exerciseList )
   {  
-    super( context, R.layout.simplerow, R.id.rowTextView, exerciseList );  
+    super( context, R.layout.editworkoutrow, R.id.rowTextView, exerciseList );  
     // Cache the LayoutInflate to avoid asking for a new one each time.  
     inflater = LayoutInflater.from(context);
   }
@@ -53,10 +58,10 @@ import android.widget.TextView;
   /**Since we display other things than a TextView we need to Override a getView-method.
    * This method is the one that got the focus on the screen and is returning the View
    * when the user clicks on a exercise.
-   * @param position
-   * @param convertView
-   * @param parent
-   * @return View	Returns the edited object you clicked on,
+   * @param position	position of the item in the adapter
+   * @param convertView	the old view to reuse, if null, creates a new view
+   * @param parent		parent-view 
+   * @return View		Returns the edited object you clicked on
    * */
   @Override  
   public View getView(int position, View convertView, ViewGroup parent)
@@ -73,7 +78,7 @@ import android.widget.TextView;
     // is not null and will there after go to the else-statement
     if ( convertView == null)
     {
-      convertView = inflater.inflate(R.layout.simplerow, null);
+      convertView = inflater.inflate(R.layout.editworkoutrow, null);
         
       // Find the child views.
       textView = (TextView) convertView.findViewById( R.id.rowTextView );
