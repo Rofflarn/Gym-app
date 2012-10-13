@@ -88,7 +88,7 @@
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="1.0"
-                android:text="@string/string_done"
+                android:text="@string/done"
                 android:onClick="done" />
 
             <Button
@@ -96,7 +96,7 @@
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="1.0"
-                android:text="@string/string_cancel"
+                android:text="@string/cancel"
                 android:onClick="cancel" />
         </LinearLayout>
     </RelativeLayout>

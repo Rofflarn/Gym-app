@@ -61,7 +61,7 @@ public class ProfileActivity extends SherlockActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
     	MenuInflater inflater = getSupportMenuInflater();
-    	inflater.inflate(R.menu.profile, menu);
+    	inflater.inflate(R.menu.universal_menu, menu);
         return true;
     }
     

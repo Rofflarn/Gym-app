@@ -12,24 +12,23 @@
 *
 *   You should have received a copy of the GNU General Public License
 *  along with Gymapp.  If not, see <http://www.gnu.org/licenses/>.
-*	
-*	Copyright © 2012 GivDev
+*		
+*			Copyright © 2012 GivDev
 */
-package com.Grupp01.gymapp.View.Statistic;
+package com.Grupp01.gymapp.View.History;
 
 import android.os.Bundle;
 
 import com.Grupp01.gymapp.R;
 import com.actionbarsherlock.app.SherlockActivity;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
+import com.actionbarsherlock.view.*;
 
-public class Statistik extends SherlockActivity {
+public class Historik extends SherlockActivity {
 
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.statistik);
+        setContentView(R.layout.historik);
     }
 
     @Override

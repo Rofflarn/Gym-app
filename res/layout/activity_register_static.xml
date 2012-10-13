@@ -15,13 +15,13 @@
         android:id="@+id/staticButtonOK"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
-        android:text="@string/Done"
+        android:text="@string/done"
         android:onClick="onClick"/>
      <Button
         android:id="@+id/staticButtonCancel"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
-        android:text="@string/Cancel"
+        android:text="@string/cancel"
         android:onClick="onClick"/>
 
  </LinearLayout>
