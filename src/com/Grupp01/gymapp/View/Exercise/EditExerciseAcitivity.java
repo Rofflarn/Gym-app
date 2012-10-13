@@ -19,10 +19,9 @@
 package com.Grupp01.gymapp.View.Exercise;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
-import android.content.res.Resources;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -32,8 +31,8 @@ import android.widget.Spinner;
 
 import com.Grupp01.gymapp.R;
 import com.Grupp01.gymapp.Controller.IdName;
-import com.Grupp01.gymapp.Controller.Exercise.ExerciseData;
 import com.Grupp01.gymapp.Controller.Exercise.EditExerciseDbHandler;
+import com.Grupp01.gymapp.Controller.Exercise.ExerciseData;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
@@ -218,7 +217,7 @@ public class EditExerciseAcitivity extends SherlockActivity implements AdapterVi
 	 */
 	public void done(View view)
 	{
-		//Gets and puts the added/changed data into the exercis object
+		//Gets and puts the added/changed data into the exercise object
 		putExerciseData();
 		//creates a EditExerciseDbHandler
 		EditExerciseDbHandler dbHandler = new EditExerciseDbHandler(this);
@@ -227,6 +226,7 @@ public class EditExerciseAcitivity extends SherlockActivity implements AdapterVi
 		dbHandler.editExercise(exercise);
 		dbHandler.close();
 		//Kills this activity
+
 		finish();
 	}
 	/**
@@ -265,17 +265,13 @@ public class EditExerciseAcitivity extends SherlockActivity implements AdapterVi
 	 */
 	private ArrayList<String> getSportsFromDb()
 	{
-		//creates a EditExerciseDbHandler
 		EditExerciseDbHandler get = new EditExerciseDbHandler(this);
 		get.open();
-		//puts the list from database into a local list
 		idNameListSports = get.getSports();
 		get.close();
 		ArrayList<String> getIdName = new ArrayList<String>();
-		//for-each idname in idNameListMuscles
 		for (IdName idname : idNameListSports)
 		{
-			//adds the name if the IdName-object into the arraylist
 			getIdName.add(idname.getName());
 		}
 		return getIdName;
@@ -287,17 +283,14 @@ public class EditExerciseAcitivity extends SherlockActivity implements AdapterVi
 	 */
 	private ArrayList<String> getExerciseTypesFromDb()
 	{
-		//creates a EditExerciseDbHandler
+
 		EditExerciseDbHandler get = new EditExerciseDbHandler(this);
 		get.open();
-		//puts the list from database into a local list
 		idNameListTrainingType = get.getExerciseTypes();
 		get.close();
 		ArrayList<String> getIdName = new ArrayList<String>();
-		//for-each idname in idNameListMuscles
 		for (IdName idname : idNameListTrainingType)
 		{
-			//adds the name if the IdName-object into the arraylist
 			getIdName.add(idname.getName());
 		}
 		return getIdName;
