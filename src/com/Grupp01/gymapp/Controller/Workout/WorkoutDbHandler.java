@@ -303,7 +303,8 @@ public class WorkoutDbHandler extends Database {
 	public int getExerciseLastTimePerformed(int ExerciseId)
 	{
 		open();
-		Cursor c = ourDatabase.rawQuery("SELECT WorkoutTime FROM Workouts WHERE WorkoutId = Sets.WorkoutId AND Sets.ExerciseId = '" + ExerciseId + "';", null);
+		Cursor c = ourDatabase.rawQuery("SELECT WorkoutTime FROM Workouts WHERE WorkoutId = Sets.WorkoutId AND " +
+				"Sets.ExerciseId = '" + ExerciseId + "';", null);
 		int WorkoutTime = c.getColumnIndex("WorkoutTime");
 		c.moveToFirst();
 		close();
@@ -314,16 +315,26 @@ public class WorkoutDbHandler extends Database {
 	{
 		System.out.println(exerciseListItemData.getName());
 		open();
-		if(exerciseListItemData.isChecked())
+		//Check if already exists
+		Cursor c = ourDatabase.rawQuery("SELECT COUNT (*) FROM WorkoutTemplateExercises WHERE WorkoutTemplateId = '" + WorkoutTemplateId + "' " +
+				"AND ExerciseId = '" + exerciseListItemData.getId() + "';", null);
+		c.moveToFirst();
+				
+		if(exerciseListItemData.isChecked() )//&& c.getInt(0) == 0)
 		{
+			if(c.getInt(0) == 0)
+			{	
 			//add
-			String tmp = "INSERT INTO WorkoutTemplateExercises (WorkoutTemplateId, ExerciseId) VALUES ('" + WorkoutTemplateId + "', '" + exerciseListItemData.getId() + "');";
+			String tmp = "INSERT OR REPLACE INTO WorkoutTemplateExercises (WorkoutTemplateId, ExerciseId) VALUES " +
+					"('" + WorkoutTemplateId + "', '" + exerciseListItemData.getId() + "');";
 			System.out.println(tmp);
 			ourDatabase.execSQL(tmp);
+			}
 		} else
 		{
 			//remove
-			String tmp = "DELETE FROM WorkoutTemplateExercises WHERE WorkoutTemplateId = '" + WorkoutTemplateId + "' AND ExerciseId = '" + exerciseListItemData.getId() + "';";
+			String tmp = "DELETE FROM WorkoutTemplateExercises WHERE WorkoutTemplateId = '" + WorkoutTemplateId + "' AND " +
+					"ExerciseId = '" + exerciseListItemData.getId() + "';";
 			System.out.println(tmp);
 			ourDatabase.execSQL(tmp);
 		}
