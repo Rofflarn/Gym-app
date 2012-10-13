@@ -21,14 +21,15 @@ import android.os.Bundle;
 
 import com.Grupp01.gymapp.R;
 import com.actionbarsherlock.app.SherlockActivity;
-import com.actionbarsherlock.view.*;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
 
 public class Historik extends SherlockActivity {
 
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.historik);
+        setContentView(R.layout.history_list_layout);
     }
 
     @Override
