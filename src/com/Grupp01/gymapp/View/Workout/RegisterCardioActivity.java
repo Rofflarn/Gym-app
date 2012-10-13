@@ -1,19 +1,21 @@
-/*This file is part of Gymapp.
-*
-*   Gymapp is free software: you can redistribute it and/or modify
-*   it under the terms of the GNU General Public License as published by
-*   the Free Software Foundation, either version 3 of the License, or
-*   (at your option) any later version.
-*
-*   Gymapp is distributed in the hope that it will be useful,
-*   but WITHOUT ANY WARRANTY; without even the implied warranty of
-*   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-*   GNU General Public License for more details.
-*
-*   You should have received a copy of the GNU General Public License
-*  along with Gymapp.  If not, see <http://www.gnu.org/licenses/>.
-*
-*/
+/*Copyright © 2012 GivDev
+ * 
+ * This file is part of Gymapp.
+ *
+ *   Gymapp is free software: you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation, either version 3 of the License, or
+ *   (at your option) any later version.
+ *
+ *   Gymapp is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *  along with Gymapp.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
 
 package com.Grupp01.gymapp.View.Workout;
 
@@ -60,140 +62,140 @@ public class RegisterCardioActivity extends SherlockActivity {
 	private int exerciseId;
 	private int workoutId;
 	private List<SetsData> cardioSetsList = new LinkedList<SetsData>();
-	
+
 	/**
 	 * Set up the default layout and call initiate method that is required. 
 	 */
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register_cardio);
-        //Create the array
-        currentSets = new ArrayList<String>();
-        workoutId = getIntent().getIntExtra(WorkoutActivity.EXTRA_WORKOUT_ID, 0);
-        exerciseId = getIntent().getIntExtra(WorkoutActivity.EXTRA_EXERCISE_ID, 0);
-        System.out.println(exerciseId + "Från intent");
-        getExerciseData();
-        setTitle(exercise.getName());
-        //System.out.println(exercise.getNote());
-        //setNoteString(exercise.getNote());
-        //Show the sets (reps and weight) for the last time this
-        //exercise was performed.
-        setLastSetString();
-        setNoteString();
-        setLastestSetsString();        
-     }
-    
-    
-    /**
-     * Set up the actionbar (layout xml and title)
-     * @param Menu the actionbar menu
-     * @return true to make the menu visible
-     */
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getSupportMenuInflater().inflate(R.menu.activity_register_cardio, menu);
-        return true;
-    }
-    
-    
-    /**
-     * Set up actions for buttons in actionbar
-     * @param MenuItem item - The menuitem thas has been pressed
-     * 
-     */
-    public boolean onOptionsItemSelected(MenuItem item){
-    	switch (item.getItemId()){
-    		
-    	//Make app icon navigate back to the applications start screen.
-    		case	android.R.id.home:
-    			Intent intent = new Intent(this, MainActivity.class);
-    			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-    			startActivity(intent);
-    			return true;
-    		default:
-    			return super.onOptionsItemSelected(item);
-    	}
-    }
-    
-    
-
-
-    
-    /**
-     * This method will set the TextView in the layout
-     * that shows the time and distance for when performing this exercise last time.
-     */
-    private void setLastSetString() {
-    	//The textview that will show sets from last time.
-    	TextView lastSetString = (TextView) findViewById(R.id.lastTimeSetsCardio);
-    	lastSetString.setText("ska hämtas från DB");
-		
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_register_cardio);
+		//Create the array
+		currentSets = new ArrayList<String>();
+		workoutId = getIntent().getIntExtra(WorkoutActivity.EXTRA_WORKOUT_ID, 0);
+		exerciseId = getIntent().getIntExtra(WorkoutActivity.EXTRA_EXERCISE_ID, 0);
+		System.out.println(exerciseId + "Från intent");
+		getExerciseData();
+		setTitle(exercise.getName());
+		//System.out.println(exercise.getNote());
+		//setNoteString(exercise.getNote());
+		//Show the sets (reps and weight) for the last time this
+		//exercise was performed.
+		setLastSetString();
+		setNoteString();
+		setLastestSetsString();        
 	}
-    
-    private void setNoteString()
-    {
-    	TextView notes = (TextView) findViewById(R.id.myNoteTextCardio);
-    	notes.setText(exercise.getNote());
-    }
-    
-    
-    /**
-     * Method called when pressing any of the buttons in the view
-     * @param View v - The view that has been clicked
-     */
-    public void onClick(View v){
-    	switch(v.getId()){
-    	
-    	//Cancel button pressed, exit without saving
-    	case R.id.CardioButtonCancel:
-    		finish();
-    		break;
-    		
-    	//OK button pressed, exit and save to database
-    	case R.id.CardioButtonOK:
-    		//adds all the added sets to database
-    		for(SetsData cardiosets: cardioSetsList)
-    		{
-    			addCardioSet(cardiosets);
-    		}
-    		finish();
-    		break;
-    		
-    	//Finish set pressed, add the distance and time to the array
-    	case R.id.CardioFinishSet:
-    		addNewSet();
-    		break;
-    		
-    	//Undo set pressed, remove the latest set from the array.
-    	case R.id.CardioUndoSet:
-    		removeLatestSet();
-    		break;
-    	}
-    }
 
-    /**
-     * THis is called when pressing the "OK" button, will save the sets
-     * to the database before this activity terminates.
-     * 
-     */
-  
+
+	/**
+	 * Set up the actionbar (layout xml and title)
+	 * @param Menu the actionbar menu
+	 * @return true to make the menu visible
+	 */
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getSupportMenuInflater().inflate(R.menu.activity_register_cardio, menu);
+		return true;
+	}
+
+
+	/**
+	 * Set up actions for buttons in actionbar
+	 * @param MenuItem item - The menuitem thas has been pressed
+	 * 
+	 */
+	public boolean onOptionsItemSelected(MenuItem item){
+		switch (item.getItemId()){
+
+		//Make app icon navigate back to the applications start screen.
+		case	android.R.id.home:
+			Intent intent = new Intent(this, MainActivity.class);
+			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			startActivity(intent);
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
+		}
+	}
+
+
 
 
 
 	/**
-     * Will read the input of reps and weight EditTexts, add it to the array and update the view
-     * 
-     */
-    private void addNewSet() {
-    	//Input from the user, the minutes seconds and weight
-    	EditText editMinutes = (EditText) findViewById(R.id.editMinutesCardio);
-    	EditText editSeconds = (EditText) findViewById(R.id.editSecondsCardio);
-    	EditText editDistance = (EditText) findViewById(R.id.editDistance);
-    	
-    	
-    	//Read the time (minutes and seconds) and the distance.
-    	//If any of them if blank, set it to zero
+	 * This method will set the TextView in the layout
+	 * that shows the time and distance for when performing this exercise last time.
+	 */
+	private void setLastSetString() {
+		//The textview that will show sets from last time.
+		TextView lastSetString = (TextView) findViewById(R.id.lastTimeSetsCardio);
+		lastSetString.setText("ska hämtas från DB");
+
+	}
+
+	private void setNoteString()
+	{
+		TextView notes = (TextView) findViewById(R.id.myNoteTextCardio);
+		notes.setText(exercise.getNote());
+	}
+
+
+	/**
+	 * Method called when pressing any of the buttons in the view
+	 * @param View v - The view that has been clicked
+	 */
+	public void onClick(View v){
+		switch(v.getId()){
+
+		//Cancel button pressed, exit without saving
+		case R.id.CardioButtonCancel:
+			finish();
+			break;
+
+			//OK button pressed, exit and save to database
+		case R.id.CardioButtonOK:
+			//adds all the added sets to database
+			for(SetsData cardiosets: cardioSetsList)
+			{
+				addCardioSet(cardiosets);
+			}
+			finish();
+			break;
+
+			//Finish set pressed, add the distance and time to the array
+		case R.id.CardioFinishSet:
+			addNewSet();
+			break;
+
+			//Undo set pressed, remove the latest set from the array.
+		case R.id.CardioUndoSet:
+			removeLatestSet();
+			break;
+		}
+	}
+
+	/**
+	 * THis is called when pressing the "OK" button, will save the sets
+	 * to the database before this activity terminates.
+	 * 
+	 */
+
+
+
+
+	/**
+	 * Will read the input of reps and weight EditTexts, add it to the array and update the view
+	 * 
+	 */
+	private void addNewSet() {
+		//Input from the user, the minutes seconds and weight
+		EditText editMinutes = (EditText) findViewById(R.id.editMinutesCardio);
+		EditText editSeconds = (EditText) findViewById(R.id.editSecondsCardio);
+		EditText editDistance = (EditText) findViewById(R.id.editDistance);
+
+
+		//Read the time (minutes and seconds) and the distance.
+		//If any of them if blank, set it to zero
 		String minutes = editMinutes.getText().toString();
 		if(minutes.equals("")){
 			minutes = "0";
@@ -205,29 +207,29 @@ public class RegisterCardioActivity extends SherlockActivity {
 		String distance = editDistance.getText().toString();
 		if(distance.equals("")){
 			distance = "0";
-		
+
 		}
 		//Dont add the set if both minutes and seconds is zero (= no time)
 		if((minutes.equals("0")) && (seconds.equals("0"))){			
-			
+
 			Toast.makeText(this, "Cant add set with no time", Toast.LENGTH_SHORT).show();
-			
+
 		}  
 		//else add the information to the array and update information in the view
 		else{
 			currentSets.add(minutes + ":" + seconds + "x" + distance);
-			
+
 			Integer min = Integer.parseInt(editMinutes.getText().toString());
 			Integer sec = Integer.parseInt(editSeconds.getText().toString());
 			Integer dist = Integer.parseInt(editDistance.getText().toString());
 			//Adds new sets to cardioSetsList
 			cardioSetsList.add(new SetsData(sec,min,dist,workoutId,exerciseId));
 			updateView();
-			
+
 		}
-			
+
 	}
-		
+
 	/**
 	 * This method will "translate" the items in the ArrayList to a string and separate each 
 	 * item with a "," in the resulting string.
@@ -236,10 +238,10 @@ public class RegisterCardioActivity extends SherlockActivity {
 	 */
 	private void updateView() {
 		String string = new String();
-		
+
 		//The textview where current sets will be showed (added when button "Finish set" is pressed)
 		TextView currentSetString = (TextView) findViewById(R.id.thisTimeSetsCardio);
-				
+
 		//The prefix is used to separate each set in the string.
 		String prefix = new String("");
 		for (String s : currentSets)
@@ -251,8 +253,8 @@ public class RegisterCardioActivity extends SherlockActivity {
 		//Update the view with the new string
 		currentSetString.setText(string);
 	}
-	
-	
+
+
 	/**
 	 * Will remove the last set from the array and then update the view.
 	 * 
@@ -269,22 +271,22 @@ public class RegisterCardioActivity extends SherlockActivity {
 		{
 			cardioSetsList.remove((cardioSetsList.size()-1));
 		}
-		
+
 		updateView();
 	}
-	
+
 	/**
 	 * Gets information from database about the current exercise in a ExerciseData object.
 	 */
 	private void getExerciseData()
 	{
 		WorkoutDbHandler dbHandler = new WorkoutDbHandler(this);
-        dbHandler.open();
-        exercise = dbHandler.getExerciseDataFromExerciseId(exerciseId);
-        dbHandler.close();
-		
+		dbHandler.open();
+		exercise = dbHandler.getExerciseDataFromExerciseId(exerciseId);
+		dbHandler.close();
+
 	}
-	
+
 	/**
 	 * gets information about the 4 latest sets in this exercise and puts this information on the screen
 	 */
@@ -294,8 +296,8 @@ public class RegisterCardioActivity extends SherlockActivity {
 		RegisterDbHandler dbHandler = new RegisterDbHandler(this);
 		StringBuffer sets = new StringBuffer();
 		TextView latestSets = (TextView) findViewById(R.id.lastTimeSetsCardio);
-        dbHandler.open();
-        cardioSetsList = dbHandler.getPreviouslyCardioSets(workoutId, exerciseId, exercise.getTypeId());
+		dbHandler.open();
+		cardioSetsList = dbHandler.getPreviouslyCardioSets(workoutId, exerciseId, exercise.getTypeId());
 		for(SetsData cardioSet: cardioSetsList)
 		{
 			sets.append(cardioSet.getDuration());
@@ -306,8 +308,8 @@ public class RegisterCardioActivity extends SherlockActivity {
 		dbHandler.close();
 		latestSets.setText(sets);       
 	}
-	
-	
+
+
 	private void addCardioSet(SetsData cardioSet)
 	{
 		RegisterDbHandler dbHandler = new RegisterDbHandler(this);

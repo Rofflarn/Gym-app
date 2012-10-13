@@ -1,3 +1,22 @@
+/*Copyright © 2012 GivDev
+ * 
+ * This file is part of Gymapp.
+ *
+ *   Gymapp is free software: you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation, either version 3 of the License, or
+ *   (at your option) any later version.
+ *
+ *   Gymapp is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *  along with Gymapp.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+
 package com.Grupp01.gymapp.Controller.Workout;
 
 import java.util.LinkedList;
@@ -13,7 +32,7 @@ public class RegisterDbHandler extends Database {
 	public final static int NUMBER_SECONDS_IN_HOUR  = 3600; //Used for timeformating equation
 	public final static int NUMBER_SECONDS_IN_MIN = 60; //Used for timeformating equation
 	public final static int NUMBER_OF_LATEST_SET = 4; //Number of sets that are going to be shown in text: "Latest sets"
-;
+	;
 	public RegisterDbHandler(Context c)
 	{
 		super(c);
@@ -68,7 +87,7 @@ public class RegisterDbHandler extends Database {
 				"(" + weight + ", " + workoutId + ", " + duration + ", " + exerciseId + ");");
 		close();
 	}
-	
+
 	/**
 	 * Gets a list of the 4 latest CardioSets for a specific exercise
 	 * @param workoutId workoutId for current workout
@@ -78,7 +97,6 @@ public class RegisterDbHandler extends Database {
 	 */
 	public List<SetsData> getPreviouslyCardioSets(int workoutId, int exerciseId, int exerciseTypeId)
 	{
-
 		List<SetsData> cardioSetsList = new LinkedList<SetsData>();
 		open();	
 		Cursor c = ourDatabase.rawQuery("SELECT Sets.SetDuration, Sets.SetDistance FROM Sets, Exercises WHERE Sets.WorkoutId = " + workoutId +" AND " +
@@ -90,10 +108,10 @@ public class RegisterDbHandler extends Database {
 
 		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext())
 		{
+
 			//Equation for formating number of seconds a set has taken into a String with format hh:mm:ss
 			String durationString = (((int) (c.getInt(duration) / NUMBER_SECONDS_IN_HOUR)) + ":" + (((int) (c.getInt(duration) 
 					/ NUMBER_SECONDS_IN_MIN)) % NUMBER_SECONDS_IN_MIN) + ":" + (c.getInt(duration) % NUMBER_SECONDS_IN_MIN)); 
-			
 			cardioSetsList.add(new SetsData(durationString,c.getInt(distance)));
 		}
 		c.close();
@@ -122,7 +140,6 @@ public class RegisterDbHandler extends Database {
 		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext())
 		{
 			dynamicSetsList.add(new SetsData(c.getInt(weight),c.getInt(reps)));
-			System.out.println(c.getInt(weight) + " " + c.getInt(reps));
 		}
 
 		c.close();
@@ -168,7 +185,6 @@ public class RegisterDbHandler extends Database {
 		Cursor c = ourDatabase.rawQuery("SELECT MAX(SetId) FROM Sets", null);
 		c.moveToFirst();
 		int latestRowId = c.getInt(0);
-		System.out.println(c.getInt(0));
 		c.close();
 		close();
 		return latestRowId;

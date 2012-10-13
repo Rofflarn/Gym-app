@@ -1,20 +1,21 @@
-/* Copyright © 2012 GiwDev
+/*Copyright © 2012 GivDev
+ * 
  * This file is part of Gymapp.
-*
-*   Gymapp is free software: you can redistribute it and/or modify
-*   it under the terms of the GNU General Public License as published by
-*   the Free Software Foundation, either version 3 of the License, or
-*   (at your option) any later version.
-*
-*   Gymapp is distributed in the hope that it will be useful,
-*   but WITHOUT ANY WARRANTY; without even the implied warranty of
-*   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-*   GNU General Public License for more details.
-*
-*   You should have received a copy of the GNU General Public License
-*  along with Gymapp.  If not, see <http://www.gnu.org/licenses/>.
-*
-*/
+ *
+ *   Gymapp is free software: you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation, either version 3 of the License, or
+ *   (at your option) any later version.
+ *
+ *   Gymapp is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *  along with Gymapp.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
 
 package com.Grupp01.gymapp.Controller.Workout;
 
@@ -28,8 +29,8 @@ public class SetsData {
 	private int workoutId;
 	private int exerciseId;
 	private String duration;
-	
-	
+
+
 	/**
 	 * Construcs a SetData.
 	 * with:
@@ -47,7 +48,7 @@ public class SetsData {
 		this.workoutId = workoutId;
 		this.exerciseId = exerciseId;
 	}
-	
+
 	/**
 	 * Constructs a SetData
 	 * wit:
@@ -59,7 +60,7 @@ public class SetsData {
 		this.duration = duration;
 		this.distance = distance;
 	}
-	
+
 	/**
 	 * Constructs a SetData
 	 * with:
@@ -71,7 +72,7 @@ public class SetsData {
 		this.duration = duration;
 		this.weight = weight;
 	}
-	
+
 	/**
 	 * Constructs a SetDat
 	 * with:
@@ -87,7 +88,7 @@ public class SetsData {
 		this.workoutId = workoutId;
 		this.exerciseId = exerciseId;
 	}
-	
+
 	/**
 	 * Constructs a SetData
 	 * with:
@@ -99,7 +100,7 @@ public class SetsData {
 		this.weight = weight;
 		this.reps = reps;
 	}
-	
+
 	/**
 	 * Construcs a SetData
 	 * with:
@@ -113,7 +114,7 @@ public class SetsData {
 		this.sec = sec;
 		this.weight = weight;
 	}
-	
+
 	/**
 	 * 
 	 * @return number of minutes that the set has taken.
@@ -122,7 +123,7 @@ public class SetsData {
 	{
 		return min;
 	}
-	
+
 	/**
 	 * 
 	 * @return number of seconds that the set has taken.
@@ -131,7 +132,7 @@ public class SetsData {
 	{
 		return sec;
 	}
-	
+
 	/**
 	 * 
 	 * @return The distance that in the set.
@@ -140,7 +141,7 @@ public class SetsData {
 	{
 		return distance;
 	}
-	
+
 	/**
 	 * 
 	 * @return current weight in the set.
@@ -149,7 +150,7 @@ public class SetsData {
 	{
 		return weight;
 	}
-	
+
 	/**
 	 * 
 	 * @return how many reps that are in the set.
@@ -158,7 +159,7 @@ public class SetsData {
 	{
 		return reps;
 	}
-	
+
 	/**
 	 * 
 	 * @return workoutId that the current exercise are in. 
@@ -167,7 +168,7 @@ public class SetsData {
 	{
 		return workoutId;
 	}
-	
+
 	/**
 	 * 
 	 * @return the id for current exercise.
@@ -176,7 +177,7 @@ public class SetsData {
 	{
 		return exerciseId;
 	}
-	
+
 	/**
 	 * 
 	 * @return the duration of the set, in format: hh:mm:ss
@@ -185,6 +186,6 @@ public class SetsData {
 	{
 		return duration;
 	}
-	
-	
+
+
 }

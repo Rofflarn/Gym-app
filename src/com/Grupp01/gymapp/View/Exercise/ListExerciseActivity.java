@@ -1,4 +1,6 @@
-/*This file is part of Gymapp.
+/*Copyright © 2012 GivDev
+ * 
+ * This file is part of Gymapp.
  *
  *   Gymapp is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -63,7 +65,7 @@ public class ListExerciseActivity extends SherlockActivity implements OnClickLis
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.exercise);
-		
+
 		initDialogue();
 		initListView();
 		setTitle("Exercise");
@@ -94,12 +96,12 @@ public class ListExerciseActivity extends SherlockActivity implements OnClickLis
 	}
 	public void initListView()
 	{		
-	listElements = new ArrayList<String>();
+		listElements = new ArrayList<String>();
 
-	elementAdapter = new ArrayAdapter<String>(this, R.layout.thelist_row, listElements);
-	((ListView)findViewById(R.id.theList)).setAdapter(elementAdapter);
-	((ListView)findViewById(R.id.theList)).setOnItemClickListener(this);
-		
+		elementAdapter = new ArrayAdapter<String>(this, R.layout.thelist_row, listElements);
+		((ListView)findViewById(R.id.theList)).setAdapter(elementAdapter);
+		((ListView)findViewById(R.id.theList)).setOnItemClickListener(this);
+
 	}
 	/**Skapar en lista i listViewn
 	 * används nu när vi inte har koppla ihop med databasen */
@@ -192,14 +194,11 @@ public class ListExerciseActivity extends SherlockActivity implements OnClickLis
 			if(idName.getName().equals(((ListView)findViewById(R.id.theList)).getItemAtPosition(n).toString()))
 			{
 				int id = idName.getId();
-				System.out.println(id);
 				Intent intentViewExercise = new Intent(this, EditExerciseAcitivity.class);
 				intentViewExercise.putExtra(EXTRA_EXERCISE_NAME, id);
 				startActivity(intentViewExercise);				
 			}
 		}
-
-
 	}
 	/**
 	 * Method for refreshing the list of exercises after adding a new one
