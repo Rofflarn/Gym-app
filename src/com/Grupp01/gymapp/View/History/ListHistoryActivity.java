@@ -25,10 +25,9 @@ import android.widget.ListView;
 
 import com.Grupp01.gymapp.MainActivity;
 import com.Grupp01.gymapp.R;
-import com.Grupp01.gymapp.View.Workout.EditWorkoutActivity;
-import com.Grupp01.gymapp.View.Workout.ListWorkoutActivity;
 import com.actionbarsherlock.app.SherlockListActivity;
-import com.actionbarsherlock.view.*;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuItem;
 
 
 

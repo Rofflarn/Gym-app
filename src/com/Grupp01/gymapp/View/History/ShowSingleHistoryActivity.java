@@ -18,16 +18,14 @@ package com.Grupp01.gymapp.View.History;
 
 import java.util.LinkedList;
 
+import android.content.Intent;
+import android.os.Bundle;
+
 import com.Grupp01.gymapp.MainActivity;
 import com.Grupp01.gymapp.R;
-import com.Grupp01.gymapp.View.Workout.EditWorkoutActivity;
-import com.Grupp01.gymapp.View.Workout.ListWorkoutActivity;
 import com.actionbarsherlock.app.SherlockListActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
-
-import android.os.Bundle;
-import android.content.Intent;
 
 
 /**

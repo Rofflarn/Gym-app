@@ -29,7 +29,6 @@ import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Toast;
 
-import com.Grupp01.gymapp.Model.Database;
 import com.Grupp01.gymapp.View.Exercise.ListExerciseActivity;
 import com.Grupp01.gymapp.View.History.ListHistoryActivity;
 import com.Grupp01.gymapp.View.Profile.ProfileActivity;
