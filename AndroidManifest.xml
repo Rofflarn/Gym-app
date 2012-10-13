@@ -1,8 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.Grupp01.gymapp"
     android:versionCode="1"
-    android:versionName="0.5"
-     >
+    android:versionName="0.5" >
 
     <uses-sdk
         android:minSdkVersion="8"
@@ -18,37 +17,36 @@
             android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
+				<category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".View.Workout.ListWorkoutActivity"
-            android:label="@string/title_activity_main" 
-            android:screenOrientation="portrait"/>
+            android:label="@string/title_activity_main"
+            android:screenOrientation="portrait"  />
         <activity
             android:name=".View.Workout.EditWorkoutActivity"
             android:label="@string/title_activity_main"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"  />
         <activity
             android:name=".View.Statistic.Statistik"
-            android:label="@string/title_activity_main" 
-            android:screenOrientation="portrait"/>
+            android:label="@string/title_activity_main"
+            android:screenOrientation="portrait" />
         <activity
-            android:name=".View.History.Historik" 
-            android:label="@string/title_activity_main" 
+            android:name=".View.History.Historik"
+            android:label="@string/title_activity_main"
             android:screenOrientation="portrait"/>
         <activity
             android:name=".View.Exercise.ListExerciseActivity"
-            android:label="@string/title_activity_main" 
+            android:label="@string/title_activity_main"
             android:screenOrientation="portrait"/>
         <activity
             android:name=".View.Exercise.AddExercise"
-            android:label="@string/title_activity_main" 
+            android:label="@string/title_activity_main"
             android:screenOrientation="portrait"/>
-         <activity
+        <activity
             android:name=".View.Workout.WorkoutActivity"
-            android:label="@string/title_activity_workout" 
+            android:label="@string/title_activity_workout"
             android:screenOrientation="portrait"/>
         <activity
             android:name=".View.Workout.RegisterDynamicActivity"
@@ -57,10 +55,14 @@
         <activity
             android:name=".View.Workout.RegisterStaticActivity"
             android:label="@string/title_activity_register_static"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
         <activity
-      		android:name=".View.Workout.RegisterCardioActivity"
-            android:label="@string/title_activity_register_cardio" 
+            android:name=".View.Workout.RegisterCardioActivity"
+            android:label="@string/title_activity_register_cardio"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".View.Settings.SettingsActivity"
+            android:label="@string/title_activity_settings" 
             android:screenOrientation="portrait"/>
     </application>
 
