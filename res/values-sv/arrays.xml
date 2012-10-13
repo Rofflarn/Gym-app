@@ -3,7 +3,7 @@
     
      <!-- Array for displaying language -->
     <string-array name="entry_language_array">
-        <item>System default</item>
+        <item>Standard</item>
         <item>Svenska</item>
         <item>English</item>
     </string-array>
@@ -18,7 +18,7 @@
     
     <!-- Array for displaying distance units -->
     <string-array name="entry_distance_array">
-        <item>Kilometers</item>
+        <item>Kilometer</item>
         <item>Miles</item>
     </string-array>
 

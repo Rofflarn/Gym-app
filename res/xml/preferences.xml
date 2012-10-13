@@ -20,13 +20,13 @@
     <!--  Preference Category Language -->
     <!--  Will let the user select the desired language -->
     <PreferenceCategory
-        android:title="Language">
+        android:title="@string/language">
         
         <!--  The list with languages to choose -->
     	<ListPreference
         	android:key="pref_key_language"
-        	android:title="Language"
-        	android:summary="Select desired language"
+        	android:title="@string/language"
+        	android:summary="@string/language_select"
 	        android:entries="@array/entry_language_array"
         	android:entryValues="@array/entryvalues_language_array"        
         	android:dialogTitle="Select desired language" />
@@ -35,26 +35,26 @@
     <!--  Preference Category Units -->
     <!--  Will let the user select the units for distance and weight -->
     <PreferenceCategory
-        android:title="Units">
+        android:title="@string/unit">
     	
         <!--  The list with units for distance -->
     	<ListPreference
         	android:key="pref_key_distance"
-        	android:title="Distance"
-        	android:summary="Select desired distance unit"
+        	android:title="@string/distance"
+        	android:summary="@string/distance_select"
         	android:entries="@array/entry_distance_array"
         	android:entryValues="@array/entryvalues_distance_array"        
-        	android:dialogTitle="Distance"
-        	android:defaultValue="test" />
+        	android:dialogTitle="@string/distance"
+        	android:defaultValue="km" />
     	
     	<!--  The list with units for weight -->
     	<ListPreference
         	android:key="pref_key_weight"
-        	android:title="Weight"
-        	android:summary="Select desired weight unit"
+        	android:title="@string/weight"
+        	android:summary="@string/weight_select"
         	android:entries="@array/entry_weight_array"
         	android:entryValues="@array/entryvalues_weight_array"        
-        	android:dialogTitle="Weight"
+        	android:dialogTitle="@string/weight"
         	android:defaultValue="kg" />
     </PreferenceCategory>
 	    

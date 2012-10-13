@@ -23,7 +23,6 @@
     <string name="hint_comment">Lägg till en personlig kommentar</string>
     <string name="string_primary_muscle">Välj en primär muskel</string>
     <string name="string_secondary_muscle">Välj en sekundär muskel</string>
-
     <string-array name="trainingtype_array">
         <item>Kondition</item>
         <item>Statisk</item>
@@ -82,5 +81,16 @@
     <string name="not_implemented">Inte implementerad än</string>
     <string name="delete">Ta bort</string>
     <string name="edit">Ändra</string>
+        <string name="about">Om</string>
+    <string name="about_descr">Gymapp utvecklades under ett projektarbete på kursen ""Software engineering
+        project" på Chalmers Tekniska Högskola.</string>
+	<string name="ok">OK</string>
+    <string name="language">Språk</string>
+	<string name="language_select">Ange önskat språk</string>
+	<string name="distance">Distans</string>
+	<string name="distance_select">Ange önskad enhet för distans</string>
+	<string name="weight">Vikt</string>
+	<string name="weight_select">Ange önskad enhet för distans</string>
+	<string name="unit">Enheter</string>
 
 </resources>

@@ -90,4 +90,12 @@
     <string name="about_descr">This application is developed as an assignment during the course Software 
         	engineering project at the Chalmers University of Technology.</string>
 	<string name="ok">OK</string>
+	<string name="language">Language</string>
+	<string name="language_select">Select desired language</string>
+	<string name="distance">Distance</string>
+	<string name="distance_select">Select desired distance unit</string>
+	<string name="weight">Weight</string>
+	<string name="weight_select">Select desired weight unit</string>
+	<string name="unit">Units</string>
+	
 </resources>
