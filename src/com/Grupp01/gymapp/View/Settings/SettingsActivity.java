@@ -36,7 +36,7 @@ import com.actionbarsherlock.view.MenuItem;
  * 
  * @author GivDev
  * @version 0.1
- * @peer
+ * @peer by Robert Blomberg
  * @date
  */
 public class SettingsActivity extends SherlockPreferenceActivity{
