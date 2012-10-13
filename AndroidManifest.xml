@@ -62,7 +62,7 @@
             android:screenOrientation="portrait"/>
         <activity
             android:name=".View.History.ShowSingleHistoryActivity"
-            android:label="@string/title_activity_show_single_history"
+            android:label="@string/title_activity_show_single_history" 
             android:screenOrientation="portrait"/>
         <activity
             android:name=".View.Settings.SettingsActivity"
