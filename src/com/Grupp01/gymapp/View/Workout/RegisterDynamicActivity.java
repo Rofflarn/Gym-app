@@ -16,7 +16,6 @@
  */
 package com.Grupp01.gymapp.View.Workout;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -30,6 +29,7 @@ import android.widget.Toast;
 import com.Grupp01.gymapp.MainActivity;
 import com.Grupp01.gymapp.R;
 import com.Grupp01.gymapp.Controller.Exercise.ExerciseData;
+import com.Grupp01.gymapp.Controller.Workout.RegisterDbHandler;
 import com.Grupp01.gymapp.Controller.Workout.SetsData;
 import com.Grupp01.gymapp.Controller.Workout.WorkoutDbHandler;
 import com.actionbarsherlock.app.SherlockActivity;
@@ -66,7 +66,6 @@ public class RegisterDynamicActivity extends SherlockActivity {
 		//workoutName = getIntent().getStringExtra("exercisename");
 		setContentView(R.layout.activity_register_dynamic);
 		exerciseId = getIntent().getIntExtra(WorkoutActivity.EXTRA_EXERCISE_ID, 0);
-		System.out.println(exerciseId);
 		workoutId = getIntent().getIntExtra(WorkoutActivity.EXTRA_WORKOUT_ID, 0);
 		getExerciseData();
 		setTitle(exercise.getName());
@@ -115,7 +114,7 @@ public class RegisterDynamicActivity extends SherlockActivity {
 	 */
 	private void setLastSetString() {
 		List<SetsData> dynamicSetsList = new LinkedList<SetsData>();
-		WorkoutDbHandler dbHandler = new WorkoutDbHandler(this);
+		RegisterDbHandler dbHandler = new RegisterDbHandler(this);
 		StringBuffer sets = new StringBuffer();
 		TextView latestSets = (TextView) findViewById(R.id.lastTimeSets);
 		dbHandler.open();
@@ -183,7 +182,7 @@ public class RegisterDynamicActivity extends SherlockActivity {
 	 * to the database before this activity terminates.
 	 */
 	private void saveSetsToDatabase() {
-		WorkoutDbHandler dbHandler = new WorkoutDbHandler(this);
+		RegisterDbHandler dbHandler = new RegisterDbHandler(this);
 		dbHandler.open();
 		for(SetsData setData: dynamicSetsList)
 		{

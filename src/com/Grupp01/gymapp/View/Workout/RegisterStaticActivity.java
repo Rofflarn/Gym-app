@@ -16,7 +16,6 @@
 */
 package com.Grupp01.gymapp.View.Workout;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -30,6 +29,7 @@ import android.widget.Toast;
 import com.Grupp01.gymapp.MainActivity;
 import com.Grupp01.gymapp.R;
 import com.Grupp01.gymapp.Controller.Exercise.ExerciseData;
+import com.Grupp01.gymapp.Controller.Workout.RegisterDbHandler;
 import com.Grupp01.gymapp.Controller.Workout.SetsData;
 import com.Grupp01.gymapp.Controller.Workout.WorkoutDbHandler;
 import com.actionbarsherlock.app.SherlockActivity;
@@ -116,7 +116,7 @@ public class RegisterStaticActivity extends SherlockActivity {
     private void setLastSetString() {
     	TextView lastSet = (TextView) findViewById(R.id.lastTimeSetsStatic);
     	List<SetsData> dynamicSetsList = new LinkedList<SetsData>();
-		WorkoutDbHandler dbHandler = new WorkoutDbHandler(this);
+		RegisterDbHandler dbHandler = new RegisterDbHandler(this);
 		StringBuffer sets = new StringBuffer();
 		dbHandler.open();
 		dynamicSetsList = dbHandler.getPreviouslyStaticSets(workoutId, exerciseId, exercise.getTypeId());
@@ -178,7 +178,7 @@ public class RegisterStaticActivity extends SherlockActivity {
      * to the database before this activity terminates.
      */
     private void saveSetsToDatabase() {
-    	WorkoutDbHandler dbHandler = new WorkoutDbHandler(this);
+    	RegisterDbHandler dbHandler = new RegisterDbHandler(this);
 		dbHandler.open();
     	for(SetsData setData: staticSetsList)
     	{

@@ -32,6 +32,7 @@ import android.widget.Toast;
 import com.Grupp01.gymapp.MainActivity;
 import com.Grupp01.gymapp.R;
 import com.Grupp01.gymapp.Controller.Exercise.ExerciseData;
+import com.Grupp01.gymapp.Controller.Workout.RegisterDbHandler;
 import com.Grupp01.gymapp.Controller.Workout.SetsData;
 import com.Grupp01.gymapp.Controller.Workout.WorkoutDbHandler;
 import com.actionbarsherlock.app.SherlockActivity;
@@ -290,7 +291,7 @@ public class RegisterCardioActivity extends SherlockActivity {
 	private void setLastestSetsString()
 	{
 		List<SetsData> cardioSetsList = new LinkedList<SetsData>();
-		WorkoutDbHandler dbHandler = new WorkoutDbHandler(this);
+		RegisterDbHandler dbHandler = new RegisterDbHandler(this);
 		StringBuffer sets = new StringBuffer();
 		TextView latestSets = (TextView) findViewById(R.id.lastTimeSetsCardio);
         dbHandler.open();
@@ -309,7 +310,7 @@ public class RegisterCardioActivity extends SherlockActivity {
 	
 	private void addCardioSet(SetsData cardioSet)
 	{
-		WorkoutDbHandler dbHandler = new WorkoutDbHandler(this);
+		RegisterDbHandler dbHandler = new RegisterDbHandler(this);
 		dbHandler.open();
 		dbHandler.addCardioSet(cardioSet.getSec(), cardioSet.getMin(), cardioSet.getDistance(), cardioSet.getworkoutId(), cardioSet.getexerciseid());
 		dbHandler.close();

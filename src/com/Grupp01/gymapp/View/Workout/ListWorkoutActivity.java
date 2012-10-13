@@ -58,8 +58,8 @@ import com.actionbarsherlock.view.MenuItem;
 public class ListWorkoutActivity extends SherlockActivity {
 
 	
-	public final static String WORKOUT_NAME = "com.Grupp01.gymapp.WORKOUT";
-	public final static String WORKOUT_ID = "com.Grupp01.gymapp.WORKOUT";
+	public final static String WORKOUT_NAME = "com.Grupp01.gymapp.WORKOUT.NAME";
+	public final static String WORKOUT_ID = "com.Grupp01.gymapp.WORKOUT.ID";
 	private ListView mainListView ;  					//This is the listview where the list of all workouts will be shown
 	private ArrayAdapter<String> listAdapter ;  		//Adapter used for the list
 	private List<IdName> idNameList;
@@ -208,7 +208,7 @@ public class ListWorkoutActivity extends SherlockActivity {
 	 */
 	private void startNewWorkout(int workoutId) {
 		Intent workout = new Intent(ListWorkoutActivity.this, com.Grupp01.gymapp.View.Workout.WorkoutActivity.class);
-		workout.putExtra("WORKOUT_NAME", workoutId);
+		workout.putExtra(WORKOUT_ID, workoutId);
     	startActivity(workout);
 	}
 	

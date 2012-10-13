@@ -1,4 +1,5 @@
-/*This file is part of Gymapp.
+/* Copyright © 2012 GiwDev
+ * This file is part of Gymapp.
 *
 *   Gymapp is free software: you can redistribute it and/or modify
 *   it under the terms of the GNU General Public License as published by
@@ -38,25 +39,23 @@ import com.actionbarsherlock.view.Menu;
  *  * @author Robert Blomberg
  *  */	
 
-public class EditWorkoutActivity extends SherlockActivity implements OnItemSelectedListener
+public class EditWorkoutActivity extends SherlockActivity
 {
 	
 	private ListView listView;
 	private ArrayAdapter<ExerciseListElementData> listAdapter;
 	private int workoutId;
     public ArrayList<ExerciseListElementData> exerciseList = new ArrayList<ExerciseListElementData>();
-    public WorkoutDbHandler dbHandler = new WorkoutDbHandler(this);
-	  
-	String[] muscleGroups = { "Hej", "detta", "är", "Robert", "och", "Anders",
-			  "och" , "Joel", "och" , "Zotty"};
-	  
+    
+	
+
 	  
 	@Override
     public void onCreate(Bundle savedInstanceState)
 	{
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
-        workoutId = intent.getIntExtra(WorkoutActivity.EXTRA_EXERCISE_ID, 0);     
+        workoutId = intent.getIntExtra(WorkoutActivity.EXTRA_WORKOUT_ID, 0);     
         //workoutName = intent.getStringExtra(ListWorkoutActivity.WORKOUT_NAME);
         setContentView(R.layout.editworkout);
         createEditWorkout();
@@ -93,6 +92,7 @@ public class EditWorkoutActivity extends SherlockActivity implements OnItemSelec
 	            @Override  
 	            public void onItemClick( AdapterView<?> parent, View item,   int position, long id) 
 	            {  
+	            	
 	              ExerciseListElementData exercise = listAdapter.getItem( position );
 	              exercise.toogleChecked();
 	              ExerciseViewHolder viewHolder = (ExerciseViewHolder) item.getTag();
@@ -102,14 +102,15 @@ public class EditWorkoutActivity extends SherlockActivity implements OnItemSelec
           
           
 	    //Create spinners and add listeners to them.
-	    Spinner spinnerMuscleGroup = (Spinner) findViewById(R.id.spinnermusclegroup);
+	    /*
+	        Spinner spinnerMuscleGroup = (Spinner) findViewById(R.id.spinnermusclegroup);
 	  	spinnerMuscleGroup.setOnItemSelectedListener((OnItemSelectedListener) this);
 	  	spinnerMuscleGroup.setVisibility(View.GONE);
 	  		
 	  	Spinner spinnerMuscle = (Spinner) findViewById(R.id.spinnermuscle);
 	  	spinnerMuscle.setOnItemSelectedListener(this);
 	  	spinnerMuscle.setVisibility(View.GONE);
-	  		
+	  	
 	
 	  	//Creates ArrayAdapters that contains a String-Array	
 	  	ArrayAdapter<String> muscleGroupSpinner = new ArrayAdapter<String>
@@ -124,7 +125,7 @@ public class EditWorkoutActivity extends SherlockActivity implements OnItemSelec
 	  	//Set the Arrayadapter into the spinner
 	  	spinnerMuscleGroup.setAdapter(muscleGroupSpinner);
 	  	spinnerMuscle.setAdapter(muscleSpinner);
-	         
+	     */    
           // Since we don't have a database we manually put in exercises
           //Could use a Arraylist directly but we use a String since we will load
           //String-Arrays from the database we use a String-array here
@@ -134,7 +135,7 @@ public class EditWorkoutActivity extends SherlockActivity implements OnItemSelec
           	
           }*/
 	  	
-	  	 
+	  	 WorkoutDbHandler dbHandler = new WorkoutDbHandler(this);
 		 dbHandler.open();
 		 exerciseList = dbHandler.getExercisesCheckedByWorkoutTemplateId(workoutId);
 		 dbHandler.close();
@@ -144,14 +145,20 @@ public class EditWorkoutActivity extends SherlockActivity implements OnItemSelec
           listAdapter = new ExerciseArrayAdapter(this, exerciseList);
           listView.setAdapter( listAdapter );
     }
+      
+    /**
+     * Saves an Edited Workout to Databse  
+     * @param view
+     */
     public void saveToDatabase(View view)
     {
+    	WorkoutDbHandler dbHandler = new WorkoutDbHandler(this);
+    	dbHandler.open();
     	for(ExerciseListElementData exercise: exerciseList)
     	{
-    		dbHandler.open();
     		dbHandler.editWorkoutTemplate(exercise, workoutId);
-    		dbHandler.close();
     	}
+    	dbHandler.close();
 		finish();
     }
       
@@ -183,9 +190,7 @@ public class EditWorkoutActivity extends SherlockActivity implements OnItemSelec
 		});
     	closeEditWorkoutDialog.show();
     }
-      
-    /** When a item in the spinners is selected, do
-     * NOT IMPLEMENTED YET SINCE WE GOT NO DATABASE*/
+   /*
   	public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
   	{
   		switch (parent.getId()) 
@@ -196,7 +201,6 @@ public class EditWorkoutActivity extends SherlockActivity implements OnItemSelec
   		//Implement later when we got a working database
   		}
   	}
-
-  	@Override
-  	public void onNothingSelected(AdapterView<?> arg0){}  
+  	*/
+  	 
  }  

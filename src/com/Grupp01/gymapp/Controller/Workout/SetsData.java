@@ -1,3 +1,21 @@
+/* Copyright © 2012 GiwDev
+ * This file is part of Gymapp.
+*
+*   Gymapp is free software: you can redistribute it and/or modify
+*   it under the terms of the GNU General Public License as published by
+*   the Free Software Foundation, either version 3 of the License, or
+*   (at your option) any later version.
+*
+*   Gymapp is distributed in the hope that it will be useful,
+*   but WITHOUT ANY WARRANTY; without even the implied warranty of
+*   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+*   GNU General Public License for more details.
+*
+*   You should have received a copy of the GNU General Public License
+*  along with Gymapp.  If not, see <http://www.gnu.org/licenses/>.
+*
+*/
+
 package com.Grupp01.gymapp.Controller.Workout;
 
 public class SetsData {
@@ -11,6 +29,16 @@ public class SetsData {
 	private int exerciseId;
 	private String duration;
 	
+	
+	/**
+	 * Construcs a SetData.
+	 * with:
+	 * @param min
+	 * @param sec
+	 * @param dist
+	 * @param workoutId
+	 * @param exerciseId
+	 */
 	public SetsData(int min, int sec,int dist, int workoutId, int exerciseId)
 	{
 		this.min = min;
@@ -20,18 +48,38 @@ public class SetsData {
 		this.exerciseId = exerciseId;
 	}
 	
+	/**
+	 * Constructs a SetData
+	 * wit:
+	 * @param duration
+	 * @param distance
+	 */
 	public SetsData(String duration, int distance)
 	{
 		this.duration = duration;
 		this.distance = distance;
 	}
 	
+	/**
+	 * Constructs a SetData
+	 * with:
+	 * @param weight
+	 * @param duration
+	 */
 	public SetsData(int weight, String duration)
 	{
 		this.duration = duration;
 		this.weight = weight;
 	}
 	
+	/**
+	 * Constructs a SetDat
+	 * with:
+	 * @param weight
+	 * @param reps
+	 * @param workoutId
+	 * @param exerciseId
+	 */
 	public SetsData(int weight, int reps, int workoutId, int exerciseId)
 	{
 		this.weight = weight;
@@ -40,17 +88,29 @@ public class SetsData {
 		this.exerciseId = exerciseId;
 	}
 	
+	/**
+	 * Constructs a SetData
+	 * with:
+	 * @param weight
+	 * @param reps
+	 */
 	public SetsData(int weight, int reps)
 	{
 		this.weight = weight;
 		this.reps = reps;
 	}
 	
+	/**
+	 * Construcs a SetData
+	 * with:
+	 * @param min
+	 * @param sec
+	 * @param weight
+	 */
 	public SetsData(int min, int sec, int weight)
 	{
 		this.min = min;
 		this.sec = sec;
-		System.out.println(weight);
 		this.weight = weight;
 	}
 	
