@@ -62,22 +62,12 @@
             android:screenOrientation="portrait"/>
         <activity
             android:name=".View.History.ShowSingleHistoryActivity"
-<<<<<<< HEAD
-            android:label="@string/title_activity_show_single_history" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-=======
-            android:label="@string/title_activity_show_single_history"
+            android:label="@string/title_activity_show_single_history" 
             android:screenOrientation="portrait"/>
         <activity
             android:name=".View.Settings.SettingsActivity"
             android:label="@string/title_activity_settings" 
             android:screenOrientation="portrait"/>
->>>>>>> b9a0b61139b15cd185968924aafbf2cd5f45af40
         <activity
       		android:name=".View.Profile.ProfileActivity"
             android:label="@string/title_activity_profile" 
