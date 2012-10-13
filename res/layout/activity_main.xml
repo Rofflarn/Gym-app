@@ -63,6 +63,7 @@
         android:layout_alignLeft="@+id/button1"
         android:layout_marginTop="245dp"
         android:src="@drawable/profile"
+        android:onClick="profile"
         android:background="@null"
         />
     

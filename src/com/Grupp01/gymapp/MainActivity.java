@@ -31,6 +31,7 @@ import android.view.View;
 import com.Grupp01.gymapp.View.Exercise.ListExerciseActivity;
 import com.Grupp01.gymapp.View.History.ListHistoryActivity;
 import com.Grupp01.gymapp.View.Settings.SettingsActivity;
+import com.Grupp01.gymapp.View.Profile.ProfileActivity;
 import com.Grupp01.gymapp.View.Statistic.Statistik;
 import com.Grupp01.gymapp.View.Workout.ListWorkoutActivity;
 import com.actionbarsherlock.app.SherlockActivity;
@@ -132,7 +133,7 @@ public class MainActivity extends SherlockActivity {
     	Intent exercise = new Intent(this, ListExerciseActivity.class);
     	startActivity(exercise);
     }
-    
+
     /**
      * When button Settings is pressed SettingsActivity is started.
      * 
@@ -147,7 +148,7 @@ public class MainActivity extends SherlockActivity {
     
     /**
      * This method will change the language of the application depending on the users
-     * choise in the menu in Settings.
+     * choice in the menu in Settings.
      * If the user chooses "System default" this method will fetch the information about the default setting
      * for the phone.
      * Otherwise it will set the language according to the choice.
@@ -179,4 +180,14 @@ public class MainActivity extends SherlockActivity {
         
     }
     
+    /**
+     * When button Profile is pressed the profile activity will be started.
+     * 
+     * @param view
+     */
+    public void profile(View view)
+    {
+    	Intent profile = new Intent(this, ProfileActivity.class);
+    	startActivity(profile);
+    }
 }

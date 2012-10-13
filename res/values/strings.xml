@@ -23,6 +23,14 @@
     <string name="hint_comment">Add a personal comment</string>
     <string name="string_primary_muscle">Select a primary muscle</string>
     <string name="string_secondary_muscle">Select a secondary muscle</string>
+    <string name="title_activity_profile">Profile</string>
+    <string name="name">Name</string>
+    <string name="age">Age</string>
+    <string name="length">Length</string>
+    <string name="weigh">Weigh</string>
+    <string name="buttonUppdate">Uppdate Profile</string>
+    <string name="buttonCancel">Cancel</string>
+    
 
     <string-array name="trainingtype_array">
         <item>Cardio</item>
