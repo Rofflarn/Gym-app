@@ -55,9 +55,9 @@ import com.actionbarsherlock.view.MenuItem;
  */
 public class WorkoutActivity extends SherlockActivity {
 
-	final int Cardio = 1;
-	final int Dynamic = 2;
-	final int Static = 3;
+	private final int cardioType = 1;
+	private final int dynamicType = 2;
+	private final int staticType = 3;
 	public final static String EXTRA_EXERCISE_ID = "com.Grupp01.gymapp.message.exercise.exercise";
 	public final static String EXTRA_WORKOUT_ID = "com.Grupp01.gymapp.message.exercise.workout";
 	private ListView listExercisesView;	//The listview that holds all the exercises for the workout
@@ -161,19 +161,19 @@ public class WorkoutActivity extends SherlockActivity {
 	 */
 	private void registerWorkoutResult(ExerciseData exercise){
 		//ONLY FOR TESTING DIFFERENT REGISTER ACTIVITY!!
-		if(exercise.getTypeId() == 1){
+		if(exercise.getTypeId() == cardioType){
 			Intent intent = new Intent(WorkoutActivity.this, RegisterCardioActivity.class);
 			intent.putExtra(EXTRA_EXERCISE_ID, exercise.getId());
 			intent.putExtra(EXTRA_WORKOUT_ID, workoutId);
 			startActivity(intent);
 		}
-		if(exercise.getTypeId() == 2){
+		if(exercise.getTypeId() == dynamicType){
 			Intent intent = new Intent(WorkoutActivity.this, RegisterDynamicActivity.class);
 			intent.putExtra(EXTRA_EXERCISE_ID, exercise.getId());
 			intent.putExtra(EXTRA_WORKOUT_ID, workoutId);
 			startActivity(intent);
 		}
-		if(exercise.getTypeId() == 3){
+		if(exercise.getTypeId() == staticType){
 			Intent intent = new Intent(WorkoutActivity.this, RegisterStaticActivity.class);
 			intent.putExtra(EXTRA_EXERCISE_ID, exercise.getId());
 			intent.putExtra(EXTRA_WORKOUT_ID, workoutId);

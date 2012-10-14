@@ -62,7 +62,6 @@ public class EditWorkoutActivity extends SherlockActivity
 		{
 			workoutId = intent.getIntExtra(WorkoutActivity.EXTRA_WORKOUT_ID, 0);
 		}
-		//workoutName = intent.getStringExtra(ListWorkoutActivity.WORKOUT_NAME);
 		setContentView(R.layout.editworkout);
 		createEditWorkout();
 
@@ -74,10 +73,9 @@ public class EditWorkoutActivity extends SherlockActivity
 		getSupportMenuInflater().inflate(R.menu.editworkout, menu);
 		getSupportActionBar().setHomeButtonEnabled(true);
 
-		//Set the title to the name of the workout
-		//getSupportActionBar().setTitle(workoutName);
 		return false;
 	}
+	
 	public void createEditWorkout()
 	{
 		// Find the ListView resource.
