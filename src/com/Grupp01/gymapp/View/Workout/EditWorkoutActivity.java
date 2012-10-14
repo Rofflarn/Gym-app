@@ -21,31 +21,40 @@ package com.Grupp01.gymapp.View.Workout;
 import java.util.ArrayList;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 
+import com.Grupp01.gymapp.MainActivity;
 import com.Grupp01.gymapp.R;
+import com.Grupp01.gymapp.Controller.Exercise.ListExerciseDbHandler;
 import com.Grupp01.gymapp.Controller.Workout.WorkoutDbHandler;
+import com.Grupp01.gymapp.View.Exercise.EditExerciseActivity;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
 
 /** The Graphical layout where the user Edit a Workout
  * * @author Robert Blomberg
  * */	
 
-public class EditWorkoutActivity extends SherlockActivity
+public class EditWorkoutActivity extends SherlockActivity implements OnClickListener
 {
-
+	private Dialog dialog;
 	private ListView listView;
 	private ArrayAdapter<ExerciseListElementData> listAdapter;
 	private int workoutId;
 	public ArrayList<ExerciseListElementData> exerciseList = new ArrayList<ExerciseListElementData>();
-
+	public final static String EXTRA_EXERCISE_NAME = "com.Grupp01.gymapp.message";
 
 
 
@@ -54,6 +63,7 @@ public class EditWorkoutActivity extends SherlockActivity
 	{
 		super.onCreate(savedInstanceState);
 		Intent intent = getIntent();
+		initDialogue();
 		if(intent.getIntExtra(ListWorkoutActivity.WORKOUT_ID, 0) !=0)
 		{
 			workoutId = intent.getIntExtra(ListWorkoutActivity.WORKOUT_ID, 0);
@@ -68,15 +78,98 @@ public class EditWorkoutActivity extends SherlockActivity
 
 	}
 
+	/**Setups the menu of the class
+	 * @param menu
+	 * @return true = menu shown false = menu hidden
+	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu)
 	{
-		getSupportMenuInflater().inflate(R.menu.editworkout, menu);
+		MenuInflater inflater = getSupportMenuInflater();
+		inflater.inflate(R.menu.ovningar, menu);
+		//Enables the home button in SherlockActionBar
 		getSupportActionBar().setHomeButtonEnabled(true);
+		return true;
+	}
+	/** The method listens to the home button and to add a new exercise button in the menu
+	 * @param item the item that has been clicked
+	 * @return true
+	 */     
+	@Override
+	public boolean onOptionsItemSelected(com.actionbarsherlock.view.MenuItem item)
+	{
+		if(item.getItemId() == R.id.menu_addExe)
+		{
+			//shows the dialog if addExe button is pressed
+			dialog.show();
 
-		//Set the title to the name of the workout
-		//getSupportActionBar().setTitle(workoutName);
-		return false;
+		}
+		else if(item.getItemId() == android.R.id.home)
+		{
+			//from developer.android.com
+			Intent parentActivityIntent = new Intent(this, MainActivity.class);
+			parentActivityIntent.addFlags(
+					Intent.FLAG_ACTIVITY_CLEAR_TOP |
+					Intent.FLAG_ACTIVITY_NEW_TASK);
+			startActivity(parentActivityIntent);
+			finish();
+
+		}
+		return true;
+	}
+	/** Listens to the add and cancel button in the dialog
+	 * @param view the view that is clicked
+	 */
+	@Override
+	public void onClick(View view)
+	{
+		if(view == ((Button) dialog.findViewById(R.id.add_Button)))
+		{
+			//takes the text from exercise name textfield and puts it to AddExercise intent		
+			EditText name = (EditText) dialog.findViewById(R.id.exerciseName);
+			String temp = name.getText().toString();
+			//if the string is empty, prompt for a name
+			if(temp.length() == 0)
+			{
+				name.setHint("Fyll i ett namn");
+				name.setHintTextColor(Color.RED);
+			}
+			//Else, create intent and start EditExerciseActivity
+			else
+			{
+				ListExerciseDbHandler dbHandler = new ListExerciseDbHandler(this);
+				dbHandler.open();
+				int id = dbHandler.addExercise(temp);
+				Intent intent_Add_Exercise = new Intent(this, EditExerciseActivity.class);
+				intent_Add_Exercise.putExtra(EXTRA_EXERCISE_NAME, id);
+				dialog.dismiss();
+				startActivity(intent_Add_Exercise);
+			}
+		}
+		else if(view == ((Button) dialog.findViewById(R.id.cancel_Button)))
+		{
+			dialog.dismiss();
+		}
+	}
+	/**
+	 * Updates ListView containing all Workouts after adding a new Workout, and return back to this activity
+	 */
+	public void onResume()
+	{
+		super.onResume();
+		createEditWorkout();
+	}
+	/**
+	 * Initialize dialogue-window by adding buttons and setting layout
+	 */
+	public void initDialogue()
+	{
+		dialog = new Dialog(this);
+		dialog.setContentView(R.layout.dialog);
+		dialog.setTitle("New Exercise");
+
+		((Button) dialog.findViewById(R.id.add_Button)).setOnClickListener(this);
+		((Button) dialog.findViewById(R.id.cancel_Button)).setOnClickListener(this);
 	}
 	public void createEditWorkout()
 	{
@@ -104,41 +197,6 @@ public class EditWorkoutActivity extends SherlockActivity
 				viewHolder.getCheckBox().setChecked( exercise.isChecked() );
 			}//End of onItemClick
 		});//End of Listener
-
-
-					//Create spinners and add listeners to them.
-					/*
-			Spinner spinnerMuscleGroup = (Spinner) findViewById(R.id.spinnermusclegroup);
-			spinnerMuscleGroup.setOnItemSelectedListener((OnItemSelectedListener) this);
-			spinnerMuscleGroup.setVisibility(View.GONE);
-			
-			Spinner spinnerMuscle = (Spinner) findViewById(R.id.spinnermuscle);
-			spinnerMuscle.setOnItemSelectedListener(this);
-			spinnerMuscle.setVisibility(View.GONE);
-			
-			
-			//Creates ArrayAdapters that contains a String-Array
-			ArrayAdapter<String> muscleGroupSpinner = new ArrayAdapter<String>
-			(this,android.R.layout.simple_spinner_item,muscleGroups);
-			
-			ArrayAdapter<String> muscleSpinner = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,muscleGroups);
-			
-			//On click, make a dropdown menu with big buttons so the user won't missclick
-			muscleGroupSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-			muscleSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-			
-			//Set the Arrayadapter into the spinner
-			spinnerMuscleGroup.setAdapter(muscleGroupSpinner);
-			spinnerMuscle.setAdapter(muscleSpinner);
-					 */
-					// Since we don't have a database we manually put in exercises
-					//Could use a Arraylist directly but we use a String since we will load
-					//String-Arrays from the database we use a String-array here
-					/*if ( exerciseList.isEmpty() )
-			{
-			exerciseList.add(new ExerciseListElementData(2, "hejja",false));
-			
-			}*/
 
 		WorkoutDbHandler dbHandler = new WorkoutDbHandler(this);
 		dbHandler.open();
@@ -195,17 +253,4 @@ public class EditWorkoutActivity extends SherlockActivity
 		});
 		closeEditWorkoutDialog.show();
 	}
-	/*
-public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
-{
-switch (parent.getId())
-{
-case R.id.spinnermusclegroup:
-//Implement later when we got a working database
-case R.id.spinnermuscle:
-//Implement later when we got a working database
-}
-}
-	 */
-
 } 
