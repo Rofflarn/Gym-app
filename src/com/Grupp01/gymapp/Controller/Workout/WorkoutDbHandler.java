@@ -208,22 +208,22 @@ public class WorkoutDbHandler extends Database {
 
 
 
-	public int getExerciseLastTimePerformed(int ExerciseId)
+	public int getExerciseLastTimePerformed(int exerciseId)
 	{
 		open();
 		Cursor c = ourDatabase.rawQuery("SELECT WorkoutTime FROM Workouts WHERE WorkoutId = Sets.WorkoutId AND " +
-				"Sets.ExerciseId = '" + ExerciseId + "';", null);
+				"Sets.ExerciseId = '" + exerciseId + "';", null);
 		int WorkoutTime = c.getColumnIndex("WorkoutTime");
 		c.moveToFirst();
 		close();
 		return c.getInt(WorkoutTime);
 	}
 
-	public void editWorkoutTemplate(ExerciseListElementData exerciseListItemData, int WorkoutTemplateId)
+	public void editWorkoutTemplate(ExerciseListElementData exerciseListItemData, int workoutTemplateId)
 	{
 		open();
 		//Check if already exists
-		Cursor c = ourDatabase.rawQuery("SELECT COUNT (*) FROM WorkoutTemplateExercises WHERE WorkoutTemplateId = '" + WorkoutTemplateId + "' " +
+		Cursor c = ourDatabase.rawQuery("SELECT COUNT (*) FROM WorkoutTemplateExercises WHERE WorkoutTemplateId = '" + workoutTemplateId + "' " +
 				"AND ExerciseId = '" + exerciseListItemData.getId() + "';", null);
 		c.moveToFirst();
 
@@ -233,27 +233,27 @@ public class WorkoutDbHandler extends Database {
 			{	
 				//add
 				String tmp = "INSERT OR REPLACE INTO WorkoutTemplateExercises (WorkoutTemplateId, ExerciseId) VALUES " +
-						"('" + WorkoutTemplateId + "', '" + exerciseListItemData.getId() + "');";
+						"('" + workoutTemplateId + "', '" + exerciseListItemData.getId() + "');";
 				ourDatabase.execSQL(tmp);
 			}
 		} else
 		{
 			//remove
-			String tmp = "DELETE FROM WorkoutTemplateExercises WHERE WorkoutTemplateId = '" + WorkoutTemplateId + "' AND " +
+			String tmp = "DELETE FROM WorkoutTemplateExercises WHERE WorkoutTemplateId = '" + workoutTemplateId + "' AND " +
 					"ExerciseId = '" + exerciseListItemData.getId() + "';";
 			ourDatabase.execSQL(tmp);
 		}
 		close();
 	}
 
-	public int addWorkout(String WorkoutName)
+	public int addWorkout(String workoutName)
 	{
 		open();
 		ContentValues values = new ContentValues();
-		values.put("WorkoutName", WorkoutName);
-		int WorkoutId = (int) (long) ourDatabase.insert("Workouts", null, values);
+		values.put("WorkoutName", workoutName);
+		int workoutId = (int) (long) ourDatabase.insert("Workouts", null, values);
 		close();
-		return WorkoutId;
+		return workoutId;
 	}
 
 	public void deleteWorkout(int WorkoutId)
@@ -266,25 +266,25 @@ public class WorkoutDbHandler extends Database {
 		close();
 	}
 
-	public void deleteWorkoutTemplate(int WorkoutTemplateId)
+	public void deleteWorkoutTemplate(int workoutTemplateId)
 	{
 		open();
 		//Delete exercise associations to WorkoutTemplate
-		ourDatabase.execSQL("DELETE FROM WorkoutTemplateExercises WHERE WorkoutTemplateId = '" + WorkoutTemplateId + "';");
+		ourDatabase.execSQL("DELETE FROM WorkoutTemplateExercises WHERE WorkoutTemplateId = '" + workoutTemplateId + "';");
 		//Delete WorkoutTemplate
-		ourDatabase.execSQL("DELETE FROM WorkoutTemplates WHERE WorkoutTemplateId = '" + WorkoutTemplateId + "';");
+		ourDatabase.execSQL("DELETE FROM WorkoutTemplates WHERE WorkoutTemplateId = '" + workoutTemplateId + "';");
 		close();
 	}
 
-	public void deleteExercise(int ExerciseId)
+	public void deleteExercise(int exerciseId)
 	{
 		open();
 		//Delete WorkoutTemplateExercises associated with Exercise
-		ourDatabase.execSQL("DELETE FROM WorkoutTemplateExercises WHERE ExerciseId = '" + ExerciseId + "';");
+		ourDatabase.execSQL("DELETE FROM WorkoutTemplateExercises WHERE ExerciseId = '" + exerciseId + "';");
 		//Delete sets associated with Exercise
-		ourDatabase.execSQL("DELETE FROM Sets WHERE ExerciseId = '" + ExerciseId + "';");
+		ourDatabase.execSQL("DELETE FROM Sets WHERE ExerciseId = '" + exerciseId + "';");
 		//Delete Exercises
-		ourDatabase.execSQL("DELETE FROM WorkoutTemplates WHERE WorkoutTemplateId = '" + ExerciseId + "';");
+		ourDatabase.execSQL("DELETE FROM WorkoutTemplates WHERE WorkoutTemplateId = '" + exerciseId + "';");
 		close();
 	}
 }
