@@ -360,22 +360,22 @@ public class ListWorkoutActivity extends SherlockActivity implements OnClickList
 		{
 			//takes the text from exercise name textfield and puts it to AddExercise intent
 			//if the string is not empty
-			EditText editTextField = (EditText) dialog.findViewById(R.id.exerciseName);
-			String stringEditTextField = editTextField.getText().toString();
-			if(stringEditTextField.trim().length() > 0)
+			EditText newWorkoutNameField = (EditText) dialog.findViewById(R.id.exerciseName);
+			String stringName = newWorkoutNameField.getText().toString();
+			if(stringName.trim().length() > 0)
 			{
 				
 				//Add the name of the workout to the intent so the next activity can get the name
-				int id = newWorkoutToDatabase(editTextField.toString());
+				int id = newWorkoutToDatabase(stringName);
 				intent2.putExtra(WORKOUT_ID, id);
 				dialog.dismiss();
 				startActivity(intent2);
 			}
 			else
 			{
-				editTextField.setText("");
-				editTextField.setHint(R.string.invalid_value);
-				editTextField.setHintTextColor(Color.RED);
+				newWorkoutNameField.setText("");
+				newWorkoutNameField.setHint(R.string.invalid_value);
+				newWorkoutNameField.setHintTextColor(Color.RED);
 			}
 		}
 		else if(view == ((Button) dialog.findViewById(R.id.cancel_Button)))

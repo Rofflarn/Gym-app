@@ -72,7 +72,6 @@ public class ListExerciseActivity extends SherlockActivity implements OnClickLis
 
 		initDialogue();
 		initListView();
-		setTitle("Exercise");
 		createListView();
 
 	}
