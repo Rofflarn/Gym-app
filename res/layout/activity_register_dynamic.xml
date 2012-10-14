@@ -161,13 +161,13 @@
                     android:layout_height="wrap_content"
                     android:onClick="onClick"
                     android:text="@string/register_finish_set" />
-
                 <Button
                     android:id="@+id/dynamicUndoSet"
                     android:layout_width="120dp"
                     android:layout_height="wrap_content"
                     android:onClick="onClick"
                     android:text="@string/register_undo_set" />
+                
             </LinearLayout>
         </RelativeLayout>
     </ScrollView>

@@ -29,20 +29,20 @@ android:text="@string/textview_musclegroup" />
         android:paddingTop="5dp" >
 
         <Button
-            android:id="@+id/button_EditWorkout_Save"
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight="1.0"
-            android:onClick="saveToDatabase"
-            android:text="@string/button_save" />
-
-        <Button
             android:id="@+id/button_Workout_Cancel"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1.0"
             android:onClick="cancelEditWorkoutDialog"
             android:text="@string/cancel" />
+
+        <Button
+            android:id="@+id/button_EditWorkout_Save"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
+            android:onClick="saveToDatabase"
+            android:text="@string/button_save" />
     </LinearLayout>
 
 </LinearLayout>

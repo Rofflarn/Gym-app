@@ -6,6 +6,35 @@
     <ListView
         android:id="@+id/activeWorkoutList"
         android:layout_width="fill_parent"
+        android:selectable ="false"
         android:layout_height="fill_parent" />
-        
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:paddingBottom="1dp"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+        android:paddingTop="5dp" >
+
+        <Button
+            android:id="@+id/button_done"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
+            android:onClick="done"
+            android:text="@string/Done" />
+ 
+        <Button
+            android:id="@+id/button_start"
+            android:layout_width="80dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
+            android:onClick="start"
+            android:text="@string/start" />
+    </LinearLayout>
+
 </RelativeLayout>

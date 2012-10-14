@@ -72,14 +72,8 @@ public class ListExerciseActivity extends SherlockActivity implements OnClickLis
 
 		initDialogue();
 		initListView();
-		setTitle("Exercise");
 		createListView();
-
 	}
-
-
-
-
 	/**Setups the menu of the class
 	 * @param menu
 	 * @return true = menu shown false = menu hidden

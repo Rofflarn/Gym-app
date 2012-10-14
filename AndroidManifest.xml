@@ -38,7 +38,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".View.Exercise.ListExerciseActivity"
-            android:label="@string/title_activity_main"
+            android:label="@string/title_activity_list_exercise"
             android:screenOrientation="portrait" />
         <activity
             android:name=".View.Exercise.AddExercise"

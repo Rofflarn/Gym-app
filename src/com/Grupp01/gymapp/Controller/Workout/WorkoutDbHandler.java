@@ -275,16 +275,4 @@ public class WorkoutDbHandler extends Database {
 		ourDatabase.execSQL("DELETE FROM WorkoutTemplates WHERE WorkoutTemplateId = '" + workoutTemplateId + "';");
 		close();
 	}
-
-	public void deleteExercise(int exerciseId)
-	{
-		open();
-		//Delete WorkoutTemplateExercises associated with Exercise
-		ourDatabase.execSQL("DELETE FROM WorkoutTemplateExercises WHERE ExerciseId = '" + exerciseId + "';");
-		//Delete sets associated with Exercise
-		ourDatabase.execSQL("DELETE FROM Sets WHERE ExerciseId = '" + exerciseId + "';");
-		//Delete Exercises
-		ourDatabase.execSQL("DELETE FROM WorkoutTemplates WHERE WorkoutTemplateId = '" + exerciseId + "';");
-		close();
-	}
 }
