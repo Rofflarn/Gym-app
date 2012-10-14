@@ -46,7 +46,7 @@ public class WorkoutDbHandler extends Database {
 	 * Gets all exercises id and name from databasetable Exercises and puts these values into an IdName object. 
 	 * @return a LinkedList with type of IdName
 	 */
-	public List<IdName> getWorkoutsIdName()
+	public List<IdName> getWorkoutTemplatesIdName()
 	{
 
 		open();
@@ -55,7 +55,7 @@ public class WorkoutDbHandler extends Database {
 		c.moveToFirst();
 		int id = c.getColumnIndex("WorkoutTemplateId");
 		int name = c.getColumnIndex("WorkoutTemplateName");
-		//Forlopp som går igenom hela databasen, alla kolummer
+		//Procedure that runs through the cursor.
 		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext())
 		{
 			idNameList.add(new IdName(c.getInt(id),c.getString(name)));
@@ -70,7 +70,7 @@ public class WorkoutDbHandler extends Database {
 	 * @param workoutId
 	 * @return Id and Name of a workout in a IdName
 	 */
-	public IdName getWorkoutIdNameById(int workoutId)
+	public IdName getWorkoutTemplateIdNameById(int workoutId)
 	{
 		open();
 		Cursor c = ourDatabase.rawQuery("SELECT WorkoutTemplateId, WorkoutTemplateName FROM WorkoutTemplates WHERE " + 
@@ -103,7 +103,7 @@ public class WorkoutDbHandler extends Database {
 	 * @param workoutTemplateId
 	 * @return List<Integer> that contains id for all exercises that are in a workout
 	 */
-	public List<Integer> getExercisesbyWorkoutId(int workoutTemplateId)
+	public List<Integer> getWorkoutTemplateExerciseByWorkoutTemplateId(int workoutTemplateId)
 	{
 		List<Integer> integerList = new LinkedList<Integer>();
 		open();
@@ -246,14 +246,15 @@ public class WorkoutDbHandler extends Database {
 		close();
 	}
 
-	public int addWorkout(String WorkoutName)
+	public int addWorkout(String workoutName)
 	{
 		open();
+		System.out.println(workoutName);
 		ContentValues values = new ContentValues();
-		values.put("WorkoutName", WorkoutName);
-		int WorkoutId = (int) (long) ourDatabase.insert("Workouts", null, values);
+		values.put("WorkoutName", workoutName);
+		int workoutId = (int) (long) ourDatabase.insert("Workouts", null, values);
 		close();
-		return WorkoutId;
+		return workoutId;
 	}
 
 	public void deleteWorkout(int WorkoutId)
