@@ -1,171 +1,175 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent" >
 
-    
-    
-     <LinearLayout    
-     android:id="@+id/linearBottom"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_alignParentBottom="true"
-    android:gravity="center_horizontal">
-     <Button
-        android:id="@+id/dynamicButtonOK"
-        android:layout_width="80dp"
-        android:layout_height="wrap_content"
-        android:text="@string/done"
-        android:onClick="onClick"/>
-     <Button
-        android:id="@+id/dynamicButtonCancel"
-        android:layout_width="80dp"
-        android:layout_height="wrap_content"
-        android:text="@string/cancel"
-        android:onClick="onClick"/>
-
- </LinearLayout>
-    
-    
-    
-    
- <ScrollView
-     android:id="@+id/scrollViewTest"
-     android:layout_width="wrap_content"
-     android:layout_height="match_parent" 
-     android:layout_above="@id/linearBottom"
-     android:isScrollContainer="false">
-
-     <RelativeLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
     <LinearLayout
-    android:id="@+id/lastTimeLinear"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    <TextView
-        android:id="@+id/lastTime"
-        android:layout_width="wrap_content"
+        android:id="@+id/linearBottom"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/register_last_time"
-        android:textStyle="bold" />
-    
-       <TextView
-        android:id="@+id/lastTimeSets"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-       </LinearLayout>
+        android:layout_alignParentBottom="true"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:paddingBottom="1dp"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+        android:paddingTop="5dp" >
 
-<LinearLayout
-    android:id="@+id/linear1"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content" 
-    android:layout_below="@id/lastTimeLinear"
-    android:layout_marginTop="3dp">
-    <TextView
-        android:id="@+id/thisTime"
+        <Button
+            android:id="@+id/dynamicButtonCancel"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
+            android:onClick="onClick"
+            android:text="@string/cancel" />
+
+        <Button
+            android:id="@+id/dynamicButtonOK"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
+            android:onClick="onClick"
+            android:text="@string/Done" />
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/scrollViewTest"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:text="@string/register_current_sets"/>
-    
-       <TextView
-        android:id="@+id/thisTimeSets"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
- </LinearLayout>
- 
+        android:layout_height="match_parent"
+        android:layout_above="@id/linearBottom"
+        android:isScrollContainer="false" >
 
-<LinearLayout
-    android:id="@+id/linear1.1"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content" 
-    android:layout_below="@id/linear1"
-    android:layout_marginTop="3dp">
-    <TextView
-        android:id="@+id/noteText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:text="@string/register_my_notes"/>
-    
-       <TextView
-        android:id="@+id/myNoteText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
- </LinearLayout>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
 
-<LinearLayout
-    android:id="@+id/linear2"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content" 
-    android:layout_below="@id/linear1.1"
-    android:gravity="center_horizontal"
-    android:layout_marginTop="20dp">
-    <TextView
-        android:id="@+id/textReps"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/register_reps"
-        android:textStyle="bold"
-        android:textSize="14sp"/>
-    
-       <TextView
-        android:id="@+id/textWeight"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="60dp"
-        android:text="@string/register_weight"
-        android:textStyle="bold"
-        android:textSize="14sp"/>
- </LinearLayout>
-   
+            <LinearLayout
+                android:id="@+id/lastTimeLinear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
 
- <LinearLayout    
-     android:id="@+id/linear3"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content" 
-    android:layout_below="@id/linear2"
-    android:gravity="center_horizontal" >
-    <EditText
-        android:id="@+id/editReps"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:inputType="number" />
-    
-	<EditText
-        android:id="@+id/editWeight"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:inputType="numberDecimal"/>
-</LinearLayout>
+                <TextView
+                    android:id="@+id/lastTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/register_last_time"
+                    android:textStyle="bold" />
 
- <LinearLayout
-    android:id="@+id/linear4"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content" 
-    android:layout_below="@id/linear3"
-    android:layout_marginTop="12dp"
-    android:gravity="center_horizontal">
-     <Button
-        android:id="@+id/dynamicFinishSet"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:text="@string/register_finish_set"
-        android:onClick="onClick"/>
-     <Button
-        android:id="@+id/dynamicUndoSet"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:text="@string/register_undo_set"  
-        android:onClick="onClick"/>
+                <TextView
+                    android:id="@+id/lastTimeSets"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
 
-    
- </LinearLayout>
-</RelativeLayout>
- </ScrollView>
- 
+            <LinearLayout
+                android:id="@+id/linear1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/lastTimeLinear"
+                android:layout_marginTop="3dp" >
 
+                <TextView
+                    android:id="@+id/thisTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/register_current_sets"
+                    android:textStyle="bold" />
 
+                <TextView
+                    android:id="@+id/thisTimeSets"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linear1.1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/linear1"
+                android:layout_marginTop="3dp" >
+
+                <TextView
+                    android:id="@+id/noteText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/register_my_notes"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/myNoteText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linear2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/linear1.1"
+                android:layout_marginTop="20dp"
+                android:gravity="center_horizontal" >
+
+                <TextView
+                    android:id="@+id/textReps"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/register_reps"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textWeight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="60dp"
+                    android:text="@string/register_weight"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linear3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/linear2"
+                android:gravity="center_horizontal" >
+
+                <EditText
+                    android:id="@+id/editReps"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="number" />
+
+                <EditText
+                    android:id="@+id/editWeight"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linear4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/linear3"
+                android:layout_marginTop="12dp"
+                android:gravity="center_horizontal" >
+
+                <Button
+                    android:id="@+id/dynamicFinishSet"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:onClick="onClick"
+                    android:text="@string/register_finish_set" />
+
+                <Button
+                    android:id="@+id/dynamicUndoSet"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:onClick="onClick"
+                    android:text="@string/register_undo_set" />
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
 
 </RelativeLayout>
