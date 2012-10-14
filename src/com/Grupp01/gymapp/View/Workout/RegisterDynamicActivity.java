@@ -53,7 +53,7 @@ import com.actionbarsherlock.view.MenuItem;
  *
  */
 public class RegisterDynamicActivity extends SherlockActivity {
-
+	private final int intentIntDefaultValue = 0;
 	private int exerciseId;
 	private int workoutId;
 	private ExerciseData exercise;
@@ -65,10 +65,9 @@ public class RegisterDynamicActivity extends SherlockActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		//workoutName = getIntent().getStringExtra("exercisename");
 		setContentView(R.layout.activity_register_dynamic);
-		exerciseId = getIntent().getIntExtra(WorkoutActivity.EXTRA_EXERCISE_ID, 0);
-		workoutId = getIntent().getIntExtra(WorkoutActivity.EXTRA_WORKOUT_ID, 0);
+		exerciseId = getIntent().getIntExtra(WorkoutActivity.EXTRA_EXERCISE_ID, intentIntDefaultValue);
+		workoutId = getIntent().getIntExtra(WorkoutActivity.EXTRA_WORKOUT_ID, intentIntDefaultValue);
 		getExerciseData();
 		setTitle(exercise.getName());
 		setNoteText();
@@ -215,8 +214,9 @@ public class RegisterDynamicActivity extends SherlockActivity {
 			//If the weight is blank, set it to zero
 			String weight = editWeight.getText().toString();
 			if(weight.equals(""))
+			{
 				weight = "0";
-
+			}
 			//Parses strings input to Integer.
 			Integer repsInt = Integer.parseInt(editReps.getText().toString());
 			Integer weightInt = Integer.parseInt(editWeight.getText().toString());
@@ -226,8 +226,9 @@ public class RegisterDynamicActivity extends SherlockActivity {
 
 		}
 		else
+		{
 			Toast.makeText(this, "Cant add set with 0 repetitions.", Toast.LENGTH_SHORT).show();
-
+		}
 	}
 
 	/**
@@ -262,7 +263,9 @@ public class RegisterDynamicActivity extends SherlockActivity {
 	 */
 	private void removeLatestSet() {
 		if(dynamicSetsList.size() > 0)
+		{
 			dynamicSetsList.remove(dynamicSetsList.size() -1);
+		}
 		else
 		{
 			Toast.makeText(this, "No sets to remove", Toast.LENGTH_SHORT).show();

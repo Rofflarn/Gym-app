@@ -49,7 +49,7 @@ public class RegisterDbHandler extends Database {
 	 */
 	public void addCardioSet(int sec, int min, float distance, int workoutId, int exerciseId)
 	{
-		int duration = sec + (min*60);
+		int duration = sec + (min*NUMBER_SECONDS_IN_MIN);
 		open();
 		ourDatabase.execSQL("INSERT INTO Sets (SetDistance, WorkoutId, SetDuration, SetTime, ExerciseId) VALUES "
 				+ "(" + distance + ", " + workoutId + ", " + duration +  ", " + "datetime('now')" + ", " + exerciseId + ");");
@@ -81,7 +81,7 @@ public class RegisterDbHandler extends Database {
 	 */
 	public void addStaticSet(int min, int sec, int weight, int workoutId, int exerciseId)
 	{
-		int duration = sec + (min*60);
+		int duration = sec + (min*NUMBER_SECONDS_IN_MIN);
 		open();
 		ourDatabase.execSQL("INSERT INTO Sets(SetWeight, WorkoutId, SetDuration, ExerciseId) VALUES " +
 				"(" + weight + ", " + workoutId + ", " + duration + ", " + exerciseId + ");");
@@ -161,7 +161,7 @@ public class RegisterDbHandler extends Database {
 
 		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext())
 		{
-			String durationString = (((int) (c.getInt(duration) / 3600)) + ":" + (((int) (c.getInt(duration) / 60)) % 60) + ":" + (c.getInt(duration) % 60)); 
+			String durationString = (((int) (c.getInt(duration) / NUMBER_SECONDS_IN_HOUR)) + ":" + (((int) (c.getInt(duration) / NUMBER_SECONDS_IN_MIN)) % NUMBER_SECONDS_IN_MIN) + ":" + (c.getInt(duration) % NUMBER_SECONDS_IN_MIN)); 
 			staticSetsList.add(new SetsData(c.getInt(weight),durationString));
 		}
 

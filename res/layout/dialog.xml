@@ -17,14 +17,16 @@
     		
         <Button
             android:id="@+id/cancel_Button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+           android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
             android:text="@string/cancel" />
         
         <Button
             android:id="@+id/add_Button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
             android:text="@string/add" />
         </LinearLayout>
 

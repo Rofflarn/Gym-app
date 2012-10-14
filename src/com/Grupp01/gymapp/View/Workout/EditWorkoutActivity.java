@@ -72,7 +72,6 @@ public class EditWorkoutActivity extends SherlockActivity implements OnClickList
 		{
 			workoutId = intent.getIntExtra(WorkoutActivity.EXTRA_WORKOUT_ID, 0);
 		}
-		//workoutName = intent.getStringExtra(ListWorkoutActivity.WORKOUT_NAME);
 		setContentView(R.layout.editworkout);
 		createEditWorkout();
 
@@ -86,7 +85,7 @@ public class EditWorkoutActivity extends SherlockActivity implements OnClickList
 	public boolean onCreateOptionsMenu(Menu menu)
 	{
 		MenuInflater inflater = getSupportMenuInflater();
-		inflater.inflate(R.menu.ovningar, menu);
+		inflater.inflate(R.menu.activity_list_exercises, menu);
 		//Enables the home button in SherlockActionBar
 		getSupportActionBar().setHomeButtonEnabled(true);
 		return true;
@@ -170,7 +169,9 @@ public class EditWorkoutActivity extends SherlockActivity implements OnClickList
 
 		((Button) dialog.findViewById(R.id.add_Button)).setOnClickListener(this);
 		((Button) dialog.findViewById(R.id.cancel_Button)).setOnClickListener(this);
+
 	}
+	
 	public void createEditWorkout()
 	{
 		// Find the ListView resource.

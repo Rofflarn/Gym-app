@@ -57,6 +57,7 @@ import com.actionbarsherlock.view.MenuItem;
  */
 
 public class RegisterCardioActivity extends SherlockActivity {
+	private final int intentIntDefaultValue = 0;
 	private ExerciseData exercise; //The name of the workout
 	private ArrayList<String> currentSets;	//The array where new sets is added (in form of REPSxWEIGHT)
 	private int exerciseId;
@@ -72,18 +73,17 @@ public class RegisterCardioActivity extends SherlockActivity {
 		setContentView(R.layout.activity_register_cardio);
 		//Create the array
 		currentSets = new ArrayList<String>();
-		workoutId = getIntent().getIntExtra(WorkoutActivity.EXTRA_WORKOUT_ID, 0);
-		exerciseId = getIntent().getIntExtra(WorkoutActivity.EXTRA_EXERCISE_ID, 0);
-		System.out.println(exerciseId + "Från intent");
+		workoutId = getIntent().getIntExtra(WorkoutActivity.EXTRA_WORKOUT_ID, intentIntDefaultValue);
+		exerciseId = getIntent().getIntExtra(WorkoutActivity.EXTRA_EXERCISE_ID, intentIntDefaultValue);
 		getExerciseData();
 		setTitle(exercise.getName());
-		//System.out.println(exercise.getNote());
-		//setNoteString(exercise.getNote());
+
 		//Show the sets (reps and weight) for the last time this
 		//exercise was performed.
-		setLastSetString();
+		setLastSetsString();
+
 		setNoteString();
-		setLastestSetsString();
+		setLastSetsString();
 	}
 
 
@@ -118,20 +118,6 @@ public class RegisterCardioActivity extends SherlockActivity {
 		}
 	}
 
-
-
-
-
-	/**
-	 * This method will set the TextView in the layout
-	 * that shows the time and distance for when performing this exercise last time.
-	 */
-	private void setLastSetString() {
-		//The textview that will show sets from last time.
-		TextView lastSetString = (TextView) findViewById(R.id.lastTimeSetsCardio);
-		lastSetString.setText("ska hämtas från DB");
-
-	}
 
 	private void setNoteString()
 	{
@@ -237,21 +223,18 @@ public class RegisterCardioActivity extends SherlockActivity {
 	 *
 	 */
 	private void updateView() {
-		String string = new String();
-
 		//The textview where current sets will be showed (added when button "Finish set" is pressed)
 		TextView currentSetString = (TextView) findViewById(R.id.thisTimeSetsCardio);
 
 		//The prefix is used to separate each set in the string.
-		String prefix = new String("");
+		StringBuffer prefix = new StringBuffer();
 		for (String s : currentSets)
 		{
-			string = string + prefix;
-			prefix = ", ";
-			string = string + s;
+			prefix.append(s);
+			prefix.append(", ");
 		}
 		//Update the view with the new string
-		currentSetString.setText(string);
+		currentSetString.setText(prefix);
 	}
 
 
@@ -261,9 +244,10 @@ public class RegisterCardioActivity extends SherlockActivity {
 	 */
 	private void removeLatestSet() {
 		if(currentSets.size() > 0)
+		{	
 			currentSets.remove(currentSets.size() -1);
-		//removeLatestCardioSet(getLatestSetId()); //Deletes the latest added Cardioset from database
-		if(cardioSetsList.size() == 0)
+		}
+		else if(cardioSetsList.size() == 0)
 		{
 			Toast.makeText(this, "No Set to Delete", Toast.LENGTH_SHORT).show();
 		}
@@ -271,7 +255,6 @@ public class RegisterCardioActivity extends SherlockActivity {
 		{
 			cardioSetsList.remove((cardioSetsList.size()-1));
 		}
-
 		updateView();
 	}
 
@@ -290,7 +273,7 @@ public class RegisterCardioActivity extends SherlockActivity {
 	/**
 	 * gets information about the 4 latest sets in this exercise and puts this information on the screen
 	 */
-	private void setLastestSetsString()
+	private void setLastSetsString()
 	{
 		List<SetsData> cardioSetsList = new LinkedList<SetsData>();
 		RegisterDbHandler dbHandler = new RegisterDbHandler(this);

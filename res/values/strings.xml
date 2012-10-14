@@ -46,6 +46,7 @@
     <string name="title_activity_database">DatabaseActivity</string>
     <string name="title_activity_sqlview">SQLView</string>
     <string name="title_activity_show_single_history">ShowSingleHistoryActivity</string>
+    <string name="title_activity_list_exercise">Exercises</string>
     <string name="dialog_new_workout_title">Enter name of Workout:</string>
     <string name="title_activity_settings">Settings</string>
     <string name="about">About</string>
@@ -79,7 +80,9 @@
     <string name="imagebutton_settings">SettingsButton</string>
     <string name="not_implemented">Not implemented</string>
     <string name="start">Start</string>
-    
+    <string name="enter_correct_name">Please enter a name</string>
+    <string name="new_exercise">New exercise</string>
+    <string name="invalid_value">Invalid value!</string>
 
     <string-array name="trainingtype_array">
         <item>Cardio</item>
