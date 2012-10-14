@@ -53,7 +53,7 @@ import com.actionbarsherlock.view.MenuItem;
  *
  */
 public class RegisterStaticActivity extends SherlockActivity {
-
+	private final int intentIntDefaultValue = 0;
 	private List<SetsData> staticSetsList = new LinkedList<SetsData>();//The list where new sets are added and removed.
 	private int exerciseId;
 	private int workoutId;
@@ -65,10 +65,9 @@ public class RegisterStaticActivity extends SherlockActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		//workoutName = getIntent().getStringExtra("exercisename");
 		setContentView(R.layout.activity_register_static);
-		exerciseId = getIntent().getIntExtra(WorkoutActivity.EXTRA_EXERCISE_ID, 0);
-		workoutId = getIntent().getIntExtra(WorkoutActivity.EXTRA_WORKOUT_ID, 0);
+		exerciseId = getIntent().getIntExtra(WorkoutActivity.EXTRA_EXERCISE_ID, intentIntDefaultValue);
+		workoutId = getIntent().getIntExtra(WorkoutActivity.EXTRA_WORKOUT_ID, intentIntDefaultValue);
 		getExerciseData();
 		setTitle(exercise.getName());
 
@@ -220,8 +219,6 @@ public class RegisterStaticActivity extends SherlockActivity {
 		if((minutes.equals("0")) && (seconds.equals("0"))){	
 			//add to the array and update view on the screen
 			Toast.makeText(this, "Cant add set with 0 repetitions", Toast.LENGTH_SHORT).show();
-
-
 		}
 		else{
 			//Parses strings to Integer
@@ -267,7 +264,9 @@ public class RegisterStaticActivity extends SherlockActivity {
 	 */
 	private void removeLatestSet() {
 		if(staticSetsList.size() > 0)
+		{
 			staticSetsList.remove(staticSetsList.size() -1);
+		}
 		updateView();
 	}
 
