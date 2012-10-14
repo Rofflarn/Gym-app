@@ -99,5 +99,17 @@ public class ListExerciseDbHandler extends Database {
 		close();
 		return id;
 	}
+	
+	public void deleteExercise(int exerciseId)
+	{
+		open();
+		//Delete WorkoutTemplateExercises associated with Exercise
+		ourDatabase.execSQL("DELETE FROM WorkoutTemplateExercises WHERE ExerciseId = '" + exerciseId + "';");
+		//Delete sets associated with Exercise
+		ourDatabase.execSQL("DELETE FROM Sets WHERE ExerciseId = '" + exerciseId + "';");
+		//Delete Exercises
+		ourDatabase.execSQL("DELETE FROM Exercises WHERE ExerciseId = '" + exerciseId + "';");
+		close();
+	}
 
 }
