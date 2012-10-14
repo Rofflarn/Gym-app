@@ -78,6 +78,8 @@
     <string name="imagebutton_profile">ProfileButton</string>
     <string name="imagebutton_settings">SettingsButton</string>
     <string name="not_implemented">Not implemented</string>
+    <string name="enter_correct_name">Please enter a name</string>
+    <string name="new_exercise">New exercise</string>
     
 
     <string-array name="trainingtype_array">
