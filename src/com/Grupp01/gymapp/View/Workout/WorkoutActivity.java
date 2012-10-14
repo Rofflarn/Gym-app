@@ -27,6 +27,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
@@ -53,7 +54,7 @@ import com.actionbarsherlock.view.MenuItem;
  * <p> Subpackage</p>
  *
  */
-public class WorkoutActivity extends SherlockActivity {
+public class WorkoutActivity extends SherlockActivity implements OnItemClickListener{
 
 	final int Cardio = 1;
 	final int Dynamic = 2;
@@ -63,6 +64,7 @@ public class WorkoutActivity extends SherlockActivity {
 	private ListView listExercisesView;	//The listview that holds all the exercises for the workout
 	private int workoutId;
 	private List<ExerciseData> exerciseDataList;
+	private Button buttonDone, buttonStart;
 
 	/**
 	 * Set up the default layout and list all exercises
@@ -75,6 +77,9 @@ public class WorkoutActivity extends SherlockActivity {
 		getAndSetTitle();
 		getExerciseDataList();
 		listAllExercises();
+		buttonStart= (Button) findViewById(R.id.button_start);
+		buttonDone = (Button) findViewById(R.id.button_done);
+		buttonDone.setVisibility(View.GONE);
 	}
 	/**
 	 * Set up the actionbar (layout xml and title)
@@ -85,14 +90,9 @@ public class WorkoutActivity extends SherlockActivity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getSupportMenuInflater().inflate(R.menu.activity_workout, menu);
 		getSupportActionBar().setHomeButtonEnabled(true);
-
 		//Set the title to the name of the workout
-
 		return true;
 	}
-
-
-
 	/**
 	 * Set up actions for buttons in actionbar
 	 * @param MenuItem item - The menuitem thas has been pressed
@@ -116,15 +116,12 @@ public class WorkoutActivity extends SherlockActivity {
 		}
 	}
 
-
-
-
 	/**
 	 * Is called when the activity starts to set the listview to
 	 * show all exercises available in this workout.
 	 */
 	private void listAllExercises() {
-		listExercisesView = (ListView) findViewById(R.id.activeWorkoutList) ;
+		listExercisesView = (ListView) findViewById(R.id.activeWorkoutList);
 		ArrayList<String> listExercises = new ArrayList<String>();
 
 		for(ExerciseData name: exerciseDataList)
@@ -134,22 +131,15 @@ public class WorkoutActivity extends SherlockActivity {
 		//Add all the exercises from the stringarray to the ArrayList and build the listview
 		ListAdapter listAdapter = new ArrayAdapter<String>(this, R.layout.list_simple_row, listExercises);
 		listExercisesView.setAdapter(listAdapter);
-
-
 		//Set up listener and action for pressing the listview
-		listExercisesView.setOnItemClickListener(new OnItemClickListener() {
-			public void onItemClick(AdapterView<?> arg0, View v, int position,
-					long id) {
 
-				//Get the text label of the row that has been clicked (will be used to open the correct workout)
-				ExerciseData exercise = exerciseDataList.get(position);
-				registerWorkoutResult(exercise);
-
-
-			}// onItemClick end
-		});// setOnItemClickListener end
-
-
+	}
+	
+	public void onItemClick(AdapterView<?> arg0, View v, int position,
+			long id) {
+		//Get the text label of the row that has been clicked (will be used to open the correct workout)
+		ExerciseData exercise = exerciseDataList.get(position);
+		registerWorkoutResult(exercise);
 	}
 
 
@@ -209,7 +199,17 @@ public class WorkoutActivity extends SherlockActivity {
 		getExerciseDataList();
 		listAllExercises();
 	}
-
+	public void start(View view)
+	{	
+		listExercisesView.setOnItemClickListener(this);
+		buttonStart.setVisibility(View.GONE);
+		buttonDone.setVisibility(View.VISIBLE);
+	}
+	public void done(View view)
+	{
+		listExercisesView.setOnItemClickListener(null);
+		finish();
+	}
 
 }
 
