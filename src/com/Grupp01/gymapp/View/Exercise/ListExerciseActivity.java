@@ -54,6 +54,7 @@ public class ListExerciseActivity extends SherlockActivity implements OnClickLis
 
 	/** Instansvariabler */
 	public final static String EXTRA_EXERCISE_NAME = "com.Grupp01.gymapp.message";
+	public static final String NO_NAME = "";
 	private Dialog dialog;
 	private ArrayList<String> listElements;
 	private ArrayAdapter<String> elementAdapter;
@@ -87,21 +88,28 @@ public class ListExerciseActivity extends SherlockActivity implements OnClickLis
 	public boolean onCreateOptionsMenu(Menu menu)
 	{
 		MenuInflater inflater = getSupportMenuInflater();
-		inflater.inflate(R.menu.ovningar, menu);
+		inflater.inflate(R.menu.activity_list_exercises, menu);
 		//Enables the home button in SherlockActionBar
 		getSupportActionBar().setHomeButtonEnabled(true);
 		return true;
 	}
 
+	/**
+	 * Initiate the dialog and its components.
+	 */
 	public void initDialogue()
 	{
 		dialog = new Dialog(this);
 		dialog.setContentView(R.layout.dialog);
-		dialog.setTitle("New Exercise");
+		dialog.setTitle(R.string.new_exercise);
 
 		((Button) dialog.findViewById(R.id.add_Button)).setOnClickListener(this);
 		((Button) dialog.findViewById(R.id.cancel_Button)).setOnClickListener(this);
 	}
+	
+	/** Initiate the listview and its elements.
+	 * 
+	 */
 	public void initListView()
 	{		
 		listElements = new ArrayList<String>();
@@ -111,25 +119,29 @@ public class ListExerciseActivity extends SherlockActivity implements OnClickLis
 		((ListView)findViewById(R.id.theList)).setOnItemClickListener(this);
 
 	}
-	/**Skapar en lista i listViewn
-	 * används nu när vi inte har koppla ihop med databasen */
-
+	/**Creates the listview with exercises which is fetched from the
+	 * database.
+	 * 
+	 */
 	public void createListView()
 	{	
+		//Get the list with exercises from the database
 		exercises = new LinkedList<IdName>();
 		ListExerciseDbHandler temp = new ListExerciseDbHandler(this);
 		temp.open();
 		exercises = temp.getExerciseIdName();
 		temp.close();
+		
+		//Add each exercise name to a list that the listadapter
+		//can handle.
 		for(IdName idname: exercises)
 		{
 			listElements.add(idname.getName());
 		}
 		elementAdapter.notifyDataSetChanged();
-
 	}
 
-	//lyssnar metoderna börjar här
+	
 	/** The method listens to the home button and to add a new exercise button in the menu
 	 * @param item the item that has been clicked
 	 * @return true
@@ -137,11 +149,10 @@ public class ListExerciseActivity extends SherlockActivity implements OnClickLis
 	@Override
 	public boolean onOptionsItemSelected(com.actionbarsherlock.view.MenuItem item)
 	{
+		//Shows the dialog if addExe button is pressed
 		if(item.getItemId() == R.id.menu_addExe)
 		{
-			//shows the dialog if addExe button is pressed
-			dialog.show();
-
+			showAddExerciseDialog();
 		}
 		else if(item.getItemId() == android.R.id.home)
 		{
@@ -157,6 +168,27 @@ public class ListExerciseActivity extends SherlockActivity implements OnClickLis
 		return true;
 	}
 
+	
+	/**
+	 * THe user selected "Add exercise" from actionbar menu.
+	 * DIsplay the dialog with prompt for exercise name.
+	 * 
+	 */
+	private void showAddExerciseDialog() {
+		//If the user has added a new exercise before, clear the input
+		EditText name = (EditText) dialog.findViewById(R.id.exerciseName);
+		name.setText(NO_NAME);
+		
+		//Clear the hint if it has been added before
+		name.setHint(NO_NAME);
+		
+		//Show the dialog
+		dialog.show();
+
+		
+	}
+
+
 	/** Listens to the add and cancel button in the dialog
 	 * @param view the view that is clicked
 	 */
@@ -168,23 +200,38 @@ public class ListExerciseActivity extends SherlockActivity implements OnClickLis
 			//takes the text from exercise name textfield and puts it to AddExercise intent
 			//if the string is not empty
 			EditText name = (EditText) dialog.findViewById(R.id.exerciseName);
-			String temp = name.getText().toString();
-			if(temp.length() == 0)
+			String inputName = name.getText().toString().trim();
+			//IF the input is only blank signs, show a hint to the user
+			//to input a name
+			if(inputName.trim().equals(NO_NAME))
 			{
-				name.setHint("Fyll i ett namn");
+				//Clear the input to be able to display hints
+				name.setText(NO_NAME);  
+				
+				//Show the hint to the user
+				name.setHint(R.string.enter_correct_name);
 				name.setHintTextColor(Color.RED);
 			}
+			
+			//Correct name entered, write to database
 			else
 			{
+				//Create a db handler object
 				ListExerciseDbHandler dbHandler = new ListExerciseDbHandler(this);
 				dbHandler.open();
-				int id = dbHandler.addExercise(temp);
-				Intent intent_Add_Exercise = new Intent(this, EditExerciseActivity.class);
-				intent_Add_Exercise.putExtra(EXTRA_EXERCISE_NAME, id);
+				
+				//Write the new exercise to the database and get the ID in return
+				int id = dbHandler.addExercise(inputName);
+				
+				//Open the edit exercise activity and send the new id as intent
+				Intent intentAddExercise = new Intent(this, EditExerciseActivity.class);
+				intentAddExercise.putExtra(EXTRA_EXERCISE_NAME, id);
 				dialog.dismiss();
-				startActivity(intent_Add_Exercise);
+				startActivity(intentAddExercise);
 			}
 		}
+		
+		//The user pressed Cancel, dismiss dialog
 		else if(view == ((Button) dialog.findViewById(R.id.cancel_Button)))
 		{
 			dialog.dismiss();
@@ -208,6 +255,7 @@ public class ListExerciseActivity extends SherlockActivity implements OnClickLis
 		intentViewExercise.putExtra(EXTRA_EXERCISE_NAME, id);
 		startActivity(intentViewExercise);				
 	}
+	
 	/**
 	 * Method for refreshing the list of exercises after adding a new one
 	 */
