@@ -1,102 +1,110 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
 
-    <RelativeLayout
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:isScrollContainer="false" >
 
-        <TextView
-            android:id="@+id/textView_type_of_training"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/string_type_of_training"
-            tools:context=".AddExercise" />
-
-        <TextView
-            android:id="@+id/textView_sport"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/spinner_type_of_training"
-            android:text="@string/sport_prompt"
-            tools:context=".AddExercise" />
-
-        <TextView
-            android:id="@+id/textView_description"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/spinner_sport"
-            android:text="@string/description"
-            tools:context=".AddExercise" />
-
-        <TextView
-            android:id="@+id/textView_comment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/edit_description"
-            android:text="@string/comment"
-            tools:context=".AddExercise" />
-
-        <Spinner
-            android:id="@+id/spinner_type_of_training"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textView_type_of_training"
-            android:prompt="@string/trainingtype_prompt" />
+            android:layout_height="wrap_content" >
 
-        <Spinner
-            android:id="@+id/spinner_sport"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textView_sport"
-            android:prompt="@string/sport_prompt" />
+            <TextView
+                android:id="@+id/textView_type_of_training"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/string_type_of_training"
+                tools:context=".AddExercise" />
 
-        <EditText
-            android:id="@+id/edit_comment"
-            android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:layout_below="@+id/textView_comment"
-            android:gravity="top|left"
-            android:hint="@string/hint_comment"
-            android:inputType="textMultiLine" />
+            <TextView
+                android:id="@+id/textView_sport"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/spinner_type_of_training"
+                android:text="@string/sport_prompt"
+                tools:context=".AddExercise" />
 
-        <EditText
-            android:id="@+id/edit_description"
-            android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:layout_below="@+id/textView_description"
-            android:gravity="top|left"
-            android:hint="@string/hint_description"
-            android:inputType="textMultiLine" />
+            <TextView
+                android:id="@+id/textView_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/spinner_sport"
+                android:text="@string/description"
+                tools:context=".AddExercise" />
 
-        <LinearLayout
-            android:id="@+id/LL_button"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/edit_comment"
-            android:orientation="horizontal"
-            android:paddingBottom="1dp"
-            android:paddingLeft="4dp"
-            android:paddingRight="4dp"
-            android:paddingTop="5dp" >
+            <TextView
+                android:id="@+id/textView_comment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/edit_description"
+                android:text="@string/comment"
+                tools:context=".AddExercise" />
 
-            <Button
-                android:id="@+id/button_done"
-                android:layout_width="0dp"
-                android:layout_height="fill_parent"
-                android:layout_weight="1.0"
-                android:text="@string/done"
-                android:onClick="done" />
+            <Spinner
+                android:id="@+id/spinner_type_of_training"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView_type_of_training"
+                android:prompt="@string/trainingtype_prompt" />
 
-            <Button
-                android:id="@+id/button_cancel"
-                android:layout_width="0dp"
-                android:layout_height="fill_parent"
-                android:layout_weight="1.0"
-                android:text="@string/cancel"
-                android:onClick="cancel" />
-        </LinearLayout>
-    </RelativeLayout>
+            <Spinner
+                android:id="@+id/spinner_sport"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView_sport"
+                android:prompt="@string/sport_prompt" />
 
-</ScrollView>
+            <EditText
+                android:id="@+id/edit_comment"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_below="@+id/textView_comment"
+                android:gravity="top|left"
+                android:hint="@string/hint_comment"
+                android:inputType="textMultiLine" />
+
+            <EditText
+                android:id="@+id/edit_description"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_below="@+id/textView_description"
+                android:gravity="top|left"
+                android:hint="@string/hint_description"
+                android:inputType="textMultiLine" />
+        </RelativeLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/LL_button"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:paddingBottom="1dp"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+        android:paddingTop="5dp" >
+
+        <Button
+            android:id="@+id/button_cancel"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
+            android:onClick="cancel"
+            android:text="@string/cancel" />
+
+        <Button
+            android:id="@+id/button_done"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
+            android:onClick="done"
+            android:text="@string/Done" />
+    </LinearLayout>
+
+</RelativeLayout>

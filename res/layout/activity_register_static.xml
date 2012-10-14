@@ -5,24 +5,31 @@
 
     <LinearLayout
         android:id="@+id/linearBottomStatic"
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:gravity="center_horizontal" >
-
-        <Button
-            android:id="@+id/staticButtonOK"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:onClick="onClick"
-            android:text="@string/Done" />
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:paddingBottom="1dp"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+        android:paddingTop="5dp" >
 
         <Button
             android:id="@+id/staticButtonCancel"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
             android:onClick="onClick"
             android:text="@string/Cancel" />
+
+        <Button
+            android:id="@+id/staticButtonOK"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
+            android:onClick="onClick"
+            android:text="@string/Done" />
     </LinearLayout>
 
     <ScrollView

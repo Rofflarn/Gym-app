@@ -11,7 +11,7 @@ android:layout_height="wrap_content"
 android:layout_marginLeft="0dp"
 android:layout_marginTop="8dp"
 android:text="@string/textview_musclegroup" />
--->
+    -->
 
     <ListView
         android:id="@+id/mainListView"
@@ -21,21 +21,26 @@ android:text="@string/textview_musclegroup" />
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="60dp"
-        android:layout_weight="0"
-        android:gravity="center_horizontal" >
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="1dp"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+        android:paddingTop="5dp" >
 
         <Button
             android:id="@+id/button_EditWorkout_Save"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
             android:onClick="saveToDatabase"
             android:text="@string/button_save" />
 
         <Button
             android:id="@+id/button_Workout_Cancel"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
             android:onClick="cancelEditWorkoutDialog"
             android:text="@string/cancel" />
     </LinearLayout>
