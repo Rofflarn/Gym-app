@@ -277,65 +277,11 @@ public class ListWorkoutActivity extends SherlockActivity implements OnClickList
 	 * @param workoutName The name of the workout
 	 */
 	private void editWorkouts(String workoutName) {
-		//Intent intent = new Intent(this, com.Grupp01.gymapp.View.Workout.EditWorkoutActivity.class);
-		//intent.putExtra(WORKOUT_ID, workoutName);
-		//startActivity(intent);	
+		Intent intent = new Intent(this, com.Grupp01.gymapp.View.Workout.EditWorkoutActivity.class);
+		intent.putExtra(WORKOUT_ID, workoutName);
+		startActivity(intent);	
 
 	}
-
-	/**
-	 * Is called from when a user clicks the "Add workout". Will open a dialog which ask
-	 * the person to write a name for the workout. When the user clicks "Add workout" in
-	 * the dialog the activity "EditWorkout" starts where you can add/remove exercises.
-	 */
-
-	private void openDialog()
-	{
-		//Variables for the dialog
-		final AlertDialog.Builder addWorkoutDialog = new AlertDialog.Builder(this);
-		final EditText editTextDialog = new EditText(this);
-		final Intent intent2 = new Intent(this, com.Grupp01.gymapp.View.Workout.EditWorkoutActivity.class);
-
-		addWorkoutDialog.setMessage("Enter name of Workout:");
-		addWorkoutDialog.setView(editTextDialog);
-
-
-		//If pressing "Add Workout" on the dialog
-		addWorkoutDialog.setPositiveButton("Add Workout", new DialogInterface.OnClickListener()
-		{
-			/** When the user clicked "Add workout"
-			 * go to EditWorkout
-			 * if nothing is inputed, the dialog closes and
-			 * the user is returned to ListWorkout
-			 * */
-			public void onClick(DialogInterface dialog, int whichButton)
-			{
-				String workoutName = editTextDialog.getText().toString();
-				if(workoutName.trim().equals(""))
-				{
-					dialog.cancel();
-					return;
-				}
-				//Add the name of the workout to the intent so the next activity can get the name
-				int id = newWorkoutToDatabase(workoutName);
-				intent2.putExtra(WORKOUT_ID, id);
-				startActivity(intent2);
-			}
-		});
-		//If pressing "Cancel" on the dialog
-		addWorkoutDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener()
-		{
-			/** Close dialog if the user press cancel*/
-			@Override
-			public void onClick(DialogInterface dialog, int whichButton)
-			{
-				dialog.cancel();
-			}
-		});
-		addWorkoutDialog.show();
-	}
-
-
 	/**
 	 * Put the new Workout to database. Only the WorkoutName is put to database
 	 * @param workoutName
@@ -349,6 +295,11 @@ public class ListWorkoutActivity extends SherlockActivity implements OnClickList
 		return id;
 	}
 
+	/**
+	 * Is called from when a user clicks the "Add workout"-button. Will open a dialog which ask
+	 * the person to write a name for the workout. When the user clicks "Add workout" in
+	 * the dialog the activity "EditWorkout" starts where you can add/remove exercises.
+	 */
 
 	@Override
 	public void onClick(View view) {
