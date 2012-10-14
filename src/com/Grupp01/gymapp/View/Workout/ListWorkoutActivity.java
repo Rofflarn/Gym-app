@@ -199,10 +199,7 @@ public class ListWorkoutActivity extends SherlockActivity {
 
 				//Get the text label of the row that has been clicked (will be used to open the correct workout)
 				int workoutId = idNameList.get(position).getId();
-				//String workoutName = mainListView.getAdapter().getItem(position).toString();
 				startNewWorkout(workoutId);
-
-
 			}// end of onItemClick
 		});// end of setOnItemClickListener
 
@@ -280,18 +277,17 @@ public class ListWorkoutActivity extends SherlockActivity {
 	private void openDialog()
 	{
 		//Variables for the dialog
-		final AlertDialog.Builder addWorkout_Dialog = new AlertDialog.Builder(this);
-		final EditText editText_Dialog = new EditText(this);
+		final AlertDialog.Builder addWorkoutDialog = new AlertDialog.Builder(this);
+		final EditText editTextDialog = new EditText(this);
 		final Intent intent2 = new Intent(this, com.Grupp01.gymapp.View.Workout.EditWorkoutActivity.class);
 
-		addWorkout_Dialog.setMessage("Enter name of Workout:");
-		addWorkout_Dialog.setView(editText_Dialog);
+		addWorkoutDialog.setMessage("Enter name of Workout:");
+		addWorkoutDialog.setView(editTextDialog);
 
 
 		//If pressing "Add Workout" on the dialog
-		addWorkout_Dialog.setPositiveButton("Add Workout", new DialogInterface.OnClickListener()
+		addWorkoutDialog.setPositiveButton("Add Workout", new DialogInterface.OnClickListener()
 		{
-
 			/** When the user clicked "Add workout"
 			 * go to EditWorkout
 			 * if nothing is inputed, the dialog closes and
@@ -299,8 +295,7 @@ public class ListWorkoutActivity extends SherlockActivity {
 			 * */
 			public void onClick(DialogInterface dialog, int whichButton)
 			{
-				String workoutName = editText_Dialog.getText().toString();
-
+				String workoutName = editTextDialog.getText().toString();
 				if(workoutName.trim().equals(""))
 				{
 					dialog.cancel();
@@ -310,13 +305,11 @@ public class ListWorkoutActivity extends SherlockActivity {
 				int id = newWorkoutToDatabase(workoutName);
 				intent2.putExtra(WORKOUT_ID, id);
 				startActivity(intent2);
-
 			}
 		});
 		//If pressing "Cancel" on the dialog
-		addWorkout_Dialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener()
+		addWorkoutDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener()
 		{
-
 			/** Close dialog if the user press cancel*/
 			@Override
 			public void onClick(DialogInterface dialog, int whichButton)
@@ -324,7 +317,7 @@ public class ListWorkoutActivity extends SherlockActivity {
 				dialog.cancel();
 			}
 		});
-		addWorkout_Dialog.show();
+		addWorkoutDialog.show();
 	}
 
 	/**
