@@ -60,8 +60,7 @@ import com.actionbarsherlock.view.MenuItem;
 public class ListWorkoutActivity extends SherlockActivity {
 
 
-	public final static String WORKOUT_NAME = "com.Grupp01.gymapp.WORKOUT.NAME";
-	public final static String WORKOUT_ID = "com.Grupp01.gymapp.WORKOUT.ID";
+	public final static String WORKOUT_ID = "com.Grupp01.gymapp.View.ListWorkoutActivity.WORKOUT.ID";
 	private ListView mainListView ; //This is the listview where the list of all workouts will be shown
 	private ArrayAdapter<String> listAdapter ; //Adapter used for the list
 	private List<IdName> idNameList;
@@ -259,9 +258,9 @@ public class ListWorkoutActivity extends SherlockActivity {
 	 * @param workoutName The name of the workout
 	 */
 	private void editWorkouts(String workoutName) {
-		Intent intent = new Intent(this, com.Grupp01.gymapp.View.Workout.EditWorkoutActivity.class);
-		intent.putExtra(WORKOUT_NAME, workoutName);
-		startActivity(intent);	
+		//Intent intent = new Intent(this, com.Grupp01.gymapp.View.Workout.EditWorkoutActivity.class);
+		//intent.putExtra(WORKOUT_ID, workoutName);
+		//startActivity(intent);	
 
 	}
 
@@ -300,8 +299,8 @@ public class ListWorkoutActivity extends SherlockActivity {
 					return;
 				}
 				//Add the name of the workout to the intent so the next activity can get the name
-				newWorkoutToDatabase(workoutName);
-				intent2.putExtra(WORKOUT_NAME, workoutName);
+				int id = newWorkoutToDatabase(workoutName);
+				intent2.putExtra(WORKOUT_ID, id);
 				startActivity(intent2);
 
 			}
@@ -324,11 +323,12 @@ public class ListWorkoutActivity extends SherlockActivity {
 	 * Put the new Workout to database. Only the WorkoutName is put to database
 	 * @param workoutName
 	 */
-	private void newWorkoutToDatabase(String workoutName)
+	private int newWorkoutToDatabase(String workoutName)
 	{
 		WorkoutDbHandler dbHandler = new WorkoutDbHandler(this);
 		dbHandler.open();
-		dbHandler.putNewWorkout(workoutName);
+		int id = dbHandler.addWorkoutTemplate(workoutName);
 		dbHandler.close();
+		return id;
 	}
 }

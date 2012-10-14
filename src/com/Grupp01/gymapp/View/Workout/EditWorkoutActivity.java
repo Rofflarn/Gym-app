@@ -54,7 +54,14 @@ public class EditWorkoutActivity extends SherlockActivity
 	{
 		super.onCreate(savedInstanceState);
 		Intent intent = getIntent();
-		workoutId = intent.getIntExtra(WorkoutActivity.EXTRA_WORKOUT_ID, 0);
+		if(intent.getIntExtra(ListWorkoutActivity.WORKOUT_ID, 0) !=0)
+		{
+			workoutId = intent.getIntExtra(ListWorkoutActivity.WORKOUT_ID, 0);
+		}
+		else
+		{
+			workoutId = intent.getIntExtra(WorkoutActivity.EXTRA_WORKOUT_ID, 0);
+		}
 		//workoutName = intent.getStringExtra(ListWorkoutActivity.WORKOUT_NAME);
 		setContentView(R.layout.editworkout);
 		createEditWorkout();
