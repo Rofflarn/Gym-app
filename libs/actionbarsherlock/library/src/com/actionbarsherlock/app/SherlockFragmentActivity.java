@@ -2,7 +2,7 @@ package com.actionbarsherlock.app;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.v4.app.Watson;
+import android.support.v4.app._ActionBarSherlockTrojanHorse;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -17,8 +17,8 @@ import com.actionbarsherlock.view.MenuItem;
 import static com.actionbarsherlock.ActionBarSherlock.OnActionModeFinishedListener;
 import static com.actionbarsherlock.ActionBarSherlock.OnActionModeStartedListener;
 
-/** @see {@link android.support.v4.app.Watson} */
-public class SherlockFragmentActivity extends Watson implements OnActionModeStartedListener, OnActionModeFinishedListener {
+/** @see {@link _ActionBarSherlockTrojanHorse} */
+public class SherlockFragmentActivity extends _ActionBarSherlockTrojanHorse implements OnActionModeStartedListener, OnActionModeFinishedListener {
     private static final boolean DEBUG = false;
     private static final String TAG = "SherlockFragmentActivity";
 
@@ -122,17 +122,6 @@ public class SherlockFragmentActivity extends Watson implements OnActionModeStar
         return super.dispatchKeyEvent(event);
     }
 
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        getSherlock().dispatchSaveInstanceState(outState);
-    }
-
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        getSherlock().dispatchRestoreInstanceState(savedInstanceState);
-    }
 
     ///////////////////////////////////////////////////////////////////////////
     // Native menu handling

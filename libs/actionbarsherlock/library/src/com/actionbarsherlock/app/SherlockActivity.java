@@ -5,8 +5,9 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.Window;
 import android.view.ViewGroup.LayoutParams;
+import android.view.Window;
+
 import com.actionbarsherlock.ActionBarSherlock;
 import com.actionbarsherlock.ActionBarSherlock.OnActionModeFinishedListener;
 import com.actionbarsherlock.ActionBarSherlock.OnActionModeStartedListener;
@@ -116,17 +117,6 @@ public abstract class SherlockActivity extends Activity implements OnCreatePanel
         return super.dispatchKeyEvent(event);
     }
 
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        getSherlock().dispatchSaveInstanceState(outState);
-    }
-
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        getSherlock().dispatchRestoreInstanceState(savedInstanceState);
-    }
 
     ///////////////////////////////////////////////////////////////////////////
     // Native menu handling
@@ -141,7 +131,7 @@ public abstract class SherlockActivity extends Activity implements OnCreatePanel
     }
 
     public void supportInvalidateOptionsMenu() {
-        invalidateOptionsMenu();
+       invalidateOptionsMenu();
     }
 
     @Override

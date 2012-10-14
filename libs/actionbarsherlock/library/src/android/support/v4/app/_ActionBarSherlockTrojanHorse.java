@@ -13,9 +13,9 @@ import com.actionbarsherlock.view.MenuItem;
 import java.util.ArrayList;
 
 /** I'm in ur package. Stealing ur variables. */
-public abstract class Watson extends FragmentActivity implements OnCreatePanelMenuListener, OnPreparePanelListener, OnMenuItemSelectedListener {
+public abstract class _ActionBarSherlockTrojanHorse extends FragmentActivity implements OnCreatePanelMenuListener, OnPreparePanelListener, OnMenuItemSelectedListener {
     private static final boolean DEBUG = false;
-    private static final String TAG = "Watson";
+    private static final String TAG = "_ActionBarSherlockTrojanHorse";
 
     /** Fragment interface for menu creation callback. */
     public interface OnCreateOptionsMenuListener {
@@ -27,7 +27,7 @@ public abstract class Watson extends FragmentActivity implements OnCreatePanelMe
     }
     /** Fragment interface for menu item selection callback. */
     public interface OnOptionsItemSelectedListener {
-        public boolean onOptionsItemSelected(MenuItem item);
+      public boolean onOptionsItemSelected(MenuItem item);
     }
 
     private ArrayList<Fragment> mCreatedMenus;
@@ -48,7 +48,7 @@ public abstract class Watson extends FragmentActivity implements OnCreatePanelMe
             MenuInflater inflater = getSupportMenuInflater();
             boolean show = false;
             ArrayList<Fragment> newMenus = null;
-            if (mFragments.mAdded != null) {
+            if (mFragments.mActive != null) {
                 for (int i = 0; i < mFragments.mAdded.size(); i++) {
                     Fragment f = mFragments.mAdded.get(i);
                     if (f != null && !f.mHidden && f.mHasMenu && f.mMenuVisible && f instanceof OnCreateOptionsMenuListener) {
@@ -91,7 +91,7 @@ public abstract class Watson extends FragmentActivity implements OnCreatePanelMe
             if (DEBUG) Log.d(TAG, "[onPreparePanel] activity prepare result: " + result);
 
             boolean show = false;
-            if (mFragments.mAdded != null) {
+            if (mFragments.mActive != null) {
                 for (int i = 0; i < mFragments.mAdded.size(); i++) {
                     Fragment f = mFragments.mAdded.get(i);
                     if (f != null && !f.mHidden && f.mHasMenu && f.mMenuVisible && f instanceof OnPrepareOptionsMenuListener) {
@@ -120,7 +120,7 @@ public abstract class Watson extends FragmentActivity implements OnCreatePanelMe
                 return true;
             }
 
-            if (mFragments.mAdded != null) {
+            if (mFragments.mActive != null) {
                 for (int i = 0; i < mFragments.mAdded.size(); i++) {
                     Fragment f = mFragments.mAdded.get(i);
                     if (f != null && !f.mHidden && f.mHasMenu && f.mMenuVisible && f instanceof OnOptionsItemSelectedListener) {
