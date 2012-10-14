@@ -41,7 +41,7 @@
         android:layout_below="@+id/button1"
         android:layout_marginTop="27dp"
         android:src="@drawable/history"
-        android:onClick="historik"
+        android:onClick="history"
         android:background="@null" />
 
     <ImageButton
@@ -52,7 +52,7 @@
         android:layout_alignBottom="@+id/button3"
         android:layout_alignRight="@+id/button2"
         android:src="@drawable/statistics"
-        android:onClick="statistik"
+        android:onClick="statistics"
         android:background="@null" />
     
     <ImageButton

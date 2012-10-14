@@ -29,7 +29,6 @@ import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Toast;
 
-import com.Grupp01.gymapp.Model.Database;
 import com.Grupp01.gymapp.View.Exercise.ListExerciseActivity;
 import com.Grupp01.gymapp.View.History.ListHistoryActivity;
 import com.Grupp01.gymapp.View.Profile.ProfileActivity;
@@ -46,7 +45,8 @@ import com.actionbarsherlock.view.MenuInflater;
  * @peer reviewed by
  * @date 05/10/12
  *
- * Class MainActivity starts when the application starts and shows the mainmenu with buttons to the available activities. 
+ * Class MainActivity starts when the application starts and shows the main menu 
+ * with buttons to the available activities. 
  *  
  */
 public class MainActivity extends SherlockActivity {
@@ -62,7 +62,7 @@ public class MainActivity extends SherlockActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		//Set default values for the apps settings
+		//Set default values for the applications settings
 		PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 		changeLang();
 	}
@@ -104,7 +104,7 @@ public class MainActivity extends SherlockActivity {
 	 * 
 	 * @param view
 	 */
-	public void historik(View view)
+	public void history(View view)
 	{
 		Intent historik = new Intent(this, ListHistoryActivity.class);
 		startActivity(historik);
@@ -146,6 +146,18 @@ public class MainActivity extends SherlockActivity {
 		Intent settings = new Intent(this, SettingsActivity.class);
 		startActivity(settings);
 	}
+	
+	
+	/**
+	 * When button Profile is pressed the profile activity will be started.
+	 * 
+	 * @param view
+	 */
+	public void profile(View view)
+	{
+		Intent profile = new Intent(this, ProfileActivity.class);
+		startActivity(profile);
+	}
 
 
 	/**
@@ -163,7 +175,7 @@ public class MainActivity extends SherlockActivity {
 		String lang = sharedPref.getString("pref_key_language", "default");
 
 		//If its set to default, set the language to the phones default laguage.
-		if(lang.equals("default)")){
+		if(lang.equals("default")){
 			Locale locale = Locale.getDefault();
 			Locale.setDefault(locale);
 			Configuration config = new Configuration();
@@ -182,14 +194,5 @@ public class MainActivity extends SherlockActivity {
 
 	}
 
-	/**
-	 * When button Profile is pressed the profile activity will be started.
-	 * 
-	 * @param view
-	 */
-	public void profile(View view)
-	{
-		Intent profile = new Intent(this, ProfileActivity.class);
-		startActivity(profile);
-	}
+
 }
