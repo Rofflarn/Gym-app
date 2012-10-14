@@ -54,8 +54,6 @@ public class Database {
 		ourHelper = new DbHelper(ourContext);
 		ourDatabase = ourHelper.getWritableDatabase();
 		return this;	
-
-
 	}
 
 
@@ -66,12 +64,11 @@ public class Database {
 	{
 		ourDatabase.close();
 		ourHelper.close();
-		//close();
 	}
 
-	public void addExercise(int ExerciseMusclePri, int ExerciseMuscleSec, String ExerciseName, String ExerciseDesc, String ExerciseNote, int ExerciseSportId, int ExerciseTypeId){
+	public void addExercise(int exerciseMusclePri, int exerciseMuscleSec, String exerciseName, String exerciseDesc, String exerciseNote, int exerciseSportId, int exerciseTypeId){
 		ourDatabase.execSQL("INSERT INTO Exercises (ExerciseMusclePri, ExerciseMuscleSec, ExerciseName, ExerciseDesc, ExerciseNote, ExerciseSportId, ExerciseTypeId) " +
-				"VALUES (" + ExerciseMusclePri + ", " + ExerciseMuscleSec + ", " + ExerciseName + ", " + ExerciseDesc + ", " + ExerciseNote + ", " + ExerciseTypeId + ");");
+				"VALUES (" + exerciseMusclePri + ", " + exerciseMuscleSec + ", " + exerciseName + ", " + exerciseDesc + ", " + exerciseNote + ", " + exerciseTypeId + ");");
 	}
 
 	public Cursor getMuscleGroups(){
@@ -82,20 +79,13 @@ public class Database {
 		return ourDatabase.rawQuery("SELECT * FROM Muscles WHERE MuscleGroupId = '" + muscleGroupId + "';", null);
 	}
 
-	/*
-	 * public Cursor getMusclesByMuscleGroupName(String MuscleGroupName){
-	 *	return ourDatabase.rawQuery("SELECT * FROM Muscles WHERE MuscleGroupId = (SELECT MuscleGroupId FROM MuslceGroups WHERE MuscleGroupName = '" + MuscleGroupName + "');", null);
-	 * }
-	 * */
-
-
+	
 	public Cursor getUsers(){
 		return ourDatabase.rawQuery("SELECT * FROM Users;", null);
-		//Kanske borde returnera map?
 	}
 
-	public void addUser(String UserName, String UserBirthday){
-		ourDatabase.execSQL("INSERT INTO Users (UserName, UserBirthday) VALUES ('" + UserName + "', '" + UserBirthday + "');");
+	public void addUser(String userName, String userBirthday){
+		ourDatabase.execSQL("INSERT INTO Users (UserName, UserBirthday) VALUES ('" + userName + "', '" + userBirthday + "');");
 		//TODO change to insert() instead of execSql()
 	}
 
@@ -104,8 +94,8 @@ public class Database {
 	 * 
 	 * @return
 	 */
-	public Cursor getSetTemplatesByPassId(String PassTemplateId){
+	public Cursor getSetTemplatesByPassId(String passTemplateId){
 		return ourDatabase.rawQuery("SELECT SetTemplates.SetTemplateId, Exercises.ExerciseName FROM SetTemplates, Exercises " +
-				"WHERE Exercises.ExerciseId = SetTemplates.ExerciseId AND SetTemplates.PassTemplateId = '" + PassTemplateId + "';", null);
+				"WHERE Exercises.ExerciseId = SetTemplates.ExerciseId AND SetTemplates.PassTemplateId = '" + passTemplateId + "';", null);
 	}
 }
