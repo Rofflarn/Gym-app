@@ -22,15 +22,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -57,14 +61,14 @@ import com.actionbarsherlock.view.MenuItem;
  * <p> Subpackage</p>
  *
  */
-public class ListWorkoutActivity extends SherlockActivity {
+public class ListWorkoutActivity extends SherlockActivity implements OnClickListener {
 
 
 	public final static String WORKOUT_ID = "com.Grupp01.gymapp.View.ListWorkoutActivity.WORKOUT.ID";
 	private ListView mainListView ; //This is the listview where the list of all workouts will be shown
 	private ArrayAdapter<String> listAdapter ; //Adapter used for the list
 	private List<IdName> idNameList;
-
+	private Dialog dialog;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -107,12 +111,22 @@ public class ListWorkoutActivity extends SherlockActivity {
 
 			//when clicking "add workout" a dialog pops up with input for the name
 		case	R.id.menu_addWorkout:
-			openDialog();
+			initDialog();
 
 
 		default:
 			return super.onOptionsItemSelected(item);
 		}
+	}
+	public void initDialog()
+	{
+		dialog = new Dialog(this);
+		dialog.setContentView(R.layout.dialog);
+		dialog.setTitle(R.string.dialog_new_workout_title);
+		
+		((Button) dialog.findViewById(R.id.add_Button)).setOnClickListener( this);
+		((Button) dialog.findViewById(R.id.cancel_Button)).setOnClickListener( this);
+		dialog.show();
 	}
 
 
@@ -274,6 +288,7 @@ public class ListWorkoutActivity extends SherlockActivity {
 	 * the person to write a name for the workout. When the user clicks "Add workout" in
 	 * the dialog the activity "EditWorkout" starts where you can add/remove exercises.
 	 */
+
 	private void openDialog()
 	{
 		//Variables for the dialog
@@ -320,6 +335,7 @@ public class ListWorkoutActivity extends SherlockActivity {
 		addWorkoutDialog.show();
 	}
 
+
 	/**
 	 * Put the new Workout to database. Only the WorkoutName is put to database
 	 * @param workoutName
@@ -331,5 +347,38 @@ public class ListWorkoutActivity extends SherlockActivity {
 		int id = dbHandler.addWorkoutTemplate(workoutName);
 		dbHandler.close();
 		return id;
+	}
+
+
+	@Override
+	public void onClick(View view) {
+		final Intent intent2 = new Intent(this, com.Grupp01.gymapp.View.Workout.EditWorkoutActivity.class);
+		if(view == ((Button) dialog.findViewById(R.id.add_Button)))
+		{
+			//takes the text from exercise name textfield and puts it to AddExercise intent
+			//if the string is not empty
+			EditText editTextField = (EditText) dialog.findViewById(R.id.exerciseName);
+			String stringEditTextField = editTextField.getText().toString();
+			if(stringEditTextField.trim().length() > 0)
+			{
+				
+				//Add the name of the workout to the intent so the next activity can get the name
+				int id = newWorkoutToDatabase(editTextField.toString());
+				intent2.putExtra(WORKOUT_ID, id);
+				dialog.dismiss();
+				startActivity(intent2);
+			}
+			else
+			{
+				editTextField.setText("");
+				editTextField.setHint(R.string.invalid_value);
+				editTextField.setHintTextColor(Color.RED);
+			}
+		}
+		else if(view == ((Button) dialog.findViewById(R.id.cancel_Button)))
+		{
+			dialog.dismiss();
+		}
+		
 	}
 }
