@@ -83,7 +83,9 @@
     <string name="enter_correct_name">Please enter a name</string>
     <string name="new_exercise">New exercise</string>
     <string name="invalid_value">Invalid value!</string>
-
+    <string name="no_sets_to_delete">No sets to delete.</string>
+	<string name="cant_add_set_without_time">Cant add set with no time.</string>
+	<string name="cant_add_set_without_reps">Cant add set with 0 repetitions.</string>
     <string-array name="trainingtype_array">
         <item>Cardio</item>
         <item>Static</item>
