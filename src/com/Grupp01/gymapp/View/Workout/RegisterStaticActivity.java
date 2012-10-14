@@ -22,7 +22,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -53,11 +55,15 @@ import com.actionbarsherlock.view.MenuItem;
  *
  */
 public class RegisterStaticActivity extends SherlockActivity {
+	private static final String EMPTY = "";
+	private static final String ZERO = "0";
+	
 	private final int intentIntDefaultValue = 0;
 	private List<SetsData> staticSetsList = new LinkedList<SetsData>();//The list where new sets are added and removed.
 	private int exerciseId;
 	private int workoutId;
 	private ExerciseData exercise;
+	private String weightUnit;
 
 	/**
 	 * Set up the default layout and call initiate method that is required.
@@ -70,10 +76,19 @@ public class RegisterStaticActivity extends SherlockActivity {
 		workoutId = getIntent().getIntExtra(WorkoutActivity.EXTRA_WORKOUT_ID, intentIntDefaultValue);
 		getExerciseData();
 		setTitle(exercise.getName());
+		
+		setWeightUnit();
 
 		//Show the sets (reps and weight) for the last time this
 		//exercise was performed.
 		setLastSetString();
+	}
+
+
+	private void setWeightUnit() {
+		SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+		weightUnit = sharedPref.getString("pref_key_weight", "kg");
+		
 	}
 
 
@@ -122,7 +137,7 @@ public class RegisterStaticActivity extends SherlockActivity {
 		dynamicSetsList = dbHandler.getPreviouslyStaticSets(workoutId, exerciseId, exercise.getTypeId());
 		if(dynamicSetsList.size() == 0)
 		{
-			lastSet.setText("");
+			lastSet.setText(EMPTY);
 		}
 		else
 		{
@@ -130,9 +145,9 @@ public class RegisterStaticActivity extends SherlockActivity {
 			{
 				sets.append(" ");
 				sets.append(setData.getDuration());
-				sets.append(" ");
+				sets.append("x");
 				sets.append(setData.getWeight());
-				sets.append(" kg,");
+				sets.append(" " + weightUnit + ",");
 			}
 
 			lastSet.setText(sets);
@@ -203,28 +218,28 @@ public class RegisterStaticActivity extends SherlockActivity {
 
 		//Get number of reps
 		String minutes = editMinutes.getText().toString();
-		if(minutes.equals("")){
-			minutes = "0";
+		if(minutes.equals(EMPTY)){
+			minutes = ZERO;
 		}
 		String seconds = editSeconds.getText().toString();
-		if(seconds.equals("")){
-			seconds = "0";
+		if(seconds.equals(EMPTY)){
+			seconds = ZERO;
 		}
 		String weight = editWeight.getText().toString();
-		if(weight.equals("")){
-			weight = "0";
+		if(weight.equals(EMPTY)){
+			weight = ZERO;
 
 		}
 		//Dont add the set if both minutes and seconds is zero (= no time)
-		if((minutes.equals("0")) && (seconds.equals("0"))){	
+		if((minutes.equals(ZERO)) && (seconds.equals(ZERO))){	
 			//add to the array and update view on the screen
 			Toast.makeText(this, "Cant add set with 0 repetitions", Toast.LENGTH_SHORT).show();
 		}
 		else{
 			//Parses strings to Integer
-			Integer minInt = Integer.parseInt(editMinutes.getText().toString());
-			Integer secInt = Integer.parseInt(editSeconds.getText().toString());
-			Integer weightInt = Integer.parseInt(editWeight.getText().toString());
+			Integer minInt = Integer.parseInt(minutes);
+			Integer secInt = Integer.parseInt(seconds);
+			Integer weightInt = Integer.parseInt(weight);
 			staticSetsList.add(new SetsData(minInt, secInt, weightInt));
 			updateView();
 
@@ -266,6 +281,10 @@ public class RegisterStaticActivity extends SherlockActivity {
 		if(staticSetsList.size() > 0)
 		{
 			staticSetsList.remove(staticSetsList.size() -1);
+		}
+		else
+		{
+			Toast.makeText(this, R.string.no_sets_to_delete, Toast.LENGTH_SHORT).show();
 		}
 		updateView();
 	}

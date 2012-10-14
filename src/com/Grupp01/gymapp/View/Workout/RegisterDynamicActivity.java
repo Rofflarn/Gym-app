@@ -22,7 +22,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -53,11 +55,17 @@ import com.actionbarsherlock.view.MenuItem;
  *
  */
 public class RegisterDynamicActivity extends SherlockActivity {
+	private static final String EMPTY = "";
+	private static final String ZERO = "0";
 	private final int intentIntDefaultValue = 0;
 	private int exerciseId;
 	private int workoutId;
 	private ExerciseData exercise;
-	private List<SetsData> dynamicSetsList = new LinkedList<SetsData>();//The list where new sets are added and removed.
+	
+	//The list where new sets are added and removed.
+	private List<SetsData> dynamicSetsList = new LinkedList<SetsData>();
+	
+	private String weightUnit;
 
 	/**
 	 * Set up the default layout and call initiate method that is required.
@@ -71,9 +79,17 @@ public class RegisterDynamicActivity extends SherlockActivity {
 		getExerciseData();
 		setTitle(exercise.getName());
 		setNoteText();
+		setWeightUnit();
 		//Show the sets (reps and weight) for the last time this
 		//exercise was performed.
 		setLastSetString();
+	}
+
+
+	private void setWeightUnit() {
+			SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+			weightUnit = sharedPref.getString("pref_key_weight", "kg");
+	
 	}
 
 
@@ -122,7 +138,7 @@ public class RegisterDynamicActivity extends SherlockActivity {
 		dynamicSetsList = dbHandler.getPreviouslyDynamicSets(workoutId, exerciseId, exercise.getTypeId());
 		if(dynamicSetsList.size() == 0)
 		{
-			latestSets.setText("");
+			latestSets.setText(EMPTY);
 		}
 		else
 		{
@@ -132,7 +148,7 @@ public class RegisterDynamicActivity extends SherlockActivity {
 				sets.append(setData.getReps());
 				sets.append("x");
 				sets.append(setData.getWeight());
-				sets.append(", ");
+				sets.append(" " + weightUnit + ",");
 			}
 
 			latestSets.setText(sets);
@@ -209,17 +225,17 @@ public class RegisterDynamicActivity extends SherlockActivity {
 		String reps = editReps.getText().toString();
 
 		//Do not add set where the number of repetitions is 0 or blank ("")
-		if(!(reps.equals("")) && !(reps.equals("0"))){
+		if(!(reps.equals(EMPTY)) && !(reps.equals(ZERO))){
 
 			//If the weight is blank, set it to zero
 			String weight = editWeight.getText().toString();
-			if(weight.equals(""))
+			if(weight.equals(EMPTY))
 			{
-				weight = "0";
+				weight = ZERO;
 			}
 			//Parses strings input to Integer.
-			Integer repsInt = Integer.parseInt(editReps.getText().toString());
-			Integer weightInt = Integer.parseInt(editWeight.getText().toString());
+			Integer repsInt = Integer.parseInt(reps);
+			Integer weightInt = Integer.parseInt(weight);
 			//Adds new sets to cardioSetsList
 			dynamicSetsList.add(new SetsData(weightInt,repsInt,workoutId,exerciseId));
 			updateView();
@@ -227,7 +243,7 @@ public class RegisterDynamicActivity extends SherlockActivity {
 		}
 		else
 		{
-			Toast.makeText(this, "Cant add set with 0 repetitions.", Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, R.string.cant_add_set_without_reps, Toast.LENGTH_SHORT).show();
 		}
 	}
 
@@ -268,7 +284,7 @@ public class RegisterDynamicActivity extends SherlockActivity {
 		}
 		else
 		{
-			Toast.makeText(this, "No sets to remove", Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, R.string.no_sets_to_delete, Toast.LENGTH_SHORT).show();
 		}
 		updateView();
 	}
