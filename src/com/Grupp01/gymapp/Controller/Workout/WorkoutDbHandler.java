@@ -88,11 +88,14 @@ public class WorkoutDbHandler extends Database {
 	 * 
 	 * @param workoutName
 	 */
-	public void putNewWorkout(String workoutName)
+	public int addWorkoutTemplate(String workoutTemplateName)
 	{
 		open();
-		ourDatabase.execSQL("INSERT INTO WorkoutTemplates (WorkoutTemplateName) VALUES ('" + workoutName + "');");
+		ContentValues values = new ContentValues();
+		values.put("WorkoutTemplateName", workoutTemplateName);
+		int id = (int) (long) ourDatabase.insert("WorkoutTemplates", null, values);
 		close();
+		return id;
 	}
 
 	/**
