@@ -179,8 +179,7 @@ public class ListExerciseActivity extends SherlockActivity implements OnClickLis
 				ListExerciseDbHandler dbHandler = new ListExerciseDbHandler(this);
 				dbHandler.open();
 				int id = dbHandler.addExercise(temp);
-				//int id = dbHandler.getExerciseIdFromName(temp);
-				Intent intent_Add_Exercise = new Intent(this, EditExerciseAcitivity.class);
+				Intent intent_Add_Exercise = new Intent(this, EditExerciseActivity.class);
 				intent_Add_Exercise.putExtra(EXTRA_EXERCISE_NAME, id);
 				dialog.dismiss();
 				startActivity(intent_Add_Exercise);
@@ -201,24 +200,13 @@ public class ListExerciseActivity extends SherlockActivity implements OnClickLis
 	@Override
 	public void onItemClick(AdapterView<?> adapt, View view, int n, long t)
 	{
-		//takes the text on the item clicked and puts it in the intent that starts AddExercise
-		//and then starts the activity
-		//listElements.add("åtta");
-		//elementAdapter.notifyDataSetChanged();
-		String exercise_Name = ((ListView)findViewById(R.id.theList)).getItemAtPosition(n).toString();
-		Intent intent_View_Exercise = new Intent(this, AddExercise.class);
-		intent_View_Exercise.putExtra(EXTRA_EXERCISE_NAME, exercise_Name);
-		startActivity(intent_View_Exercise);
-		for(IdName idName: exercises)
-		{
-			if(idName.getName().equals(((ListView)findViewById(R.id.theList)).getItemAtPosition(n).toString()))
-			{
-				int id = idName.getId();
-				Intent intentViewExercise = new Intent(this, EditExerciseAcitivity.class);
-				intentViewExercise.putExtra(EXTRA_EXERCISE_NAME, id);
-				startActivity(intentViewExercise);				
-			}
-		}
+		//Get the id of clicked element
+		int id = exercises.get(n).getId();
+		
+		//Start edit exercise activity and pass the id as an intent.
+		Intent intentViewExercise = new Intent(this, EditExerciseActivity.class);
+		intentViewExercise.putExtra(EXTRA_EXERCISE_NAME, id);
+		startActivity(intentViewExercise);				
 	}
 	/**
 	 * Method for refreshing the list of exercises after adding a new one
