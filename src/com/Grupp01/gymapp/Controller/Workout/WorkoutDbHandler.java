@@ -284,7 +284,7 @@ public class WorkoutDbHandler extends Database {
 		//Delete sets associated with Exercise
 		ourDatabase.execSQL("DELETE FROM Sets WHERE ExerciseId = '" + exerciseId + "';");
 		//Delete Exercises
-		ourDatabase.execSQL("DELETE FROM WorkoutTemplates WHERE WorkoutTemplateId = '" + exerciseId + "';");
+		ourDatabase.execSQL("DELETE FROM Exercises WHERE ExerciseId = '" + exerciseId + "';");
 		close();
 	}
 }
