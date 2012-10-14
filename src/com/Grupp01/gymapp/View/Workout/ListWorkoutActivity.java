@@ -161,14 +161,13 @@ public class ListWorkoutActivity extends SherlockActivity implements OnClickList
 	public boolean onContextItemSelected(android.view.MenuItem item) {
 		AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
 		int menuItemIndex = item.getItemId();
-		String workoutName = mainListView.getAdapter().getItem(info.position).toString();
+		int workoutId = idNameList.get(info.position).getId();
 		switch(menuItemIndex){
 		case 0:
-			editWorkouts(workoutName);
+			editWorkouts(workoutId);
 			return true;
 		case 1:
-
-			deleteWorkout(workoutName);
+			deleteWorkout(workoutId);
 			return true;
 		}
 		return true;
@@ -240,18 +239,22 @@ public class ListWorkoutActivity extends SherlockActivity implements OnClickList
 	 * "Delete" from the menu.
 	 * @param The name of the workout
 	 */
-	private void deleteWorkout(String workoutName) {
-
+	private void deleteWorkout(int id) {
+		
+		final int workoutId = id;
 		//Show a confirmation dialog before deleting
 		AlertDialog.Builder deleteDialog = new AlertDialog.Builder(this);
-		deleteDialog.setMessage("Are you sure you want to delete workout " + workoutName +"?");
+		deleteDialog.setMessage("Are you sure you want to delete workout " + getWorkoutName(workoutId) +"?");
 		deleteDialog.setCancelable(false);
 
 		//Set action for clicking "Yes" (the user wants to delete)
 		deleteDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int id) {
-
-				Toast.makeText(ListWorkoutActivity.this, "Not implementet yet!", Toast.LENGTH_SHORT).show();
+				WorkoutDbHandler dbHandler = new WorkoutDbHandler(ListWorkoutActivity.this);
+				dbHandler.open();
+				dbHandler.deleteWorkoutTemplate(workoutId);
+				dbHandler.close();
+				createWorkoutList();
 			} //End of onclick method
 		}	//end of DialogInterface
 				);	//End of setPositiveButton
@@ -276,10 +279,10 @@ public class ListWorkoutActivity extends SherlockActivity implements OnClickList
 	 * "Edit" from the menu. Will start EditWorkout to add/remove exercises.
 	 * @param workoutName The name of the workout
 	 */
-	private void editWorkouts(String workoutName) {
-		//Intent intent = new Intent(this, com.Grupp01.gymapp.View.Workout.EditWorkoutActivity.class);
-		//intent.putExtra(WORKOUT_ID, workoutName);
-		//startActivity(intent);	
+	private void editWorkouts(int workoutId) {
+		Intent intent = new Intent(this, com.Grupp01.gymapp.View.Workout.EditWorkoutActivity.class);
+		intent.putExtra(WORKOUT_ID, workoutId);
+		startActivity(intent);	
 
 	}
 
@@ -380,5 +383,14 @@ public class ListWorkoutActivity extends SherlockActivity implements OnClickList
 			dialog.dismiss();
 		}
 		
+	}
+	
+	public String getWorkoutName(int workoutId)
+	{
+		WorkoutDbHandler dbHandler = new WorkoutDbHandler(this);
+		dbHandler.open();
+		String workoutName = dbHandler.getWorkoutIdNameById(workoutId).getName();
+		dbHandler.close();
+		return workoutName;
 	}
 }
