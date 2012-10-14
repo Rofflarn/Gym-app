@@ -130,13 +130,14 @@ public class ListWorkoutActivity extends SherlockActivity {
 		menu.add(Menu.NONE, 1, 1, "Delete");
 
 	}
+	/**
+	 * Updates ListView containing all Workouts after adding a new Workout, and return back to this activity
+	 */
 	@Override
 	public void onResume()
 	{
 		super.onResume();
-		createWorkoutList();
-
-		
+		createWorkoutList();		
 	}
 	/**
 	 * Is called when any of the options in the context menu is clicked.
