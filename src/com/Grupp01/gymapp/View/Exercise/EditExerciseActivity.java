@@ -336,9 +336,12 @@ public class EditExerciseActivity extends SherlockActivity implements AdapterVie
 		}
 		//If the spinner for sport havent been drawed yet, there is no data to retrieve
 		else
+		{
 			//puts the sport selected in spinner into the exercise
 			exercise.putSport(idNameListSports.get((Integer)spinnerSport.getSelectedItemPosition()).getId());
+		}
 	}
+
 	/**
 	 * The database uses a unique id for every items in its list, this method simply retrieves the position in a 
 	 * local list that holds this id
