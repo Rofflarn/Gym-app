@@ -125,15 +125,16 @@ public class EditWorkoutActivity extends SherlockActivity implements OnClickList
 	{
 		if(view == ((Button) dialog.findViewById(R.id.add_Button)))
 		{
-			//takes the text from exercise name textfield and puts it to AddExercise intent
-			//if the string is not empty
+			//takes the text from exercise name textfield and puts it to AddExercise intent		
 			EditText name = (EditText) dialog.findViewById(R.id.exerciseName);
 			String temp = name.getText().toString();
+			//if the string is empty, prompt for a name
 			if(temp.length() == 0)
 			{
 				name.setHint("Fyll i ett namn");
 				name.setHintTextColor(Color.RED);
 			}
+			//Else, create intent and start EditExerciseActivity
 			else
 			{
 				ListExerciseDbHandler dbHandler = new ListExerciseDbHandler(this);
@@ -150,11 +151,17 @@ public class EditWorkoutActivity extends SherlockActivity implements OnClickList
 			dialog.dismiss();
 		}
 	}
+	/**
+	 * Updates ListView containing all Workouts after adding a new Workout, and return back to this activity
+	 */
 	public void onResume()
 	{
 		super.onResume();
 		createEditWorkout();
 	}
+	/**
+	 * Initialize dialogue-window by adding buttons and setting layout
+	 */
 	public void initDialogue()
 	{
 		dialog = new Dialog(this);
@@ -246,17 +253,4 @@ public class EditWorkoutActivity extends SherlockActivity implements OnClickList
 		});
 		closeEditWorkoutDialog.show();
 	}
-	/*
-public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
-{
-switch (parent.getId())
-{
-case R.id.spinnermusclegroup:
-//Implement later when we got a working database
-case R.id.spinnermuscle:
-//Implement later when we got a working database
-}
-}
-	 */
-
 } 
