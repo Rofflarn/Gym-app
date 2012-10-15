@@ -8,7 +8,7 @@
         android:targetSdkVersion="15" />
 
     <application
-        android:icon="@drawable/logo_91px"
+        android:icon="@drawable/logo"
         android:label="@string/app_name"
         android:theme="@style/Theme.Sherlock" >
         <activity
