@@ -37,7 +37,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.Grupp01.gymapp.MainActivity;
 import com.Grupp01.gymapp.R;
@@ -279,15 +278,10 @@ public class ListWorkoutActivity extends SherlockActivity implements OnClickList
 	 * "Edit" from the menu. Will start EditWorkout to add/remove exercises.
 	 * @param workoutName The name of the workout
 	 */
-<<<<<<< HEAD
-	private void editWorkouts(String workoutName) {
-		Intent intent = new Intent(this, com.Grupp01.gymapp.View.Workout.EditWorkoutActivity.class);
-		intent.putExtra(WORKOUT_ID, workoutName);
-=======
+
 	private void editWorkouts(int workoutId) {
 		Intent intent = new Intent(this, com.Grupp01.gymapp.View.Workout.EditWorkoutActivity.class);
 		intent.putExtra(WORKOUT_ID, workoutId);
->>>>>>> 88fed55c9207f6dfb5afa8f57e257b8a6d7c974a
 		startActivity(intent);	
 
 	}
