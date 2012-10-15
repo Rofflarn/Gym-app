@@ -56,11 +56,12 @@ import com.actionbarsherlock.view.MenuItem;
  */
 public class WorkoutActivity extends SherlockActivity implements OnItemClickListener{
 
-	private final int cardioType = 1;
-	private final int dynamicType = 2;
-	private final int staticType = 3;
-	public final static String EXTRA_EXERCISE_ID = "com.Grupp01.gymapp.message.exercise.exercise";
-	public final static String EXTRA_WORKOUT_ID = "com.Grupp01.gymapp.message.exercise.workout";
+	private static final int CARDIO_TYPE = 1;
+	private static final int DYNAMIC_TYPE = 2;
+	private static final int STATIC_TYPE = 3;
+	private static final int INTENT_INT_DEFAULT_VALUE = 0;
+	public static final String EXTRA_EXERCISE_ID = "com.Grupp01.gymapp.message.exercise.exercise";
+	public static final String EXTRA_WORKOUT_ID = "com.Grupp01.gymapp.message.exercise.workout";
 	private ListView listExercisesView;	//The listview that holds all the exercises for the workout
 	private int workoutId;
 	private List<ExerciseData> exerciseDataList;
@@ -72,7 +73,8 @@ public class WorkoutActivity extends SherlockActivity implements OnItemClickList
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		workoutId = getIntent().getIntExtra(ListWorkoutActivity.WORKOUT_ID, 0);
+		workoutId = getIntent().getIntExtra(ListWorkoutActivity.WORKOUT_ID, 
+				INTENT_INT_DEFAULT_VALUE);
 		setContentView(R.layout.activity_workout);
 		getAndSetTitle();
 		getExerciseDataList();
@@ -129,7 +131,8 @@ public class WorkoutActivity extends SherlockActivity implements OnItemClickList
 			listExercises.add(name.getName());
 		}
 		//Add all the exercises from the stringarray to the ArrayList and build the listview
-		ListAdapter listAdapter = new ArrayAdapter<String>(this, R.layout.list_simple_row, listExercises);
+		ListAdapter listAdapter = new ArrayAdapter<String>
+				(this, R.layout.list_simple_row, listExercises);
 		listExercisesView.setAdapter(listAdapter);
 		//Set up listener and action for pressing the listview
 
@@ -137,7 +140,8 @@ public class WorkoutActivity extends SherlockActivity implements OnItemClickList
 	
 	public void onItemClick(AdapterView<?> arg0, View v, int position,
 			long id) {
-		//Get the text label of the row that has been clicked (will be used to open the correct workout)
+		//Get the text label of the row that has been clicked (will be used 
+		//to open the correct workout).
 		ExerciseData exercise = exerciseDataList.get(position);
 		registerWorkoutResult(exercise);
 	}
@@ -151,19 +155,19 @@ public class WorkoutActivity extends SherlockActivity implements OnItemClickList
 	 */
 	private void registerWorkoutResult(ExerciseData exercise){
 		//ONLY FOR TESTING DIFFERENT REGISTER ACTIVITY!!
-		if(exercise.getTypeId() == cardioType){
+		if(exercise.getTypeId() == CARDIO_TYPE){
 			Intent intent = new Intent(WorkoutActivity.this, RegisterCardioActivity.class);
 			intent.putExtra(EXTRA_EXERCISE_ID, exercise.getId());
 			intent.putExtra(EXTRA_WORKOUT_ID, workoutId);
 			startActivity(intent);
 		}
-		if(exercise.getTypeId() == dynamicType){
+		if(exercise.getTypeId() == DYNAMIC_TYPE){
 			Intent intent = new Intent(WorkoutActivity.this, RegisterDynamicActivity.class);
 			intent.putExtra(EXTRA_EXERCISE_ID, exercise.getId());
 			intent.putExtra(EXTRA_WORKOUT_ID, workoutId);
 			startActivity(intent);
 		}
-		if(exercise.getTypeId() == staticType){
+		if(exercise.getTypeId() == STATIC_TYPE){
 			Intent intent = new Intent(WorkoutActivity.this, RegisterStaticActivity.class);
 			intent.putExtra(EXTRA_EXERCISE_ID, exercise.getId());
 			intent.putExtra(EXTRA_WORKOUT_ID, workoutId);
@@ -190,7 +194,8 @@ public class WorkoutActivity extends SherlockActivity implements OnItemClickList
 	{
 		WorkoutDbHandler dbHandler = new WorkoutDbHandler(this);
 		dbHandler.open();
-		exerciseDataList = dbHandler.getExerciseIdNameById(dbHandler.getExercisesbyWorkoutId(workoutId));
+		exerciseDataList = dbHandler.getExerciseIdNameById
+				(dbHandler.getExercisesbyWorkoutId(workoutId));
 		dbHandler.close();
 	}
 	@Override
