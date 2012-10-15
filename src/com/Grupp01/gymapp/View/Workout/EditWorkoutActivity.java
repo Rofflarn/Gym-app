@@ -201,7 +201,7 @@ public class EditWorkoutActivity extends SherlockActivity implements OnClickList
 
 		WorkoutDbHandler dbHandler = new WorkoutDbHandler(this);
 		dbHandler.open();
-		exerciseList = dbHandler.getExercisesCheckedByWorkoutTemplateId(workoutId);
+		exerciseList = (ArrayList<ExerciseListElementData>) dbHandler.getExercisesCheckedByWorkoutTemplateId(workoutId);
 		dbHandler.close();
 
 
