@@ -56,7 +56,7 @@ public class ListExerciseActivity extends SherlockActivity implements OnClickLis
 	public final static String EXTRA_EXERCISE_NAME = "com.Grupp01.gymapp.message";
 	public static final String NO_NAME = "";
 	private Dialog dialog;
-	private ArrayList<String> listElements;
+	private List<String> listElements;
 	private ArrayAdapter<String> elementAdapter;
 	private List<IdName> exercises;
 

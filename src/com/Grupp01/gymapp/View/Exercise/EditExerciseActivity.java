@@ -54,7 +54,7 @@ public class EditExerciseActivity extends SherlockActivity implements AdapterVie
 	private String currentView;
 	private int exerciseId;
 	private ExerciseData exercise;
-	private ArrayList<String> listMuscles, listSports, listTrainingType;
+	private List<String> listTrainingType;
 	private EditText comment, desc;
 	private List<IdName> idNameListMuscles, idNameListSports, idNameListTrainingType;
 	/**
@@ -117,7 +117,7 @@ public class EditExerciseActivity extends SherlockActivity implements AdapterVie
 	 */
 	public void initSpinnerDynamicStatic()
 	{
-		listMuscles = getMusclesFromDb(); 
+		List<String> listMuscles = getMusclesFromDb(); 
 
 		spinnerPMuscle = (Spinner) findViewById(R.id.spinner_primary_muscle); 
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, listMuscles);
@@ -135,7 +135,7 @@ public class EditExerciseActivity extends SherlockActivity implements AdapterVie
 	 */
 	public void initSpinnerCardio()
 	{
-		listSports = getSportsFromDb();
+		List<String> listSports = getSportsFromDb();
 		spinnerSport = (Spinner) findViewById(R.id.spinner_sport); //Retrieves the view from .xml-file
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, listSports);
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -242,7 +242,7 @@ public class EditExerciseActivity extends SherlockActivity implements AdapterVie
 	 * Retrives a List<IdName> of musclesfrom the database and adds the names of the muscles to an ArrayList<String>
 	 * @return ArrayList that spinners need to populate with items
 	 */
-	private ArrayList<String> getMusclesFromDb()
+	private List<String> getMusclesFromDb()
 	{
 		//creates a EditExerciseDbHandler
 		EditExerciseDbHandler get = new EditExerciseDbHandler(this);
@@ -263,7 +263,7 @@ public class EditExerciseActivity extends SherlockActivity implements AdapterVie
 	 * Retrives a List<IdName> of sports from the database and adds the names of the muscles to an ArrayList<String>
 	 * @return ArrayList that spinners need to populate with items
 	 */
-	private ArrayList<String> getSportsFromDb()
+	private List<String> getSportsFromDb()
 	{
 		EditExerciseDbHandler get = new EditExerciseDbHandler(this);
 		get.open();
@@ -281,7 +281,7 @@ public class EditExerciseActivity extends SherlockActivity implements AdapterVie
 	 * Retrives a List<IdName> of training types from the database and adds the names of the muscles to an ArrayList<String>
 	 * @return ArrayList that spinners need to populate with items
 	 */
-	private ArrayList<String> getExerciseTypesFromDb()
+	private List<String> getExerciseTypesFromDb()
 	{
 
 		EditExerciseDbHandler get = new EditExerciseDbHandler(this);
