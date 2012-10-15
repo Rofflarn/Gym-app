@@ -29,10 +29,15 @@ import com.Grupp01.gymapp.Model.Database;
 
 public class RegisterDbHandler extends Database {
 
-	public final static int NUMBER_SECONDS_IN_HOUR  = 3600; //Used for timeformating equation
-	public final static int NUMBER_SECONDS_IN_MIN = 60; //Used for timeformating equation
-	public final static int NUMBER_OF_LATEST_SET = 4; //Number of sets that are going to be shown in text: "Latest sets"
-	;
+	//Used for time formating equation
+	public static final int NUMBER_SECONDS_IN_HOUR  = 3600; 
+	
+	//Used for time formating equation
+	public static final int NUMBER_SECONDS_IN_MIN = 60; 
+	
+	//Number of sets that are going to be shown in text: "Latest sets"
+	public static final int NUMBER_OF_LATEST_SET = 4; 
+	
 	public RegisterDbHandler(Context c)
 	{
 		super(c);
@@ -40,28 +45,30 @@ public class RegisterDbHandler extends Database {
 
 
 	/**
-	 * Adds a cardioset to table Sets in database
-	 * @param sec number of seconds that the set has taken
-	 * @param min minutes that the set has taken
-	 * @param distance the distance done in the set
-	 * @param workoutId workoutId for current workout
-	 * @param exerciseId exerciseId for current exercise
+	 * Adds a cardioset to table Sets in database.
+	 * @param sec number of seconds that the set has taken.
+	 * @param min minutes that the set has taken.
+	 * @param distance the distance done in the set.
+	 * @param workoutId workoutId for current workout.
+	 * @param exerciseId exerciseId for current exercise.
 	 */
 	public void addCardioSet(int sec, int min, float distance, int workoutId, int exerciseId)
 	{
 		int duration = sec + (min*NUMBER_SECONDS_IN_MIN);
 		open();
-		ourDatabase.execSQL("INSERT INTO Sets (SetDistance, WorkoutId, SetDuration, SetTime, ExerciseId) VALUES "
-				+ "(" + distance + ", " + workoutId + ", " + duration +  ", " + "datetime('now')" + ", " + exerciseId + ");");
+		ourDatabase.execSQL("INSERT INTO Sets (SetDistance, WorkoutId, SetDuration, SetTime, " +
+				"ExerciseId) VALUES "
+				+ "(" + distance + ", " + workoutId + ", " + duration +  ", " + 
+				"datetime('now')" + ", " + exerciseId + ");");
 		close();
 	}
 
 	/**
-	 * Adds a dynamic set to table Sets in database
-	 * @param weight weight of the tool used in training
-	 * @param reps number of repitions done
-	 * @param workoutId workoutId for current workout
-	 * @param exerciseId exerciseId for current exercise
+	 * Adds a dynamic set to table Sets in database.
+	 * @param weight weight of the tool used in training.
+	 * @param reps number of repitions done.
+	 * @param workoutId workoutId for current workout.
+	 * @param exerciseId exerciseId for current exercise.
 	 */
 	public void addDynamicSet(int weight, int reps, int workoutId, int exerciseId)
 	{
@@ -93,15 +100,18 @@ public class RegisterDbHandler extends Database {
 	 * @param workoutId workoutId for current workout
 	 * @param exerciseId exerciseId for current exercise
 	 * @param exerciseTypeId exerciseTypeId for current exercise
-	 * @return A List containing the four latest sets in SetData objects with SetDuration and SetDistance parameters.
+	 * @return A List containing the four latest sets in SetData objects with SetDuration and 
+	 * SetDistance parameters.
 	 */
 	public List<SetsData> getPreviouslyCardioSets(int workoutId, int exerciseId, int exerciseTypeId)
 	{
 		List<SetsData> cardioSetsList = new LinkedList<SetsData>();
 		open();	
-		Cursor c = ourDatabase.rawQuery("SELECT Sets.SetDuration, Sets.SetDistance FROM Sets, Exercises WHERE Sets.WorkoutId = " + workoutId +" AND " +
-				"Sets.ExerciseId = " + exerciseId + " AND Exercises.ExerciseId = Sets.ExerciseId AND " +
-				"Exercises.ExerciseTypeId = " + exerciseTypeId + " ORDER BY SetId DESC LIMIT 4;", null);
+		Cursor c = ourDatabase.rawQuery("SELECT Sets.SetDuration, Sets.SetDistance FROM Sets, " +
+				"Exercises WHERE Sets.WorkoutId = " + workoutId +" AND " +
+				"Sets.ExerciseId = " + exerciseId + " AND Exercises.ExerciseId = Sets.ExerciseId AND "
+				+ "Exercises.ExerciseTypeId = " + exerciseTypeId + " ORDER BY SetId DESC LIMIT 4;", 
+				null);
 		c.moveToFirst();
 		int duration = c.getColumnIndex("SetDuration");
 		int distance = c.getColumnIndex("SetDistance");
@@ -109,9 +119,12 @@ public class RegisterDbHandler extends Database {
 		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext())
 		{
 
-			//Equation for formating number of seconds a set has taken into a String with format hh:mm:ss
-			String durationString = (((int) (c.getInt(duration) / NUMBER_SECONDS_IN_HOUR)) + ":" + (((int) (c.getInt(duration) 
-					/ NUMBER_SECONDS_IN_MIN)) % NUMBER_SECONDS_IN_MIN) + ":" + (c.getInt(duration) % NUMBER_SECONDS_IN_MIN)); 
+			//Equation for formating number of seconds a set has taken into a String with 
+			//format hh:mm:ss
+			String durationString = (((int) (c.getInt(duration) / NUMBER_SECONDS_IN_HOUR)) + 
+					"h " + (((int) (c.getInt(duration) / NUMBER_SECONDS_IN_MIN)) % 
+							NUMBER_SECONDS_IN_MIN) + "m " + (c.getInt(duration) %
+									NUMBER_SECONDS_IN_MIN) + "s "); 
 			cardioSetsList.add(new SetsData(durationString,c.getInt(distance)));
 		}
 		c.close();
@@ -126,13 +139,17 @@ public class RegisterDbHandler extends Database {
 	 * @param exerciseTypeId exerciseTypeId for current exercise
 	 * @return
 	 */
-	public List<SetsData> getPreviouslyDynamicSets(int workoutId, int exerciseId, int exerciseTypeId)
+	public List<SetsData> getPreviouslyDynamicSets(int workoutId, int exerciseId, 
+			int exerciseTypeId)
 	{
 		List<SetsData> dynamicSetsList = new LinkedList<SetsData>();
 		open();
-		Cursor c = ourDatabase.rawQuery("SELECT Sets.SetWeight, Sets.SetReps FROM Sets, Exercises WHERE Sets.WorkoutId = " + workoutId +" AND " +
-				"Sets.ExerciseId = " + exerciseId + " AND Exercises.ExerciseId = Sets.ExerciseId AND " +
-				"Exercises.ExerciseTypeId = " + exerciseTypeId + " ORDER BY SetId DESC LIMIT 4;", null);
+		Cursor c = ourDatabase.rawQuery("SELECT Sets.SetWeight, Sets.SetReps FROM Sets, " +
+				"Exercises WHERE Sets.WorkoutId = " + workoutId +" AND " +
+				"Sets.ExerciseId = " + exerciseId + " AND Exercises.ExerciseId = " +
+						"Sets.ExerciseId AND " +
+				"Exercises.ExerciseTypeId = " + exerciseTypeId + " ORDER BY SetId " +
+						"DESC LIMIT 4;", null);
 		c.moveToFirst();
 		int weight = c.getColumnIndex("SetWeight");
 		int reps = c.getColumnIndex("SetReps");
@@ -152,16 +169,21 @@ public class RegisterDbHandler extends Database {
 	{
 		List<SetsData> staticSetsList = new LinkedList<SetsData>();
 		open();
-		Cursor c = ourDatabase.rawQuery("SELECT Sets.SetDuration, Sets.SetWeight FROM Sets, Exercises WHERE Sets.WorkoutId = " + workoutId +" AND " +
-				"Sets.ExerciseId = " + exerciseId + " AND Exercises.ExerciseId = Sets.ExerciseId AND " +
-				"Exercises.ExerciseTypeId = " + exerciseTypeId + " ORDER BY SetId DESC LIMIT 4;", null);
+		Cursor c = ourDatabase.rawQuery("SELECT Sets.SetDuration, Sets.SetWeight FROM Sets, " +
+				"Exercises WHERE Sets.WorkoutId = " + workoutId +" AND " +
+				"Sets.ExerciseId = " + exerciseId + " AND Exercises.ExerciseId = " +
+						"Sets.ExerciseId AND " +
+				"Exercises.ExerciseTypeId = " + exerciseTypeId + " ORDER BY SetId DESC LIMIT 4;", 
+				null);
 		c.moveToFirst();
 		int duration = c.getColumnIndex("SetDuration");
 		int weight = c.getColumnIndex("SetWeight");
 
 		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext())
 		{
-			String durationString = (((int) (c.getInt(duration) / NUMBER_SECONDS_IN_HOUR)) + ":" + (((int) (c.getInt(duration) / NUMBER_SECONDS_IN_MIN)) % NUMBER_SECONDS_IN_MIN) + ":" + (c.getInt(duration) % NUMBER_SECONDS_IN_MIN)); 
+			String durationString = (((int) (c.getInt(duration) / NUMBER_SECONDS_IN_HOUR)) + "h " + 
+					(((int) (c.getInt(duration) / NUMBER_SECONDS_IN_MIN)) % NUMBER_SECONDS_IN_MIN) +
+					"m " + (c.getInt(duration) % NUMBER_SECONDS_IN_MIN) + "s "); 
 			staticSetsList.add(new SetsData(c.getInt(weight),durationString));
 		}
 
