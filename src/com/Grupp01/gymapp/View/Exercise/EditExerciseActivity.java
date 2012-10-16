@@ -55,7 +55,7 @@ public class EditExerciseActivity extends SherlockActivity implements
 	private String currentView;
 	private int exerciseId;
 	private ExerciseData exercise;
-	private List<String> listMuscles, listSports, listTrainingType;
+	private List<String> listTrainingType;
 	private EditText comment, desc;
 	private List<IdName> idNameListMuscles, idNameListSports, idNameListTrainingType;
 	/**
@@ -77,7 +77,6 @@ public class EditExerciseActivity extends SherlockActivity implements
 		listTrainingType = getExerciseTypesFromDb(); 
 		//initialize spinner with listener and set spinner to the first post
 		initSpinnerType(getPosById(exercise.getTypeId(), idNameListTrainingType)); 
-
 	}
 	/**
 	 * Sets up the menubar, note the use of actionbarsherlock, making it possible of using
@@ -88,67 +87,6 @@ public class EditExerciseActivity extends SherlockActivity implements
 		MenuInflater inflater = getSupportMenuInflater();
 		inflater.inflate(R.menu.universal_menu, menu);
 		return true;
-	}
-
-	/**
-	 * This method initializes the type of training spinner, populating them
-	 * with items and adds listener. 
-	 * @param position used for changing the default value due to 
-	 * the previous selection in a spinner
-	 */
-	public void initSpinnerType(int position)
-	{	
-		//Retrieves the view from .xml-file
-		spinnerType = (Spinner) findViewById(R.id.spinner_type_of_training); 
-		//Create ArrayAdapter, setting up the layout for spinner items and 
-		//adding arraylist containing items
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, 
-				android.R.layout.simple_spinner_item, listTrainingType);
-		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); 
-		//Sets the adapter to the spinner
-		spinnerType.setAdapter(adapter); 
-
-		//Sets the spinner default value to selected value
-		spinnerType.setSelection(position);
-		//Adds listener to spinner spinnterType
-		spinnerType.setOnItemSelectedListener(this); 
-		//Calling setTexts to set the EditText-fields with data from the exercise-object
-		setTexts();
-
-	}
-	/**
-	 * This method initializes the spinners for selecting primary and secondary
-	 * muscles, populating them with items and adds listener.
-	 */
-	public void initSpinnerDynamicStatic()
-	{
-		listMuscles = getMusclesFromDb(); 
-
-		spinnerPMuscle = (Spinner) findViewById(R.id.spinner_primary_muscle); 
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, 
-				android.R.layout.simple_spinner_item, listMuscles);
-		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		spinnerPMuscle.setAdapter(adapter); //Sets the adapter to the spinner
-		spinnerPMuscle.setSelection(getPosById(exercise.getPri(), idNameListMuscles));
-
-		spinnerSMuscle = (Spinner) findViewById(R.id.spinner_secondary_muscle);
-		spinnerSMuscle.setAdapter(adapter);
-		spinnerSMuscle.setSelection(getPosById(exercise.getSec(), idNameListMuscles));
-	}
-	/**
-	 * This method initializes the spinner for selecting sport, populating them with items and
-	 * adds listener.
-	 */
-	public void initSpinnerCardio()
-	{
-		listSports = getSportsFromDb();
-		//Retrieves the view from .xml-file
-		spinnerSport = (Spinner) findViewById(R.id.spinner_sport); 
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, 
-				android.R.layout.simple_spinner_item, listSports);
-		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		spinnerSport.setAdapter(adapter); //Sets the adapter to the spinner
-		spinnerSport.setSelection(getPosById(exercise.getSportId(),idNameListSports));
 	}
 	/**
 	 * Callback method to be invoked when an item in this view has been selected
@@ -254,6 +192,66 @@ public class EditExerciseActivity extends SherlockActivity implements
 	 * List<String>.
 	 * @return ArrayList that spinners need to populate with items
 	 */
+	/**
+	 * This method initializes the type of training spinner, populating them
+	 * with items and adds listener. 
+	 * @param position used for changing the default value due to 
+	 * the previous selection in a spinner
+	 */
+	private void initSpinnerType(int position)
+	{	
+		//Retrieves the view from .xml-file
+		spinnerType = (Spinner) findViewById(R.id.spinner_type_of_training); 
+		//Create ArrayAdapter, setting up the layout for spinner items and 
+		//adding arraylist containing items
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, 
+				android.R.layout.simple_spinner_item, listTrainingType);
+		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); 
+		//Sets the adapter to the spinner
+		spinnerType.setAdapter(adapter); 
+
+		//Sets the spinner default value to selected value
+		spinnerType.setSelection(position);
+		//Adds listener to spinner spinnterType
+		spinnerType.setOnItemSelectedListener(this); 
+		//Calling setTexts to set the EditText-fields with data from the exercise-object
+		setTexts();
+
+	}
+	/**
+	 * This method initializes the spinners for selecting primary and secondary
+	 * muscles, populating them with items and adds listener.
+	 */
+	private void initSpinnerDynamicStatic()
+	{
+		List<String> listMuscles = getMusclesFromDb(); 
+
+		spinnerPMuscle = (Spinner) findViewById(R.id.spinner_primary_muscle); 
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, 
+				android.R.layout.simple_spinner_item, listMuscles);
+		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		spinnerPMuscle.setAdapter(adapter); //Sets the adapter to the spinner
+		spinnerPMuscle.setSelection(getPosById(exercise.getPri(), idNameListMuscles));
+
+		spinnerSMuscle = (Spinner) findViewById(R.id.spinner_secondary_muscle);
+		spinnerSMuscle.setAdapter(adapter);
+		spinnerSMuscle.setSelection(getPosById(exercise.getSec(), idNameListMuscles));
+	}
+	/**
+	 * This method initializes the spinner for selecting sport, populating them with items and
+	 * adds listener.
+	 */
+	private void initSpinnerCardio()
+	{
+		List<String> listSports = getSportsFromDb();	
+		//Retrieves the view from .xml-file
+		spinnerSport = (Spinner) findViewById(R.id.spinner_sport); 
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, 
+				android.R.layout.simple_spinner_item, listSports);
+		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		spinnerSport.setAdapter(adapter); //Sets the adapter to the spinner
+		spinnerSport.setSelection(getPosById(exercise.getSportId(),idNameListSports));
+	}
 	private List<String> getMusclesFromDb()
 	{
 		//creates a EditExerciseDbHandler
