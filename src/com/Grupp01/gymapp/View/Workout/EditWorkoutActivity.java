@@ -19,6 +19,7 @@
 package com.Grupp01.gymapp.View.Workout;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -43,18 +44,19 @@ import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 
-/** The Graphical layout where the user Edit a Workout
- * * @author Robert Blomberg
- * */	
+/** 
+ * The Graphical layout where the user Edit a Workout.
+ *  @author Robert Blomberg
+ */	
 
 public class EditWorkoutActivity extends SherlockActivity implements OnClickListener
 {
+	public static final String EXTRA_EXERCISE_NAME = "com.Grupp01.gymapp.message";
 	private Dialog dialog;
-	private ListView listView;
 	private ArrayAdapter<ExerciseListElementData> listAdapter;
 	private int workoutId;
-	public ArrayList<ExerciseListElementData> exerciseList = new ArrayList<ExerciseListElementData>();
-	public final static String EXTRA_EXERCISE_NAME = "com.Grupp01.gymapp.message";
+	private List<ExerciseListElementData> exerciseList = new ArrayList<ExerciseListElementData>();
+	
 
 
 
@@ -139,10 +141,10 @@ public class EditWorkoutActivity extends SherlockActivity implements OnClickList
 				ListExerciseDbHandler dbHandler = new ListExerciseDbHandler(this);
 				dbHandler.open();
 				int id = dbHandler.addExercise(temp);
-				Intent intent_Add_Exercise = new Intent(this, EditExerciseActivity.class);
-				intent_Add_Exercise.putExtra(EXTRA_EXERCISE_NAME, id);
+				Intent intentAddExercise = new Intent(this, EditExerciseActivity.class);
+				intentAddExercise.putExtra(EXTRA_EXERCISE_NAME, id);
 				dialog.dismiss();
-				startActivity(intent_Add_Exercise);
+				startActivity(intentAddExercise);
 			}
 		}
 		else if(view == ((Button) dialog.findViewById(R.id.cancel_Button)))
@@ -151,7 +153,8 @@ public class EditWorkoutActivity extends SherlockActivity implements OnClickList
 		}
 	}
 	/**
-	 * Updates ListView containing all Workouts after adding a new Workout, and return back to this activity
+	 * Updates ListView containing all Workouts after adding a new Workout, and 
+	 * return back to this activity.
 	 */
 	public void onResume()
 	{
@@ -175,7 +178,7 @@ public class EditWorkoutActivity extends SherlockActivity implements OnClickList
 	public void createEditWorkout()
 	{
 		// Find the ListView resource.
-		listView = (ListView) findViewById( R.id.mainListView );
+		ListView listView = (ListView) findViewById( R.id.mainListView );
 
 		// When item is tapped, toggle checked properties of CheckBox and Exercise.
 		listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
@@ -201,7 +204,8 @@ public class EditWorkoutActivity extends SherlockActivity implements OnClickList
 
 		WorkoutDbHandler dbHandler = new WorkoutDbHandler(this);
 		dbHandler.open();
-		exerciseList = dbHandler.getExercisesCheckedByWorkoutTemplateId(workoutId);
+		exerciseList = (ArrayList<ExerciseListElementData>) 
+				dbHandler.getExercisesCheckedByWorkoutTemplateId(workoutId);
 		dbHandler.close();
 
 

@@ -14,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:src="@drawable/workout"
+        android:src="@drawable/button_workout"
         android:layout_marginTop="30dp"
         android:onClick="workout"
         android:background="@null"
@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignBottom="@+id/button1"
-        android:src="@drawable/exercises"
+        android:src="@drawable/button_exercises"
         android:onClick="exercise"
         android:background="@null"
          />
@@ -40,7 +40,7 @@
         android:layout_alignLeft="@+id/button1"
         android:layout_below="@+id/button1"
         android:layout_marginTop="27dp"
-        android:src="@drawable/history"
+        android:src="@drawable/button_history"
         android:onClick="history"
         android:background="@null" />
 
@@ -51,7 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/button3"
         android:layout_alignRight="@+id/button2"
-        android:src="@drawable/statistics"
+        android:src="@drawable/button_statistics"
         android:onClick="statistics"
         android:background="@null" />
     
@@ -62,7 +62,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/button1"
         android:layout_marginTop="245dp"
-        android:src="@drawable/profile"
+        android:src="@drawable/button_profile"
         android:onClick="profile"
         android:background="@null"
         />
@@ -75,7 +75,7 @@
         android:layout_alignBottom="@+id/button5"
         android:layout_alignTop="@+id/button5"
         android:layout_alignRight="@+id/button2"
-        android:src="@drawable/settings" 
+        android:src="@drawable/button_settings" 
         android:onClick="settings"
         android:background="@null"/>
 

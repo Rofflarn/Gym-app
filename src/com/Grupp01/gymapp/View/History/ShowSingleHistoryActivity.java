@@ -17,6 +17,7 @@
 package com.Grupp01.gymapp.View.History;
 
 import java.util.LinkedList;
+import java.util.List;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -30,7 +31,7 @@ import com.actionbarsherlock.view.MenuItem;
 
 /**
  * This activity is started when user clicks on a row in the ListHistoryActivity.
- * It will display performed exercises for the choosen workout.
+ * It will display performed exercises for the chosen workout.
  * 
  * @author GivDev
  * @version 0.1
@@ -41,7 +42,7 @@ import com.actionbarsherlock.view.MenuItem;
 public class ShowSingleHistoryActivity extends SherlockListActivity {
 	
 	//THis is the list with every performed exercise, will be fetched from the database.
-	private LinkedList<History> hList = new LinkedList<History>();
+	private List<History> hList = new LinkedList<History>();
 	
 	//This is the adapter we use to adapt the list to the layout.
 	
@@ -69,7 +70,7 @@ public class ShowSingleHistoryActivity extends SherlockListActivity {
 
 
     /**
-     * Set up the layout of actionbar
+     * Set up the layout of actionbar.
      * @param menu The menu to pass the layout to.
      * @return true to set the menu to be visible.
      */
@@ -112,8 +113,8 @@ public class ShowSingleHistoryActivity extends SherlockListActivity {
 	
 	
 	/**
-     * Set up actions for buttons in actionbar
-     * @param MenuItem item - The menuitem thas has been pressed
+     * Set up actions for buttons in actionbar.
+     * @param MenuItem item - The menuitem thas has been pressed.
      * 
      */
     public boolean onOptionsItemSelected(MenuItem item){

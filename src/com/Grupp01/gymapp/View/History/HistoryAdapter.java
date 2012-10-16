@@ -40,20 +40,21 @@ import android.widget.TextView;
 public class HistoryAdapter extends ArrayAdapter<History>{
 	
 	//This is our list of history types
-	private LinkedList<History> historyList;
+	private List<History> historyList;
 	
 	/**
-	 * Constructor of HistoryAdapter
+	 * Constructor of HistoryAdapter.
 	 * 
 	 * @param context The current context.
-	 * @param textViewResourceId	The id for the layout for the listview
+	 * @param textViewResourceId	The id for the layout for the listview.
 	 * @param objects	The list with History objects which will be displayed in the view. 
 	 */
 	public HistoryAdapter(Context context, int textViewResourceId,
 			List<History> objects) {
 		super(context, textViewResourceId, objects);
 		
-		//Set the list to be the same as the passed one (the list which is passed on from calling activity)
+		//Set the list to be the same as the passed one (the list which is 
+		//passed on from calling activity).
 		historyList = (LinkedList<History>) objects;
 	}
 	
@@ -76,7 +77,8 @@ public class HistoryAdapter extends ArrayAdapter<History>{
 		
 		//If the view is null then inflate the correct view (the layout for the ListView)
 		if(v == null){
-			LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			LayoutInflater inflater = (LayoutInflater) getContext().getSystemService
+					(Context.LAYOUT_INFLATER_SERVICE);
 			v = inflater.inflate(R.layout.history_list_layout, null);
 		}
 		

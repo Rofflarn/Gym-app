@@ -17,6 +17,7 @@
 package com.Grupp01.gymapp.View.History;
 
 import java.util.LinkedList;
+import java.util.List;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -45,7 +46,7 @@ import com.actionbarsherlock.view.MenuItem;
 public class ListHistoryActivity extends SherlockListActivity {
 
 	//The list with History objects, will be fetched from database.
-	private LinkedList<History> hList = new LinkedList<History>();
+	private List<History> hList = new LinkedList<History>();
 	
 	/**
 	 * Is called on start, set the correct layout from xml file and then create the list.
@@ -104,8 +105,8 @@ public class ListHistoryActivity extends SherlockListActivity {
 	
 	/**
 	 * This method will be called when the user presses an item in the ListView of history objects.
-	 * The method will check what position was clicked, check the object in LinkedList for that position
-	 * and start a new activity which will display exercises for that History object.
+	 * The method will check what position was clicked, check the object in LinkedList for 
+	 * that position and start a new activity which will display exercises for that History object.
 	 */
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id){

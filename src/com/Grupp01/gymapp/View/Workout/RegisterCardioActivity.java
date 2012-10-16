@@ -62,9 +62,9 @@ public class RegisterCardioActivity extends SherlockActivity {
 	private static final String EMPTY = "";
 	private static final String ZERO = "0";
 	
-	private final int intentIntDefaultValue = 0;
+	private static final int INTENT_INT_DEFAULT_VALUE = 0;
 	private ExerciseData exercise; //The name of the workout
-	private ArrayList<String> currentSets;	//The array where new sets is added (in form of REPSxWEIGHT)
+	private List<String> currentSets;	//The array where new sets is added (in form of REPSxWEIGHT)
 	private int exerciseId;
 	private int workoutId;
 	private List<SetsData> cardioSetsList = new LinkedList<SetsData>();
@@ -79,8 +79,10 @@ public class RegisterCardioActivity extends SherlockActivity {
 		setContentView(R.layout.activity_register_cardio);
 		//Create the array
 		currentSets = new ArrayList<String>();
-		workoutId = getIntent().getIntExtra(WorkoutActivity.EXTRA_WORKOUT_ID, intentIntDefaultValue);
-		exerciseId = getIntent().getIntExtra(WorkoutActivity.EXTRA_EXERCISE_ID, intentIntDefaultValue);
+		workoutId = getIntent().
+				getIntExtra(WorkoutActivity.EXTRA_WORKOUT_ID, INTENT_INT_DEFAULT_VALUE);
+		exerciseId = getIntent().
+				getIntExtra(WorkoutActivity.EXTRA_EXERCISE_ID, INTENT_INT_DEFAULT_VALUE);
 		getExerciseData();
 		setTitle(exercise.getName());
 
@@ -244,7 +246,8 @@ public class RegisterCardioActivity extends SherlockActivity {
 		for (String s : currentSets)
 		{
 			prefix.append(s);
-			prefix.append(distanceUnit + ", ");
+			prefix.append(distanceUnit);
+			prefix.append(", ");
 		}
 		//Update the view with the new string
 		currentSetString.setText(prefix);
@@ -284,7 +287,8 @@ public class RegisterCardioActivity extends SherlockActivity {
 	}
 
 	/**
-	 * gets information about the 4 latest sets in this exercise and puts this information on the screen
+	 * Gets information about the 4 latest sets in this exercise 
+	 * and puts this information on the screen.
 	 */
 	private void setLastSetsString()
 	{
@@ -293,13 +297,15 @@ public class RegisterCardioActivity extends SherlockActivity {
 		StringBuffer sets = new StringBuffer();
 		TextView latestSets = (TextView) findViewById(R.id.lastTimeSetsCardio);
 		dbHandler.open();
-		cardioSetsList = dbHandler.getPreviouslyCardioSets(workoutId, exerciseId, exercise.getTypeId());
+		cardioSetsList = dbHandler.
+				getPreviouslyCardioSets(workoutId, exerciseId, exercise.getTypeId());
 		for(SetsData cardioSet: cardioSetsList)
 		{
 			sets.append(cardioSet.getDuration());
 			sets.append("x");
 			sets.append(cardioSet.getDistance());
-			sets.append(distanceUnit + ", ");
+			sets.append(distanceUnit);
+			sets.append(", ");
 		}
 		dbHandler.close();
 		latestSets.setText(sets);
@@ -310,7 +316,8 @@ public class RegisterCardioActivity extends SherlockActivity {
 	{
 		RegisterDbHandler dbHandler = new RegisterDbHandler(this);
 		dbHandler.open();
-		dbHandler.addCardioSet(cardioSet.getSec(), cardioSet.getMin(), cardioSet.getDistance(), cardioSet.getworkoutId(), cardioSet.getexerciseid());
+		dbHandler.addCardioSet(cardioSet.getSec(), cardioSet.getMin(), 
+				cardioSet.getDistance(), cardioSet.getworkoutId(), cardioSet.getexerciseid());
 		dbHandler.close();
 	}
 }

@@ -50,10 +50,11 @@ import com.actionbarsherlock.view.MenuInflater;
  * @peer reviewed by Joel Olofsson
  * @date 07/10/2012
  */
-public class ListExerciseActivity extends SherlockActivity implements OnClickListener, OnItemClickListener {
+public class ListExerciseActivity extends SherlockActivity implements OnClickListener, 
+				OnItemClickListener {
 
-	/** Instansvariabler */
-	public final static String EXTRA_EXERCISE_NAME = "com.Grupp01.gymapp.message";
+	// Constants and global variables
+	public static final String EXTRA_EXERCISE_NAME = "com.Grupp01.gymapp.message";
 	public static final String NO_NAME = "";
 	private Dialog dialog;
 	private List<String> listElements;
