@@ -1,5 +1,7 @@
 <!--
-/*This file is part of Gymapp.
+/* Copyright © 2012 GivDev
+*
+*This file is part of Gymapp.
 *
 *   Gymapp is free software: you can redistribute it and/or modify
 *   it under the terms of the GNU General Public License as published by
@@ -12,9 +14,7 @@
 *   GNU General Public License for more details.
 *
 *   You should have received a copy of the GNU General Public License
-*  along with Gymapp.  If not, see <http://www.gnu.org/licenses/>.
-*
-*			Copyright © 2012 GivDev
+*  along with Gymapp.  If not, see <http://www.gnu.org/licenses/>.		
 */
 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
