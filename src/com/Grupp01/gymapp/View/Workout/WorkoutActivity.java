@@ -1,19 +1,19 @@
 /*Copyright © 2012 GivDev
- * 
+ *
  * This file is part of Gymapp.
  *
- *   Gymapp is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
+ * Gymapp is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
- *   Gymapp is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *   GNU General Public License for more details.
+ * Gymapp is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
  *
- *   You should have received a copy of the GNU General Public License
- *  along with Gymapp.  If not, see <http://www.gnu.org/licenses/>.
+ * You should have received a copy of the GNU General Public License
+ * along with Gymapp. If not, see <http://www.gnu.org/licenses/>.
  *
  */
 package com.Grupp01.gymapp.View.Workout;
@@ -56,9 +56,9 @@ import com.actionbarsherlock.view.MenuItem;
  */
 public class WorkoutActivity extends SherlockActivity implements OnItemClickListener{
 
-	private final int cardioType = 1;
-	private final int dynamicType = 2;
-	private final int staticType = 3;
+	final int Cardio = 1;
+	final int Dynamic = 2;
+	final int Static = 3;
 	public final static String EXTRA_EXERCISE_ID = "com.Grupp01.gymapp.message.exercise.exercise";
 	public final static String EXTRA_WORKOUT_ID = "com.Grupp01.gymapp.message.exercise.workout";
 	private ListView listExercisesView;	//The listview that holds all the exercises for the workout
@@ -134,7 +134,7 @@ public class WorkoutActivity extends SherlockActivity implements OnItemClickList
 		//Set up listener and action for pressing the listview
 
 	}
-	
+
 	public void onItemClick(AdapterView<?> arg0, View v, int position,
 			long id) {
 		//Get the text label of the row that has been clicked (will be used to open the correct workout)
@@ -151,19 +151,19 @@ public class WorkoutActivity extends SherlockActivity implements OnItemClickList
 	 */
 	private void registerWorkoutResult(ExerciseData exercise){
 		//ONLY FOR TESTING DIFFERENT REGISTER ACTIVITY!!
-		if(exercise.getTypeId() == cardioType){
+		if(exercise.getTypeId() == 1){
 			Intent intent = new Intent(WorkoutActivity.this, RegisterCardioActivity.class);
 			intent.putExtra(EXTRA_EXERCISE_ID, exercise.getId());
 			intent.putExtra(EXTRA_WORKOUT_ID, workoutId);
 			startActivity(intent);
 		}
-		if(exercise.getTypeId() == dynamicType){
+		if(exercise.getTypeId() == 2){
 			Intent intent = new Intent(WorkoutActivity.this, RegisterDynamicActivity.class);
 			intent.putExtra(EXTRA_EXERCISE_ID, exercise.getId());
 			intent.putExtra(EXTRA_WORKOUT_ID, workoutId);
 			startActivity(intent);
 		}
-		if(exercise.getTypeId() == staticType){
+		if(exercise.getTypeId() == 3){
 			Intent intent = new Intent(WorkoutActivity.this, RegisterStaticActivity.class);
 			intent.putExtra(EXTRA_EXERCISE_ID, exercise.getId());
 			intent.putExtra(EXTRA_WORKOUT_ID, workoutId);
@@ -178,7 +178,7 @@ public class WorkoutActivity extends SherlockActivity implements OnItemClickList
 	{
 		WorkoutDbHandler dbHandler = new WorkoutDbHandler(this);
 		dbHandler.open();
-		String title = dbHandler.getWorkoutIdNameById(workoutId).getName();
+		String title = dbHandler.getWorkoutTemplateIdNameById(workoutId).getName();
 		setTitle(title);
 		dbHandler.close();
 	}
@@ -190,7 +190,7 @@ public class WorkoutActivity extends SherlockActivity implements OnItemClickList
 	{
 		WorkoutDbHandler dbHandler = new WorkoutDbHandler(this);
 		dbHandler.open();
-		exerciseDataList = dbHandler.getExerciseIdNameById(dbHandler.getExercisesbyWorkoutId(workoutId));
+		exerciseDataList = dbHandler.getExerciseIdNameById(dbHandler.getWorkoutTemplateExerciseByWorkoutTemplateId(workoutId));
 		dbHandler.close();
 	}
 	@Override
@@ -204,13 +204,15 @@ public class WorkoutActivity extends SherlockActivity implements OnItemClickList
 		listExercisesView.setOnItemClickListener(this);
 		buttonStart.setVisibility(View.GONE);
 		buttonDone.setVisibility(View.VISIBLE);
+		WorkoutDbHandler dbHandler = new WorkoutDbHandler(this);
+		dbHandler.open();
+		String tmp = dbHandler.getWorkoutTemplateIdNameById(workoutId).getName();
+		workoutId = dbHandler.addWorkout(tmp);
+		dbHandler.close();
 	}
 	public void done(View view)
 	{
 		listExercisesView.setOnItemClickListener(null);
 		finish();
 	}
-
 }
-
-

@@ -22,19 +22,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -61,14 +57,14 @@ import com.actionbarsherlock.view.MenuItem;
  * <p> Subpackage</p>
  *
  */
-public class ListWorkoutActivity extends SherlockActivity implements OnClickListener {
+public class ListWorkoutActivity extends SherlockActivity {
 
 
 	public final static String WORKOUT_ID = "com.Grupp01.gymapp.View.ListWorkoutActivity.WORKOUT.ID";
 	private ListView mainListView ; //This is the listview where the list of all workouts will be shown
 	private ArrayAdapter<String> listAdapter ; //Adapter used for the list
 	private List<IdName> idNameList;
-	private Dialog dialog;
+
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -111,22 +107,12 @@ public class ListWorkoutActivity extends SherlockActivity implements OnClickList
 
 			//when clicking "add workout" a dialog pops up with input for the name
 		case	R.id.menu_addWorkout:
-			initDialog();
+			openDialog();
 
 
 		default:
 			return super.onOptionsItemSelected(item);
 		}
-	}
-	public void initDialog()
-	{
-		dialog = new Dialog(this);
-		dialog.setContentView(R.layout.dialog);
-		dialog.setTitle(R.string.dialog_new_workout_title);
-		
-		((Button) dialog.findViewById(R.id.add_Button)).setOnClickListener( this);
-		((Button) dialog.findViewById(R.id.cancel_Button)).setOnClickListener( this);
-		dialog.show();
 	}
 
 
@@ -150,7 +136,7 @@ public class ListWorkoutActivity extends SherlockActivity implements OnClickList
 	public void onResume()
 	{
 		super.onResume();
-		createWorkoutList();		
+		createWorkoutList();	
 	}
 	/**
 	 * Is called when any of the options in the context menu is clicked.
@@ -161,13 +147,14 @@ public class ListWorkoutActivity extends SherlockActivity implements OnClickList
 	public boolean onContextItemSelected(android.view.MenuItem item) {
 		AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
 		int menuItemIndex = item.getItemId();
-		int workoutId = idNameList.get(info.position).getId();
+		String workoutName = mainListView.getAdapter().getItem(info.position).toString();
 		switch(menuItemIndex){
 		case 0:
-			editWorkouts(workoutId);
+			editWorkouts(workoutName);
 			return true;
 		case 1:
-			deleteWorkout(workoutId);
+
+			deleteWorkout(workoutName);
 			return true;
 		}
 		return true;
@@ -188,7 +175,7 @@ public class ListWorkoutActivity extends SherlockActivity implements OnClickList
 
 		WorkoutDbHandler dbHandler = new WorkoutDbHandler(this);
 		dbHandler.open();
-		idNameList = dbHandler.getWorkoutsIdName();
+		idNameList = dbHandler.getWorkoutTemplatesIdName();
 		dbHandler.close();
 
 		for(IdName temp: idNameList)
@@ -212,7 +199,10 @@ public class ListWorkoutActivity extends SherlockActivity implements OnClickList
 
 				//Get the text label of the row that has been clicked (will be used to open the correct workout)
 				int workoutId = idNameList.get(position).getId();
+				//String workoutName = mainListView.getAdapter().getItem(position).toString();
 				startNewWorkout(workoutId);
+
+
 			}// end of onItemClick
 		});// end of setOnItemClickListener
 
@@ -239,22 +229,18 @@ public class ListWorkoutActivity extends SherlockActivity implements OnClickList
 	 * "Delete" from the menu.
 	 * @param The name of the workout
 	 */
-	private void deleteWorkout(int id) {
-		
-		final int workoutId = id;
+	private void deleteWorkout(String workoutName) {
+
 		//Show a confirmation dialog before deleting
 		AlertDialog.Builder deleteDialog = new AlertDialog.Builder(this);
-		deleteDialog.setMessage("Are you sure you want to delete workout " + getWorkoutName(workoutId) +"?");
+		deleteDialog.setMessage("Are you sure you want to delete workout " + workoutName +"?");
 		deleteDialog.setCancelable(false);
 
 		//Set action for clicking "Yes" (the user wants to delete)
 		deleteDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int id) {
-				WorkoutDbHandler dbHandler = new WorkoutDbHandler(ListWorkoutActivity.this);
-				dbHandler.open();
-				dbHandler.deleteWorkoutTemplate(workoutId);
-				dbHandler.close();
-				createWorkoutList();
+
+				Toast.makeText(ListWorkoutActivity.this, "Not implementet yet!", Toast.LENGTH_SHORT).show();
 			} //End of onclick method
 		}	//end of DialogInterface
 				);	//End of setPositiveButton
@@ -279,10 +265,10 @@ public class ListWorkoutActivity extends SherlockActivity implements OnClickList
 	 * "Edit" from the menu. Will start EditWorkout to add/remove exercises.
 	 * @param workoutName The name of the workout
 	 */
-	private void editWorkouts(int workoutId) {
-		Intent intent = new Intent(this, com.Grupp01.gymapp.View.Workout.EditWorkoutActivity.class);
-		intent.putExtra(WORKOUT_ID, workoutId);
-		startActivity(intent);	
+	private void editWorkouts(String workoutName) {
+		//Intent intent = new Intent(this, com.Grupp01.gymapp.View.Workout.EditWorkoutActivity.class);
+		//intent.putExtra(WORKOUT_ID, workoutName);
+		//startActivity(intent);
 
 	}
 
@@ -291,21 +277,21 @@ public class ListWorkoutActivity extends SherlockActivity implements OnClickList
 	 * the person to write a name for the workout. When the user clicks "Add workout" in
 	 * the dialog the activity "EditWorkout" starts where you can add/remove exercises.
 	 */
-
 	private void openDialog()
 	{
 		//Variables for the dialog
-		final AlertDialog.Builder addWorkoutDialog = new AlertDialog.Builder(this);
-		final EditText editTextDialog = new EditText(this);
+		final AlertDialog.Builder addWorkout_Dialog = new AlertDialog.Builder(this);
+		final EditText editText_Dialog = new EditText(this);
 		final Intent intent2 = new Intent(this, com.Grupp01.gymapp.View.Workout.EditWorkoutActivity.class);
 
-		addWorkoutDialog.setMessage("Enter name of Workout:");
-		addWorkoutDialog.setView(editTextDialog);
+		addWorkout_Dialog.setMessage("Enter name of Workout:");
+		addWorkout_Dialog.setView(editText_Dialog);
 
 
 		//If pressing "Add Workout" on the dialog
-		addWorkoutDialog.setPositiveButton("Add Workout", new DialogInterface.OnClickListener()
+		addWorkout_Dialog.setPositiveButton("Add Workout", new DialogInterface.OnClickListener()
 		{
+
 			/** When the user clicked "Add workout"
 			 * go to EditWorkout
 			 * if nothing is inputed, the dialog closes and
@@ -313,7 +299,8 @@ public class ListWorkoutActivity extends SherlockActivity implements OnClickList
 			 * */
 			public void onClick(DialogInterface dialog, int whichButton)
 			{
-				String workoutName = editTextDialog.getText().toString();
+				String workoutName = editText_Dialog.getText().toString();
+
 				if(workoutName.trim().equals(""))
 				{
 					dialog.cancel();
@@ -323,11 +310,13 @@ public class ListWorkoutActivity extends SherlockActivity implements OnClickList
 				int id = newWorkoutToDatabase(workoutName);
 				intent2.putExtra(WORKOUT_ID, id);
 				startActivity(intent2);
+
 			}
 		});
 		//If pressing "Cancel" on the dialog
-		addWorkoutDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener()
+		addWorkout_Dialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener()
 		{
+
 			/** Close dialog if the user press cancel*/
 			@Override
 			public void onClick(DialogInterface dialog, int whichButton)
@@ -335,9 +324,8 @@ public class ListWorkoutActivity extends SherlockActivity implements OnClickList
 				dialog.cancel();
 			}
 		});
-		addWorkoutDialog.show();
+		addWorkout_Dialog.show();
 	}
-
 
 	/**
 	 * Put the new Workout to database. Only the WorkoutName is put to database
@@ -350,47 +338,5 @@ public class ListWorkoutActivity extends SherlockActivity implements OnClickList
 		int id = dbHandler.addWorkoutTemplate(workoutName);
 		dbHandler.close();
 		return id;
-	}
-
-
-	@Override
-	public void onClick(View view) {
-		final Intent intent2 = new Intent(this, com.Grupp01.gymapp.View.Workout.EditWorkoutActivity.class);
-		if(view == ((Button) dialog.findViewById(R.id.add_Button)))
-		{
-			//takes the text from exercise name textfield and puts it to AddExercise intent
-			//if the string is not empty
-			EditText newWorkoutNameField = (EditText) dialog.findViewById(R.id.exerciseName);
-			String stringName = newWorkoutNameField.getText().toString();
-			if(stringName.trim().length() > 0)
-			{
-				
-				//Add the name of the workout to the intent so the next activity can get the name
-				int id = newWorkoutToDatabase(stringName);
-				intent2.putExtra(WORKOUT_ID, id);
-				dialog.dismiss();
-				startActivity(intent2);
-			}
-			else
-			{
-				newWorkoutNameField.setText("");
-				newWorkoutNameField.setHint(R.string.invalid_value);
-				newWorkoutNameField.setHintTextColor(Color.RED);
-			}
-		}
-		else if(view == ((Button) dialog.findViewById(R.id.cancel_Button)))
-		{
-			dialog.dismiss();
-		}
-		
-	}
-	
-	public String getWorkoutName(int workoutId)
-	{
-		WorkoutDbHandler dbHandler = new WorkoutDbHandler(this);
-		dbHandler.open();
-		String workoutName = dbHandler.getWorkoutIdNameById(workoutId).getName();
-		dbHandler.close();
-		return workoutName;
 	}
 }

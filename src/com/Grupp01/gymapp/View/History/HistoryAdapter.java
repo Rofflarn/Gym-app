@@ -19,6 +19,8 @@ package com.Grupp01.gymapp.View.History;
 import java.util.LinkedList;
 import java.util.List;
 import com.Grupp01.gymapp.R;
+import com.Grupp01.gymapp.Controller.History.PerformedWorkoutData;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,10 +39,10 @@ import android.widget.TextView;
  * @date 
  *
  */
-public class HistoryAdapter extends ArrayAdapter<History>{
+public class HistoryAdapter extends ArrayAdapter<PerformedWorkoutData>{
 	
 	//This is our list of history types
-	private LinkedList<History> historyList;
+	private LinkedList<PerformedWorkoutData> historyList;
 	
 	/**
 	 * Constructor of HistoryAdapter
@@ -50,11 +52,11 @@ public class HistoryAdapter extends ArrayAdapter<History>{
 	 * @param objects	The list with History objects which will be displayed in the view. 
 	 */
 	public HistoryAdapter(Context context, int textViewResourceId,
-			List<History> objects) {
+			List<PerformedWorkoutData> objects) {
 		super(context, textViewResourceId, objects);
 		
 		//Set the list to be the same as the passed one (the list which is passed on from calling activity)
-		historyList = (LinkedList<History>) objects;
+		historyList = (LinkedList<PerformedWorkoutData>) objects;
 	}
 	
 	
@@ -81,7 +83,7 @@ public class HistoryAdapter extends ArrayAdapter<History>{
 		}
 		
 		//Get the History object at the current position (as we iterate through the linked list
-		History h = historyList.get(position);
+		PerformedWorkoutData h = historyList.get(position);
 		if(h != null){
 			
 			//Update the textview in the list that holds the name.

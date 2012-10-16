@@ -17,12 +17,20 @@
 package com.Grupp01.gymapp.View.History;
 
 import java.util.LinkedList;
+import java.util.List;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 
 import com.Grupp01.gymapp.MainActivity;
 import com.Grupp01.gymapp.R;
+import com.Grupp01.gymapp.Controller.History.ExerciseIdTypeId;
+import com.Grupp01.gymapp.Controller.History.HistoryDbHandler;
+import com.Grupp01.gymapp.Controller.History.PerformedSetsData;
+import com.Grupp01.gymapp.Controller.History.PerformedWorkoutData;
+import com.Grupp01.gymapp.Controller.Workout.SetsData;
 import com.actionbarsherlock.app.SherlockListActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
@@ -40,8 +48,16 @@ import com.actionbarsherlock.view.MenuItem;
  */
 public class ShowSingleHistoryActivity extends SherlockListActivity {
 	
+	private static final int INTENT_INT_DEFAULT_VALUE = 0;
+	private List<ExerciseIdTypeId> exerciseIdTypeIdList;
+	private List<SetsData> cardioSetsList;
+	private List<Integer> exerciseIdList;
+	private List<PerformedSetsData> exerciseNameSetsStringList;
+	private String distanceUnit;
+	private String weightUnit;
+	
 	//THis is the list with every performed exercise, will be fetched from the database.
-	private LinkedList<History> hList = new LinkedList<History>();
+	private LinkedList<PerformedWorkoutData> hList = new LinkedList<PerformedWorkoutData>();
 	
 	//This is the adapter we use to adapt the list to the layout.
 	
@@ -58,10 +74,39 @@ public class ShowSingleHistoryActivity extends SherlockListActivity {
         
         //Get the intent and ID which was passed as Extra.
         Intent intent = getIntent();
-        
-        //This row is just dummy until database connection works. ID will be used to 
-        //fetch exercises for performed workout with this id.
-        setTitle(intent.getStringExtra("id"));
+        exerciseNameSetsStringList = new LinkedList<PerformedSetsData>();
+        int workoutId = intent.getIntExtra(ListHistoryActivity.HISTORY_ID, INTENT_INT_DEFAULT_VALUE);
+        HistoryDbHandler dbHandler = new HistoryDbHandler(this);
+        setDistanceWeightUnit();
+        exerciseIdList = new LinkedList<Integer>();
+        exerciseIdList = dbHandler.getAllExerciseIdFromPerformedWorkout(workoutId);
+        exerciseIdTypeIdList = dbHandler.getExerciseIdTypeIdList(exerciseIdList);
+        for(ExerciseIdTypeId idTypeId: exerciseIdTypeIdList)
+        {
+        	if(idTypeId.getId() == 1)
+        	{
+        		StringBuffer setsString = new StringBuffer();
+        		cardioSetsList = new LinkedList<SetsData>();
+        		cardioSetsList = dbHandler.getPerformedCardioSets(idTypeId.getId(), workoutId);
+        		for(SetsData setData: cardioSetsList)
+        		{
+        			setsString.append(setData.getDuration());
+        			setsString.append("x");
+        			setsString.append(setData.getDistance());
+        			setsString.append(distanceUnit + ", ");
+        		}
+        		exerciseNameSetsStringList.add(new PerformedSetsData())
+    			
+        	}
+        	else if(idTypeId.getId() == 2)
+        	{
+        		//Kör dynamic printout
+        	}
+        	else
+        	{
+        		//Kör static printout
+        	}
+        }
         
         //create the list.
         createList();
@@ -95,14 +140,7 @@ public class ShowSingleHistoryActivity extends SherlockListActivity {
 	private void createList() {
 		
 		//Dummy list until database connection works
-		hList.add(new History("Övning 1", "10 kg"));
-		hList.add(new History("Övning 2", "20 kg"));
-		hList.add(new History("Övning 3", "30 kg"));
-		hList.add(new History("Övning 4", "40 kg"));
-		hList.add(new History("Övning 5", "50 kg"));
-		hList.add(new History("Övning 6", "60 kg"));
-		hList.add(new History("Övning 7", "70 kg"));
-		hList.add(new History("Övning 8", "80 kg"));
+		
 		
 		//Set up the adapter we use to create the listview.
 		HistoryAdapter hAdapter = new HistoryAdapter(this, R.layout.history_list_layout, hList);
@@ -131,5 +169,14 @@ public class ShowSingleHistoryActivity extends SherlockListActivity {
     		default:
     			return super.onOptionsItemSelected(item);
     	}
+    	
+    	
     }
+    
+    private void setDistanceWeightUnit() {
+		SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+		distanceUnit = sharedPref.getString("pref_key_distance", "km");
+		weightUnit = sharedPref.getString("pref_key_weight", "kg");
+		
+	}
 }
