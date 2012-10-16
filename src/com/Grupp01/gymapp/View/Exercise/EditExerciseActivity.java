@@ -22,6 +22,7 @@ package com.Grupp01.gymapp.View.Exercise;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -29,6 +30,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.Grupp01.gymapp.MainActivity;
 import com.Grupp01.gymapp.R;
 import com.Grupp01.gymapp.Controller.IdName;
 import com.Grupp01.gymapp.Controller.Exercise.EditExerciseDbHandler;
@@ -86,6 +88,23 @@ public class EditExerciseActivity extends SherlockActivity implements
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getSupportMenuInflater();
 		inflater.inflate(R.menu.universal_menu, menu);
+		getSupportActionBar().setHomeButtonEnabled(true);
+		return true;
+	}
+	/** The method listens to the home button
+	 * @param item the item that has been clicked
+	 * @return true
+	 */     
+	@Override
+	public boolean onOptionsItemSelected(com.actionbarsherlock.view.MenuItem item)
+	{
+			//from developer.android.com
+			Intent parentActivityIntent = new Intent(this, MainActivity.class);
+			parentActivityIntent.addFlags(
+					Intent.FLAG_ACTIVITY_CLEAR_TOP |
+					Intent.FLAG_ACTIVITY_NEW_TASK);
+			startActivity(parentActivityIntent);
+			finish();
 		return true;
 	}
 	/**
@@ -95,7 +114,6 @@ public class EditExerciseActivity extends SherlockActivity implements
 		//conditional if to prevent infinite loop
 		if(!listTrainingType.get(position).equals(currentView)) 
 		{
-
 			if(listTrainingType.get(position).equals("Static"))
 			{
 				//Switches the layout to the one that is used for static and dynamic
