@@ -24,7 +24,9 @@ public class TestProfile extends ActivityInstrumentationTestCase2<MainActivity> 
 	 */
 	public void testOpenProfile()
 	{
+		//Clicks on profile button
 		solo.clickOnImageButton(4);
+		//Checks that profile activity is shown
 		solo.assertCurrentActivity("Wrong activity", ProfileActivity.class);
 	}
 	
@@ -33,7 +35,9 @@ public class TestProfile extends ActivityInstrumentationTestCase2<MainActivity> 
 	 */
 	public void testAddProfile()
 	{
+		//Clicks on profile button
 		solo.clickOnImageButton(4);
+		//Fills in all textboxes
 		solo.typeText(0, "name");
 		solo.sleep(1);
 		solo.typeText(1, "1");
@@ -41,7 +45,9 @@ public class TestProfile extends ActivityInstrumentationTestCase2<MainActivity> 
 		solo.typeText(2, "180");
 		solo.sleep(1);
 		solo.typeText(3, "70");
+		//Clicks uppdate profile button
 		solo.clickOnButton(0);
+		//Checks that main activity is shown
 		solo.assertCurrentActivity("Wrong activity", MainActivity.class);
 	}
 	
@@ -50,8 +56,11 @@ public class TestProfile extends ActivityInstrumentationTestCase2<MainActivity> 
 	 */
 	public void testAbortAddProfile()
 	{
+		//Clicks on profile button
 		solo.clickOnImageButton(4);
+		//Clicks cancel button
 		solo.clickOnButton(1);
+		//Checks that main activity is shown
 		solo.assertCurrentActivity("Wrong activity", MainActivity.class);
 	}
 	
@@ -61,13 +70,17 @@ public class TestProfile extends ActivityInstrumentationTestCase2<MainActivity> 
 	 */
 	public void testEmptyName()
 	{
+		//Clicks on profile button
 		solo.clickOnImageButton(4);
+		//Fills in all textboxes exept name
 		solo.typeText(1, "1");
 		solo.sleep(1);
 		solo.typeText(2, "180");
 		solo.sleep(1);
 		solo.typeText(3, "70");
+		//Clicks uppdate profile button
 		solo.clickOnButton(0);
+		//Checks that a error message is shown
 		assertTrue("Should generate error message", solo.searchText("Fill in correct information"));
 	}
 	
@@ -77,13 +90,17 @@ public class TestProfile extends ActivityInstrumentationTestCase2<MainActivity> 
 	 */
 	public void testEmptyAge()
 	{
+		//Clicks on profile button
 		solo.clickOnImageButton(4);
+		//Fills in all textboxes exept age
 		solo.typeText(0, "name");
 		solo.sleep(1);
 		solo.typeText(2, "180");
 		solo.sleep(1);
 		solo.typeText(3, "70");
+		//Clicks uppdate profile button
 		solo.clickOnButton(0);
+		//Checks that a error message is shown
 		assertTrue("Should generate error message", solo.searchText("Fill in correct information"));
 	}
 	
@@ -93,13 +110,17 @@ public class TestProfile extends ActivityInstrumentationTestCase2<MainActivity> 
 	 */
 	public void testEmptyLength()
 	{
+		//Clicks on profile button
 		solo.clickOnImageButton(4);
+		//Fills in all textboxes exept length
 		solo.typeText(0, "name");
 		solo.sleep(1);
 		solo.typeText(1, "1");
 		solo.sleep(1);
 		solo.typeText(3, "70");
+		//Clicks uppdate profile button
 		solo.clickOnButton(0);
+		//Checks that a error message is shown
 		assertTrue("Should generate error message", solo.searchText("Fill in correct information"));
 	}
 	
@@ -109,13 +130,17 @@ public class TestProfile extends ActivityInstrumentationTestCase2<MainActivity> 
 	 */
 	public void testEmptyWeigth()
 	{
+		//Clicks on profile button
 		solo.clickOnImageButton(4);
+		//Fills in all textboxes exept weigth
 		solo.typeText(0, "name");
 		solo.sleep(1);
 		solo.typeText(1, "1");
 		solo.sleep(1);
 		solo.typeText(2, "180");
+		//Clicks uppdate profile button
 		solo.clickOnButton(0);
+		//Checks that a error message is shown
 		assertTrue("Should generate error message", solo.searchText("Fill in correct information"));
 	}
 	
