@@ -64,6 +64,19 @@ public class WorkoutDbHandler extends Database {
 		close();
 		return idNameList;
 	}
+	
+	public IdName getWorkoutTemplateIdNameById(int workoutId)
+	{
+		open();
+		Cursor c = ourDatabase.rawQuery("SELECT WorkoutTemplateId, WorkoutTemplateName FROM WorkoutTemplates WHERE " + 
+				"WorkoutTemplateId= '" + workoutId + "';", null);
+		c.moveToFirst();
+		IdName temp = new IdName(c.getInt(c.getColumnIndex("WorkoutTemplateId")),c.getString(c.getColumnIndex("WorkoutTemplateName")));
+		c.close();
+		close();
+		return temp;
+
+	}
 
 	/**
 	 * Returns the specific
