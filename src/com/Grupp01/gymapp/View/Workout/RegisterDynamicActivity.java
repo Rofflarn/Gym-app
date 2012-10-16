@@ -57,14 +57,14 @@ import com.actionbarsherlock.view.MenuItem;
 public class RegisterDynamicActivity extends SherlockActivity {
 	private static final String EMPTY = "";
 	private static final String ZERO = "0";
-	private final int intentIntDefaultValue = 0;
+	private static final int INTENT_INT_DEFAULT_VALUE = 0;
 	private int exerciseId;
 	private int workoutId;
 	private ExerciseData exercise;
-	
+
 	//The list where new sets are added and removed.
 	private List<SetsData> dynamicSetsList = new LinkedList<SetsData>();
-	
+
 	private String weightUnit;
 
 	/**
@@ -73,23 +73,47 @@ public class RegisterDynamicActivity extends SherlockActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+		//Set the layout of the activity
 		setContentView(R.layout.activity_register_dynamic);
-		exerciseId = getIntent().getIntExtra(WorkoutActivity.EXTRA_EXERCISE_ID, intentIntDefaultValue);
-		workoutId = getIntent().getIntExtra(WorkoutActivity.EXTRA_WORKOUT_ID, intentIntDefaultValue);
+
+		//Get the id of the specific exercise at the current workout 
+		//which is sent via the intent
+		exerciseId = getIntent().
+				getIntExtra(WorkoutActivity.EXTRA_EXERCISE_ID, INTENT_INT_DEFAULT_VALUE);
+		workoutId = getIntent().
+				getIntExtra(WorkoutActivity.EXTRA_WORKOUT_ID, INTENT_INT_DEFAULT_VALUE);
+
+		//Get information related to the current exercise
 		getExerciseData();
+
+		//Set up the title to the exercise name
 		setTitle(exercise.getName());
+
+		//Show the user his/hers personal note
 		setNoteText();
+
+		//Set the weight to the unit the user has chosen from settings menu.
 		setWeightUnit();
+
 		//Show the sets (reps and weight) for the last time this
 		//exercise was performed.
 		setLastSetString();
 	}
 
-
+	/**
+	 * The weight unit is set in the applications SharedPreferences.
+	 * It is set the first time the application starts and can then be changed
+	 * by the user via the settings menu.
+	 * This method will get the weight unit to display it in this activity.
+	 */
 	private void setWeightUnit() {
-			SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-			weightUnit = sharedPref.getString("pref_key_weight", "kg");
-	
+		//Get the shared preferences
+		SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+
+		//Get the value from the key corresponding to "weight" unit
+		weightUnit = sharedPref.getString("pref_key_weight", "kg");
+
 	}
 
 
@@ -130,16 +154,29 @@ public class RegisterDynamicActivity extends SherlockActivity {
 	 * that shows the time and weight for when performing this exercise last time.
 	 */
 	private void setLastSetString() {
-		List<SetsData> dynamicSetsList = new LinkedList<SetsData>();
+
+		//Create the help object to read from the database
 		RegisterDbHandler dbHandler = new RegisterDbHandler(this);
+
+		//Temporary stringbuffer which will hold all prev. sets
 		StringBuffer sets = new StringBuffer();
+
+		//Textview that will display the final string from stringbuffer
 		TextView latestSets = (TextView) findViewById(R.id.lastTimeSets);
 		dbHandler.open();
-		dynamicSetsList = dbHandler.getPreviouslyDynamicSets(workoutId, exerciseId, exercise.getTypeId());
+
+		//List of 4 previous sets for this exercise.
+		List<SetsData> dynamicSetsList = dbHandler.getPreviouslyDynamicSets(workoutId, 
+				exerciseId, exercise.getTypeId());
+
+		//The exercise has never been performed, set to text.
 		if(dynamicSetsList.size() == 0)
 		{
 			latestSets.setText(EMPTY);
 		}
+
+		//The exercise has been performed. Display the sets in form of "Reps"x"Weight"[weight unit]
+		//i.e 8x12kg, 8x12kg, 8x12kg etc.
 		else
 		{
 			for (SetsData setData : dynamicSetsList)
@@ -151,6 +188,7 @@ public class RegisterDynamicActivity extends SherlockActivity {
 				sets.append(" " + weightUnit + ",");
 			}
 
+			//Show final result in the view to the user.
 			latestSets.setText(sets);
 		}
 		dbHandler.close();
@@ -170,26 +208,29 @@ public class RegisterDynamicActivity extends SherlockActivity {
 			finish();
 			break;
 
-			//OK button pressed, exit and save to database
+		//OK button pressed, exit and save to database
 		case R.id.dynamicButtonOK:
 			saveSetsToDatabase();
 			finish();
 			break;
 
-			//Finish set pressed, add the reps and weight to the array
+		//Finish set pressed, add the reps and weight to the array
 		case R.id.dynamicFinishSet:
 			addNewSet();
 			break;
 
-			//Undo set pressed, remove the latest set from the array.
+		//Undo set pressed, remove the latest set from the array.
 		case R.id.dynamicUndoSet:
 			removeLatestSet();
 			break;
 		}
 	}
 
+	/**
+	 * This method will set the personal note of the current exercise to the user.
+	 */
 	private void setNoteText()
-	{
+	{	
 		TextView notes = (TextView) findViewById(R.id.myNoteText);
 		notes.setText(exercise.getNote());
 	}
@@ -199,11 +240,17 @@ public class RegisterDynamicActivity extends SherlockActivity {
 	 * to the database before this activity terminates.
 	 */
 	private void saveSetsToDatabase() {
+		
+		//Create and open the database help object
 		RegisterDbHandler dbHandler = new RegisterDbHandler(this);
 		dbHandler.open();
+		
+		//For each set that has been added to the list, write it to the database
+		//One set = one entry in database.
 		for(SetsData setData: dynamicSetsList)
 		{
-			dbHandler.addDynamicSet(setData.getWeight(), setData.getReps(), setData.getworkoutId(), setData.getexerciseid());
+			dbHandler.addDynamicSet(setData.getWeight(), setData.getReps(), 
+					setData.getworkoutId(), setData.getexerciseid());
 		}	
 		dbHandler.close();
 	}
