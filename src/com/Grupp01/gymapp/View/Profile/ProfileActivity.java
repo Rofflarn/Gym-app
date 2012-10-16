@@ -75,8 +75,8 @@ public class ProfileActivity extends SherlockActivity {
     	String namn = ((EditText)findViewById(R.id.name)).getText().toString();
     	String age = ((EditText)findViewById(R.id.age)).getText().toString();
     	String length = ((EditText)findViewById(R.id.length)).getText().toString();
-    	String weigh = ((EditText)findViewById(R.id.weigh)).getText().toString();
-    	if(namn.length() == 0 || age.length() == 0 || length.length() == 0 || weigh.length() == 0)
+    	String weight = ((EditText)findViewById(R.id.weight)).getText().toString();
+    	if(namn.length() == 0 || age.length() == 0 || length.length() == 0 || weight.length() == 0)
     	{
     		Toast.makeText(this, "Fill in correct information", Toast.LENGTH_SHORT).show();
     	}
@@ -84,7 +84,7 @@ public class ProfileActivity extends SherlockActivity {
     	{
     		Integer.parseInt(age);
     		Double.parseDouble(length);
-    		Double.parseDouble(weigh);
+    		Double.parseDouble(weight);
     	}
     }
     

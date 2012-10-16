@@ -11,7 +11,7 @@
     <string name="name">Name</string>
     <string name="age">Age</string>
     <string name="length">Length</string>
-    <string name="weigh">Weigh</string>
+    <string name="weight">Weight</string>
     <string name="buttonUppdate">Uppdate Profile</string>
     <string name="trainingtype_prompt">Choose type of training</string>
     <string name="primary_muscletype_prompt">Primary muscle</string>
