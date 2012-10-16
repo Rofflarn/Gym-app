@@ -21,7 +21,6 @@ package com.Grupp01.gymapp.test;
 
 
 
-import android.os.RemoteException;
 import android.test.ActivityInstrumentationTestCase2;
 import android.widget.TextView;
 
@@ -45,18 +44,20 @@ import com.jayway.android.robotium.solo.Solo;
 public class TestWorkout extends ActivityInstrumentationTestCase2<ListWorkoutActivity> {
 
 	private Solo solo;
+	private static final String WORKOUT_NAME = "WORKOUT_NAME";
+	private static final String JOELS = "Joels";
+	private static final String ADD_WORKOUT = "ADD WORKOUT";
+	private static final String WRONG_ACTIVITY = "Wrong activity"; 
+	private static final String ADD_SET = "Add set";
+	private static final String BENCH_PRESS = "Bench press";
+	private static final String CHINS = "Chins";
+	private static final String PUSH_UPS = "Push-ups";
+	private static final int TIME = 500;
+	
 	public TestWorkout()
 	{
-		super("com.Grupp01.gymapp", ListWorkoutActivity.class);
+		super(ListWorkoutActivity.class);
 	}
-	
-	private static final String workoutName = "workout";
-	private static final String addWorkout = "addWorkout";
-	private static final String wrongActivity = "Wrong Activity";
-	private static final String benchPress = "Bench press";
-	private static final String addSet = "Add set";
-	private static final String chins = "Chins";
-	private static final String joels = "Joels";
 
 	protected void setUp() throws Exception {
 		super.setUp();
@@ -68,7 +69,7 @@ public class TestWorkout extends ActivityInstrumentationTestCase2<ListWorkoutAct
 	 */
 	public void testOpenWorkout()
 	{		
-		solo.assertCurrentActivity(wrongActivity, ListWorkoutActivity.class);
+		solo.assertCurrentActivity(WRONG_ACTIVITY, ListWorkoutActivity.class);
 	}
 	
 	/**Testing to add a workout, if the EditWorkoutActivity starts afterwards and the workout is existing in the database
@@ -77,12 +78,12 @@ public class TestWorkout extends ActivityInstrumentationTestCase2<ListWorkoutAct
 	 */
 	public void testAddAWorkout()
 	{		
-		solo.clickOnMenuItem(addWorkout);
-		solo.enterText(0, workoutName);
+		solo.clickOnMenuItem(ADD_WORKOUT);
+		solo.enterText(0, WORKOUT_NAME);
+		solo.sleep(TIME);
 		solo.clickOnButton(1);
-		solo.goBack();
-		solo.clickOnText(workoutName);
-		solo.assertCurrentActivity(wrongActivity, EditWorkoutActivity.class);
+		solo.clickOnText(WORKOUT_NAME);
+		solo.assertCurrentActivity("Wrong Activity", EditWorkoutActivity.class);
 	}
 	
 	/**Testing that the workout that was added before is still there. If it's there, the
@@ -91,7 +92,7 @@ public class TestWorkout extends ActivityInstrumentationTestCase2<ListWorkoutAct
 	 */
 	public void testIfAWorkoutIsSaved()
 	{
-		assertTrue("Don't exist", solo.searchButton(workoutName));
+		assertTrue("Don't exist", solo.searchButton(WORKOUT_NAME));
 	}
 	
 	/**Testing to add a workout and is checking if the titled that has been used is the title of the workout
@@ -100,10 +101,10 @@ public class TestWorkout extends ActivityInstrumentationTestCase2<ListWorkoutAct
 	public void testAddAWorkoutGetTitle()
 	{		
 		String test = "testingåäö-?.;+";
-		solo.clickOnMenuItem(addWorkout);
+		solo.clickOnMenuItem(ADD_WORKOUT);
 		solo.enterText(0, test);
 		solo.clickOnButton(1);
-		solo.sleep(500);
+		solo.sleep(TIME);
 		assertEquals(test, (((SherlockActivity) solo.getCurrentActivity()).getSupportActionBar().getTitle()));
 	}
 	
@@ -113,10 +114,10 @@ public class TestWorkout extends ActivityInstrumentationTestCase2<ListWorkoutAct
 	 */
 	public void testCancelAddWorkoutDialog()
 	{
-		solo.clickOnMenuItem(addWorkout);
+		solo.clickOnMenuItem(ADD_WORKOUT);
 		solo.clickOnButton(0);
 		//If you can't cancel the dialog, then this test will fail since you can't press the menu item if the dialog is up
-		solo.clickOnMenuItem(addWorkout);
+		solo.clickOnMenuItem(ADD_WORKOUT);
 	}
 	
 	/**Testing to search for a exercise, if all the exercise has the correct attributes
@@ -130,7 +131,7 @@ public class TestWorkout extends ActivityInstrumentationTestCase2<ListWorkoutAct
 		solo.clickInList(0);
 		solo.clickOnMenuItem("EDIT WORKOUT!");
 		solo.pressSpinnerItem(0, 3);
-		solo.sleep(1000);
+		solo.sleep(TIME);
 	}*/
 	
 	/**Testing to start EditWorkout, if the activity starts, the test is ok.
@@ -138,10 +139,10 @@ public class TestWorkout extends ActivityInstrumentationTestCase2<ListWorkoutAct
 	 */
 	public void testStartEditWorkoutActivity()
 	{
-		solo.clickOnMenuItem(addWorkout);
-		solo.enterText(0, workoutName);
+		solo.clickOnMenuItem(ADD_WORKOUT);
+		solo.enterText(0, WORKOUT_NAME);
 		solo.clickOnButton(1);
-		solo.assertCurrentActivity(wrongActivity, EditWorkoutActivity.class);
+		solo.assertCurrentActivity(WRONG_ACTIVITY, EditWorkoutActivity.class);
 	}
 	
 	/**Testing that the "longclick-function to edit" works. After longclicking robotium
@@ -151,9 +152,9 @@ public class TestWorkout extends ActivityInstrumentationTestCase2<ListWorkoutAct
 	 */
 	public void testLongClickEdit()
 	{
-		solo.clickLongOnText(joels);
+		solo.clickLongOnText(JOELS);
 		solo.clickOnText("Edit");
-		solo.assertCurrentActivity(wrongActivity, EditWorkoutActivity.class);
+		solo.assertCurrentActivity(WRONG_ACTIVITY, EditWorkoutActivity.class);
 	}
 	
 	/** Testing if an exercise is checked, if the exercise is checked after pressing it,
@@ -162,12 +163,12 @@ public class TestWorkout extends ActivityInstrumentationTestCase2<ListWorkoutAct
 	 */
 	public void testCheckedActivityOnSave()
 	{
-		solo.clickOnMenuItem(addWorkout);
-		solo.enterText(0, workoutName);
+		solo.clickOnMenuItem(ADD_WORKOUT);
+		solo.enterText(0, WORKOUT_NAME);
 		solo.clickOnButton(1);
 		solo.clickInList(0);
 		solo.goBack();
-		solo.clickOnText(workoutName);
+		solo.clickOnText(WORKOUT_NAME);
 		assertTrue(solo.isCheckBoxChecked(0));
 	}
 	
@@ -177,8 +178,8 @@ public class TestWorkout extends ActivityInstrumentationTestCase2<ListWorkoutAct
 	 */
 	public void testCheckedActivityOnSaveExistInWorkout()
 	{
-		solo.clickOnText(workoutName);
-		assertTrue(solo.searchText(chins));
+		solo.clickOnText(WORKOUT_NAME);
+		assertTrue(solo.searchText(CHINS));
 	}
 	
 	/** Testing if an exercise is unchecked, if the exercise is unchecked after pressing it two times
@@ -188,14 +189,14 @@ public class TestWorkout extends ActivityInstrumentationTestCase2<ListWorkoutAct
 	 */
 	public void testNotCheckedActivityOnSave()
 	{
-		solo.clickOnMenuItem(addWorkout);
-		solo.enterText(0, workoutName);
+		solo.clickOnMenuItem(ADD_WORKOUT);
+		solo.enterText(0, WORKOUT_NAME);
 		solo.clickOnButton(1);
 		solo.clickInList(0);
-		solo.sleep(1000);
+		solo.sleep(TIME);
 		solo.clickInList(0);
 		solo.goBack();
-		solo.clickOnText(workoutName);
+		solo.clickOnText(WORKOUT_NAME);
 		assertFalse(solo.isCheckBoxChecked(0));
 	}
 	
@@ -205,8 +206,8 @@ public class TestWorkout extends ActivityInstrumentationTestCase2<ListWorkoutAct
 	 */
 	public void testNotCheckedActivityOnSaveNotExistInWorkout()
 	{
-		solo.clickOnText(workoutName);
-		assertFalse(solo.searchText(chins));
+		solo.clickOnText(WORKOUT_NAME);
+		assertFalse(solo.searchText(CHINS));
 	}
 	
 	/**Testing that the "longclick-function to delete" works. After longclicking robotium
@@ -215,10 +216,10 @@ public class TestWorkout extends ActivityInstrumentationTestCase2<ListWorkoutAct
 	 */
 	public void testLongClickDelete()
 	{
-		solo.clickLongOnText(workoutName);
+		solo.clickLongOnText(WORKOUT_NAME);
 		solo.clickOnText("Delete");
 		solo.clickOnText("Yes");
-		assertFalse(solo.searchText(workoutName));
+		assertFalse(solo.searchText(WORKOUT_NAME));
 	}
 	
 	/**Testing to start a cardio-exercise. If the exercise is started,
@@ -227,25 +228,25 @@ public class TestWorkout extends ActivityInstrumentationTestCase2<ListWorkoutAct
 	 */
 	public void testToStartAnCardioExercise()
 	{
-		solo.clickOnText(joels);
-		solo.clickOnText(chins);
-		solo.assertCurrentActivity("Failed to launch cardio exercise", RegisterCardioActivity.class);
+		solo.clickOnText(JOELS);
+		solo.clickOnText(CHINS);
+		solo.assertCurrentActivity(WRONG_ACTIVITY, RegisterCardioActivity.class);
 	}
 	
-	/**Testing to register an invalid time(in our case, 0 minutes and 0 seconds).
+	/**Testing to register an invalid TIME(in our case, 0 minutes and 0 seconds).
 	 * When adding the set, no set is added. If nothing is added, test is ok.
 	 * Reference to Test-case in documentation: 2.10
 	 */
 	public void testRegisterCardioNotValidTime()
 	{
-		solo.clickOnText(joels);
-		solo.clickOnText(chins);
+		solo.clickOnText(JOELS);
+		solo.clickOnText(CHINS);
 
-		//Add one set with invalid time and make sure nothing has changed
+		//Add one set with invalid TIME and make sure nothing has changed
 		solo.enterText(0, "0");
 		solo.enterText(1, "0");
 		solo.enterText(2, "3");
-		solo.clickOnButton(addSet);
+		solo.clickOnButton(ADD_SET);
 		TextView text = (TextView) solo.getView(com.Grupp01.gymapp.R.id.thisTimeSetsCardio);
 		assertEquals("", text.getText());
 	}
@@ -254,34 +255,34 @@ public class TestWorkout extends ActivityInstrumentationTestCase2<ListWorkoutAct
 		 /*
 			public void testRegisterCardioTimeNoLetters()
 		{
-			solo.clickOnText(joels);
-			solo.clickOnText(chins);
+			solo.clickOnText(JOELS);
+			solo.clickOnText(CHINS);
 
-			//Add one set with invalid time and make sure nothing has changed
-			solo.enterText(0, workoutName);
-			solo.enterText(1, workoutName);
+			//Add one set with invalid TIME and make sure nothing has changed
+			solo.enterText(0, WORKOUT_NAME);
+			solo.enterText(1, WORKOUT_NAME);
 			solo.enterText(2, "3");
-			solo.clickOnButton(addSet);
+			solo.clickOnButton(ADD_SET);
 			TextView text = (TextView) solo.getView(com.Grupp01.gymapp.R.id.thisTimeSetsCardio);
 			assertEquals("", text.getText());
 		}
 		*/
 	
-	/**Testing to register an valid time in Cardio, if the set exist,
+	/**Testing to register an valid TIME in Cardio, if the set exist,
 	 * the test is ok.
 	 * Reference to Test-case in documentation: 2.11
 	 */
 	public void testRegisterCardioValidTime()
 	{
-		solo.clickOnText(joels);
-		solo.clickOnText(chins);
+		solo.clickOnText(JOELS);
+		solo.clickOnText(CHINS);
 
-		//Add one set with invalid time and make sure nothing has changed
+		//Add one set with invalid TIME and make sure nothing has changed
 		solo.enterText(0, "16");
 		solo.enterText(1, "10");
 		solo.enterText(2, "8");
-		solo.clickOnButton(addSet);
-		solo.sleep(500);
+		solo.clickOnButton(ADD_SET);
+		solo.sleep(TIME);
 		TextView text = (TextView) solo.getView(com.Grupp01.gymapp.R.id.thisTimeSetsCardio);
 		assertEquals("16:10x8, ", text.getText());
 	}
@@ -290,25 +291,25 @@ public class TestWorkout extends ActivityInstrumentationTestCase2<ListWorkoutAct
 	 * 	RegisterStaticActivity.
 	 * Reference to Test-case in documentation: 2.12
 	 */
-	public void testToStartAStaticExercise()
+	public void testToStartAnStaticExercise()
 	{
 		solo.clickInList(0);
-		solo.clickOnText("Push-ups");
-		solo.assertCurrentActivity(wrongActivity, RegisterStaticActivity.class);
+		solo.clickOnText(PUSH_UPS);
+		solo.assertCurrentActivity(WRONG_ACTIVITY, RegisterStaticActivity.class);
 	}
 	
-	/**Testing to add a set on a static-exercise with a invalid time.
+	/**Testing to add a set on a static-exercise with a invalid TIME.
 	 * If it doesn't find the set when searching for it, the test is ok.
 	 * Reference to Test-case in documentation: 2.13
 	 */
 	public void testRegisterStaticExerciseNotValidTime()
 	{
 		solo.clickInList(0);
-		solo.clickOnText("Push-ups");
+		solo.clickOnText(PUSH_UPS);
 		solo.enterText(0, "0");
 		solo.enterText(1, "0");
 		solo.enterText(2, "3");
-		solo.clickOnButton(addSet);
+		solo.clickOnButton(ADD_SET);
 		assertFalse(solo.searchText("0:0x3"));
 	}
 	
@@ -319,11 +320,11 @@ public class TestWorkout extends ActivityInstrumentationTestCase2<ListWorkoutAct
 	public void testRegisterStaticExerciseValidTime()
 	{
 		solo.clickInList(0);
-		solo.clickOnText("Push-ups");
+		solo.clickOnText(PUSH_UPS);
 		solo.enterText(0, "0");
 		solo.enterText(1, "3");
 		solo.enterText(2, "3");
-		solo.clickOnButton(addSet);
+		solo.clickOnButton(ADD_SET);
 		assertTrue(solo.searchText("0:3 3"));
 	}
 	
@@ -334,8 +335,8 @@ public class TestWorkout extends ActivityInstrumentationTestCase2<ListWorkoutAct
 	public void testToStartAnDynamicExercise()
 	{
 		solo.clickInList(0);
-		solo.clickOnText(benchPress);
-		solo.assertCurrentActivity(wrongActivity, RegisterDynamicActivity.class);
+		solo.clickOnText(BENCH_PRESS);
+		solo.assertCurrentActivity(WRONG_ACTIVITY, RegisterDynamicActivity.class);
 	}
 	/**Testing to add a set on a dynamic-exercise with no reps.
 	 * If it doesn't find the set when searching for it, the test is ok.
@@ -344,10 +345,10 @@ public class TestWorkout extends ActivityInstrumentationTestCase2<ListWorkoutAct
 	public void testRegisterDynamicExerciseNoRepsInField()
 	{
 		solo.clickInList(0);
-		solo.clickOnText(benchPress);
+		solo.clickOnText(BENCH_PRESS);
 		solo.enterText(0, "0");
 		solo.enterText(1, "3");
-		solo.clickOnButton(addSet);
+		solo.clickOnButton(ADD_SET);
 		assertFalse(solo.searchText("0x3"));
 	}
 	
@@ -359,10 +360,10 @@ public class TestWorkout extends ActivityInstrumentationTestCase2<ListWorkoutAct
 	public void testRegisterDynamicExerciseNoReps()
 	{
 		solo.clickInList(0);
-		solo.clickOnText(benchPress);
+		solo.clickOnText(BENCH_PRESS);
 		solo.enterText(0, "0");
 		solo.enterText(1, "3");
-		solo.clickOnButton(addSet);
+		solo.clickOnButton(ADD_SET);
 		assertFalse(solo.searchText("0x3"));
 	}
 	
@@ -373,10 +374,10 @@ public class TestWorkout extends ActivityInstrumentationTestCase2<ListWorkoutAct
 	public void testRegisterDynamicExerciseReps()
 	{
 		solo.clickInList(0);
-		solo.clickOnText(benchPress);
+		solo.clickOnText(BENCH_PRESS);
 		solo.enterText(0, "3");
 		solo.enterText(1, "3");
-		solo.clickOnButton(addSet);
+		solo.clickOnButton(ADD_SET);
 		assertTrue(solo.searchText("3x3"));
 	}
 	/**Testing to add a workout with no name, if no name the dialog should write out
@@ -385,7 +386,7 @@ public class TestWorkout extends ActivityInstrumentationTestCase2<ListWorkoutAct
 	 */
 	public void testAddAWorkoutNoName()
 	{		
-		solo.clickOnMenuItem(addWorkout);
+		solo.clickOnMenuItem(ADD_WORKOUT);
 		solo.clickOnButton(1);
 		assertEquals("Wrong", "Invalid value!", solo.getEditText(0).getHint());
 	}

@@ -59,7 +59,9 @@ public class EditWorkoutActivity extends SherlockActivity implements OnClickList
 	
 
 
-
+	/**Setups the layout of the class
+	 * @param savedInstanceState
+	 */
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
@@ -105,6 +107,7 @@ public class EditWorkoutActivity extends SherlockActivity implements OnClickList
 			dialog.show();
 
 		}
+		//If the user presses the home button(the logo)
 		else if(item.getItemId() == android.R.id.home)
 		{
 			//from developer.android.com
@@ -132,6 +135,7 @@ public class EditWorkoutActivity extends SherlockActivity implements OnClickList
 			//if the string is empty, prompt for a name
 			if(temp.length() == 0)
 			{
+				//set the editTextfield to
 				name.setHint("Fyll i ett namn");
 				name.setHintTextColor(Color.RED);
 			}
@@ -147,6 +151,7 @@ public class EditWorkoutActivity extends SherlockActivity implements OnClickList
 				startActivity(intentAddExercise);
 			}
 		}
+		//If the user presses the cancel-button, close the dialog.
 		else if(view == ((Button) dialog.findViewById(R.id.cancel_Button)))
 		{
 			dialog.dismiss();
@@ -166,15 +171,18 @@ public class EditWorkoutActivity extends SherlockActivity implements OnClickList
 	 */
 	public void initDialogue()
 	{
+		//setup a new dialog
 		dialog = new Dialog(this);
 		dialog.setContentView(R.layout.dialog);
 		dialog.setTitle("New Exercise");
-
+		
+		//Create listeners to the button
 		((Button) dialog.findViewById(R.id.add_Button)).setOnClickListener(this);
 		((Button) dialog.findViewById(R.id.cancel_Button)).setOnClickListener(this);
 
 	}
-	
+	/** Creates all the listeners and the listview for the dialog
+	 */
 	public void createEditWorkout()
 	{
 		// Find the ListView resource.
@@ -194,10 +202,14 @@ public class EditWorkoutActivity extends SherlockActivity implements OnClickList
 			@Override
 			public void onItemClick( AdapterView<?> parent, View item, int position, long id)
 			{
-
+				//Get the item the user clicks on
 				ExerciseListElementData exercise = listAdapter.getItem( position );
+				//Set the exercise to checked.
 				exercise.toogleChecked();
+				//Tag the object, so if the user presses the name, the checkbox
+				//is also getting checked or unchecked
 				ExerciseViewHolder viewHolder = (ExerciseViewHolder) item.getTag();
+				//Uncheck or check the checkbox
 				viewHolder.getCheckBox().setChecked( exercise.isChecked() );
 			}//End of onItemClick
 		});//End of Listener
@@ -234,10 +246,13 @@ public class EditWorkoutActivity extends SherlockActivity implements OnClickList
 	 * asks the user if it want to close the dialog.*/
 	public void cancelEditWorkoutDialog(View view)
 	{
+		//Creates a dialog
 		final AlertDialog.Builder closeEditWorkoutDialog = new AlertDialog.Builder(this);
 
+		//Set message
 		closeEditWorkoutDialog.setMessage("Are you sure you want to close workout?");
 
+		//If pressing the "Yes"-button
 		closeEditWorkoutDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener()
 		{
 			/** When the user click the "Yes"-button, go back to ListWorkout*/
@@ -246,7 +261,7 @@ public class EditWorkoutActivity extends SherlockActivity implements OnClickList
 				finish();
 			}
 		});
-		//If pressing "Cancel"
+		//If pressing the "Cancel"-button
 		closeEditWorkoutDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener()
 		{
 			@Override
