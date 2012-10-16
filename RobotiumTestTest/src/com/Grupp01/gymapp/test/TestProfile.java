@@ -19,12 +19,18 @@ public class TestProfile extends ActivityInstrumentationTestCase2<MainActivity> 
 		solo = new Solo(getInstrumentation(),getActivity());
 	}
 	
+	/**Testing to start profile activity.
+	 * Reference to Test-case in documentation: x.x
+	 */
 	public void testOpenProfile()
 	{
 		solo.clickOnImageButton(4);
 		solo.assertCurrentActivity("Wrong activity", ProfileActivity.class);
 	}
 	
+	/**Testing to add a profile.
+	 * Reference to Test-case in documentation: x.x
+	 */
 	public void testAddProfile()
 	{
 		solo.clickOnImageButton(4);
@@ -39,6 +45,9 @@ public class TestProfile extends ActivityInstrumentationTestCase2<MainActivity> 
 		solo.assertCurrentActivity("Wrong activity", MainActivity.class);
 	}
 	
+	/**Testing to cancel when trying to add a profile.
+	 * Reference to Test-case in documentation: x.x
+	 */
 	public void testAbortAddProfile()
 	{
 		solo.clickOnImageButton(4);
@@ -46,6 +55,10 @@ public class TestProfile extends ActivityInstrumentationTestCase2<MainActivity> 
 		solo.assertCurrentActivity("Wrong activity", MainActivity.class);
 	}
 	
+	/**Testing to that a error message is shown when trying to add a profile
+	 * whitout name
+	 * Reference to Test-case in documentation: x.x
+	 */
 	public void testEmptyName()
 	{
 		solo.clickOnImageButton(4);
@@ -58,6 +71,10 @@ public class TestProfile extends ActivityInstrumentationTestCase2<MainActivity> 
 		assertTrue("Should generate error message", solo.searchText("Fill in correct information"));
 	}
 	
+	/**Testing to that a error message is shown when trying to add a profile
+	 * whitout age
+	 * Reference to Test-case in documentation: x.x
+	 */
 	public void testEmptyAge()
 	{
 		solo.clickOnImageButton(4);
@@ -70,6 +87,10 @@ public class TestProfile extends ActivityInstrumentationTestCase2<MainActivity> 
 		assertTrue("Should generate error message", solo.searchText("Fill in correct information"));
 	}
 	
+	/**Testing to that a error message is shown when trying to add a profile
+	 * whitout length
+	 * Reference to Test-case in documentation: x.x
+	 */
 	public void testEmptyLength()
 	{
 		solo.clickOnImageButton(4);
@@ -82,6 +103,10 @@ public class TestProfile extends ActivityInstrumentationTestCase2<MainActivity> 
 		assertTrue("Should generate error message", solo.searchText("Fill in correct information"));
 	}
 	
+	/**Testing to that a error message is shown when trying to add a profile
+	 * whitout weigth
+	 * Reference to Test-case in documentation: x.x
+	 */
 	public void testEmptyWeigth()
 	{
 		solo.clickOnImageButton(4);
