@@ -92,9 +92,12 @@ public class ExerciseArrayAdapter extends ArrayAdapter<ExerciseListElementData>
 				 * for the exercise is getting unchecked or checked*/
 				public void onClick(View v)
 				{
-					CheckBox cb = (CheckBox) v;
-					ExerciseListElementData exercise = (ExerciseListElementData) cb.getTag();
-					exercise.setChecked( cb.isChecked() );
+					//Get the checkbox clicked as a variable
+					CheckBox checkBox = (CheckBox) v;
+					//Get the exercise for the checkbox that was clicked
+					ExerciseListElementData exercise = (ExerciseListElementData) checkBox.getTag();
+					//Set the exercise to checked or unchecked
+					exercise.setChecked( checkBox.isChecked() );
 				}
 			});
 		}
@@ -103,9 +106,13 @@ public class ExerciseArrayAdapter extends ArrayAdapter<ExerciseListElementData>
 		//the lowest view if the user scroll down.
 		else
 		{
-			// Because we use a ViewHolder, we avoid having to call findViewById().
+			// Because we use a ViewHolder, we avoid having to call findViewById()
+			// multiple times.
+			//Get the view that should be replaced
 			ExerciseViewHolder viewHolder = (ExerciseViewHolder) convertView.getTag();
+			//Set a new checkbox to the view
 			checkBox = viewHolder.getCheckBox();
+			//Set a new name to the view
 			textView = viewHolder.getTextView();
 		}
 
@@ -120,4 +127,4 @@ public class ExerciseArrayAdapter extends ArrayAdapter<ExerciseListElementData>
 		return convertView;
 	}//End of getView
 
-} 
+}

@@ -34,13 +34,20 @@ public class ExerciseListElementData
 	private String name = "" ;  
 	private boolean checked = false ;
 
+	/**The constructor for the ExerciseListElementData
+	 * 
+	 * @param id		id of the exercise in the database
+	 * @param name		the name of the workout
+	 * @param checked	is it checked or not
+	 */
 	public ExerciseListElementData( int id, String name, boolean checked )
 	{  
 		this.id = id;
 		this.name = name ;  
 		this.checked = checked ;  
 	}
-
+	/** Get the name of the exercise as a int
+	 * @return string*/
 	public int getId()
 	{
 		return id;
@@ -68,7 +75,8 @@ public class ExerciseListElementData
 	{  
 		checked = !checked ;  
 	}
-
+	/** Set the id of the exercise
+	 * @return string*/
 	public void setId(int id)
 	{
 		this.id = id;
