@@ -21,6 +21,7 @@ package com.Grupp01.gymapp.test;
 
 
 
+import android.os.RemoteException;
 import android.test.ActivityInstrumentationTestCase2;
 import android.widget.TextView;
 
@@ -53,11 +54,11 @@ public class TestWorkout extends ActivityInstrumentationTestCase2<ListWorkoutAct
 	private static final String addWorkout = "addWorkout";
 	private static final String wrongActivity = "Wrong Activity";
 	private static final String benchPress = "Bench press";
-	private static final String addSet = "Add set;
+	private static final String addSet = "Add set";
 	private static final String chins = "Chins";
 	private static final String joels = "Joels";
 
-	protected void setUp() throws RunTimeException {
+	protected void setUp() throws Exception {
 		super.setUp();
 		solo = new Solo(getInstrumentation(),getActivity());
 	}
@@ -389,7 +390,7 @@ public class TestWorkout extends ActivityInstrumentationTestCase2<ListWorkoutAct
 		assertEquals("Wrong", "Invalid value!", solo.getEditText(0).getHint());
 	}
 	
-	protected void tearDown() throws RunTimeException 
+	protected void tearDown() throws Exception 
 	{
 		solo.finishOpenedActivities();
 	}
