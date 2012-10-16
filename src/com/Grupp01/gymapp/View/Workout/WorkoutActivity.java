@@ -204,6 +204,11 @@ public class WorkoutActivity extends SherlockActivity implements OnItemClickList
 		listExercisesView.setOnItemClickListener(this);
 		buttonStart.setVisibility(View.GONE);
 		buttonDone.setVisibility(View.VISIBLE);
+		WorkoutDbHandler dbHandler = new WorkoutDbHandler(this);
+		dbHandler.open();
+		String tmp = dbHandler.getWorkoutTemplateIdNameById(workoutId).getName();
+		workoutId = dbHandler.addWorkout(tmp);
+		dbHandler.close();
 	}
 	public void done(View view)
 	{
