@@ -90,13 +90,14 @@
     <string name="cant_add_set_without_time">Cant add set with no time.</string>
     <string name="cant_add_set_without_reps">Cant add set with 0 repetitions.</string>
     <string name="delete">Delete</string>
-    <string name="really_delete_workout">Do you really want to delete this workout?</string>
-    <string name="really_delete_exercies">Do you really want to delete this workout?</string>
+    <string name="delete_workout">Do your really want to delete this workout?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="done_training">Are you really done training?</string>
-    <string name="done_editing">Are you really done editing</string>
+    <string name="done_editing">Are you really done editing?</string>
+    <string name="quit">Quit</string>
     <string name="really_quit">Do you really want to quit Gym-app?</string>
+    <string name="leaving">Leaving</string>
 
     <string-array name="trainingtype_array">
         <item>Cardio</item>

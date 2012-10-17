@@ -21,9 +21,7 @@ package com.Grupp01.gymapp.View.Workout;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -67,7 +65,7 @@ public class ListWorkoutActivity extends SherlockActivity implements OnClickList
 
 	private List<IdName> idNameList;		//List with all workouts and their id
 	private Dialog dialog;
-
+	private int workoutId;
 	/**
 	 * Set the layout and initate calls necessary to show information
 	 * on the screen to the user.
@@ -282,42 +280,17 @@ public class ListWorkoutActivity extends SherlockActivity implements OnClickList
 	 */
 	private void deleteWorkout(int id) {
 		
-		final int workoutId = id;
+		workoutId = id;
 		//Show a confirmation dialog before deleting
-		AlertDialog.Builder deleteDialog = new AlertDialog.Builder(this);
-		deleteDialog.setMessage("Are you sure you want to delete workout " + 
-				getWorkoutName(workoutId) +"?");
-		deleteDialog.setCancelable(false);
+		dialog = new Dialog(this);
+		dialog.setContentView(R.layout.y_n_dialog);
+		dialog.setTitle(R.string.delete);
+		((TextView) dialog.findViewById(R.id.TV_dialog)).setText(R.string.delete_workout);
 
-		//Set action for clicking "Yes" (the user wants to delete)
-		deleteDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int id) {
-				
-				//Create and open the db help object
-				WorkoutDbHandler dbHandler = new WorkoutDbHandler(ListWorkoutActivity.this);
-				dbHandler.open();
-				
-				//Delete the workout with the specified workoutId
-				dbHandler.deleteWorkoutTemplate(workoutId);
-				dbHandler.close();
-				
-				//Refresh the list with workouts.
-				createWorkoutList();
-			} //End of onclick method
-		}	//end of DialogInterface
-				);	//End of setPositiveButton
-
-		//Set action for choosing not to delete (the dialog just closes and no action is taken)
-		deleteDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int id) {
-				dialog.cancel();
-			} //End of onclick method
-		}	//end of newDialogInterface
-				);	//End of setPositiveButton
-
-		//Show the dialog
-		AlertDialog alert = deleteDialog.create();
-		alert.show();
+		((Button) dialog.findViewById(R.id.yes_Button)).setOnClickListener(this);
+		((Button) dialog.findViewById(R.id.no_Button)).setOnClickListener(this);
+		dialog.setCancelable(false);
+		dialog.show();
 	}
 
 
@@ -403,7 +376,23 @@ public class ListWorkoutActivity extends SherlockActivity implements OnClickList
 		{
 			dialog.dismiss();
 		}
-		
+		else if(view == ((Button) dialog.findViewById(R.id.yes_Button)))
+		{
+			WorkoutDbHandler dbHandler = new WorkoutDbHandler(ListWorkoutActivity.this);
+			dbHandler.open();
+			
+			//Delete the workout with the specified workoutId
+			dbHandler.deleteWorkoutTemplate(workoutId);
+			dbHandler.close();
+			
+			//Refresh the list with workouts.
+			createWorkoutList();
+			dialog.dismiss();
+		}
+		else
+		{
+			dialog.dismiss();
+		}
 	}
 	
 	/**
