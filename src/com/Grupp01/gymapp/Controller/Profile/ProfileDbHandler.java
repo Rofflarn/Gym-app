@@ -54,6 +54,7 @@ public class ProfileDbHandler extends Database {
 	public void addUser(Profile profile)
 	{
 		open();
+		//writes the input information to Users tabel
 		ourDatabase.execSQL("INSERT INTO Users (UserName, UserBirthday, UserInitialWeight, UserHeight ) VALUES ('" + profile.getName() + "', '" + profile.getAge() + "', "
 				+ profile.getWeigth() + ", " + profile.getLength() + ");");
 		close();

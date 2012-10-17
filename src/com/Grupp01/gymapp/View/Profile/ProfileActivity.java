@@ -34,7 +34,7 @@ import com.actionbarsherlock.view.MenuInflater;
  * @author GivDev
  * @version 0.1
  * @peer reviewed by
- * @date 05/10/12
+ * @date dd/mm/yy
  *
  * Class ProfileActivity starts when the user pushs Profile button from the start menu. 
  */
@@ -51,13 +51,11 @@ public class ProfileActivity extends SherlockActivity {
 	{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profile);
+        //Makes the keybord hidden when the activity starts
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+        //In a leter version it should find the user and set the textfiels whit the information
         searchUser();
     }
-	
-	public void searchUser()
-	{
-	}
 
 	/**
      * Sets the menu for the activity.
@@ -73,26 +71,39 @@ public class ProfileActivity extends SherlockActivity {
     }
     
     /**
+     * Finds the user in the database and sets the textfields with the information.
+     */
+	public void searchUser()
+	{
+	}
+    
+    /**
      * When the user commits the changes by pressing the button this method is called.
      * 
      * @param view
      */
     public void updateProfile(View view)
     {
+    	//Gets the text from all textfields
     	String name = ((EditText)findViewById(R.id.name)).getText().toString();
     	String age = ((EditText)findViewById(R.id.age)).getText().toString();
     	String length = ((EditText)findViewById(R.id.length)).getText().toString();
     	String weight = ((EditText)findViewById(R.id.weight)).getText().toString();
+    	//Checks so that textfiels not are empty
     	if(name.length() == 0 || age.length() == 0 || length.length() == 0 || weight.length() == 0)
     	{
+    		//Toast is shown if any field is empty
     		Toast.makeText(this, "Fill in correct information", Toast.LENGTH_SHORT).show();
     	}
     	else
     	{
+    		//Makes connection to database
     		ProfileDbHandler dbHandler = new ProfileDbHandler(this);
     		dbHandler.open();
+    		//Creates a profile object with the input information
     		Profile profile = new Profile(name, age,
     				Double.parseDouble(weight), Double.parseDouble(length));
+    		//Writes to the database
     		dbHandler.addUser(profile);
     		dbHandler.close();
     		finish();
@@ -106,6 +117,7 @@ public class ProfileActivity extends SherlockActivity {
      */
     public void cancel(View view)
     {
+    	//Return to main activity
     	finish();
     }
 }
