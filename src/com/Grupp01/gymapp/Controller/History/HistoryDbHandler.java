@@ -1,7 +1,11 @@
 package com.Grupp01.gymapp.Controller.History;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.TimeZone;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -39,7 +43,7 @@ public class HistoryDbHandler extends Database {
 		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext())
 		{
 			int temp = c.getInt(id);
-			//Om exerciseId inte finns i listan, lägg till i listan.
+			//Add exerciseId to the list if its not already in the list.
 			if(!(exerciseIdList.contains(temp)))
 			{
 				exerciseIdList.add(temp);
@@ -85,10 +89,26 @@ public class HistoryDbHandler extends Database {
 		int id = c.getColumnIndex("WorkoutID");
 		int date = c.getColumnIndex("WorkoutDate");
 		int name = c.getColumnIndex("WorkoutName");
-		//Forlopp som går igenom hela databastabellen, alla kolummer
+		
+		//Create object to handle date and time
+		SimpleDateFormat gmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	    gmt.setTimeZone(TimeZone.getTimeZone("GMT"));  
+		SimpleDateFormat loc = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	    loc.setTimeZone(TimeZone.getDefault());
+ 
+	    //Loop through the cursor
 		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext())
 		{
-			workoutsList.add(new PerformedWorkoutData(c.getInt(id),c.getString(date),c.getString(name)));
+			//Get the date from database
+			String dbDate = c.getString(date);
+		    Date parsedDate = null;
+		    //Parse the date and convert to local timezone
+		    try {
+		        parsedDate = gmt.parse(dbDate);
+		    } catch (ParseException e) {e.printStackTrace();}
+			String listDate = loc.format(parsedDate);
+			
+			workoutsList.add(new PerformedWorkoutData(c.getInt(id), listDate ,c.getString(name)));
 		}
 		c.close();
 		close();
