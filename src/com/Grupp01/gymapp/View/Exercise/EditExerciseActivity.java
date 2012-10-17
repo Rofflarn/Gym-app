@@ -55,7 +55,7 @@ import com.actionbarsherlock.view.MenuInflater;
  *
  */	
 public class EditExerciseActivity extends SherlockActivity implements 
-				AdapterView.OnItemSelectedListener {
+AdapterView.OnItemSelectedListener {
 	private Spinner spinnerType, spinnerPMuscle, spinnerSMuscle, spinnerSport;
 	private String currentView;
 	private int exerciseId;
@@ -101,13 +101,13 @@ public class EditExerciseActivity extends SherlockActivity implements
 	@Override
 	public boolean onOptionsItemSelected(com.actionbarsherlock.view.MenuItem item)
 	{
-			//from developer.android.com
-			Intent parentActivityIntent = new Intent(this, MainActivity.class);
-			parentActivityIntent.addFlags(
-					Intent.FLAG_ACTIVITY_CLEAR_TOP |
-					Intent.FLAG_ACTIVITY_NEW_TASK);
-			startActivity(parentActivityIntent);
-			finish();
+		//from developer.android.com
+		Intent parentActivityIntent = new Intent(this, MainActivity.class);
+		parentActivityIntent.addFlags(
+				Intent.FLAG_ACTIVITY_CLEAR_TOP |
+				Intent.FLAG_ACTIVITY_NEW_TASK);
+		startActivity(parentActivityIntent);
+		finish();
 		return true;
 	}
 	/**
@@ -412,36 +412,34 @@ public class EditExerciseActivity extends SherlockActivity implements
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) 
 	{
-			//Show a confirmation dialog before deleting
-			AlertDialog.Builder leaveDialog = new AlertDialog.Builder(this);
-			leaveDialog.setMessage(R.string.done_editing);
-			leaveDialog.setCancelable(false);
+		//Show a confirmation dialog before deleting
+		AlertDialog.Builder leaveDialog = new AlertDialog.Builder(this);
+		leaveDialog.setMessage(R.string.done_editing);
+		leaveDialog.setCancelable(false);
 
-			//Set action for clicking "Yes" (the user wants to delete)
-			leaveDialog.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-				public void onClick(DialogInterface dialog, int id)
-				{
-					finish();	
-
-				} //End of onclick method
-			}	//end of DialogInterface
-					);	//End of setPositiveButton
-
-			//Set action for choosing not to delete (the dialog just closes and no action is taken)
-			leaveDialog.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() 
+		//Set action for clicking "Yes" (the user wants to delete)
+		leaveDialog.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int id)
 			{
-				public void onClick(DialogInterface dialog, int id)
-				{
-					dialog.cancel();
-				} //End of onclick method
-			}	//end of newDialogInterface
-					);	//End of setPositiveButton
+				finish();	
 
-			//Show the dialog
-			AlertDialog alert = leaveDialog.create();
-			alert.show(); 
-			return true;
-		}
+			} //End of onclick method
+		}	//end of DialogInterface
+				);	//End of setPositiveButton
 
+		//Set action for choosing not to delete (the dialog just closes and no action is taken)
+		leaveDialog.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() 
+		{
+			public void onClick(DialogInterface dialog, int id)
+			{
+				dialog.cancel();
+			} //End of onclick method
+		}	//end of newDialogInterface
+				);	//End of setPositiveButton
 
+		//Show the dialog
+		AlertDialog alert = leaveDialog.create();
+		alert.show(); 
+		return true;
+	}
 }

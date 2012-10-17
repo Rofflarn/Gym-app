@@ -95,7 +95,8 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="done_training">Are you really done training?</string>
-        <string name="done_editing">Are you really done editing</string>
+    <string name="done_editing">Are you really done editing</string>
+    <string name="really_quit">Do you really want to quit Gym-app?</string>
 
     <string-array name="trainingtype_array">
         <item>Cardio</item>

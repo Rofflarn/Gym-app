@@ -21,11 +21,14 @@ package com.Grupp01.gymapp;
 
 import java.util.Locale;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Toast;
 
@@ -190,6 +193,45 @@ public class MainActivity extends SherlockActivity {
 			getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
 		}
 
+	}
+	/**
+	 * Is called when the user presses the back-key, prompting
+	 * if user is done editing an exercise.
+	 * @param keyCode
+	 * @param event
+	 */
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) 
+	{
+		//Show a confirmation dialog before deleting
+		AlertDialog.Builder leaveDialog = new AlertDialog.Builder(this);
+		leaveDialog.setMessage(R.string.really_quit);
+		leaveDialog.setCancelable(false);
+
+		//Set action for clicking "Yes" (the user wants to delete)
+		leaveDialog.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int id)
+			{
+				finish();	
+
+			} //End of onclick method
+		}	//end of DialogInterface
+				);	//End of setPositiveButton
+
+		//Set action for choosing not to delete (the dialog just closes and no action is taken)
+		leaveDialog.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() 
+		{
+			public void onClick(DialogInterface dialog, int id)
+			{
+				dialog.cancel();
+			} //End of onclick method
+		}	//end of newDialogInterface
+				);	//End of setPositiveButton
+
+		//Show the dialog
+		AlertDialog alert = leaveDialog.create();
+		alert.show(); 
+		return true;
 	}
 
 
