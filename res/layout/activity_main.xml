@@ -17,85 +17,86 @@
 *  along with Gymapp.  If not, see <http://www.gnu.org/licenses/>.		
 */
 -->
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginBottom="60dp"
-    android:paddingLeft="40dp"
-    android:paddingRight="40dp"
-    android:paddingTop="40dp"
-     >
+    android:layout_height="match_parent" >
 
-    <ImageButton
-        android:id="@+id/button1"
-        android:contentDescription="@string/imagebutton_workout"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:src="@drawable/button_workout"
-        android:layout_marginTop="30dp"
-        android:onClick="workout"
-        android:background="@null"
-         />
+        android:layout_marginBottom="60dp"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:paddingTop="40dp" >
 
-    <ImageButton
-        android:id="@+id/button2"
-        android:contentDescription="@string/imagebutton_workout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignBottom="@+id/button1"
-        android:src="@drawable/button_exercises"
-        android:onClick="exercise"
-        android:background="@null"
-         />
+        <ImageButton
+            android:id="@+id/button1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="30dp"
+            android:background="@null"
+            android:contentDescription="@string/imagebutton_workout"
+            android:onClick="workout"
+            android:src="@drawable/button_workout" />
 
-    <ImageButton
-        android:id="@+id/button3"
-        android:contentDescription="@string/imagebutton_history"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/button1"
-        android:layout_below="@+id/button1"
-        android:layout_marginTop="27dp"
-        android:src="@drawable/button_history"
-        android:onClick="history"
-        android:background="@null" />
+        <ImageButton
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/button1"
+            android:layout_alignParentRight="true"
+            android:background="@null"
+            android:contentDescription="@string/imagebutton_workout"
+            android:onClick="exercise"
+            android:src="@drawable/button_exercises" />
 
-    <ImageButton
-        android:id="@+id/button4"
-        android:contentDescription="@string/imagebutton_statistics"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/button3"
-        android:layout_alignRight="@+id/button2"
-        android:src="@drawable/button_statistics"
-        android:onClick="statistics"
-        android:background="@null" />
-    
-    <ImageButton
-        android:id="@+id/button5"
-        android:contentDescription="@string/imagebutton_profile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/button1"
-        android:layout_marginTop="245dp"
-        android:src="@drawable/button_profile"
-        android:onClick="profile"
-        android:background="@null"
-        />
-    
-    <ImageButton
-        android:id="@+id/button6"
-        android:contentDescription="@string/imagebutton_settings"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/button5"
-        android:layout_alignTop="@+id/button5"
-        android:layout_alignRight="@+id/button2"
-        android:src="@drawable/button_settings" 
-        android:onClick="settings"
-        android:background="@null"/>
+        <ImageButton
+            android:id="@+id/button3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/button1"
+            android:layout_below="@+id/button1"
+            android:layout_marginTop="27dp"
+            android:background="@null"
+            android:contentDescription="@string/imagebutton_history"
+            android:onClick="history"
+            android:src="@drawable/button_history" />
 
-</RelativeLayout>
+        <ImageButton
+            android:id="@+id/button4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/button3"
+            android:layout_alignRight="@+id/button2"
+            android:background="@null"
+            android:contentDescription="@string/imagebutton_statistics"
+            android:onClick="statistics"
+            android:src="@drawable/button_statistics" />
+
+        <ImageButton
+            android:id="@+id/button5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/button1"
+            android:layout_marginTop="245dp"
+            android:background="@null"
+            android:contentDescription="@string/imagebutton_profile"
+            android:onClick="profile"
+            android:src="@drawable/button_profile" />
+
+        <ImageButton
+            android:id="@+id/button6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/button5"
+            android:layout_alignRight="@+id/button2"
+            android:layout_alignTop="@+id/button5"
+            android:background="@null"
+            android:contentDescription="@string/imagebutton_settings"
+            android:onClick="settings"
+            android:src="@drawable/button_settings" />
+    </RelativeLayout>
+
+</ScrollView>

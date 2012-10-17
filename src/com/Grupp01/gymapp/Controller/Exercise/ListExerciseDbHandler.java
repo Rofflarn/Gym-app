@@ -56,21 +56,6 @@ public class ListExerciseDbHandler extends Database {
 		close();
 		return idNameList;
 	}
-
-
-	/*public long addExercise(ExerciseData exerciseData)
-	{
-		ContentValues values = new ContentValues();
-	    values.put("ExerciseName", exerciseData.getName());
-		/*ourDatabase.execSQL("INSERT INTO Exercises (ExerciseName) VALUES ('" + exerciseData.getName() + "');");
-		Cursor c = ourDatabase.rawQuery("SELECT last_insert_rowid();", null);
-		c.moveToFirst();
-		int id = c.getInt(0);
-	    return ourDatabase.insert("Exercises", null, values);
-		/*System.out.println(id);
-		return id;
-	}*/
-
 	/**
 	 * Adds new Exercise to database.
 	 * @param name
@@ -91,7 +76,6 @@ public class ListExerciseDbHandler extends Database {
 	public int getExerciseIdFromName(String name)
 	{
 		open();
-		//Cursor c = ourDatabase.rawQuery("SELECT last_insert_rowid();", null);
 		Cursor c = ourDatabase.rawQuery("SELECT ExerciseId FROM Exercises WHERE ExerciseName= '" + name +"';", null);
 		c.moveToFirst();
 		int id = c.getInt(c.getColumnIndex("ExerciseId"));

@@ -267,6 +267,8 @@ public class WorkoutActivity extends SherlockActivity implements OnItemClickList
 		//Hide the start button and show the "Done"- button
 		buttonStart.setVisibility(View.GONE);
 		buttonDone.setVisibility(View.VISIBLE);
+		//Disable app icon navigation in action bar
+		getSupportActionBar().setHomeButtonEnabled(false);
 	}
 	/**
 	 * Is called when the user presses the done button.

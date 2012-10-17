@@ -77,7 +77,7 @@ public class ProfileActivity extends SherlockActivity {
      * 
      * @param view
      */
-    public void uppdateProfile(View view)
+    public void updateProfile(View view)
     {
     	String name = ((EditText)findViewById(R.id.name)).getText().toString();
     	String age = ((EditText)findViewById(R.id.age)).getText().toString();

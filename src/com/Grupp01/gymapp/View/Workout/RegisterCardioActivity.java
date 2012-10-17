@@ -20,7 +20,6 @@
 package com.Grupp01.gymapp.View.Workout;
 
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -59,15 +58,20 @@ import com.actionbarsherlock.view.MenuItem;
  */
 
 public class RegisterCardioActivity extends SherlockActivity {
+	//Strings used no modify input
 	private static final String EMPTY = "";
 	private static final String ZERO = "0";
-	
+	//Default value for int passed via intent
 	private static final int INTENT_INT_DEFAULT_VALUE = 0;
-	private ExerciseData exercise; //The name of the workout
-	private List<String> currentSets;	//The array where new sets is added (in form of REPSxWEIGHT)
+	//Object that holds the data about the current exercise
+	private ExerciseData exercise; 
+	//ID of current exercise
 	private int exerciseId;
+	//ID of the workout that the exercise belongs to.
 	private int workoutId;
+	//List with currently performed sets. Will in the end be written to the database.
 	private List<SetsData> cardioSetsList = new LinkedList<SetsData>();
+	//The desired unit for distance that the user has selected in the settings menu.
 	private String distanceUnit;
 
 	/**
@@ -77,25 +81,34 @@ public class RegisterCardioActivity extends SherlockActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_register_cardio);
-		//Create the array
-		currentSets = new ArrayList<String>();
+		//Get the id of the workout that the user is performing
 		workoutId = getIntent().
 				getIntExtra(WorkoutActivity.EXTRA_WORKOUT_ID, INTENT_INT_DEFAULT_VALUE);
+		//Get the id of the current exercise.
 		exerciseId = getIntent().
 				getIntExtra(WorkoutActivity.EXTRA_EXERCISE_ID, INTENT_INT_DEFAULT_VALUE);
+		//Get data about the exercise from the database
 		getExerciseData();
+		//Set the title to the exercise name.
 		setTitle(exercise.getName());
 
 		//Show the sets (reps and weight) for the last time this
 		//exercise was performed.
 		setLastSetsString();
+		//Get the distance unit from sharedpreferences and set it in this class.
 		setDistanceUnit();
+		//Set the personal note
 		setNoteString();
+		//Set the string with information about the sets from last time.
 		setLastSetsString();
 	}
 
-
+	/**
+	 * This method will read the desired distance unit from the SharedPreferences.
+	 */
 	private void setDistanceUnit() {
+		//Get the shared preferences object and find the value for the key corresponding
+		//to the distance unit.
 		SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
 		distanceUnit = sharedPref.getString("pref_key_distance", "km");
 		
@@ -133,9 +146,13 @@ public class RegisterCardioActivity extends SherlockActivity {
 		}
 	}
 
-
+	/**
+	 * This method will set the personal note (related to the exercise) if the user has 
+	 * set any.
+	 */
 	private void setNoteString()
 	{
+		//Get the note from the exercise data and set in the textfield.
 		TextView notes = (TextView) findViewById(R.id.myNoteTextCardio);
 		notes.setText(exercise.getNote());
 	}
@@ -176,15 +193,6 @@ public class RegisterCardioActivity extends SherlockActivity {
 	}
 
 	/**
-	 * THis is called when pressing the "OK" button, will save the sets
-	 * to the database before this activity terminates.
-	 *
-	 */
-
-
-
-
-	/**
 	 * Will read the input of reps and weight EditTexts, add it to the array and update the view
 	 *
 	 */
@@ -196,7 +204,7 @@ public class RegisterCardioActivity extends SherlockActivity {
 
 
 		//Read the time (minutes and seconds) and the distance.
-		//If any of them if blank, set it to zero
+		//If any of them if blank(""), set it to zero("0")
 		String minutes = editMinutes.getText().toString();
 		if(minutes.equals(EMPTY)){
 			minutes = ZERO;
@@ -212,18 +220,16 @@ public class RegisterCardioActivity extends SherlockActivity {
 		}
 		//Dont add the set if both minutes and seconds is zero (= no time)
 		if((minutes.equals(ZERO)) && (seconds.equals(ZERO))){	
-
+			
 			Toast.makeText(this, R.string.cant_add_set_without_time, Toast.LENGTH_SHORT).show();
 
 		}
 		//else add the information to the array and update information in the view
 		else{
-			currentSets.add(minutes + ":" + seconds + "x" + distance);
-
 			Integer min = Integer.parseInt(minutes);
 			Integer sec = Integer.parseInt(seconds);
 			Integer dist = Integer.parseInt(distance);
-			//Adds new sets to cardioSetsList
+			//Adds new sets to cardioSetsList and update the view
 			cardioSetsList.add(new SetsData(sec,min,dist,workoutId,exerciseId));
 			updateView();
 
@@ -241,11 +247,17 @@ public class RegisterCardioActivity extends SherlockActivity {
 		//The textview where current sets will be showed (added when button "Finish set" is pressed)
 		TextView currentSetString = (TextView) findViewById(R.id.thisTimeSetsCardio);
 
-		//The prefix is used to separate each set in the string.
+		//Stringbuffer is used to create a string from all the sets in the cardioSetsList.
+		//Will combine minutes, seconds, distance unit to "(Min)m (Sec)s x(Distance)(distanceUnit)
+		//without the ().
 		StringBuffer prefix = new StringBuffer();
-		for (String s : currentSets)
+		for (SetsData setData : cardioSetsList)
 		{
-			prefix.append(s);
+			prefix.append(setData.getMin());
+			prefix.append("m ");
+			prefix.append(setData.getSec());
+			prefix.append("s x");
+			prefix.append(setData.getDistance());
 			prefix.append(distanceUnit);
 			prefix.append(", ");
 		}
@@ -259,17 +271,15 @@ public class RegisterCardioActivity extends SherlockActivity {
 	 *
 	 */
 	private void removeLatestSet() {
-		if(currentSets.size() > 0)
+		//Only try to remove if the list contains any sets.
+		if(cardioSetsList.size() > 0)
 		{	
-			currentSets.remove(currentSets.size() -1);
+			cardioSetsList.remove(cardioSetsList.size() -1);
 		}
-		else if(cardioSetsList.size() == 0)
-		{
-			Toast.makeText(this, R.string.no_sets_to_delete, Toast.LENGTH_SHORT).show();
-		}
+		//Else show an error message to the user.
 		else
 		{
-			cardioSetsList.remove((cardioSetsList.size()-1));
+			Toast.makeText(this, R.string.no_sets_to_delete, Toast.LENGTH_SHORT).show();
 		}
 		updateView();
 	}
@@ -292,13 +302,22 @@ public class RegisterCardioActivity extends SherlockActivity {
 	 */
 	private void setLastSetsString()
 	{
-		List<SetsData> cardioSetsList = new LinkedList<SetsData>();
-		RegisterDbHandler dbHandler = new RegisterDbHandler(this);
+		//Use a stringbuffer to expand the string with time and distance for each set.
 		StringBuffer sets = new StringBuffer();
+		
+		//The textview that the resulting string should be written in.
 		TextView latestSets = (TextView) findViewById(R.id.lastTimeSetsCardio);
+		
+		//Create and open the database help object.
+		RegisterDbHandler dbHandler = new RegisterDbHandler(this);
 		dbHandler.open();
-		cardioSetsList = dbHandler.
+		
+		//Get the list with sets from last time from the database.
+		List<SetsData> cardioSetsList = dbHandler.
 				getPreviouslyCardioSets(workoutId, exerciseId, exercise.getTypeId());
+		dbHandler.close();
+		
+		//For each set, add it (and format correctly) to the stringbuffer.
 		for(SetsData cardioSet: cardioSetsList)
 		{
 			sets.append(cardioSet.getDuration());
@@ -307,17 +326,24 @@ public class RegisterCardioActivity extends SherlockActivity {
 			sets.append(distanceUnit);
 			sets.append(", ");
 		}
-		dbHandler.close();
+		
+		//Add the resulting string to the textView.
 		latestSets.setText(sets);
 	}
 
-
+	/**
+	 * This method will write a cardio set to the database.
+	 * @param cardioSet
+	 */
 	private void addCardioSet(SetsData cardioSet)
 	{
+		//Create and open the database help object
 		RegisterDbHandler dbHandler = new RegisterDbHandler(this);
 		dbHandler.open();
+		//Add the set to the database and close the object.
 		dbHandler.addCardioSet(cardioSet.getSec(), cardioSet.getMin(), 
 				cardioSet.getDistance(), cardioSet.getworkoutId(), cardioSet.getexerciseid());
 		dbHandler.close();
+		
 	}
 }
