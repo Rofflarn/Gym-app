@@ -46,7 +46,7 @@ public class TestProfile extends ActivityInstrumentationTestCase2<MainActivity> 
 		solo.sleep(1);
 		solo.typeText(3, "70");
 		//Clicks uppdate profile button
-		solo.clickOnButton(0);
+		solo.clickOnButton(1);
 		//Checks that main activity is shown
 		solo.assertCurrentActivity("Wrong activity", MainActivity.class);
 	}
@@ -59,7 +59,7 @@ public class TestProfile extends ActivityInstrumentationTestCase2<MainActivity> 
 		//Clicks on profile button
 		solo.clickOnImageButton(4);
 		//Clicks cancel button
-		solo.clickOnButton(1);
+		solo.clickOnButton(0);
 		//Checks that main activity is shown
 		solo.assertCurrentActivity("Wrong activity", MainActivity.class);
 	}
@@ -79,7 +79,7 @@ public class TestProfile extends ActivityInstrumentationTestCase2<MainActivity> 
 		solo.sleep(1);
 		solo.typeText(3, "70");
 		//Clicks uppdate profile button
-		solo.clickOnButton(0);
+		solo.clickOnButton(1);
 		//Checks that a error message is shown
 		assertTrue("Should generate error message", solo.searchText("Fill in correct information"));
 	}
@@ -99,7 +99,7 @@ public class TestProfile extends ActivityInstrumentationTestCase2<MainActivity> 
 		solo.sleep(1);
 		solo.typeText(3, "70");
 		//Clicks uppdate profile button
-		solo.clickOnButton(0);
+		solo.clickOnButton(1);
 		//Checks that a error message is shown
 		assertTrue("Should generate error message", solo.searchText("Fill in correct information"));
 	}
@@ -119,7 +119,7 @@ public class TestProfile extends ActivityInstrumentationTestCase2<MainActivity> 
 		solo.sleep(1);
 		solo.typeText(3, "70");
 		//Clicks uppdate profile button
-		solo.clickOnButton(0);
+		solo.clickOnButton(1);
 		//Checks that a error message is shown
 		assertTrue("Should generate error message", solo.searchText("Fill in correct information"));
 	}
@@ -139,7 +139,7 @@ public class TestProfile extends ActivityInstrumentationTestCase2<MainActivity> 
 		solo.sleep(1);
 		solo.typeText(2, "180");
 		//Clicks uppdate profile button
-		solo.clickOnButton(0);
+		solo.clickOnButton(1);
 		//Checks that a error message is shown
 		assertTrue("Should generate error message", solo.searchText("Fill in correct information"));
 	}
