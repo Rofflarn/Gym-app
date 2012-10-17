@@ -124,8 +124,8 @@ public class ListHistoryActivity extends SherlockListActivity {
 		//to the new activity.
 		intent.putExtra(HISTORY_ID, h.getId());
 		
-		//Start activity.
-		startActivity(intent);
+		
+		//startActivity() Disabled until activity is implemented correctly
 	}
 	
 	
