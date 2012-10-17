@@ -59,7 +59,6 @@ import com.actionbarsherlock.view.MenuItem;
  *
  * <p>This class i a part of the </p><i>View</i><p> package, and a part of the </p><i>Workout</i>
  * <p> Subpackage</p>
- *
  */
 public class ListWorkoutActivity extends SherlockActivity implements OnClickListener {
 

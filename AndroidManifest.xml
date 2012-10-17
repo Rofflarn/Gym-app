@@ -22,7 +22,7 @@
         </activity>
         <activity
             android:name=".View.Workout.ListWorkoutActivity"
-            android:label="@string/title_activity_main"
+            android:label="@string/title_workouts"
             android:screenOrientation="portrait"  />
         <activity
             android:name=".View.Workout.EditWorkoutActivity"
@@ -30,11 +30,11 @@
             android:screenOrientation="portrait"  />
         <activity
             android:name=".View.Statistic.Statistik"
-            android:label="@string/title_activity_main"
+            android:label="@string/title_statistics"
             android:screenOrientation="portrait" />
         <activity
             android:name=".View.History.ListHistoryActivity"
-            android:label="@string/title_activity_main"
+            android:label="@string/title_history"
             android:screenOrientation="portrait" />
         <activity
             android:name=".View.Exercise.ListExerciseActivity"

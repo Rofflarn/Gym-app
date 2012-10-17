@@ -76,9 +76,16 @@ public class EditWorkoutActivity extends SherlockActivity implements OnClickList
 		{
 			workoutId = intent.getIntExtra(WorkoutActivity.EXTRA_WORKOUT_ID, 0);
 		}
+		getSetTitle();
 		setContentView(R.layout.editworkout);
 		createEditWorkout();
 
+	}
+
+	private void getSetTitle() {
+		WorkoutDbHandler dbHandler = new WorkoutDbHandler(this);
+		dbHandler.open();
+		setTitle("Edit " + dbHandler.getWorkoutIdNameById(workoutId).getName());
 	}
 
 	/**Setups the menu of the class

@@ -2,6 +2,9 @@
 
     <string name="app_name">Gymapp</string>
     <string name="title_activity_main">Gym-appen</string>
+    <string name="title_workouts">Workouts</string>
+    <string name="title_statistics">Statistics</string>
+    <string name="title_history">History</string>
     <string name="menu_addExe">Add Excersice!</string>
     <string name="exercise_name">Exercise name</string>
     <string name="cancel">Cancel</string>
