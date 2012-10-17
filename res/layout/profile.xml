@@ -15,88 +15,107 @@
 *
 *   You should have received a copy of the GNU General Public License
 *  along with Gymapp.  If not, see <http://www.gnu.org/licenses/>.		
-*/
+*/
 -->
+
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
-    
-    <LinearLayout
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:isScrollContainer="false" >
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical" >
+        android:layout_height="match_parent" >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/name"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        <LinearLayout
+            android:id="@+id/ll_profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
 
-    <EditText
-        android:id="@+id/name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName" >
-    </EditText>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/name"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/age"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+            <EditText
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName" >
+            </EditText>
 
-    <EditText
-        android:id="@+id/age"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="number" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/age"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/length"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+            <EditText
+                android:id="@+id/age"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number" />
 
-    <EditText
-        android:id="@+id/length"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="numberDecimal" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/length"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/weight"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+            <EditText
+                android:id="@+id/length"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="numberDecimal" />
 
-    <EditText
-        android:id="@+id/weight"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="numberDecimal" />
-    
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/weight"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/buttonUppdate"
-        android:onClick="uppdateProfile" />
-    
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/cancel"
-        android:onClick="cancel" />
-    
-    </LinearLayout>
+            <EditText
+                android:id="@+id/weight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="numberDecimal" />
+        </LinearLayout>
 
-</LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/ll_profile"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:paddingBottom="1dp"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
+            android:paddingTop="5dp" >
+
+            <Button
+                android:id="@+id/button_cancel"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1.0"
+                android:onClick="cancel"
+                android:text="@string/cancel" />
+
+            <Button
+                android:id="@+id/button_done"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1.0"
+                android:onClick="updateProfile"
+                android:text="@string/buttonUppdate" />
+        </LinearLayout>
+    </RelativeLayout>
+
 </ScrollView>

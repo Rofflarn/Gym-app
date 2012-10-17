@@ -28,7 +28,10 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.ContextMenu;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -36,6 +39,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.Grupp01.gymapp.MainActivity;
 import com.Grupp01.gymapp.R;
@@ -112,8 +116,87 @@ public class ListExerciseActivity extends SherlockActivity implements OnClickLis
 		elementAdapter = new ArrayAdapter<String>(this, R.layout.list_simple_row, listElements);
 		((ListView)findViewById(R.id.theList)).setAdapter(elementAdapter);
 		((ListView)findViewById(R.id.theList)).setOnItemClickListener(this);
+		//Activate long click menu for the list view
+		registerForContextMenu((ListView)findViewById(R.id.theList));
+		
 
 	}
+	
+	/**
+	 * Sets the layout of the context menu.
+	 */
+	public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo){
+		
+		//Set the layout of the menu with the xml file
+		getMenuInflater().inflate(R.menu.context_menu, menu);
+		
+		//Get more information about the pressed item:
+		AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)menuInfo;
+		
+		//Get the textview that holds the exercise name in the list and save it as a a string
+		TextView titleText = (TextView) info.targetView.findViewById(R.id.rowTextView);
+		String title = titleText.getText().toString();
+		
+		//Set it as a title.
+		menu.setHeaderTitle(title);
+		
+		//Title set with help from 
+		//http://stackoverflow.com/questions/3722380/
+		//android-open-contextmenu-on-short-click-pass-item-clicked-details
+		
+	}
+	
+	public boolean onContextItemSelected(MenuItem menu){
+		AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) 
+				menu.getMenuInfo();
+		//Get the id from the exercise in position [info.position] in the list "exercises"
+		int exerciseId = exercises.get(info.position).getId();
+
+		//Detect which button was pressed
+		switch(menu.getItemId()){
+			case R.id.contextMenuEdit:
+				editExercise(exerciseId);
+				return true;
+			case R.id.contextMenuDelete:
+				deleteExercise(exerciseId);
+				return true;
+		}
+		return true;
+		
+	}
+	
+	/**
+	 * This method will remove the selected item when the user selects "Remove" from the context
+	 * menu.
+	 * @param exerciseId
+	 */
+	private void deleteExercise(int exerciseId) {
+		ListExerciseDbHandler dbHandler = new ListExerciseDbHandler(this);
+		dbHandler.open();
+		dbHandler.deleteExercise(exerciseId);
+		dbHandler.close();
+		
+		//Refresh the listview
+		initListView();
+		createListView();
+		
+	}
+	/**
+	 * Is called from the context menu when the user selects "Edit".
+	 * It will launch the EditExerciseActivity and pass the ID of the exercise via the intent
+	 * so the new activity can open correct exercise from the database.
+	 * @param exerciseId The id of the exercise that should be edited.
+	 */
+	private void editExercise(int exerciseId) {
+		Intent editExercise = new Intent(this, EditExerciseActivity.class);
+		editExercise.putExtra(EXTRA_EXERCISE_NAME, exerciseId);
+		startActivity(editExercise);
+	}
+	
+	
+	
+	
+	
 	/**Creates the listview with exercises which is fetched from the
 	 * database.
 	 * 
