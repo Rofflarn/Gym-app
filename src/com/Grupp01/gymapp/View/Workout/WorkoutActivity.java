@@ -281,6 +281,12 @@ public class WorkoutActivity extends SherlockActivity implements OnItemClickList
 		listExercisesView.setOnItemClickListener(null);
 		finish();
 	}
+	/**
+	 * Is called when the user presses the back-key, prompting
+	 * if user is working out.
+	 * @param keyCode
+	 * @param event
+	 */
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) 
 	{
@@ -293,8 +299,9 @@ public class WorkoutActivity extends SherlockActivity implements OnItemClickList
 			leaveDialog.setCancelable(false);
 
 			//Set action for clicking "Yes" (the user wants to delete)
-			leaveDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-				public void onClick(DialogInterface dialog, int id) {
+			leaveDialog.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog, int id)
+				{
 					finish();	
 
 				} //End of onclick method
@@ -302,8 +309,10 @@ public class WorkoutActivity extends SherlockActivity implements OnItemClickList
 					);	//End of setPositiveButton
 
 			//Set action for choosing not to delete (the dialog just closes and no action is taken)
-			leaveDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
-				public void onClick(DialogInterface dialog, int id) {
+			leaveDialog.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() 
+			{
+				public void onClick(DialogInterface dialog, int id)
+				{
 					dialog.cancel();
 				} //End of onclick method
 			}	//end of newDialogInterface
@@ -315,7 +324,8 @@ public class WorkoutActivity extends SherlockActivity implements OnItemClickList
 			return true;
 		}
 		//if not working out
-		else {
+		else
+		{
 			//back-key working as usual
 			return super.onKeyDown(keyCode, event);
 		}
