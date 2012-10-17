@@ -55,16 +55,21 @@ import com.actionbarsherlock.view.MenuItem;
  *
  */
 public class RegisterDynamicActivity extends SherlockActivity {
+	//Strings used to modify strings
 	private static final String EMPTY = "";
 	private static final String ZERO = "0";
+	//Default value on int passed via intent
 	private static final int INTENT_INT_DEFAULT_VALUE = 0;
+	//ID of the exercise
 	private int exerciseId;
+	//ID of workout that the exercise belongs to
 	private int workoutId;
+	//Object holding information about the exercise
 	private ExerciseData exercise;
 
 	//The list where new sets are added and removed.
 	private List<SetsData> dynamicSetsList = new LinkedList<SetsData>();
-
+	//The weight unit the user has selected from settings.
 	private String weightUnit;
 
 	/**
@@ -123,6 +128,7 @@ public class RegisterDynamicActivity extends SherlockActivity {
 	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
+		//Set layout of the actionbar menu
 		getSupportMenuInflater().inflate(R.menu.universal_menu, menu);
 		return true;
 	}
@@ -185,7 +191,7 @@ public class RegisterDynamicActivity extends SherlockActivity {
 				sets.append(setData.getReps());
 				sets.append("x");
 				sets.append(setData.getWeight());
-				sets.append(" " + weightUnit + ",");
+				sets.append(weightUnit + ",");
 			}
 
 			//Show final result in the view to the user.
@@ -314,6 +320,7 @@ public class RegisterDynamicActivity extends SherlockActivity {
 			prefix.append(setData.getReps());
 			prefix.append("x");
 			prefix.append(setData.getWeight());
+			prefix.append(weightUnit);
 			prefix.append(", ");
 		}
 		currentSetString.setText(prefix);
