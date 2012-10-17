@@ -40,7 +40,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.Grupp01.gymapp.MainActivity;
 import com.Grupp01.gymapp.R;
@@ -172,7 +171,14 @@ public class ListExerciseActivity extends SherlockActivity implements OnClickLis
 	 * @param exerciseId
 	 */
 	private void deleteExercise(int exerciseId) {
-		Toast.makeText(this, "Will remove id " + exerciseId, Toast.LENGTH_SHORT).show();
+		ListExerciseDbHandler dbHandler = new ListExerciseDbHandler(this);
+		dbHandler.open();
+		dbHandler.deleteExercise(exerciseId);
+		dbHandler.close();
+		
+		//Refresh the listview
+		initListView();
+		createListView();
 		
 	}
 	/**
