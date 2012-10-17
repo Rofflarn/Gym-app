@@ -79,16 +79,6 @@ public class Database {
 		return ourDatabase.rawQuery("SELECT * FROM Muscles WHERE MuscleGroupId = '" + muscleGroupId + "';", null);
 	}
 
-	
-	public Cursor getUsers(){
-		return ourDatabase.rawQuery("SELECT * FROM Users;", null);
-	}
-
-	public void addUser(String userName, String userBirthday){
-		ourDatabase.execSQL("INSERT INTO Users (UserName, UserBirthday) VALUES ('" + userName + "', '" + userBirthday + "');");
-		//TODO change to insert() instead of execSql()
-	}
-
 	/**
 	 * Gets all SetTemplates and ExerciseNames that belong to a PassTemplate. Note: only gets SetsId and ExerciseNames.
 	 * 

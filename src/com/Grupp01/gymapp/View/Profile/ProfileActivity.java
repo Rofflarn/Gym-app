@@ -37,7 +37,6 @@ import com.actionbarsherlock.view.MenuInflater;
  * @date 05/10/12
  *
  * Class ProfileActivity starts when the user pushs Profile button from the start menu. 
- *  
  */
 
 public class ProfileActivity extends SherlockActivity {
@@ -48,11 +47,17 @@ public class ProfileActivity extends SherlockActivity {
      * @param savedInstanceState
      */
 	@Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState)
+	{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profile);
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+        searchUser();
     }
+	
+	public void searchUser()
+	{
+	}
 
 	/**
      * Sets the menu for the activity.
@@ -86,10 +91,11 @@ public class ProfileActivity extends SherlockActivity {
     	{
     		ProfileDbHandler dbHandler = new ProfileDbHandler(this);
     		dbHandler.open();
-    		Profile profile = new Profile(name, Integer.parseInt(age),
+    		Profile profile = new Profile(name, age,
     				Double.parseDouble(weight), Double.parseDouble(length));
     		dbHandler.addUser(profile);
-    		dbHandler.close();	
+    		dbHandler.close();
+    		finish();
     	}
     }
     
