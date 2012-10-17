@@ -43,14 +43,16 @@ public class WorkoutDbHandler extends Database {
 
 
 	/**
-	 * Gets all exercises id and name from databasetable Exercises and puts these values into an IdName object.
+	 * Gets all exercises id and name from databasetable Exercises and puts these values into an 
+	 * IdName object.
 	 * @return a LinkedList with type of IdName
 	 */
 	public List<IdName> getWorkoutTemplatesIdName()
 	{
 
 		open();
-		Cursor c = ourDatabase.rawQuery("SELECT WorkoutTemplateId, WorkoutTemplateName FROM WorkoutTemplates;", null);
+		Cursor c = ourDatabase.rawQuery("SELECT WorkoutTemplateId, WorkoutTemplateName FROM " +
+				"WorkoutTemplates;", null);
 		List<IdName> idNameList = new LinkedList<IdName>();
 		c.moveToFirst();
 		int id = c.getColumnIndex("WorkoutTemplateId");
@@ -64,19 +66,6 @@ public class WorkoutDbHandler extends Database {
 		close();
 		return idNameList;
 	}
-	
-	public IdName getWorkoutTemplateIdNameById(int workoutId)
-	{
-		open();
-		Cursor c = ourDatabase.rawQuery("SELECT WorkoutTemplateId, WorkoutTemplateName FROM WorkoutTemplates WHERE " + 
-				"WorkoutTemplateId= '" + workoutId + "';", null);
-		c.moveToFirst();
-		IdName temp = new IdName(c.getInt(c.getColumnIndex("WorkoutTemplateId")),c.getString(c.getColumnIndex("WorkoutTemplateName")));
-		c.close();
-		close();
-		return temp;
-
-	}
 
 	/**
 	 * Returns the specific
@@ -86,10 +75,12 @@ public class WorkoutDbHandler extends Database {
 	public IdName getWorkoutTemplateIdNameById(int workoutId)
 	{
 		open();
-		Cursor c = ourDatabase.rawQuery("SELECT WorkoutTemplateId, WorkoutTemplateName FROM WorkoutTemplates WHERE " +
+		Cursor c = ourDatabase.rawQuery("SELECT WorkoutTemplateId, WorkoutTemplateName FROM " +
+				"WorkoutTemplates WHERE " +
 				"WorkoutTemplateId= '" + workoutId + "';", null);
 		c.moveToFirst();
-		IdName temp = new IdName(c.getInt(c.getColumnIndex("WorkoutTemplateId")),c.getString(c.getColumnIndex("WorkoutTemplateName")));
+		IdName temp = new IdName(c.getInt(c.getColumnIndex("WorkoutTemplateId")),c.getString(
+				c.getColumnIndex("WorkoutTemplateName")));
 		c.close();
 		close();
 		return temp;
@@ -120,7 +111,8 @@ public class WorkoutDbHandler extends Database {
 	{
 		List<Integer> integerList = new LinkedList<Integer>();
 		open();
-		Cursor c = ourDatabase.rawQuery("SELECT ExerciseId FROM WorkoutTemplateExercises WHERE WorkoutTemplateId='" + workoutTemplateId + "';", null);
+		Cursor c = ourDatabase.rawQuery("SELECT ExerciseId FROM WorkoutTemplateExercises WHERE " +
+				"WorkoutTemplateId='" + workoutTemplateId + "';", null);
 		c.moveToFirst();
 		int id = c.getColumnIndex("ExerciseId");
 		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext())
@@ -136,7 +128,8 @@ public class WorkoutDbHandler extends Database {
 	 * Returns all exercises in form of ExerciseData that a workout contains.
 	 *
 	 * @param integerList
-	 * @return LinkedList of ExerciseData, ExerciseData contains ExerciseId, ExerciseName and ExerciseTypeId
+	 * @return LinkedList of ExerciseData, ExerciseData contains ExerciseId, ExerciseName and 
+	 * ExerciseTypeId
 	 */
 	public List<ExerciseData> getExerciseIdNameById(List<Integer> integerList)
 	{
@@ -144,12 +137,14 @@ public class WorkoutDbHandler extends Database {
 		open();
 		for(Integer exerciseId: integerList)
 		{
-			Cursor d = ourDatabase.rawQuery("SELECT ExerciseId, ExerciseName, ExerciseTypeId FROM Exercises WHERE ExerciseId='" + exerciseId + "';", null);
+			Cursor d = ourDatabase.rawQuery("SELECT ExerciseId, ExerciseName, ExerciseTypeId " +
+					"FROM Exercises WHERE ExerciseId='" + exerciseId + "';", null);
 			d.moveToFirst();
 			int id = d.getColumnIndex("ExerciseId");
 			int name = d.getColumnIndex("ExerciseName");
 			int typeId = d.getColumnIndex("ExerciseTypeId");
-			exerciseDataList.add(new ExerciseData(d.getInt(id), d.getString(name), d.getInt(typeId)));
+			exerciseDataList.add(new ExerciseData(d.getInt(id), d.getString(name), 
+					d.getInt(typeId)));
 			d.close();
 
 		}
@@ -167,7 +162,8 @@ public class WorkoutDbHandler extends Database {
 	public ExerciseData getExerciseDataFromExerciseId(int exerciseId)
 	{
 		open();
-		Cursor c = ourDatabase.rawQuery("SELECT * FROM Exercises WHERE ExerciseId='" + exerciseId + "';", null);
+		Cursor c = ourDatabase.rawQuery("SELECT * FROM Exercises WHERE ExerciseId='" + 
+				exerciseId + "';", null);
 		c.moveToFirst();
 		int id = c.getColumnIndex("ExerciseId");
 		int pri = c.getColumnIndex("ExercisePri");
@@ -177,7 +173,9 @@ public class WorkoutDbHandler extends Database {
 		int note = c.getColumnIndex("ExerciseNote");
 		int sportid = c.getColumnIndex("ExerciseSportId");
 		int type = c.getColumnIndex("ExerciseTypeId");
-		ExerciseData temp = new ExerciseData(c.getInt(id), c.getInt(pri), c.getInt(sec), c.getString(name), c.getString(desc), c.getString(note), c.getInt(sportid), c.getInt(type));
+		ExerciseData temp = new ExerciseData(c.getInt(id), c.getInt(pri), c.getInt(sec), 
+				c.getString(name), c.getString(desc), c.getString(note), c.getInt(sportid), 
+				c.getInt(type));
 		c.close();
 		close();
 		return temp;
@@ -185,14 +183,16 @@ public class WorkoutDbHandler extends Database {
 
 
 
-	public ArrayList<ExerciseListElementData> getExercisesCheckedByWorkoutTemplateId(int WorkoutTemplateId)
+	public ArrayList<ExerciseListElementData> getExercisesCheckedByWorkoutTemplateId(int 
+			WorkoutTemplateId)
 	{
 		open();
 
 		ArrayList<ExerciseListElementData> list = new ArrayList<ExerciseListElementData>();
 
 		Cursor c1 = ourDatabase.rawQuery("SELECT ExerciseId, ExerciseName FROM Exercises;", null);
-		Cursor c2 = ourDatabase.rawQuery("SELECT * FROM WorkoutTemplateExercises WHERE WorkoutTemplateId = '" + WorkoutTemplateId + "';" , null);
+		Cursor c2 = ourDatabase.rawQuery("SELECT * FROM WorkoutTemplateExercises WHERE " +
+				"WorkoutTemplateId = '" + WorkoutTemplateId + "';" , null);
 
 		int c1Id = c1.getColumnIndex("ExerciseId");
 		int c2Id = c2.getColumnIndex("ExerciseId");
@@ -210,7 +210,8 @@ public class WorkoutDbHandler extends Database {
 				}
 			}
 
-			ExerciseListElementData exerciseListElementData = new ExerciseListElementData(c1.getInt(c1Id), c1.getString(name), isChecked);
+			ExerciseListElementData exerciseListElementData = new ExerciseListElementData(
+					c1.getInt(c1Id), c1.getString(name), isChecked);
 			list.add(exerciseListElementData);
 		}
 		close();
@@ -224,7 +225,8 @@ public class WorkoutDbHandler extends Database {
 	public int getExerciseLastTimePerformed(int ExerciseId)
 	{
 		open();
-		Cursor c = ourDatabase.rawQuery("SELECT WorkoutTime FROM Workouts WHERE WorkoutId = Sets.WorkoutId AND " +
+		Cursor c = ourDatabase.rawQuery("SELECT WorkoutTime FROM Workouts WHERE WorkoutId = " +
+				"Sets.WorkoutId AND " +
 				"Sets.ExerciseId = '" + ExerciseId + "';", null);
 		int WorkoutTime = c.getColumnIndex("WorkoutTime");
 		c.moveToFirst();
@@ -232,11 +234,13 @@ public class WorkoutDbHandler extends Database {
 		return c.getInt(WorkoutTime);
 	}
 
-	public void editWorkoutTemplate(ExerciseListElementData exerciseListItemData, int WorkoutTemplateId)
+	public void editWorkoutTemplate(ExerciseListElementData exerciseListItemData, 
+			int WorkoutTemplateId)
 	{
 		open();
 		//Check if already exists
-		Cursor c = ourDatabase.rawQuery("SELECT COUNT (*) FROM WorkoutTemplateExercises WHERE WorkoutTemplateId = '" + WorkoutTemplateId + "' " +
+		Cursor c = ourDatabase.rawQuery("SELECT COUNT (*) FROM WorkoutTemplateExercises " +
+				"WHERE WorkoutTemplateId = '" + WorkoutTemplateId + "' " +
 				"AND ExerciseId = '" + exerciseListItemData.getId() + "';", null);
 		c.moveToFirst();
 
@@ -245,14 +249,16 @@ public class WorkoutDbHandler extends Database {
 			if(c.getInt(0) == 0)
 			{	
 				//add
-				String tmp = "INSERT OR REPLACE INTO WorkoutTemplateExercises (WorkoutTemplateId, ExerciseId) VALUES " +
+				String tmp = "INSERT OR REPLACE INTO WorkoutTemplateExercises " +
+						"(WorkoutTemplateId, ExerciseId) VALUES " +
 						"('" + WorkoutTemplateId + "', '" + exerciseListItemData.getId() + "');";
 				ourDatabase.execSQL(tmp);
 			}
 		} else
 		{
 			//remove
-			String tmp = "DELETE FROM WorkoutTemplateExercises WHERE WorkoutTemplateId = '" + WorkoutTemplateId + "' AND " +
+			String tmp = "DELETE FROM WorkoutTemplateExercises WHERE WorkoutTemplateId = '" +
+					WorkoutTemplateId + "' AND " +
 					"ExerciseId = '" + exerciseListItemData.getId() + "';";
 			ourDatabase.execSQL(tmp);
 		}
@@ -284,9 +290,11 @@ public class WorkoutDbHandler extends Database {
 	{
 		open();
 		//Delete exercise associations to WorkoutTemplate
-		ourDatabase.execSQL("DELETE FROM WorkoutTemplateExercises WHERE WorkoutTemplateId = '" + WorkoutTemplateId + "';");
+		ourDatabase.execSQL("DELETE FROM WorkoutTemplateExercises WHERE WorkoutTemplateId = '" + 
+		WorkoutTemplateId + "';");
 		//Delete WorkoutTemplate
-		ourDatabase.execSQL("DELETE FROM WorkoutTemplates WHERE WorkoutTemplateId = '" + WorkoutTemplateId + "';");
+		ourDatabase.execSQL("DELETE FROM WorkoutTemplates WHERE WorkoutTemplateId = '" + 
+		WorkoutTemplateId + "';");
 		close();
 	}
 
@@ -294,11 +302,13 @@ public class WorkoutDbHandler extends Database {
 	{
 		open();
 		//Delete WorkoutTemplateExercises associated with Exercise
-		ourDatabase.execSQL("DELETE FROM WorkoutTemplateExercises WHERE ExerciseId = '" + ExerciseId + "';");
+		ourDatabase.execSQL("DELETE FROM WorkoutTemplateExercises WHERE ExerciseId = '" + 
+		ExerciseId + "';");
 		//Delete sets associated with Exercise
 		ourDatabase.execSQL("DELETE FROM Sets WHERE ExerciseId = '" + ExerciseId + "';");
 		//Delete Exercises
-		ourDatabase.execSQL("DELETE FROM WorkoutTemplates WHERE WorkoutTemplateId = '" + ExerciseId + "';");
+		ourDatabase.execSQL("DELETE FROM WorkoutTemplates WHERE WorkoutTemplateId = '" + 
+		ExerciseId + "';");
 		close();
 	}
 }
