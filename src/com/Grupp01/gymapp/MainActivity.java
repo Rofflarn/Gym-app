@@ -61,8 +61,6 @@ public class MainActivity extends SherlockActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
-		//Set default values for the applications settings
 		PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 		changeLang();
 	}
@@ -109,23 +107,23 @@ public class MainActivity extends SherlockActivity {
 		Intent historik = new Intent(this, ListHistoryActivity.class);
 		startActivity(historik);
 	}
-	
+
 	/**
 	 * When button Statistics is pressed Statistics is started.
 	 * 
 	 * @param view
 	 */
 
-	
-    public void statistics(View view)
-    {
-    	Toast.makeText(this, R.string.not_implemented, Toast.LENGTH_SHORT).show();
-    	//Intent statistic = new Intent(this, Statistik.class);
-    	//startActivity(statistic);
-    }
+
+	public void statistics(View view)
+	{
+		Toast.makeText(this, R.string.not_implemented, Toast.LENGTH_SHORT).show();
+		//Intent statistic = new Intent(this, Statistik.class);
+		//startActivity(statistic);
+	}
 
 
-    /**
+	/**
 	 * When button Exercises is pressed ListExerciseActivity is started.
 	 * 
 	 * @param view
@@ -146,8 +144,8 @@ public class MainActivity extends SherlockActivity {
 		Intent settings = new Intent(this, SettingsActivity.class);
 		startActivity(settings);
 	}
-	
-	
+
+
 	/**
 	 * When button Profile is pressed the profile activity will be started.
 	 * 
