@@ -24,6 +24,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.Grupp01.gymapp.R;
+import com.Grupp01.gymapp.Controller.Profile.Profile;
+import com.Grupp01.gymapp.Controller.Profile.ProfileDbHandler;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
@@ -72,19 +74,22 @@ public class ProfileActivity extends SherlockActivity {
      */
     public void uppdateProfile(View view)
     {
-    	String namn = ((EditText)findViewById(R.id.name)).getText().toString();
+    	String name = ((EditText)findViewById(R.id.name)).getText().toString();
     	String age = ((EditText)findViewById(R.id.age)).getText().toString();
     	String length = ((EditText)findViewById(R.id.length)).getText().toString();
     	String weight = ((EditText)findViewById(R.id.weight)).getText().toString();
-    	if(namn.length() == 0 || age.length() == 0 || length.length() == 0 || weight.length() == 0)
+    	if(name.length() == 0 || age.length() == 0 || length.length() == 0 || weight.length() == 0)
     	{
     		Toast.makeText(this, "Fill in correct information", Toast.LENGTH_SHORT).show();
     	}
     	else
     	{
-    		Integer.parseInt(age);
-    		Double.parseDouble(length);
-    		Double.parseDouble(weight);
+    		ProfileDbHandler dbHandler = new ProfileDbHandler(this);
+    		dbHandler.open();
+    		Profile profile = new Profile(name, Integer.parseInt(age),
+    				Double.parseDouble(weight), Double.parseDouble(length));
+    		dbHandler.addUser(profile);
+    		dbHandler.close();	
     	}
     }
     
