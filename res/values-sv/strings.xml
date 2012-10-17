@@ -24,6 +24,7 @@
     <string name="hint_comment">Lägg till en personlig kommentar</string>
     <string name="string_primary_muscle">Välj en primär muskel</string>
     <string name="string_secondary_muscle">Välj en sekundär muskel</string>
+
     <string-array name="trainingtype_array">
         <item>Kondition</item>
         <item>Statisk</item>
@@ -59,20 +60,20 @@
     <string name="title_activity_register_dynamic">Registrera dynamisk övning</string>
     <string name="title_activity_register_static">Registrera statisk övning</string>
     <string name="title_activity_register_cardio">Registera konditionsträning</string>
-	<string name="Done">Färdig</string>
-	<string name="Cancel">Avbryt</string>
-	<string name="register_last_time">Förra gången</string>
-	<string name="register_current_sets">Nuvarande: </string>
-	<string name="register_my_notes">Anteckning: </string>
-	<string name="register_minutes">Min.</string>
-	<string name="register_seconds">Sek.</string>
-	<string name="register_distance">Distans</string>
-	<string name="register_finish_set">Lägg till</string>
-	<string name="register_undo_set">Ta bort</string>
-	<string name="register_reps">Repetitioner</string>
-	<string name="register_weight">Vikt</string>
-	<string name="textview_musclegroup">Muskelgrupp</string>
-	<string name="textview_muscle">Muskel</string>
+    <string name="Done">Färdig</string>
+    <string name="Cancel">Avbryt</string>
+    <string name="register_last_time">Förra gången</string>
+    <string name="register_current_sets">Nuvarande: </string>
+    <string name="register_my_notes">Anteckning: </string>
+    <string name="register_minutes">Min.</string>
+    <string name="register_seconds">Sek.</string>
+    <string name="register_distance">Distans</string>
+    <string name="register_finish_set">Lägg till</string>
+    <string name="register_undo_set">Ta bort</string>
+    <string name="register_reps">Repetitioner</string>
+    <string name="register_weight">Vikt</string>
+    <string name="textview_musclegroup">Muskelgrupp</string>
+    <string name="textview_muscle">Muskel</string>
     <string name="title_activity_database">DatabaseActivity</string>
     <string name="title_activity_sqlview">SQLView</string>
     <string name="dialog_new_workout_title">Ange namn på träningspass:</string>
@@ -82,16 +83,20 @@
     <string name="not_implemented">Inte implementerad än</string>
     <string name="delete">Ta bort</string>
     <string name="edit">Ändra</string>
-        <string name="about">Om</string>
+    <string name="about">Om</string>
     <string name="about_descr">Gymapp utvecklades under ett projektarbete på kursen ""Software engineering
         project" på Chalmers Tekniska Högskola.</string>
-	<string name="ok">OK</string>
+    <string name="ok">OK</string>
     <string name="language">Språk</string>
-	<string name="language_select">Ange önskat språk</string>
-	<string name="distance">Distans</string>
-	<string name="distance_select">Ange önskad enhet för distans</string>
-	<string name="weight">Vikt</string>
-	<string name="weight_select">Ange önskad enhet för distans</string>
-	<string name="unit">Enheter</string>
+    <string name="language_select">Ange önskat språk</string>
+    <string name="distance">Distans</string>
+    <string name="distance_select">Ange önskad enhet för distans</string>
+    <string name="weight">Vikt</string>
+    <string name="weight_select">Ange önskad enhet för distans</string>
+    <string name="unit">Enheter</string>
+    <string name="length">Längd</string>
+    <string name="age">Ålder</string>
+    <string name="name">Namn</string>
+    <string name="buttonUppdate">Updatera profil</string>
 
 </resources>
