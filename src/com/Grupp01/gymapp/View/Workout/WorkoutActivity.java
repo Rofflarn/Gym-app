@@ -21,8 +21,11 @@ package com.Grupp01.gymapp.View.Workout;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -85,16 +88,16 @@ public class WorkoutActivity extends SherlockActivity implements OnItemClickList
 				INTENT_INT_DEFAULT_VALUE);
 		//Set the layout of the activity
 		setContentView(R.layout.activity_workout);
-		
+
 		//Get the name of the workout and set it as a title
 		getAndSetTitle();
-		
+
 		//Get the list of exercises for the current workout from the database
 		getExerciseDataList();
-		
+
 		//Use the list and show it in the listview
 		listAllExercises();
-		
+
 		//Get both buttons, only allow the Start button to be visible.
 		buttonStart= (Button) findViewById(R.id.button_start);
 		buttonDone = (Button) findViewById(R.id.button_done);
@@ -125,7 +128,7 @@ public class WorkoutActivity extends SherlockActivity implements OnItemClickList
 			intentHome.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			startActivity(intentHome);
 			return true;
-		//Edit workout pressed, open EditWorkout activity and pass the id via the intent
+			//Edit workout pressed, open EditWorkout activity and pass the id via the intent
 		case R.id.menu_editWorkout:
 			Intent intentEditWorkout = new Intent(this, EditWorkoutActivity.class);
 			intentEditWorkout.putExtra(WorkoutActivity.EXTRA_WORKOUT_ID, workoutId);
@@ -141,10 +144,10 @@ public class WorkoutActivity extends SherlockActivity implements OnItemClickList
 	 * show all exercises available in this workout.
 	 */
 	private void listAllExercises() {
-		
+
 		//Get the listview that will hold the list
 		listExercisesView = (ListView) findViewById(R.id.activeWorkoutList);
-		
+
 		//The array which will be passed to the listview
 		ArrayList<String> listExercises = new ArrayList<String>();
 
@@ -154,15 +157,15 @@ public class WorkoutActivity extends SherlockActivity implements OnItemClickList
 		{
 			listExercises.add(name.getName());
 		}
-		
+
 		//The adapter we use to adapt the array to the listview
 		ListAdapter listAdapter = new ArrayAdapter<String>
-				(this, R.layout.list_simple_row, listExercises);
+		(this, R.layout.list_simple_row, listExercises);
 		//Create the listview
 		listExercisesView.setAdapter(listAdapter);
 
 	}
-	
+
 	/**
 	 * Is called when a user has clicked on an exercise in the list.
 	 * Will get the exercise object and then open a new activity where
@@ -277,6 +280,45 @@ public class WorkoutActivity extends SherlockActivity implements OnItemClickList
 		//Remove the clicklistener and close the activity.
 		listExercisesView.setOnItemClickListener(null);
 		finish();
+	}
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) 
+	{
+		//if user is working out, prompt before quitting
+		if(buttonDone.getVisibility()!=View.GONE)
+		{
+			//Show a confirmation dialog before deleting
+			AlertDialog.Builder leaveDialog = new AlertDialog.Builder(this);
+			leaveDialog.setMessage(R.string.done_training);
+			leaveDialog.setCancelable(false);
+
+			//Set action for clicking "Yes" (the user wants to delete)
+			leaveDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog, int id) {
+					finish();	
+
+				} //End of onclick method
+			}	//end of DialogInterface
+					);	//End of setPositiveButton
+
+			//Set action for choosing not to delete (the dialog just closes and no action is taken)
+			leaveDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog, int id) {
+					dialog.cancel();
+				} //End of onclick method
+			}	//end of newDialogInterface
+					);	//End of setPositiveButton
+
+			//Show the dialog
+			AlertDialog alert = leaveDialog.create();
+			alert.show(); 
+			return true;
+		}
+		//if not working out
+		else {
+			//back-key working as usual
+			return super.onKeyDown(keyCode, event);
+		}
 	}
 
 }
