@@ -37,6 +37,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.Grupp01.gymapp.MainActivity;
 import com.Grupp01.gymapp.R;
@@ -152,11 +153,21 @@ public class ListWorkoutActivity extends SherlockActivity implements OnClickList
 	@Override
 	public void onCreateContextMenu(ContextMenu menu, View v,
 			ContextMenuInfo menuInfo) {
+		//Set the layout of the menu with the xml file
+		getMenuInflater().inflate(R.menu.context_menu, menu);
+		//Get more information about the pressed item:
+		AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)menuInfo;
 		
-		//Add Edit and Delete buttons.
-		menu.add(Menu.NONE, 0, 0, "Edit");
-		menu.add(Menu.NONE, 1, 1, "Delete");
-
+		//Get the textview that holds the exercise name in the list and save it as a a string
+		TextView titleText = (TextView) info.targetView.findViewById(R.id.rowTextView);
+		String title = titleText.getText().toString();
+		
+		//Set it as a title.
+		menu.setHeaderTitle(title);
+		
+		//Title set with help from 
+		//http://stackoverflow.com/questions/3722380/
+		//android-open-contextmenu-on-short-click-pass-item-clicked-details
 	}
 	
 	/**
@@ -178,18 +189,18 @@ public class ListWorkoutActivity extends SherlockActivity implements OnClickList
 	public boolean onContextItemSelected(android.view.MenuItem item) {
 		AdapterView.AdapterContextMenuInfo info = 
 				(AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
-		//Get id of long clicked item
-		int menuItemIndex = item.getItemId();
 		
 		//Get id of the long clicked workout
 		int workoutId = idNameList.get(info.position).getId();
-		switch(menuItemIndex){
-		//Edit menu item pressed
-		case 0:
+		
+		//Detect which button was pressed
+		switch (item.getItemId()){
+		//Edit menu item pressed, open edit workout activity
+		case R.id.contextMenuEdit:
 			editWorkouts(workoutId);
 			return true;
-		//Delete menu item pressed
-		case 1:
+		//Delete menu item pressed, delete the activity and refresh listview.
+		case R.id.contextMenuDelete:
 			deleteWorkout(workoutId);
 			return true;
 		}
