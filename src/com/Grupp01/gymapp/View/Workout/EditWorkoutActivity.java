@@ -21,9 +21,7 @@ package com.Grupp01.gymapp.View.Workout;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -52,7 +50,8 @@ import com.actionbarsherlock.view.MenuInflater;
 public class EditWorkoutActivity extends SherlockActivity implements OnClickListener
 {
 	public static final String EXTRA_EXERCISE_NAME = "com.Grupp01.gymapp.message";
-	private Dialog dialog;
+	private Dialog dialogAddExercise;
+	private Dialog dialogCancelEditWorkout;
 	private ArrayAdapter<ExerciseListElementData> listAdapter;
 	private int workoutId;
 	private List<ExerciseListElementData> exerciseList = new ArrayList<ExerciseListElementData>();
@@ -67,7 +66,8 @@ public class EditWorkoutActivity extends SherlockActivity implements OnClickList
 	{
 		super.onCreate(savedInstanceState);
 		Intent intent = getIntent();
-		initDialogue();
+		initDialogueAddExercise();
+		initDialogueCancelEditWorkout();
 		if(intent.getIntExtra(ListWorkoutActivity.WORKOUT_ID, 0) !=0)
 		{
 			workoutId = intent.getIntExtra(ListWorkoutActivity.WORKOUT_ID, 0);
@@ -103,8 +103,8 @@ public class EditWorkoutActivity extends SherlockActivity implements OnClickList
 	{
 		if(item.getItemId() == R.id.menu_addExe)
 		{
-			//shows the dialog if addExe button is pressed
-			dialog.show();
+			//shows the dialogAddExercise if addExe button is pressed
+			dialogAddExercise.show();
 
 		}
 		//If the user presses the home button(the logo)
@@ -121,16 +121,24 @@ public class EditWorkoutActivity extends SherlockActivity implements OnClickList
 		}
 		return true;
 	}
-	/** Listens to the add and cancel button in the dialog
+	/** Listens to the add and cancel button in the dialogAddExercise
 	 * @param view the view that is clicked
 	 */
 	@Override
 	public void onClick(View view)
 	{
-		if(view == ((Button) dialog.findViewById(R.id.add_Button)))
+		if(view == (Button) dialogCancelEditWorkout.findViewById(R.id.yes_Button))
+		{
+			finish();
+		}
+		else if(view == (Button) dialogCancelEditWorkout.findViewById(R.id.cancel_Button))
+		{
+			dialogCancelEditWorkout.dismiss();
+		}
+		else if(view == ((Button) dialogAddExercise.findViewById(R.id.add_Button)))
 		{
 			//takes the text from exercise name textfield and puts it to AddExercise intent		
-			EditText name = (EditText) dialog.findViewById(R.id.exerciseName);
+			EditText name = (EditText) dialogAddExercise.findViewById(R.id.exerciseName);
 			String temp = name.getText().toString();
 			//if the string is empty, prompt for a name
 			if(temp.length() == 0)
@@ -147,14 +155,14 @@ public class EditWorkoutActivity extends SherlockActivity implements OnClickList
 				int id = dbHandler.addExercise(temp);
 				Intent intentAddExercise = new Intent(this, EditExerciseActivity.class);
 				intentAddExercise.putExtra(EXTRA_EXERCISE_NAME, id);
-				dialog.dismiss();
+				dialogAddExercise.dismiss();
 				startActivity(intentAddExercise);
 			}
 		}
-		//If the user presses the cancel-button, close the dialog.
-		else if(view == ((Button) dialog.findViewById(R.id.cancel_Button)))
+		//If the user presses the cancel-button, close the dialogAddExercise.
+		else if(view == ((Button) dialogAddExercise.findViewById(R.id.cancel_Button)))
 		{
-			dialog.dismiss();
+			dialogAddExercise.dismiss();
 		}
 	}
 	/**
@@ -167,21 +175,30 @@ public class EditWorkoutActivity extends SherlockActivity implements OnClickList
 		createEditWorkout();
 	}
 	/**
-	 * Initialize dialogue-window by adding buttons and setting layout
+	 * Initialize dialogAddExerciseue-window by adding buttons and setting layout
 	 */
-	public void initDialogue()
+	public void initDialogueAddExercise()
 	{
-		//setup a new dialog
-		dialog = new Dialog(this);
-		dialog.setContentView(R.layout.dialog);
-		dialog.setTitle("New Exercise");
+		//setup a new dialogAddExercise
+		dialogAddExercise = new Dialog(this);
+		dialogAddExercise.setContentView(R.layout.dialog);
+		dialogAddExercise.setTitle("New Exercise");
 		
 		//Create listeners to the button
-		((Button) dialog.findViewById(R.id.add_Button)).setOnClickListener(this);
-		((Button) dialog.findViewById(R.id.cancel_Button)).setOnClickListener(this);
+		((Button) dialogAddExercise.findViewById(R.id.add_Button)).setOnClickListener(this);
+		((Button) dialogAddExercise.findViewById(R.id.cancel_Button)).setOnClickListener(this);
+	}
+	public void initDialogueCancelEditWorkout()
+	{
+		//setup a new dialogAddExercise
+		dialogCancelEditWorkout = new Dialog(this);
+		dialogCancelEditWorkout.setContentView(R.layout.alertdialog_workout);
+		//Create listeners to the button
+		((Button) dialogCancelEditWorkout.findViewById(R.id.cancel_Button)).setOnClickListener(this);
+		((Button) dialogCancelEditWorkout.findViewById(R.id.yes_Button)).setOnClickListener(this);
 
 	}
-	/** Creates all the listeners and the listview for the dialog
+	/** Creates all the listeners and the listview for the dialogAddExercise
 	 */
 	public void createEditWorkout()
 	{
@@ -241,36 +258,8 @@ public class EditWorkoutActivity extends SherlockActivity implements OnClickList
 		dbHandler.close();
 		finish();
 	}
-
-	/**Is called if a user press the cancel button,
-	 * asks the user if it want to close the dialog.*/
 	public void cancelEditWorkoutDialog(View view)
 	{
-		//Creates a dialog
-		final AlertDialog.Builder closeEditWorkoutDialog = new AlertDialog.Builder(this);
-
-		//Set message
-		closeEditWorkoutDialog.setMessage("Are you sure you want to close workout?");
-
-		//If pressing the "Yes"-button
-		closeEditWorkoutDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener()
-		{
-			/** When the user click the "Yes"-button, go back to ListWorkout*/
-			public void onClick(DialogInterface dialog, int whichButton)
-			{
-				finish();
-			}
-		});
-		//If pressing the "Cancel"-button
-		closeEditWorkoutDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener()
-		{
-			@Override
-			/** When the user click the "Cancel"-button, close the dialog*/
-			public void onClick(DialogInterface dialog, int whichButton)
-			{
-				dialog.cancel();
-			}
-		});
-		closeEditWorkoutDialog.show();
+		dialogCancelEditWorkout.show();
 	}
 } 

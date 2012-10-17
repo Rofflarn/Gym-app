@@ -10,6 +10,8 @@
     <string name="button_save">Save</string>
     <string name="name">Name</string>
     <string name="age">Age</string>
+    <string name="yes">Yes</string>
+    <string name="close_dialog">Are you sure you want to exit edit workout?</string>
     <string name="length">Length</string>
     <string name="weight">Weight</string>
     <string name="buttonUppdate">Uppdate Profile</string>
