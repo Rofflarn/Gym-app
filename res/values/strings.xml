@@ -91,6 +91,7 @@
     <string name="cant_add_set_without_reps">Cant add set with 0 repetitions.</string>
     <string name="delete">Delete</string>
     <string name="delete_workout">Do your really want to delete this workout?</string>
+    <string name="delete_exercise">Do your really want to delete this exercise?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="done_training">Are you really done training?</string>

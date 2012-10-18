@@ -21,18 +21,19 @@ package com.Grupp01.gymapp.View.Workout;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.Grupp01.gymapp.MainActivity;
 import com.Grupp01.gymapp.R;
@@ -57,7 +58,7 @@ import com.actionbarsherlock.view.MenuItem;
  * <p> Subpackage</p>
  *
  */
-public class WorkoutActivity extends SherlockActivity implements OnItemClickListener{
+public class WorkoutActivity extends SherlockActivity implements OnClickListener, OnItemClickListener{
 
 	//Constants defining type of exercise
 	private static final int CARDIO_TYPE = 1;
@@ -76,6 +77,7 @@ public class WorkoutActivity extends SherlockActivity implements OnItemClickList
 	private List<ExerciseData> exerciseDataList;
 	//Buttons used to start and stop the workout.
 	private Button buttonDone, buttonStart;
+	private Dialog dialog;
 
 	/**
 	 * Set up the default layout and list all exercises
@@ -294,33 +296,15 @@ public class WorkoutActivity extends SherlockActivity implements OnItemClickList
 		if(buttonDone.getVisibility()!=View.GONE)
 		{
 			//Show a confirmation dialog before deleting
-			AlertDialog.Builder leaveDialog = new AlertDialog.Builder(this);
-			leaveDialog.setMessage(R.string.done_training);
-			leaveDialog.setCancelable(false);
+			dialog = new Dialog(this);
+			dialog.setContentView(R.layout.y_n_dialog);
+			dialog.setTitle(R.string.leaving);
+			((TextView) dialog.findViewById(R.id.TV_dialog)).setText(R.string.done_training);
 
-			//Set action for clicking "Yes" (the user wants to delete)
-			leaveDialog.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-				public void onClick(DialogInterface dialog, int id)
-				{
-					finish();	
-
-				} //End of onclick method
-			}	//end of DialogInterface
-					);	//End of setPositiveButton
-
-			//Set action for choosing not to delete (the dialog just closes and no action is taken)
-			leaveDialog.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() 
-			{
-				public void onClick(DialogInterface dialog, int id)
-				{
-					dialog.cancel();
-				} //End of onclick method
-			}	//end of newDialogInterface
-					);	//End of setPositiveButton
-
-			//Show the dialog
-			AlertDialog alert = leaveDialog.create();
-			alert.show(); 
+			((Button) dialog.findViewById(R.id.yes_Button)).setOnClickListener(this);
+			((Button) dialog.findViewById(R.id.no_Button)).setOnClickListener(this);
+			dialog.setCancelable(false);
+			dialog.show();
 			return true;
 		}
 		//if not working out
@@ -329,6 +313,16 @@ public class WorkoutActivity extends SherlockActivity implements OnItemClickList
 			//back-key working as usual
 			return super.onKeyDown(keyCode, event);
 		}
+	}
+	@Override
+	public void onClick(View view) 
+	{
+		if(view == ((Button) dialog.findViewById(R.id.yes_Button)))
+			finish();
+		else
+			dialog.dismiss();
+
+		
 	}
 
 }
