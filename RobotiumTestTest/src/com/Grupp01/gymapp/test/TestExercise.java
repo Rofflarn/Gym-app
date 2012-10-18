@@ -29,7 +29,7 @@ import com.jayway.android.robotium.solo.Solo;
 /** 
  * @author GivDev
  * @version 0.1
- * @peer reviewed by xxxxxx
+ * @peer reviewed by Robert Blomberg
  * @date dd/mm/yyyy
  */
 
@@ -47,7 +47,7 @@ public class TestExercise extends ActivityInstrumentationTestCase2<MainActivity>
 	}
 	
 	/**Testing to open the viewExercise activity
-	 * Reference to Test-case in documentation: 1.2
+	 * Reference to Test-case in documentation: 3.1
 	 */
 	public void testViewAllExercises()
 	{
@@ -57,7 +57,7 @@ public class TestExercise extends ActivityInstrumentationTestCase2<MainActivity>
 	}
 	
 	/**Testing to open viewExercise and the push the homebutton
-	 * Reference to Test-case in documentation: 1.2
+	 * Reference to Test-case in documentation: 3.2
 	 */
 	public void testExerciseHomeButton()
 	{
@@ -69,7 +69,7 @@ public class TestExercise extends ActivityInstrumentationTestCase2<MainActivity>
 	}
 	
 	/**Testing to enter a name to a new exercise
-	 * Reference to Test-case in documentation: 1.2
+	 * Reference to Test-case in documentation: 3.3
 	 */
 	public void testEnterNameNewExercise()
 	{
@@ -84,7 +84,7 @@ public class TestExercise extends ActivityInstrumentationTestCase2<MainActivity>
 	}
 	
 	/**Testing to add a empty name to a new exercise
-	 * Reference to Test-case in documentation: 1.2
+	 * Reference to Test-case in documentation: 3.4
 	 */
 	public void testEnterEmptyNameNewExercise()
 	{
@@ -95,11 +95,11 @@ public class TestExercise extends ActivityInstrumentationTestCase2<MainActivity>
 		solo.enterText(0, "");
 		solo.clickOnButton(1);
 		//Checks that an error message is displayed in the dialog textbox
-		assertEquals("Error text should be shown", solo.getEditText(0).getHint().equals("Please enter a name"));
+		assertEquals("Error, text should be shown", solo.getEditText(0).getHint().equals("Please enter a name"));
 	}
 	
 	/**Testing to add cardio exercise whith minimal settings
-	 * Reference to Test-case in documentation: 1.2
+	 * Reference to Test-case in documentation: 3.5
 	 */
 	public void testAddExerciseMinimalSettingsCardio()
 	{
@@ -120,7 +120,7 @@ public class TestExercise extends ActivityInstrumentationTestCase2<MainActivity>
 	}
 	
 	/**Testing to add static exercise whith minimal settings
-	 * Reference to Test-case in documentation: 1.2
+	 * Reference to Test-case in documentation: 3.5
 	 */
 	public void testAddExerciseMinimalSettingsStatic()
 	{
@@ -143,7 +143,7 @@ public class TestExercise extends ActivityInstrumentationTestCase2<MainActivity>
 	}
 	
 	/**Testing to add dynamic exercise whith minimal settings
-	 * Reference to Test-case in documentation: 1.2
+	 * Reference to Test-case in documentation: 3.5
 	 */
 	public void testAddExerciseMinimalSettingsDynamic()
 	{
@@ -166,7 +166,7 @@ public class TestExercise extends ActivityInstrumentationTestCase2<MainActivity>
 	}
 	
 	/**Testing to add cardio exercise whith maximal settings
-	 * Reference to Test-case in documentation: 1.2
+	 * Reference to Test-case in documentation: 3.6
 	 */
 	public void testAddExerciseMaximalSettingsCardio()
 	{
@@ -191,7 +191,7 @@ public class TestExercise extends ActivityInstrumentationTestCase2<MainActivity>
 	}
 	
 	/**Testing to add static exercise whith maximal settings
-	 * Reference to Test-case in documentation: 1.2
+	 * Reference to Test-case in documentation: 3.6
 	 */
 	public void testAddExerciseMaximalSettingsStatic()
 	{
@@ -218,7 +218,7 @@ public class TestExercise extends ActivityInstrumentationTestCase2<MainActivity>
 	}
 	
 	/**Testing to add dynamic exercise whith maximal settings
-	 * Reference to Test-case in documentation: 1.2
+	 * Reference to Test-case in documentation: 3.6
 	 */
 	public void testAddExerciseMaximalSettingsDynamic()
 	{
@@ -245,7 +245,7 @@ public class TestExercise extends ActivityInstrumentationTestCase2<MainActivity>
 	}
 	
 	/**Testing to delete an exercise
-	 * Reference to Test-case in documentation: 1.2
+	 * Reference to Test-case in documentation: 3.8
 	 */
 	public void testDeleteExercise()
 	{
@@ -254,7 +254,7 @@ public class TestExercise extends ActivityInstrumentationTestCase2<MainActivity>
 	}
 	
 	/**Testing to edit an exsisting exercise
-	 * Reference to Test-case in documentation: 1.2
+	 * Reference to Test-case in documentation: 3.7
 	 */
 	public void testEditExercise()
 	{
@@ -275,7 +275,7 @@ public class TestExercise extends ActivityInstrumentationTestCase2<MainActivity>
 	}
 	
 	/**Testing to rename an exsisting exercise
-	 * Reference to Test-case in documentation: 1.2
+	 * Reference to Test-case in documentation: 3.10
 	 */
 	public void testRenameExercise()
 	{
@@ -284,7 +284,7 @@ public class TestExercise extends ActivityInstrumentationTestCase2<MainActivity>
 	}
 	
 	/**Testing to cancel when adding a new exercise
-	 * Reference to Test-case in documentation: 1.2
+	 * Reference to Test-case in documentation: 3.9
 	 */
 	public void testAbortingAddExercise()
 	{
@@ -302,7 +302,7 @@ public class TestExercise extends ActivityInstrumentationTestCase2<MainActivity>
 	}
 	
 	/**Testing to cancel when editing a existing exercise
-	 * Reference to Test-case in documentation: 1.2
+	 * Reference to Test-case in documentation: 3.11
 	 */
 	public void testAbortingEditExercise()
 	{
