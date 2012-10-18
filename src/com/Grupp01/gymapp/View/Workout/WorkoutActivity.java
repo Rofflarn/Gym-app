@@ -1,19 +1,19 @@
 /*Copyright © 2012 GivDev
- * 
+ *
  * This file is part of Gymapp.
  *
- *   Gymapp is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
+ * Gymapp is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
- *   Gymapp is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *   GNU General Public License for more details.
+ * Gymapp is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
  *
- *   You should have received a copy of the GNU General Public License
- *  along with Gymapp.  If not, see <http://www.gnu.org/licenses/>.
+ * You should have received a copy of the GNU General Public License
+ * along with Gymapp. If not, see <http://www.gnu.org/licenses/>.
  *
  */
 package com.Grupp01.gymapp.View.Workout;
@@ -56,22 +56,14 @@ import com.actionbarsherlock.view.MenuItem;
  */
 public class WorkoutActivity extends SherlockActivity implements OnItemClickListener{
 
-	//Constants defining type of exercise
-	private static final int CARDIO_TYPE = 1;
-	private static final int DYNAMIC_TYPE = 2;
-	private static final int STATIC_TYPE = 3;
-	//Default value for passed int via Intent.
-	private static final int INTENT_INT_DEFAULT_VALUE = 0;
-	//Constants used to identify a string passed via Intent.
-	public static final String EXTRA_EXERCISE_ID = "com.Grupp01.gymapp.message.exercise.exercise";
-	public static final String EXTRA_WORKOUT_ID = "com.Grupp01.gymapp.message.exercise.workout";
-	//The listview that holds all the exercises for the workout
-	private ListView listExercisesView;	
-	//Id of current workout
+	final int Cardio = 1;
+	final int Dynamic = 2;
+	final int Static = 3;
+	public final static String EXTRA_EXERCISE_ID = "com.Grupp01.gymapp.message.exercise.exercise";
+	public final static String EXTRA_WORKOUT_ID = "com.Grupp01.gymapp.message.exercise.workout";
+	private ListView listExercisesView;	//The listview that holds all the exercises for the workout
 	private int workoutId;
-	//List of exercises for the current workout
 	private List<ExerciseData> exerciseDataList;
-	//Buttons used to start and stop the workout.
 	private Button buttonDone, buttonStart;
 
 	/**
@@ -80,22 +72,11 @@ public class WorkoutActivity extends SherlockActivity implements OnItemClickList
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		//Get the id which was passed via the intent
-		workoutId = getIntent().getIntExtra(ListWorkoutActivity.WORKOUT_ID, 
-				INTENT_INT_DEFAULT_VALUE);
-		//Set the layout of the activity
+		workoutId = getIntent().getIntExtra(ListWorkoutActivity.WORKOUT_ID, 0);
 		setContentView(R.layout.activity_workout);
-		
-		//Get the name of the workout and set it as a title
 		getAndSetTitle();
-		
-		//Get the list of exercises for the current workout from the database
 		getExerciseDataList();
-		
-		//Use the list and show it in the listview
 		listAllExercises();
-		
-		//Get both buttons, only allow the Start button to be visible.
 		buttonStart= (Button) findViewById(R.id.button_start);
 		buttonDone = (Button) findViewById(R.id.button_done);
 		buttonDone.setVisibility(View.GONE);
@@ -107,9 +88,9 @@ public class WorkoutActivity extends SherlockActivity implements OnItemClickList
 	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		//Set the layout of the menu and set the app icon button to be clickable.
 		getSupportMenuInflater().inflate(R.menu.activity_workout, menu);
 		getSupportActionBar().setHomeButtonEnabled(true);
+		//Set the title to the name of the workout
 		return true;
 	}
 	/**
@@ -125,11 +106,10 @@ public class WorkoutActivity extends SherlockActivity implements OnItemClickList
 			intentHome.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			startActivity(intentHome);
 			return true;
-		//Edit workout pressed, open EditWorkout activity and pass the id via the intent
 		case R.id.menu_editWorkout:
 			Intent intentEditWorkout = new Intent(this, EditWorkoutActivity.class);
 			intentEditWorkout.putExtra(WorkoutActivity.EXTRA_WORKOUT_ID, workoutId);
-			startActivity(intentEditWorkout);
+			startActivityForResult(intentEditWorkout, 0);
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
@@ -141,36 +121,23 @@ public class WorkoutActivity extends SherlockActivity implements OnItemClickList
 	 * show all exercises available in this workout.
 	 */
 	private void listAllExercises() {
-		
-		//Get the listview that will hold the list
 		listExercisesView = (ListView) findViewById(R.id.activeWorkoutList);
-		
-		//The array which will be passed to the listview
 		ArrayList<String> listExercises = new ArrayList<String>();
 
-		//Add every exercise name from the list we got from the database
-		//to the Array which we will send to the adapter.
 		for(ExerciseData name: exerciseDataList)
 		{
 			listExercises.add(name.getName());
 		}
-		
-		//The adapter we use to adapt the array to the listview
-		ListAdapter listAdapter = new ArrayAdapter<String>
-				(this, R.layout.list_simple_row, listExercises);
-		//Create the listview
+		//Add all the exercises from the stringarray to the ArrayList and build the listview
+		ListAdapter listAdapter = new ArrayAdapter<String>(this, R.layout.list_simple_row, listExercises);
 		listExercisesView.setAdapter(listAdapter);
+		//Set up listener and action for pressing the listview
 
 	}
-	
-	/**
-	 * Is called when a user has clicked on an exercise in the list.
-	 * Will get the exercise object and then open a new activity where
-	 * the user can input his/her result.
-	 */
+
 	public void onItemClick(AdapterView<?> arg0, View v, int position,
 			long id) {
-		//Get the object of the clicked exercise and open a new activity
+		//Get the text label of the row that has been clicked (will be used to open the correct workout)
 		ExerciseData exercise = exerciseDataList.get(position);
 		registerWorkoutResult(exercise);
 	}
@@ -183,38 +150,22 @@ public class WorkoutActivity extends SherlockActivity implements OnItemClickList
 	 * @param exerciseName The name of the exercise
 	 */
 	private void registerWorkoutResult(ExerciseData exercise){
-		//Check which type of exercise it is. Depending on type different actvities will
-		//open and prompt for different input values.
-		if(exercise.getTypeId() == CARDIO_TYPE){
+		//ONLY FOR TESTING DIFFERENT REGISTER ACTIVITY!!
+		if(exercise.getTypeId() == 1){
 			Intent intent = new Intent(WorkoutActivity.this, RegisterCardioActivity.class);
-			//Pass the ID of the exercise (so launched activity knows which exercise the input
-			//will be for.
 			intent.putExtra(EXTRA_EXERCISE_ID, exercise.getId());
-			//Pass the ID of the workout to the launched activity. This is needed 
-			//so the entry of the Exercise in the database is referenced to the correct
-			//workout id.
 			intent.putExtra(EXTRA_WORKOUT_ID, workoutId);
 			startActivity(intent);
 		}
-		if(exercise.getTypeId() == DYNAMIC_TYPE){
+		if(exercise.getTypeId() == 2){
 			Intent intent = new Intent(WorkoutActivity.this, RegisterDynamicActivity.class);
-			//Pass the ID of the exercise (so launched activity knows which exercise the input
-			//will be for.
 			intent.putExtra(EXTRA_EXERCISE_ID, exercise.getId());
-			//Pass the ID of the workout to the launched activity. This is needed 
-			//so the entry of the Exercise in the database is referenced to the correct
-			//workout id.
 			intent.putExtra(EXTRA_WORKOUT_ID, workoutId);
 			startActivity(intent);
 		}
-		if(exercise.getTypeId() == STATIC_TYPE){
+		if(exercise.getTypeId() == 3){
 			Intent intent = new Intent(WorkoutActivity.this, RegisterStaticActivity.class);
-			//Pass the ID of the exercise (so launched activity knows which exercise the input
-			//will be for.
 			intent.putExtra(EXTRA_EXERCISE_ID, exercise.getId());
-			//Pass the ID of the workout to the launched activity. This is needed 
-			//so the entry of the Exercise in the database is referenced to the correct
-			//workout id.
 			intent.putExtra(EXTRA_WORKOUT_ID, workoutId);
 			startActivity(intent);
 		}
@@ -225,13 +176,10 @@ public class WorkoutActivity extends SherlockActivity implements OnItemClickList
 	 */
 	private void getAndSetTitle()
 	{
-		//Create and open the database help object
 		WorkoutDbHandler dbHandler = new WorkoutDbHandler(this);
 		dbHandler.open();
-		//Get the name of the workout and set is as the title
-		String title = dbHandler.getWorkoutIdNameById(workoutId).getName();
+		String title = dbHandler.getWorkoutTemplateIdNameById(workoutId).getName();
 		setTitle(title);
-		//Close the help object
 		dbHandler.close();
 	}
 
@@ -240,47 +188,31 @@ public class WorkoutActivity extends SherlockActivity implements OnItemClickList
 	 */
 	private void getExerciseDataList()
 	{
-		//Create and open a database help object
 		WorkoutDbHandler dbHandler = new WorkoutDbHandler(this);
 		dbHandler.open();
-		//Get the list of all exercises for the specific workout id
-		exerciseDataList = dbHandler.getExerciseIdNameById
-				(dbHandler.getExercisesbyWorkoutId(workoutId));
-		//Close help object
+		exerciseDataList = dbHandler.getExerciseIdNameById(dbHandler.getWorkoutTemplateExerciseByWorkoutTemplateId(workoutId));
 		dbHandler.close();
 	}
 	@Override
-	protected void onResume()
+	protected void onActivityResult(int requestCode, int resultCode, Intent data)
 	{
-		super.onResume();
 		getExerciseDataList();
 		listAllExercises();
 	}
-	/**
-	 * Is called when the user presses the Start button
-	 * @param view
-	 */
 	public void start(View view)
 	{	
-		//When pressing start, activate the onclicklistener for the listitems-
 		listExercisesView.setOnItemClickListener(this);
-		//Hide the start button and show the "Done"- button
 		buttonStart.setVisibility(View.GONE);
 		buttonDone.setVisibility(View.VISIBLE);
-		//Disable app icon navigation in action bar
-		getSupportActionBar().setHomeButtonEnabled(false);
+		WorkoutDbHandler dbHandler = new WorkoutDbHandler(this);
+		dbHandler.open();
+		String tmp = dbHandler.getWorkoutTemplateIdNameById(workoutId).getName();
+		workoutId = dbHandler.addWorkout(tmp);
+		dbHandler.close();
 	}
-	/**
-	 * Is called when the user presses the done button.
-	 * @param view
-	 */
 	public void done(View view)
 	{
-		//Remove the clicklistener and close the activity.
 		listExercisesView.setOnItemClickListener(null);
 		finish();
 	}
-
 }
-
-

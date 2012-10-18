@@ -85,7 +85,7 @@ public class EditWorkoutActivity extends SherlockActivity implements OnClickList
 	private void getSetTitle() {
 		WorkoutDbHandler dbHandler = new WorkoutDbHandler(this);
 		dbHandler.open();
-		setTitle("Edit " + dbHandler.getWorkoutIdNameById(workoutId).getName());
+		setTitle("Edit " + dbHandler.getWorkoutTemplateIdNameById(workoutId).getName());
 	}
 
 	/**Setups the menu of the class

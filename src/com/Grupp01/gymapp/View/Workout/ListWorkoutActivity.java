@@ -223,7 +223,7 @@ public class ListWorkoutActivity extends SherlockActivity implements OnClickList
 		dbHandler.open();
 		
 		//Get the list with all workout names and their id
-		idNameList = dbHandler.getWorkoutsIdName();
+		idNameList = dbHandler.getWorkoutTemplatesIdName();
 		dbHandler.close();
 
 		//All the name of all the workouts to an array which will be
@@ -421,7 +421,7 @@ public class ListWorkoutActivity extends SherlockActivity implements OnClickList
 		dbHandler.open();
 		
 		//Get the name of the workout.
-		String workoutName = dbHandler.getWorkoutIdNameById(workoutId).getName();
+		String workoutName = dbHandler.getWorkoutTemplateIdNameById(workoutId).getName();
 		dbHandler.close();
 		
 		//return the name.

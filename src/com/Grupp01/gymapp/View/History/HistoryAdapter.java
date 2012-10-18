@@ -19,6 +19,8 @@ package com.Grupp01.gymapp.View.History;
 import java.util.LinkedList;
 import java.util.List;
 import com.Grupp01.gymapp.R;
+import com.Grupp01.gymapp.Controller.History.PerformedWorkoutData;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,28 +39,27 @@ import android.widget.TextView;
  * @date 
  *
  */
-public class HistoryAdapter extends ArrayAdapter<History>{
-	
+public class HistoryAdapter extends ArrayAdapter<PerformedWorkoutData>{
+
 	//This is our list of history types
-	private List<History> historyList;
-	
+	private LinkedList<PerformedWorkoutData> historyList;
+
 	/**
-	 * Constructor of HistoryAdapter.
+	 * Constructor of HistoryAdapter
 	 * 
 	 * @param context The current context.
-	 * @param textViewResourceId	The id for the layout for the listview.
+	 * @param textViewResourceId	The id for the layout for the listview
 	 * @param objects	The list with History objects which will be displayed in the view. 
 	 */
 	public HistoryAdapter(Context context, int textViewResourceId,
-			List<History> objects) {
+			List<PerformedWorkoutData> objects) {
 		super(context, textViewResourceId, objects);
-		
-		//Set the list to be the same as the passed one (the list which is 
-		//passed on from calling activity).
-		historyList = (LinkedList<History>) objects;
+
+		//Set the list to be the same as the passed one (the list which is passed on from calling activity)
+		historyList = (LinkedList<PerformedWorkoutData>) objects;
 	}
-	
-	
+
+
 	/**
 	 * 
 	 * This method will insert the object of the list into the ListView and set the correct
@@ -71,34 +72,33 @@ public class HistoryAdapter extends ArrayAdapter<History>{
 	 *
 	 */
 	public View getView(int position, View convertView, ViewGroup parent){
-		
+
 		//Get the view
 		View v = convertView;
-		
+
 		//If the view is null then inflate the correct view (the layout for the ListView)
 		if(v == null){
-			LayoutInflater inflater = (LayoutInflater) getContext().getSystemService
-					(Context.LAYOUT_INFLATER_SERVICE);
+			LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			v = inflater.inflate(R.layout.history_list_layout, null);
 		}
-		
+
 		//Get the History object at the current position (as we iterate through the linked list
-		History h = historyList.get(position);
+		PerformedWorkoutData h = historyList.get(position);
 		if(h != null){
-			
+
 			//Update the textview in the list that holds the name.
 			TextView name = (TextView) v.findViewById(R.id.historyName);
 			name.setText(h.getName());
-			
+
 			//Update the date in the list
 			TextView date = (TextView) v.findViewById(R.id.historyDate);
 			date.setText(h.getDate());
-			
+
 		}
 		//Return the resulting view.
 		return v;
 	}
 
-	
-	
+
+
 }
