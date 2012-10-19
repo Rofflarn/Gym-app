@@ -258,7 +258,7 @@ public class DbHelper extends SQLiteOpenHelper{
 	{
 		db.execSQL("CREATE TABLE Users (UserId INTEGER PRIMARY KEY AUTOINCREMENT, UserName " +
 				"TEXT NOT NULL, " +
-				"UserBirthday TEXT NOT NULL, UserInitialWeight REAL);");
+				"UserBirthday TEXT NOT NULL, UserInitialWeight REAL, UserHeight REAL);");
 	}
 
 	/**
