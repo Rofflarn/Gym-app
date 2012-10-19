@@ -4,8 +4,6 @@ package com.Grupp01.gymapp.test;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.test.ActivityInstrumentationTestCase2;
-import android.widget.Toast;
-
 import com.Grupp01.gymapp.MainActivity;
 import com.Grupp01.gymapp.View.Settings.SettingsActivity;
 import com.jayway.android.robotium.solo.Solo;

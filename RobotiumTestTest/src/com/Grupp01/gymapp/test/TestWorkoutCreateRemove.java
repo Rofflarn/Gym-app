@@ -40,7 +40,7 @@ import com.jayway.android.robotium.solo.Solo;
  */
 public class TestWorkoutCreateRemove extends ActivityInstrumentationTestCase2<ListWorkoutActivity> {
 
-	 Solo solo;
+	 private Solo solo;
 	 public static final String WORKOUT_NAME = "Workout name";
 	 public static final String JOELS = "Joels";
 	 public static final String ADD_WORKOUT = "ADD WORKOUT";

@@ -16,7 +16,6 @@
 */
 package com.Grupp01.gymapp.View.History;
 
-import java.util.LinkedList;
 import java.util.List;
 
 import android.content.Intent;

@@ -10,6 +10,9 @@ import com.jayway.android.robotium.solo.Solo;
 public class TestHistory extends ActivityInstrumentationTestCase2<MainActivity> {
 	private static final int WORKOUT_BUTTON = 0;
 	private static final int HISTORY_BUTTON = 2;
+	private static final String JOELS_PASS = "Joels pass";
+	private static final String START = "Start";
+	private static final String DONE = "Färdig";
 	private Solo solo;
 	public TestHistory() {
 		super("com.Grupp01.gymapp", MainActivity.class);
@@ -40,16 +43,16 @@ public class TestHistory extends ActivityInstrumentationTestCase2<MainActivity> 
 	{
 		//Selet workout
 		solo.clickOnImageButton(WORKOUT_BUTTON);
-		solo.clickOnText("Joels pass");
+		solo.clickOnText(JOELS_PASS);
 		//Start it and finish
-		solo.clickOnText("Start");
-		solo.clickOnText("Färdig");
+		solo.clickOnText(START);
+		solo.clickOnText(DONE);
 		//Go back to main menu
 		solo.goBack();
 		//Select history
 		solo.clickOnImageButton(WORKOUT_BUTTON);
 		//Make sure the workout is visible
-		assertTrue(solo.searchText("Joels pass"));
+		assertTrue(solo.searchText(JOELS_PASS));
 	}
 	
 	protected void tearDown() throws Exception {

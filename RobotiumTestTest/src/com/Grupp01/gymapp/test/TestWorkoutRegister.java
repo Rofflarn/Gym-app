@@ -22,6 +22,7 @@ public class TestWorkoutRegister extends ActivityInstrumentationTestCase2<ListWo
 	 public static final String CHINS = "Chins";
 	 public static final String PUSH_UPS = "Push-ups";
 	 public static final String EDIT_WORKOUT = "EDIT WORKOUT!";
+	 public static final String START = "Start";
 	 public static final int TIME = 1500;
 	
 	/**The constructor for the testWorkoutA
@@ -49,7 +50,7 @@ public class TestWorkoutRegister extends ActivityInstrumentationTestCase2<ListWo
 		//Click on the workout called "Joels pass"
 		solo.clickOnText(JOELS);
 		//Start the workout
-		solo.clickOnText("Start");
+		solo.clickOnText(START);
 		//Go to chins exercise
 		solo.clickOnText(CHINS);
 		//Check if the current activity is the cardioActivity
@@ -63,7 +64,7 @@ public class TestWorkoutRegister extends ActivityInstrumentationTestCase2<ListWo
 	public void testRegisterCardioNotValidTime()
 	{
 		solo.clickOnText(JOELS);
-		solo.clickOnText("Start");
+		solo.clickOnText(START);
 		solo.clickOnText(CHINS);
 		
 		//Add one set with invalid time, first field is minutes
@@ -88,7 +89,7 @@ public class TestWorkoutRegister extends ActivityInstrumentationTestCase2<ListWo
 	public void testRegisterCardioValidTime()
 	{
 		solo.clickOnText(JOELS);
-		solo.clickOnText("Start");
+		solo.clickOnText(START);
 		solo.clickOnText(CHINS);
 
 		//Add one set with valid time, first field is minutes
@@ -112,7 +113,7 @@ public class TestWorkoutRegister extends ActivityInstrumentationTestCase2<ListWo
 	public void testToStartAnStaticExercise()
 	{
 		solo.clickOnText(JOELS);
-		solo.clickOnText("Start");
+		solo.clickOnText(START);
 		//Start the exercise called "Push-ups"
 		solo.clickOnText(PUSH_UPS);
 		//Check if the current activity is a Static-exercise activity
@@ -126,7 +127,7 @@ public class TestWorkoutRegister extends ActivityInstrumentationTestCase2<ListWo
 	public void testRegisterStaticExerciseNotValidTime()
 	{
 		solo.clickOnText(JOELS);
-		solo.clickOnText("Start");
+		solo.clickOnText(START);
 		solo.clickOnText(PUSH_UPS);
 		//Add an invalid time, first field minutes
 		solo.enterText(0, "0");
@@ -148,7 +149,7 @@ public class TestWorkoutRegister extends ActivityInstrumentationTestCase2<ListWo
 	public void testRegisterStaticExerciseValidTime()
 	{
 		solo.clickOnText(JOELS);
-		solo.clickOnText("Start");
+		solo.clickOnText(START);
 		solo.clickOnText(PUSH_UPS);
 		//Add a valid time
 		solo.enterText(0, "0");
@@ -169,7 +170,7 @@ public class TestWorkoutRegister extends ActivityInstrumentationTestCase2<ListWo
 	public void testToStartAnDynamicExercise()
 	{
 		solo.clickOnText(JOELS);
-		solo.clickOnText("Start");
+		solo.clickOnText(START);
 		//Start the exercise called "Bench-press"
 		solo.clickOnText(BENCH_PRESS);
 		//Check if the current activity is a dynamic-exercise activity
@@ -182,7 +183,7 @@ public class TestWorkoutRegister extends ActivityInstrumentationTestCase2<ListWo
 	public void testRegisterDynamicExerciseNoRepsInField()
 	{
 		solo.clickOnText(JOELS);
-		solo.clickOnText("Start");
+		solo.clickOnText(START);
 		solo.clickOnText(BENCH_PRESS);
 		//Enter an invalid number of reps, first field is reps
 		solo.enterText(0, "0");
@@ -205,7 +206,7 @@ public class TestWorkoutRegister extends ActivityInstrumentationTestCase2<ListWo
 	public void testRegisterDynamicExerciseNoWeight()
 	{
 		solo.clickOnText(JOELS);
-		solo.clickOnText("Start");
+		solo.clickOnText(START);
 		solo.clickOnText(BENCH_PRESS);
 		//
 		solo.enterText(0, "");
@@ -226,7 +227,7 @@ public class TestWorkoutRegister extends ActivityInstrumentationTestCase2<ListWo
 	public void testRegisterDynamicExerciseReps()
 	{
 		solo.clickOnText(JOELS);
-		solo.clickOnText("Start");
+		solo.clickOnText(START);
 		solo.clickOnText(BENCH_PRESS);
 		solo.enterText(0, "3");
 		solo.enterText(1, "3");
