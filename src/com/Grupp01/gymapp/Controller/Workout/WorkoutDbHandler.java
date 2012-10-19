@@ -36,19 +36,18 @@ public class WorkoutDbHandler extends Database {
 	private static final String EXERCISE_ID = "ExerciseId";
 	private static final String EXERCISE_NAME = "ExerciseName";
 
+	/**
+	 * This method forwards the Context to the superclass.
+	 * @param c 
+	 */
 	public WorkoutDbHandler(Context c)
 	{
 		super(c);
 	}
 
-
 	/**
-	 * Gets all exercises id and name from databasetable Exercises and puts these values into an 
-<<<<<<< HEAD
-	 * IdName object. 
-=======
+	 * Gets all exercises id and name from database table Exercises and puts these values into an 
 	 * IdName object.
->>>>>>> implement_history_database
 	 * @return a LinkedList with type of IdName
 	 */
 	public List<IdName> getWorkoutTemplatesIdName()
@@ -83,18 +82,18 @@ public class WorkoutDbHandler extends Database {
 				"WorkoutTemplates WHERE " +
 				"WorkoutTemplateId= '" + workoutId + "';", null);
 		c.moveToFirst();
+		//Create an IdName object to return
 		IdName temp = new IdName(c.getInt(c.getColumnIndex("WorkoutTemplateId")),c.getString(
 				c.getColumnIndex("WorkoutTemplateName")));
 		c.close();
 		close();
 		return temp;
-
 	}
-
-
+	
 	/**
-	 *
-	 * @param workoutName
+	 * This method adds a new workout template to the database.
+	 * @param workoutName The name of the new workout.
+	 * @return the id of the added workout template.
 	 */
 	public int addWorkoutTemplate(String workoutTemplateName)
 	{
@@ -133,11 +132,7 @@ public class WorkoutDbHandler extends Database {
 	 *
 	 * @param integerList
 	 * @return LinkedList of ExerciseData, ExerciseData contains ExerciseId, ExerciseName and 
-<<<<<<< HEAD
 	 * ExerciseTypeId.
-=======
-	 * ExerciseTypeId
->>>>>>> implement_history_database
 	 */
 	public List<ExerciseData> getExerciseIdNameById(List<Integer> integerList)
 	{
@@ -189,7 +184,11 @@ public class WorkoutDbHandler extends Database {
 		return temp;
 	}
 
-
+	/**
+	 * 
+	 * @param workoutTemplateId
+	 * @return
+	 */
 	public ArrayList<ExerciseListElementData> getExercisesCheckedByWorkoutTemplateId(int 
 			workoutTemplateId)
 	{

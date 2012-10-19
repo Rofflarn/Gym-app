@@ -21,7 +21,10 @@ public class HistoryDbHandler extends Database {
 	//in text: "Latest sets"
 
 
-
+	/**
+	 * This method forwards the Context to the superclass.
+	 * @param c Reference to calling object.
+	 */
 	public HistoryDbHandler(Context c)
 	{
 		super(c);
@@ -78,7 +81,7 @@ public class HistoryDbHandler extends Database {
 
 	/**
 	 * This method returns a list of all performed workouts in form PerformedWorkoutData objects
-	 * @return List of performerd workouts in PerformedWorkoutData objects
+	 * @return List of performed workouts in PerformedWorkoutData objects
 	 */
 	public List<PerformedWorkoutData> getPerformedWorkoutsList()
 	{
@@ -102,12 +105,14 @@ public class HistoryDbHandler extends Database {
 			//Get the date from database
 			String dbDate = c.getString(date);
 		    Date parsedDate = null;
+		    
 		    //Parse the date and convert to local timezone
 		    try {
 		        parsedDate = gmt.parse(dbDate);
 		    } catch (ParseException e) {e.printStackTrace();}
 			String listDate = loc.format(parsedDate);
 
+			//Add element to list
 			workoutsList.add(new PerformedWorkoutData(c.getInt(id), listDate ,c.getString(name)));
 		}
 		c.close();
@@ -115,8 +120,15 @@ public class HistoryDbHandler extends Database {
 		return workoutsList;
 	}
 
+	/**
+	 * This method is used to get a list of SetsData elements of the performed cardio sets.
+	 * @param exerciseId The id of the cardio exercise.
+	 * @param workoutId The id of the workout that the sets is associated to.
+	 * @return List of SetsData elements.
+	 */
 	public List<SetsData> getPerformedCardioSets(int exerciseId, int workoutId)
 	{
+		//Create list to store the sets in
 		List<SetsData> setsList = new LinkedList<SetsData>();
 		open();
 		Cursor c = ourDatabase.rawQuery("SELECT * FROM Sets WHERE WorkoutId = " + workoutId +
@@ -124,18 +136,18 @@ public class HistoryDbHandler extends Database {
 		c.moveToFirst();
 		int setDistance = c.getColumnIndex("SetDistance");
 		int setDuration = c.getColumnIndex("SetDuration");
-		//Forlopp som går igenom hela databastabellen, alla kolummer
+		//Procedure that runs through the cursor.
 		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext())
 		{
+			//Creates a timestring based on an integer which contains number of seconds
 			String durationString = (((int) (c.getInt(setDuration) / NUMBER_SECONDS_IN_HOUR)) + ":"
 			+ (((int) (c.getInt(setDuration)/ NUMBER_SECONDS_IN_MIN)) % NUMBER_SECONDS_IN_MIN) + ":"
 			+ (c.getInt(setDuration) % NUMBER_SECONDS_IN_MIN)); 
+			//Add element to list
 			setsList.add(new SetsData(durationString,c.getInt(setDistance)));
 		}	
 		c.close();
 		close();
 		return setsList;
-
-
-}
+	}
 }

@@ -36,8 +36,8 @@ public class Database {
 	protected SQLiteDatabase ourDatabase;
 
 	/**
-	 * 
-	 * @param c
+	 * This method forwards the Context to the superclass.
+	 * @param c Reference to calling object.
 	 */
 	public Database(Context c)
 	{
