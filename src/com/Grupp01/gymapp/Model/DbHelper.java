@@ -229,7 +229,7 @@ public class DbHelper extends SQLiteOpenHelper{
 	private void createSets(SQLiteDatabase db)
 	{
 		db.execSQL("CREATE TABLE Sets (SetId INTEGER PRIMARY KEY AUTOINCREMENT, SetReps INTEGER, " +
-				"SetWeight REAL, SetDistance INTEGER, WorkoutId INTEGER, SetDuration INTEGER, " +
+				"SetWeight REAL, SetDistance INTEGER, WorkoutId INTEGER NOT NULL, SetDuration INTEGER, " +
 				"SetTime TEXT, ExerciseId INTEGER NOT NULL);");
 	}
 
@@ -278,7 +278,7 @@ public class DbHelper extends SQLiteOpenHelper{
 	private void createWorkoutTemplates(SQLiteDatabase db)
 	{
 		db.execSQL("CREATE TABLE WorkoutTemplates (WorkoutTemplateId INTEGER PRIMARY KEY " +
-				"AUTOINCREMENT, WorkoutTemplateName TEXT NOT NULL);");
+				"AUTOINCREMENT, WorkoutTemplateName TEXT NOT NULL, UserId INTEGER);");
 		db.execSQL("INSERT INTO WorkoutTemplates (WorkoutTemplateName) VALUES ('Upper body');");
 		db.execSQL("INSERT INTO WorkoutTemplates (WorkoutTemplateName) VALUES ('Lower body');");
 		db.execSQL("INSERT INTO WorkoutTemplates (WorkoutTemplateName) VALUES ('Full body');");
