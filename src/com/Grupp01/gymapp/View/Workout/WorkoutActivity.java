@@ -21,15 +21,19 @@ package com.Grupp01.gymapp.View.Workout;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.Grupp01.gymapp.MainActivity;
 import com.Grupp01.gymapp.R;
@@ -54,6 +58,7 @@ import com.actionbarsherlock.view.MenuItem;
  * <p> Subpackage</p>
  *
  */
+<<<<<<< HEAD
 public class WorkoutActivity extends SherlockActivity implements OnItemClickListener{
 	//Statics defining type of exercise
 	private static final int EXERCISE_CARDIO = 1;
@@ -61,6 +66,17 @@ public class WorkoutActivity extends SherlockActivity implements OnItemClickList
 	private static final int EXERCISE_STATIC = 3;
 	
 	//Statics defining what type of extra message we send via intent
+=======
+public class WorkoutActivity extends SherlockActivity implements OnClickListener, OnItemClickListener{
+
+	//Constants defining type of exercise
+	private static final int CARDIO_TYPE = 1;
+	private static final int DYNAMIC_TYPE = 2;
+	private static final int STATIC_TYPE = 3;
+	//Default value for passed int via Intent.
+	private static final int INTENT_INT_DEFAULT_VALUE = 0;
+	//Constants used to identify a string passed via Intent.
+>>>>>>> implement_dialogue_in_editworkout
 	public static final String EXTRA_EXERCISE_ID = "com.Grupp01.gymapp.message.exercise.exercise";
 	public static final String EXTRA_WORKOUT_ID = "com.Grupp01.gymapp.message.exercise.workout";
 	
@@ -72,6 +88,7 @@ public class WorkoutActivity extends SherlockActivity implements OnItemClickList
 	private List<ExerciseData> exerciseDataList;
 	//Start and done button at the bottom of the screen
 	private Button buttonDone, buttonStart;
+	private Dialog dialog;
 
 	/**
 	 * Set up the default layout and list all exercises
@@ -85,6 +102,7 @@ public class WorkoutActivity extends SherlockActivity implements OnItemClickList
 		
 		//Set layout from xml file
 		setContentView(R.layout.activity_workout);
+<<<<<<< HEAD
 		
 		//Get the name of the workout and set the title to the name
 		getAndSetTitle();
@@ -96,6 +114,19 @@ public class WorkoutActivity extends SherlockActivity implements OnItemClickList
 		listAllExercises();
 		
 		//Fetch the buttons which will be visible at the bottom of the screen
+=======
+
+		//Get the name of the workout and set it as a title
+		getAndSetTitle();
+
+		//Get the list of exercises for the current workout from the database
+		getExerciseDataList();
+
+		//Use the list and show it in the listview
+		listAllExercises();
+
+		//Get both buttons, only allow the Start button to be visible.
+>>>>>>> implement_dialogue_in_editworkout
 		buttonStart= (Button) findViewById(R.id.button_start);
 		buttonDone = (Button) findViewById(R.id.button_done);
 		
@@ -130,9 +161,13 @@ public class WorkoutActivity extends SherlockActivity implements OnItemClickList
 			intentHome.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			startActivity(intentHome);
 			return true;
+<<<<<<< HEAD
 		
 		//User selected "edit" from actionbar menu, open new activity where the user
 		//can add/remove exercises from the workout.
+=======
+			//Edit workout pressed, open EditWorkout activity and pass the id via the intent
+>>>>>>> implement_dialogue_in_editworkout
 		case R.id.menu_editWorkout:
 			Intent intentEditWorkout = new Intent(this, EditWorkoutActivity.class);
 			//Pass the id of the workout
@@ -149,10 +184,18 @@ public class WorkoutActivity extends SherlockActivity implements OnItemClickList
 	 * show all exercises available in this workout.
 	 */
 	private void listAllExercises() {
+<<<<<<< HEAD
 		//Get the listview that we are going to use
 		listExercisesView = (ListView) findViewById(R.id.activeWorkoutList);
 		
 		//This is the array we will use to hold all exercise names
+=======
+
+		//Get the listview that will hold the list
+		listExercisesView = (ListView) findViewById(R.id.activeWorkoutList);
+
+		//The array which will be passed to the listview
+>>>>>>> implement_dialogue_in_editworkout
 		ArrayList<String> listExercises = new ArrayList<String>();
 		
 		//For each ExerciseData object that we retrieve from the database
@@ -161,11 +204,19 @@ public class WorkoutActivity extends SherlockActivity implements OnItemClickList
 		{
 			listExercises.add(name.getName());
 		}
+<<<<<<< HEAD
 		
 		//This is the adapter we use to adapt the arraylist to the listview
 		ListAdapter listAdapter = new ArrayAdapter<String>(this, R.layout.list_simple_row, listExercises);
 		
 		//And finaly set the adapter and let the list be created
+=======
+
+		//The adapter we use to adapt the array to the listview
+		ListAdapter listAdapter = new ArrayAdapter<String>
+		(this, R.layout.list_simple_row, listExercises);
+		//Create the listview
+>>>>>>> implement_dialogue_in_editworkout
 		listExercisesView.setAdapter(listAdapter);
 
 	}
@@ -290,4 +341,52 @@ public class WorkoutActivity extends SherlockActivity implements OnItemClickList
 		listExercisesView.setOnItemClickListener(null);
 		finish();
 	}
+<<<<<<< HEAD
 }
+=======
+	/**
+	 * Is called when the user presses the back-key, prompting
+	 * if user is working out.
+	 * @param keyCode
+	 * @param event
+	 */
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) 
+	{
+		//if user is working out, prompt before quitting
+		if(buttonDone.getVisibility()!=View.GONE)
+		{
+			//Show a confirmation dialog before deleting
+			dialog = new Dialog(this);
+			dialog.setContentView(R.layout.y_n_dialog);
+			dialog.setTitle(R.string.leaving);
+			((TextView) dialog.findViewById(R.id.TV_dialog)).setText(R.string.done_training);
+
+			((Button) dialog.findViewById(R.id.yes_Button)).setOnClickListener(this);
+			((Button) dialog.findViewById(R.id.no_Button)).setOnClickListener(this);
+			dialog.setCancelable(false);
+			dialog.show();
+			return true;
+		}
+		//if not working out
+		else
+		{
+			//back-key working as usual
+			return super.onKeyDown(keyCode, event);
+		}
+	}
+	@Override
+	public void onClick(View view) 
+	{
+		if(view == ((Button) dialog.findViewById(R.id.yes_Button)))
+			finish();
+		else
+			dialog.dismiss();
+
+		
+	}
+
+}
+
+
+>>>>>>> implement_dialogue_in_editworkout

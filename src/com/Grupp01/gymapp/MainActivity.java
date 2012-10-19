@@ -21,12 +21,17 @@ package com.Grupp01.gymapp;
 
 import java.util.Locale;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.Grupp01.gymapp.View.Exercise.ListExerciseActivity;
@@ -49,9 +54,8 @@ import com.actionbarsherlock.view.MenuInflater;
  * with buttons to the available activities. 
  *  
  */
-public class MainActivity extends SherlockActivity {
-
-
+public class MainActivity extends SherlockActivity implements OnClickListener {
+	private Dialog dialog;
 	/**
 	 * Instantiate the class with necessary method calls.
 	 * 
@@ -189,6 +193,34 @@ public class MainActivity extends SherlockActivity {
 		}
 
 	}
+	/**
+	 * Is called when the user presses the back-key, prompting
+	 * if user really wants to quit.
+	 * @param keyCode
+	 * @param event
+	 */
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) 
+	{
+		dialog = new Dialog(this);
+		dialog.setContentView(R.layout.y_n_dialog);
+		dialog.setTitle(R.string.quit);
+		((TextView) dialog.findViewById(R.id.TV_dialog)).setText(R.string.really_quit);
+
+		((Button) dialog.findViewById(R.id.yes_Button)).setOnClickListener(this);
+		((Button) dialog.findViewById(R.id.no_Button)).setOnClickListener(this);
+		dialog.show();
+		return true;
+	}
+
+	@Override
+	public void onClick(View view) {
+		if(view == ((Button) dialog.findViewById(R.id.yes_Button)))
+			finish();
+		else
+			dialog.dismiss();
+	}
+
 
 
 }

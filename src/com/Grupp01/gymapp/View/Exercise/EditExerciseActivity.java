@@ -22,13 +22,18 @@ package com.Grupp01.gymapp.View.Exercise;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.Grupp01.gymapp.MainActivity;
 import com.Grupp01.gymapp.R;
@@ -52,7 +57,7 @@ import com.actionbarsherlock.view.MenuInflater;
  *
  */	
 public class EditExerciseActivity extends SherlockActivity implements 
-				AdapterView.OnItemSelectedListener {
+AdapterView.OnItemSelectedListener, OnClickListener {
 	private Spinner spinnerType, spinnerPMuscle, spinnerSMuscle, spinnerSport;
 	private String currentView;
 	private int exerciseId;
@@ -60,6 +65,7 @@ public class EditExerciseActivity extends SherlockActivity implements
 	private List<String> listTrainingType;
 	private EditText comment, desc;
 	private List<IdName> idNameListMuscles, idNameListSports, idNameListTrainingType;
+	private Dialog dialog;
 	/**
 	 * Instantiates the class with necessary method calls, setting up the correct layout
 	 * and receiving the intent that started this activity
@@ -98,13 +104,13 @@ public class EditExerciseActivity extends SherlockActivity implements
 	@Override
 	public boolean onOptionsItemSelected(com.actionbarsherlock.view.MenuItem item)
 	{
-			//from developer.android.com
-			Intent parentActivityIntent = new Intent(this, MainActivity.class);
-			parentActivityIntent.addFlags(
-					Intent.FLAG_ACTIVITY_CLEAR_TOP |
-					Intent.FLAG_ACTIVITY_NEW_TASK);
-			startActivity(parentActivityIntent);
-			finish();
+		//from developer.android.com
+		Intent parentActivityIntent = new Intent(this, MainActivity.class);
+		parentActivityIntent.addFlags(
+				Intent.FLAG_ACTIVITY_CLEAR_TOP |
+				Intent.FLAG_ACTIVITY_NEW_TASK);
+		startActivity(parentActivityIntent);
+		finish();
 		return true;
 	}
 	/**
@@ -400,5 +406,37 @@ public class EditExerciseActivity extends SherlockActivity implements
 		}
 		return 0;
 	}
-
+	/**
+	 * Is called when the user presses the back-key, prompting
+	 * if user is done editing an exercise.
+	 * @param keyCode
+	 * @param event
+	 */
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) 
+	{
+		//Create a new dialog
+		dialog = new Dialog(this);
+		dialog.setContentView(R.layout.y_n_dialog);
+		dialog.setTitle(R.string.leaving);
+		((TextView) dialog.findViewById(R.id.TV_dialog)).setText(R.string.done_editing);
+		
+		//Set listeners to buttons
+		((Button) dialog.findViewById(R.id.yes_Button)).setOnClickListener(this);
+		((Button) dialog.findViewById(R.id.no_Button)).setOnClickListener(this);
+		dialog.show();
+		return true;
+	}
+	/**
+	 * Listens to the dialog-buttons
+	 */
+	@Override
+	public void onClick(View view) {
+		//if yes button was clicked
+		if(view == ((Button) dialog.findViewById(R.id.yes_Button)))
+			//close this actvity
+			finish();
+		else
+			dialog.dismiss();
+	}
 }
