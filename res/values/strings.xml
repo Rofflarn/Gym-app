@@ -5,7 +5,7 @@
     <string name="title_workouts">Workouts</string>
     <string name="title_statistics">Statistics</string>
     <string name="title_history">History</string>
-    <string name="menu_addExe">Add Excersice!</string>
+    <string name="menu_addExe">Add Exercise!</string>
     <string name="exercise_name">Exercise name</string>
     <string name="cancel">Cancel</string>
     <string name="add">Add</string>
@@ -32,8 +32,6 @@
     <string name="title_activity_register_dynamic">RegisterDynamicActivity</string>
     <string name="title_activity_register_static">RegisterStaticActivity</string>
     <string name="title_activity_register_cardio">RegisterCardioActivity</string>
-    <string name="Done">Done</string>
-    <string name="Cancel">Cancel</string>
     <string name="register_last_time">Last time: </string>
     <string name="register_current_sets">Sets: </string>
     <string name="register_my_notes">Notes: </string>
@@ -60,7 +58,6 @@
 	<string name="language_select">Select desired language</string>
 	<string name="distance">Distance</string>
 	<string name="distance_select">Select desired distance unit</string>
-	<string name="weight">Weight</string>
 	<string name="weight_select">Select desired weight unit</string>
 	<string name="unit">Units</string>
 	<string name="register_last_time">Last time: </string>
@@ -69,7 +66,6 @@
 	<string name="register_minutes">Min.</string>
 	<string name="register_seconds">Sec.</string>
 	<string name="register_distance">Distance</string>
-	<string name="register_finish_set">Add set</string>
 	<string name="register_undo_set">Remove set</string>
 	<string name="register_reps">Reps</string>
 	<string name="register_weight">Weight</string>
