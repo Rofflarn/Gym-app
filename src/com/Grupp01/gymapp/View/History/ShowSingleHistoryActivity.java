@@ -57,7 +57,7 @@ public class ShowSingleHistoryActivity extends SherlockListActivity {
 	private String weightUnit;
 
 	//THis is the list with every performed exercise, will be fetched from the database.
-	private LinkedList<PerformedWorkoutData> hList = new LinkedList<PerformedWorkoutData>();
+	private List<PerformedWorkoutData> hList = new LinkedList<PerformedWorkoutData>();
 
 	//This is the adapter we use to adapt the list to the layout.
 
@@ -93,7 +93,8 @@ public class ShowSingleHistoryActivity extends SherlockListActivity {
         			setsString.append(setData.getDuration());
         			setsString.append("x");
         			setsString.append(setData.getDistance());
-        			setsString.append(distanceUnit + ", ");
+        			setsString.append(distanceUnit);
+        			setsString.append(", ");
         		}
         		
     			

@@ -42,7 +42,7 @@ import android.widget.TextView;
 public class HistoryAdapter extends ArrayAdapter<PerformedWorkoutData>{
 
 	//This is our list of history types
-	private LinkedList<PerformedWorkoutData> historyList;
+	private List<PerformedWorkoutData> historyList;
 
 	/**
 	 * Constructor of HistoryAdapter

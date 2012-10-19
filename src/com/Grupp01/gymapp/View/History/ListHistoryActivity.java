@@ -46,11 +46,9 @@ import com.actionbarsherlock.view.MenuItem;
  *
  */
 public class ListHistoryActivity extends SherlockListActivity {
-
-	public final static String HISTORY_ID = "HISTORY.ID";
-	//The list with History objects, will be fetched from database.
-	private LinkedList<PerformedWorkoutData> hList = new LinkedList<PerformedWorkoutData>();
-
+	//Message to pass via intent that the putExtra contains an history id.
+	public static final String HISTORY_ID = "HISTORY.ID";
+	
 	/**
 	 * Is called on start, set the correct layout from xml file and then create the list.
 	 * 
@@ -72,15 +70,9 @@ public class ListHistoryActivity extends SherlockListActivity {
     	
     	//Creates connection to Database
     	HistoryDbHandler dbHandler = new HistoryDbHandler(this);
-    	//Gets a list of Performed workouts in History objects
-    	List<PerformedWorkoutData> list = dbHandler.getPerformedWorkoutsList();
-    	//Adds all the Historyobjects from database to hList to be shown in GUI.
-    	for(PerformedWorkoutData history: list)
-    	{
-    		hList.add(history);
-    	}
-    	
- 
+
+    	//The list with History objects, get the list from the database.
+    	List<PerformedWorkoutData> hList = dbHandler.getPerformedWorkoutsList();
 
 		//Set up the adapter we will use to adapt the layout.
 		HistoryAdapter hAdapter = new HistoryAdapter(this, R.layout.history_list_layout, hList);
