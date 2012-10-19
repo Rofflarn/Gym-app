@@ -13,12 +13,22 @@ import android.database.Cursor;
 import com.Grupp01.gymapp.Controller.Workout.SetsData;
 import com.Grupp01.gymapp.Model.Database;
 
+/**
+ * @author GivDev
+ * @version 0.1
+ * @peer reviewed 
+ * @date 
+ * This class contains the necessary methods for accessing the database from the History part of
+ * the GUI.
+ */
 public class HistoryDbHandler extends Database {
 
-	public final static int NUMBER_SECONDS_IN_HOUR  = 3600; //Used for timeformating equation
-	public final static int NUMBER_SECONDS_IN_MIN = 60; //Used for timeformating equation
-	public final static int NUMBER_OF_LATEST_SET = 4; //Number of sets that are going to be shown
-	//in text: "Latest sets"
+	//Used for timeformating equation
+	public static final int NUMBER_SECONDS_IN_HOUR  = 3600;
+	public static final int NUMBER_SECONDS_IN_MIN = 60;
+	
+	//Number of sets that are going to be shown in text: "Latest sets"
+	public static final int NUMBER_OF_LATEST_SET = 4;
 
 
 	/**
@@ -51,10 +61,8 @@ public class HistoryDbHandler extends Database {
 			{
 				exerciseIdList.add(temp);
 			}
-
 		}
 		return exerciseIdList;
-
 	}
 
 	/**
@@ -89,13 +97,14 @@ public class HistoryDbHandler extends Database {
 		open();
 		Cursor c = ourDatabase.rawQuery("SELECT * FROM Workouts ORDER BY WorkoutDate DESC;", null);
 		c.moveToFirst();
-		int id = c.getColumnIndex("WorkoutID");
+		int id = c.getColumnIndex("WorkoutId");
 		int date = c.getColumnIndex("WorkoutDate");
 		int name = c.getColumnIndex("WorkoutName");
 
-		//Create object to handle date and time
+		//Create object to handle date and time in GMT timezone
 		SimpleDateFormat gmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	    gmt.setTimeZone(TimeZone.getTimeZone("GMT"));  
+	  //Create object to handle date and time in local timezone
 		SimpleDateFormat loc = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	    loc.setTimeZone(TimeZone.getDefault());
  
@@ -106,7 +115,7 @@ public class HistoryDbHandler extends Database {
 			String dbDate = c.getString(date);
 		    Date parsedDate = null;
 		    
-		    //Parse the date and convert to local timezone
+		    //Parse the date and convert to the local timezone
 		    try {
 		        parsedDate = gmt.parse(dbDate);
 		    } catch (ParseException e) {e.printStackTrace();}

@@ -95,18 +95,15 @@ public class DbHelper extends SQLiteOpenHelper{
 				"ExerciseDesc TEXT, ExerciseNote Text, " +
 				"ExerciseSportId INTEGER, ExerciseTypeId INTEGER);");
 		db.execSQL("INSERT INTO Exercises(ExercisePri, ExerciseSec, ExerciseName, ExerciseDesc, " +
-				"ExerciseNote, ExerciseTypeId) VALUES (3, 1, 'Chins', 'Desc', 'Note', 1);");
+				"ExerciseNote, ExerciseTypeId) VALUES (3, 1, 'Bench Press', 'Desc', 'Note', 1);");
 		db.execSQL("INSERT INTO Exercises(ExercisePri, ExerciseSec, ExerciseName, ExerciseDesc, " +
-				"ExerciseNote, ExerciseTypeId) VALUES (1, 4, 'Bench press', 'Desc', 'Note', 2);");
+				"ExerciseNote, ExerciseTypeId) VALUES (1, 4, 'Dips', 'Desc', 'Note', 2);");
 		db.execSQL("INSERT INTO Exercises(ExercisePri, ExerciseSec, ExerciseName, " +
-				"ExerciseTypeId) VALUES (1, 2, 'Push-ups', 3);");
+				"ExerciseTypeId) VALUES (1, 2, 'Barbell Curls', 3);");
 		db.execSQL("INSERT INTO Exercises(ExercisePri, ExerciseSec, ExerciseName, " +
-				"ExerciseTypeId) VALUES (1, 2, 'Push-ups', 1);");
+				"ExerciseTypeId) VALUES (1, 2, 'Military Press', 1);");
 		db.execSQL("INSERT INTO Exercises(ExercisePri, ExerciseSec, ExerciseName, " +
-				"ExerciseTypeId) VALUES (1, 2, 'Joels Ölhäfv', 1);");
-		db.execSQL("INSERT INTO Exercises(ExercisePri, ExerciseSec, ExerciseName, " +
-				"ExerciseTypeId) VALUES (1, 2, 'Schlobbans sjuor', 2);");
-
+				"ExerciseTypeId) VALUES (1, 2, 'Deadlift', 1);");
 	}
 
 	/**
@@ -258,7 +255,7 @@ public class DbHelper extends SQLiteOpenHelper{
 	{
 		db.execSQL("CREATE TABLE Users (UserId INTEGER PRIMARY KEY AUTOINCREMENT, UserName " +
 				"TEXT NOT NULL, " +
-				"UserBirthday TEXT NOT NULL, UserInitialWeight REAL);");
+				"UserBirthday TEXT NOT NULL, UserInitialWeight REAL, UserHeight REAL);");
 	}
 
 	/**
@@ -271,12 +268,10 @@ public class DbHelper extends SQLiteOpenHelper{
 	{
 		db.execSQL("CREATE TABLE WorkoutTemplates (WorkoutTemplateId INTEGER PRIMARY KEY " +
 				"AUTOINCREMENT, WorkoutTemplateName TEXT NOT NULL);");
-		db.execSQL("INSERT INTO WorkoutTemplates (WorkoutTemplateName) VALUES ('Joels pass');");
-		db.execSQL("INSERT INTO WorkoutTemplates (WorkoutTemplateName) VALUES ('Calles pass');");
-		db.execSQL("INSERT INTO WorkoutTemplates (WorkoutTemplateName) VALUES ('Jobbigt pass');");
-		db.execSQL("INSERT INTO WorkoutTemplates (WorkoutTemplateName) VALUES ('Roligt pass');");
-		db.execSQL("INSERT INTO WorkoutTemplates (WorkoutTemplateName) VALUES ('Massa pass');");
-		db.execSQL("INSERT INTO WorkoutTemplates (WorkoutTemplateName) VALUES ('Passets pass');");
+		db.execSQL("INSERT INTO WorkoutTemplates (WorkoutTemplateName) VALUES ('Upper body');");
+		db.execSQL("INSERT INTO WorkoutTemplates (WorkoutTemplateName) VALUES ('Lower body');");
+		db.execSQL("INSERT INTO WorkoutTemplates (WorkoutTemplateName) VALUES ('Full body');");
+		db.execSQL("INSERT INTO WorkoutTemplates (WorkoutTemplateName) VALUES ('Triathlon');");
 	}
 
 	/**

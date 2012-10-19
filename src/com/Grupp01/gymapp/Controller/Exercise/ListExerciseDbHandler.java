@@ -28,17 +28,30 @@ import android.database.Cursor;
 import com.Grupp01.gymapp.Controller.IdName;
 import com.Grupp01.gymapp.Model.Database;
 
-
+/**
+ * @author GivDev
+ * @version 0.1
+ * @peer reviewed 
+ * @date 
+ * This class contains the necessary methods for accessing the database from the ListExercise part
+ * of the GUI.
+ */
 public class ListExerciseDbHandler extends Database {
 
-
-
+	/**
+	 * This method forwards the Context to the superclass.
+	 * @param c Reference to calling object.
+	 */
 	public ListExerciseDbHandler(Context c)
 	{
 		super(c);
 	}
 
-
+	/**
+	 * This method gets a list of all the elements in the Exercise table. The list contains 
+	 * IdName objects.
+	 * @return A list of IdNames objects containing ExerciseId and ExerciseName.
+	 */
 	public List<IdName> getExerciseIdName()
 	{
 		open();
@@ -56,6 +69,7 @@ public class ListExerciseDbHandler extends Database {
 		close();
 		return idNameList;
 	}
+	
 	/**
 	 * Adds new Exercise to database.
 	 * @param name
@@ -70,20 +84,12 @@ public class ListExerciseDbHandler extends Database {
 		close();
 		return id;
 	}
-
-
-
-	public int getExerciseIdFromName(String name)
-	{
-		open();
-		Cursor c = ourDatabase.rawQuery("SELECT ExerciseId FROM Exercises WHERE ExerciseName= '" + name +"';", null);
-		c.moveToFirst();
-		int id = c.getInt(c.getColumnIndex("ExerciseId"));
-		c.close();
-		close();
-		return id;
-	}
 	
+	/**
+	 * This method deletes the exercise with the specified id and all associated data in other
+	 * tables.
+	 * @param exerciseId The id of the deleted exercise.
+	 */
 	public void deleteExercise(int exerciseId)
 	{
 		open();
@@ -95,5 +101,18 @@ public class ListExerciseDbHandler extends Database {
 		ourDatabase.execSQL("DELETE FROM Exercises WHERE ExerciseId = '" + exerciseId + "';");
 		close();
 	}
-
+	
+	/**
+	 * This method return the number of Exercises in the table Exercises. This is only used for
+	 * testing purposes.
+	 * @return The number of exercises.
+	 */
+	public int getNumberOfExercises(){
+		open();
+		Cursor c = ourDatabase.rawQuery("SELECT COUNT(*) FROM Exercises;", null);
+		c.moveToFirst();
+		int count = c.getInt(0);
+		close();
+		return count;
+	}
 }

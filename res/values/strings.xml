@@ -5,7 +5,7 @@
     <string name="title_workouts">Workouts</string>
     <string name="title_statistics">Statistics</string>
     <string name="title_history">History</string>
-    <string name="menu_addExe">Add Excersice!</string>
+    <string name="menu_addExe">Add Exercise!</string>
     <string name="exercise_name">Exercise name</string>
     <string name="cancel">Cancel</string>
     <string name="add">Add</string>
@@ -32,8 +32,6 @@
     <string name="title_activity_register_dynamic">RegisterDynamicActivity</string>
     <string name="title_activity_register_static">RegisterStaticActivity</string>
     <string name="title_activity_register_cardio">RegisterCardioActivity</string>
-    <string name="Done">Done</string>
-    <string name="Cancel">Cancel</string>
     <string name="register_last_time">Last time: </string>
     <string name="register_current_sets">Sets: </string>
     <string name="register_my_notes">Notes: </string>
@@ -60,7 +58,6 @@
 	<string name="language_select">Select desired language</string>
 	<string name="distance">Distance</string>
 	<string name="distance_select">Select desired distance unit</string>
-	<string name="weight">Weight</string>
 	<string name="weight_select">Select desired weight unit</string>
 	<string name="unit">Units</string>
 	<string name="register_last_time">Last time: </string>
@@ -69,12 +66,32 @@
 	<string name="register_minutes">Min.</string>
 	<string name="register_seconds">Sec.</string>
 	<string name="register_distance">Distance</string>
-	<string name="register_finish_set">Add set</string>
 	<string name="register_undo_set">Remove set</string>
 	<string name="register_reps">Reps</string>
 	<string name="register_weight">Weight</string>
 	<string name="textview_musclegroup">Muscle group</string>
 	<string name="textview_muscle">Muscle</string>
+
+    <string name="ok">OK</string>
+    <string name="language">Language</string>
+    <string name="language_select">Select desired language</string>
+    <string name="distance">Distance</string>
+    <string name="distance_select">Select desired distance unit</string>
+    <string name="weight">Weight</string>
+    <string name="weight_select">Select desired weight unit</string>
+    <string name="unit">Units</string>
+    <string name="register_last_time">Last time: </string>
+    <string name="register_current_sets">Sets: </string>
+    <string name="register_my_notes">Notes: </string>
+    <string name="register_minutes">Min.</string>
+    <string name="register_seconds">Sec.</string>
+    <string name="register_distance">Distance</string>
+    <string name="register_finish_set">Add set</string>
+    <string name="register_undo_set">Remove set</string>
+    <string name="register_reps">Reps</string>
+    <string name="register_weight">Weight</string>
+    <string name="textview_musclegroup">Muscle group</string>
+    <string name="textview_muscle">Muscle</string>
     <string name="imagebutton_workout">WorkoutButton</string>
     <string name="imagebutton_exercises">ExercisesButton</string>
     <string name="imagebutton_history">HistoryButton</string>
@@ -87,8 +104,19 @@
     <string name="new_exercise">New exercise</string>
     <string name="invalid_value">Invalid value!</string>
     <string name="no_sets_to_delete">No sets to delete.</string>
-	<string name="cant_add_set_without_time">Cant add set with no time.</string>
-	<string name="cant_add_set_without_reps">Cant add set with 0 repetitions.</string>
+    <string name="cant_add_set_without_time">Cant add set with no time.</string>
+    <string name="cant_add_set_without_reps">Cant add set with 0 repetitions.</string>
+    <string name="delete">Delete</string>
+    <string name="delete_workout">Do your really want to delete this workout?</string>
+    <string name="delete_exercise">Do your really want to delete this exercise?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="done_training">Are you really done training?</string>
+    <string name="done_editing">Are you really done editing?</string>
+    <string name="quit">Quit</string>
+    <string name="really_quit">Do you really want to quit Gym-app?</string>
+    <string name="leaving">Leaving</string>
+
     <string-array name="trainingtype_array">
         <item>Cardio</item>
         <item>Static</item>
@@ -105,4 +133,5 @@
         <item>Running</item>
         <item>Rowing</item>
     </string-array>
+
 </resources>

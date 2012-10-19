@@ -31,6 +31,14 @@ import com.Grupp01.gymapp.Controller.Exercise.ExerciseData;
 import com.Grupp01.gymapp.Model.Database;
 import com.Grupp01.gymapp.View.Workout.ExerciseListElementData;
 
+/**
+ * @author GivDev
+ * @version 0.1
+ * @peer reviewed 
+ * @date 
+ * This class contains the necessary methods for accessing the database from the Workout part of
+ * the GUI.
+ */
 public class WorkoutDbHandler extends Database {
 	
 	private static final String EXERCISE_ID = "ExerciseId";
@@ -38,7 +46,7 @@ public class WorkoutDbHandler extends Database {
 
 	/**
 	 * This method forwards the Context to the superclass.
-	 * @param c 
+	 * @param c Reference to calling object.
 	 */
 	public WorkoutDbHandler(Context c)
 	{
@@ -47,12 +55,11 @@ public class WorkoutDbHandler extends Database {
 
 	/**
 	 * Gets all exercises id and name from database table Exercises and puts these values into an 
-	 * IdName object.
+	 * IdName object. 
 	 * @return a LinkedList with type of IdName
 	 */
 	public List<IdName> getWorkoutTemplatesIdName()
 	{
-
 		open();
 		Cursor c = ourDatabase.rawQuery("SELECT WorkoutTemplateId, WorkoutTemplateName FROM " +
 				"WorkoutTemplates;", null);
@@ -71,9 +78,9 @@ public class WorkoutDbHandler extends Database {
 	}
 
 	/**
-	 * Returns the specific
-	 * @param workoutId
-	 * @return Id and Name of a workout in a IdName
+	 * Returns the specified workoutTemplate.
+	 * @param workoutTemplateId The id of the workoutTemplate.
+	 * @return Id and Name of the specified workoutTemplate in a IdName object.
 	 */
 	public IdName getWorkoutTemplateIdNameById(int workoutId)
 	{
@@ -82,18 +89,16 @@ public class WorkoutDbHandler extends Database {
 				"WorkoutTemplates WHERE " +
 				"WorkoutTemplateId= '" + workoutId + "';", null);
 		c.moveToFirst();
-		//Create an IdName object to return
 		IdName temp = new IdName(c.getInt(c.getColumnIndex("WorkoutTemplateId")),c.getString(
 				c.getColumnIndex("WorkoutTemplateName")));
 		c.close();
 		close();
 		return temp;
 	}
-	
+
 	/**
-	 * This method adds a new workout template to the database.
-	 * @param workoutName The name of the new workout.
-	 * @return the id of the added workout template.
+	 * This method adds a new workoutTemplate.
+	 * @param workoutTemplateName The name of the new workoutTemplate.
 	 */
 	public int addWorkoutTemplate(String workoutTemplateName)
 	{
@@ -106,8 +111,8 @@ public class WorkoutDbHandler extends Database {
 	}
 
 	/**
-	 *
-	 * @param workoutTemplateId
+	 * Gets a List of the exercises associated with a workoutTemplate
+	 * @param workoutTemplateId The id of the workoutTemplate
 	 * @return List<Integer> that contains id for all exercises that are in a workout
 	 */
 	public List<Integer> getWorkoutTemplateExerciseByWorkoutTemplateId(int workoutTemplateId)
@@ -130,7 +135,7 @@ public class WorkoutDbHandler extends Database {
 	/**
 	 * Returns all exercises in form of ExerciseData that a workout contains.
 	 *
-	 * @param integerList
+	 * @param integerList List of ExerciseId's.
 	 * @return LinkedList of ExerciseData, ExerciseData contains ExerciseId, ExerciseName and 
 	 * ExerciseTypeId.
 	 */
@@ -157,10 +162,10 @@ public class WorkoutDbHandler extends Database {
 	}
 
 	/**
-	 * Gets an Exercise by ExerciseId from Exercises table in database.
+	 * This method gets the exercise with the specified ExerciseId from the database.
 	 *
-	 * @param exerciseId
-	 * @return a Exercise in form of a ExerciseData object
+	 * @param exerciseId The ExerciseId of the exercise to get.
+	 * @return Returns an exercise in form of an ExerciseData object.
 	 */
 	public ExerciseData getExerciseDataFromExerciseId(int exerciseId)
 	{
@@ -184,85 +189,86 @@ public class WorkoutDbHandler extends Database {
 		return temp;
 	}
 
+
 	/**
-	 * 
-	 * @param workoutTemplateId
-	 * @return
+	 * This method returns a list of exercises that are associated with a specified 
+	 * workoutTemplate.
+	 * @param workoutTemplateId 
+	 * @return List of the exercises associated with a workoutTemplate
 	 */
-	public ArrayList<ExerciseListElementData> getExercisesCheckedByWorkoutTemplateId(int 
+	public List<ExerciseListElementData> getExercisesCheckedByWorkoutTemplateId(int 
 			workoutTemplateId)
 	{
 		open();
+		List<ExerciseListElementData> list = new ArrayList<ExerciseListElementData>();
 
-		ArrayList<ExerciseListElementData> list = new ArrayList<ExerciseListElementData>();
-
+		//Get data from tables
 		Cursor c1 = ourDatabase.rawQuery("SELECT ExerciseId, ExerciseName FROM Exercises;", null);
 		Cursor c2 = ourDatabase.rawQuery("SELECT * FROM WorkoutTemplateExercises WHERE " +
 				"WorkoutTemplateId = '" + workoutTemplateId + "';" , null);
-
+		
+		//Get column id's
 		int c1Id = c1.getColumnIndex(EXERCISE_ID);
 		int c2Id = c2.getColumnIndex(EXERCISE_ID);
 		int name = c1.getColumnIndex(EXERCISE_NAME);
 
+		//Loop through c1
 		for(c1.moveToFirst(); !c1.isAfterLast(); c1.moveToNext())
 		{
 			boolean isChecked = false;
-
+			//Loop through c2
 			for(c2.moveToFirst(); !c2.isAfterLast(); c2.moveToNext())
 			{
+				//Check if reference to c1 is in c2
 				if(c1.getInt(c1Id) == c2.getInt(c2Id))
 				{
 					isChecked = true;
 				}
 			}
-
+			//Add data in the list which is returned from the method
 			ExerciseListElementData exerciseListElementData = new ExerciseListElementData(
 					c1.getInt(c1Id), c1.getString(name), isChecked);
 			list.add(exerciseListElementData);
 		}
 		close();
-
 		return list;
 	}
 
-
-
-
-	public int getExerciseLastTimePerformed(int exerciseId)
-	{
-		open();
-		Cursor c = ourDatabase.rawQuery("SELECT WorkoutTime FROM Workouts WHERE WorkoutId = " +
-				"Sets.WorkoutId AND " +
-				"Sets.ExerciseId = '" + exerciseId + "';", null);
-		int workoutTime = c.getColumnIndex("WorkoutTime");
-		c.moveToFirst();
-		close();
-		return c.getInt(workoutTime);
-	}
-
+	/**
+	 * This method updates the relation table between WorkoutTemplates and Exercises.
+	 * @param exerciseListItemData Contains an exercise. The data in this object will be 
+	 * synchronized with the corresponding tables in the database.
+	 * @param workoutTemplateId The WorkoutTemplateId that the exercise in exerciseListItemData will
+	 * be connected to.
+	 */
 	public void editWorkoutTemplate(ExerciseListElementData exerciseListItemData, 
 			int workoutTemplateId)
 	{
 		open();
-		//Check if already exists
+		
 		Cursor c = ourDatabase.rawQuery("SELECT COUNT (*) FROM WorkoutTemplateExercises WHERE " +
 				"WorkoutTemplateId = '" + workoutTemplateId + "' " +
 				"AND ExerciseId = '" + exerciseListItemData.getId() + "';", null);
 		c.moveToFirst();
-
-		if(exerciseListItemData.isChecked() )//&& c.getInt(0) == 0)
+		
+		/*
+		 * If the the ListItem is checked, add the data to the database.
+		 * Otherwise remove the data from database.
+		 */
+		if(exerciseListItemData.isChecked() )
 		{
+			//Only add the data if it does not already exist.
 			if(c.getInt(0) == 0)
 			{	
-				//add
-				String tmp = "INSERT OR REPLACE INTO WorkoutTemplateExercises " +
+				//Add data to db
+				String tmp = "INSERT INTO WorkoutTemplateExercises " +
 						"(WorkoutTemplateId, ExerciseId) VALUES " + 
 						"('" + workoutTemplateId + "', '" + exerciseListItemData.getId() + "');";
 				ourDatabase.execSQL(tmp);
 			}
 		} else
 		{
-			//remove
+			//Remove data from db
 			String tmp = "DELETE FROM WorkoutTemplateExercises WHERE WorkoutTemplateId = '" + 
 					workoutTemplateId + "' AND " + "ExerciseId = '" + 
 						exerciseListItemData.getId() + "';";
@@ -271,10 +277,14 @@ public class WorkoutDbHandler extends Database {
 		close();
 	}
 
+	/**
+	 * This method adds a new workout to the database.
+	 * @param workoutName The name of the new workout.
+	 * @return The WorkoutId of the added workout.
+	 */
 	public int addWorkout(String workoutName)
 	{
 		open();
-		System.out.println(workoutName);
 		ContentValues values = new ContentValues();
 		values.put("WorkoutName", workoutName);
 		int workoutId = (int) (long) ourDatabase.insert("Workouts", null, values);
@@ -282,6 +292,10 @@ public class WorkoutDbHandler extends Database {
 		return workoutId;
 	}
 
+	/**
+	 * This method deletes a workout and the associated data from the database.
+	 * @param workoutId The WorkoutId of the workout to delete.
+	 */
 	public void deleteWorkout(int workoutId)
 	{
 		open();
@@ -292,6 +306,10 @@ public class WorkoutDbHandler extends Database {
 		close();
 	}
 
+	/**
+	 * This method deletes a workoutTemplate and the associated data from the database.
+	 * @param workoutId The WorkoutTemplateId of the workoutTemplate to delete.
+	 */
 	public void deleteWorkoutTemplate(int workoutTemplateId)
 	{
 		open();
@@ -301,23 +319,24 @@ public class WorkoutDbHandler extends Database {
 		//Delete WorkoutTemplate
 		ourDatabase.execSQL("DELETE FROM WorkoutTemplates WHERE WorkoutTemplateId = '" + 
 				workoutTemplateId + "';");
-		//Delete WorkoutTemplate
-		ourDatabase.execSQL("DELETE FROM WorkoutTemplates WHERE WorkoutTemplateId = '" + 
-				workoutTemplateId + "';");
 		close();
 	}
 
-	public void deleteExercise(int ExerciseId)
+	/**
+	 * This method deletes an exercise from the database.
+	 * @param exerciseId The ExerciseId of the exercise to delete.
+	 */
+	public void deleteExercise(int exerciseId)
 	{
 		open();
 		//Delete WorkoutTemplateExercises associated with Exercise
 		ourDatabase.execSQL("DELETE FROM WorkoutTemplateExercises WHERE ExerciseId = '" + 
-				ExerciseId + "';");
+				exerciseId + "';");
 		//Delete sets associated with Exercise
-		ourDatabase.execSQL("DELETE FROM Sets WHERE ExerciseId = '" + ExerciseId + "';");
+		ourDatabase.execSQL("DELETE FROM Sets WHERE ExerciseId = '" + exerciseId + "';");
 		//Delete Exercises
-		ourDatabase.execSQL("DELETE FROM WorkoutTemplates WHERE WorkoutTemplateId = '" + 
-				ExerciseId + "';");
+		ourDatabase.execSQL("DELETE FROM Exercises WHERE ExerciseId = '" + 
+				exerciseId + "';");
 		close();
 	}
 }

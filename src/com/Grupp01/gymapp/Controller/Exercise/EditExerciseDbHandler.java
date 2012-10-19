@@ -27,18 +27,35 @@ import android.database.Cursor;
 import com.Grupp01.gymapp.Controller.IdName;
 import com.Grupp01.gymapp.Model.Database;
 
+/**
+ * @author GivDev
+ * @version 0.1
+ * @peer reviewed 
+ * @date 
+ * This class contains the necessary methods for accessing the database from the EditExercise
+ * part of the GUI.
+ */
 public class EditExerciseDbHandler extends Database {
 
-
+	/**
+	 * This method forwards the Context to the superclass.
+	 * @param c Reference to calling object.
+	 */
 	public EditExerciseDbHandler(Context c)
 	{
 		super(c);
 	}
 
+	/**
+	 * 
+	 * @param exerciseId
+	 * @return
+	 */
 	public ExerciseData getExerciseById(int exerciseId)
 	{
 		open();
-		Cursor c = ourDatabase.rawQuery("SELECT * FROM Exercises WHERE ExerciseId='" + exerciseId + "';", null);
+		Cursor c = ourDatabase.rawQuery("SELECT * FROM Exercises WHERE ExerciseId='" + 
+		exerciseId + "';", null);
 		c.moveToFirst();
 		int id = c.getColumnIndex("ExerciseId");
 		int pri = c.getColumnIndex("ExercisePri");
@@ -48,7 +65,9 @@ public class EditExerciseDbHandler extends Database {
 		int desc = c.getColumnIndex("ExerciseNote");
 		int sport = c.getColumnIndex("ExerciseSportId");
 		int type = c.getColumnIndex("ExerciseTypeId");
-		ExerciseData temp = new ExerciseData(c.getInt(id), c.getInt(pri), c.getInt(sec), c.getString(name), c.getString(note), c.getString(desc), c.getInt(sport), c.getInt(type));
+		ExerciseData temp = new ExerciseData(c.getInt(id), c.getInt(pri), c.getInt(sec), 
+				c.getString(name), c.getString(note), c.getString(desc), c.getInt(sport), 
+				c.getInt(type));
 		c.close();
 		close();
 		return temp;
@@ -109,33 +128,13 @@ public class EditExerciseDbHandler extends Database {
 	public void editExercise(ExerciseData exerciseData)
 	{
 		open();
-		ourDatabase.execSQL("UPDATE Exercises SET ExercisePri = '" + exerciseData.getPri() + "', ExerciseSec = '" +
-				exerciseData.getSec() + "', ExerciseDesc = '" + exerciseData.getDesc() + "', ExerciseNote = '" + 
-				exerciseData.getNote() + "', ExerciseSportId = '" + exerciseData.getSportId() + "', ExerciseTypeId = '" + 
+		ourDatabase.execSQL("UPDATE Exercises SET ExercisePri = '" + exerciseData.getPri() + 
+				"', ExerciseSec = '" +
+				exerciseData.getSec() + "', ExerciseDesc = '" + exerciseData.getDesc() + 
+				"', ExerciseNote = '" + 
+				exerciseData.getNote() + "', ExerciseSportId = '" + exerciseData.getSportId() + 
+				"', ExerciseTypeId = '" + 
 				exerciseData.getTypeId() + "' WHERE ExerciseId = '" + exerciseData.getId() + "';");
 		close();
 	}
-	/*
-		public List<ExerciseData> getExercisesByTypeId(int ExerciseTypeId){
-
-			List<ExerciseData> ExerciseDataList = new LinkedList<ExerciseData>();
-
-			Cursor c = ourDatabase.rawQuery("SELECT * FROM Exercises WHERE ExerciseTypeId = '" + ExerciseTypeId + "';", null);
-			c.moveToFirst();
-			int id = c.getColumnIndex("ExerciseId");
-			int pri = c.getColumnIndex("ExercisePri");
-			int sec = c.getColumnIndex("ExerciseSec");
-			int name = c.getColumnIndex("ExerciseName");
-			int note = c.getColumnIndex("ExerciseDesc");
-			int desc = c.getColumnIndex("ExerciseNote");
-			int type = c.getColumnIndex("ExerciseTypeId");
-			for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext())
-			{
-				ExerciseDataList.add(new ExerciseData(c.getInt(id), c.getInt(pri), c.getInt(sec), c.getString(name), c.getString(note), c.getString(desc), c.getInt(type)));
-			}
-			c.close();
-			close();
-			return ExerciseDataList;
-		}*/
-
 }

@@ -53,7 +53,7 @@ public class ProfileActivity extends SherlockActivity {
         setContentView(R.layout.profile);
         //Makes the keybord hidden when the activity starts
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-        //In a leter version it should find the user and set the textfiels whit the information
+        //In a later version it should find the user and set the textfiels whit the information
         searchUser();
     }
 
