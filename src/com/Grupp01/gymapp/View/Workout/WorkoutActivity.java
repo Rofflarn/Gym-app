@@ -66,7 +66,7 @@ public class WorkoutActivity extends SherlockActivity implements OnItemClickList
 	
 	//The listview that holds all the exercises for the workout
 	private ListView listExercisesView;	
-	//Id of current workout
+	//Id of current workouttemplate
 	private int workoutId;
 	//List of all exercises that this workout has
 	private List<ExerciseData> exerciseDataList;
@@ -273,7 +273,7 @@ public class WorkoutActivity extends SherlockActivity implements OnItemClickList
 		//Get the name of the current workouttemplate
 		String tmp = dbHandler.getWorkoutTemplateIdNameById(workoutId).getName();
 		//Add the workouttemplate as a new workout to the table of performed workouts.
-		workoutId = dbHandler.addWorkout(tmp);
+		int tempId = dbHandler.addWorkout(tmp);
 		dbHandler.close();
 	}
 	

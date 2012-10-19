@@ -59,7 +59,7 @@ public class RegisterStaticActivity extends SherlockActivity {
 	private static final String EMPTY = "";
 	private static final String ZERO = "0";
 	//Default value for extra ints passed via Intent
-	private final int intentIntDefaultValue = 0;
+	private static final int INTENT_INT_DEFAULT_VALUE = 0;
 	//The list where new sets are added and removed (this will in the end be written to DB)
 	private List<SetsData> staticSetsList = new LinkedList<SetsData>();
 	//ID of current exercise
@@ -81,9 +81,9 @@ public class RegisterStaticActivity extends SherlockActivity {
 		setContentView(R.layout.activity_register_static);
 		//Get the exercise id and workout id which is passed via the intent
 		exerciseId = getIntent().
-				getIntExtra(WorkoutActivity.EXTRA_EXERCISE_ID, intentIntDefaultValue);
+				getIntExtra(WorkoutActivity.EXTRA_EXERCISE_ID, INTENT_INT_DEFAULT_VALUE);
 		workoutId = getIntent().
-				getIntExtra(WorkoutActivity.EXTRA_WORKOUT_ID, intentIntDefaultValue);
+				getIntExtra(WorkoutActivity.EXTRA_WORKOUT_ID, INTENT_INT_DEFAULT_VALUE);
 		//Get information about the exercise from the database
 		getExerciseData();
 		//Set the title to the exercise name
@@ -133,6 +133,7 @@ public class RegisterStaticActivity extends SherlockActivity {
 		//Make app icon navigate back to the applications start screen.
 		case	android.R.id.home:
 			Intent intent = new Intent(this, MainActivity.class);
+			//Clear all activities on top of main activity in the stack
 			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			startActivity(intent);
 			return true;
@@ -248,19 +249,19 @@ public class RegisterStaticActivity extends SherlockActivity {
 		EditText editWeight = (EditText) findViewById(R.id.editWeight);
 
 		//Read minutes
-		//If input of minutes is empty, then set it to "0";
+		//If input of minutes is empty, then set it to "0"
 		String minutes = editMinutes.getText().toString();
 		if(minutes.equals(EMPTY)){
 			minutes = ZERO;
 		}
 		//Read seconds
-		//If input of seconds is empty, then set it to "0";
+		//If input of seconds is empty, then set it to "0"
 		String seconds = editSeconds.getText().toString();
 		if(seconds.equals(EMPTY)){
 			seconds = ZERO;
 		}
 		//Read weight
-		//If input of weight is empty, then set it to "0";
+		//If input of weight is empty, then set it to "0"
 		String weight = editWeight.getText().toString();
 		if(weight.equals(EMPTY)){
 			weight = ZERO;
