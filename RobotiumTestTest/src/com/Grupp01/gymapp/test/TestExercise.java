@@ -36,6 +36,11 @@ import com.jayway.android.robotium.solo.Solo;
 public class TestExercise extends ActivityInstrumentationTestCase2<MainActivity> {
 
 	private Solo solo;
+	private final String EXERCISE_NAME = "Exercise Name";
+	private final String ADD_EXERCISE = "ADD EXERCISE!";
+	private final String VIEW_EXERCISEACTIVITY = "Should view exercise activity";
+	private final String NOTES = "Notes";
+	private final String DESC = "Description";
 	
 	public TestExercise() {
 		super("com.Grupp01.gymapp", MainActivity.class);
@@ -53,7 +58,7 @@ public class TestExercise extends ActivityInstrumentationTestCase2<MainActivity>
 	{
 		//Clicks on the exercise button and verifies that the ListExerciseActivity is shown
 		solo.clickOnImageButton(1);
-		solo.assertCurrentActivity("View Exercise activity", ListExerciseActivity.class);
+		solo.assertCurrentActivity(VIEW_EXERCISEACTIVITY, ListExerciseActivity.class);
 	}
 	
 	/**Testing to open viewExercise and the push the homebutton
@@ -76,8 +81,8 @@ public class TestExercise extends ActivityInstrumentationTestCase2<MainActivity>
 		//Clicks exercise button
 		solo.clickOnImageButton(1);
 		//Clicks add exercise button from menu and enter exercise name folowd by add
-		solo.clickOnMenuItem("ADD EXCERSICE!");
-		solo.enterText(0, "Exercise Name");
+		solo.clickOnMenuItem(ADD_EXERCISE);
+		solo.enterText(0, EXERCISE_NAME);
 		solo.clickOnButton(1);
 		//checks that the editExercise activity is shown
 		solo.assertCurrentActivity("View Add exercise activity", EditExerciseActivity.class);
@@ -91,7 +96,7 @@ public class TestExercise extends ActivityInstrumentationTestCase2<MainActivity>
 		//Clicks exercise button
 		solo.clickOnImageButton(1);
 		//Clicks add exercise button from menu and enter a empty exercise name folowd by add
-		solo.clickOnMenuItem("ADD EXCERSICE!");
+		solo.clickOnMenuItem(ADD_EXERCISE);
 		solo.enterText(0, "");
 		solo.clickOnButton(1);
 		//Checks that an error message is displayed in the dialog textbox
@@ -106,17 +111,17 @@ public class TestExercise extends ActivityInstrumentationTestCase2<MainActivity>
 		//Clicks exercise button
 		solo.clickOnImageButton(1);
 		//adds a new cardio exercise whitout description or notes
-		solo.clickOnMenuItem("ADD EXCERSICE!");
-		solo.enterText(0, "Exercise Name");
+		solo.clickOnMenuItem(ADD_EXERCISE);
+		solo.enterText(0, EXERCISE_NAME);
 		solo.clickOnButton(1);
-		solo.sleep(1);
+		solo.sleep(1000);
 		solo.pressSpinnerItem(0, 0);
-		solo.sleep(1);
+		solo.sleep(1000);
 		solo.pressSpinnerItem(1, 1);
-		solo.sleep(1);
+		solo.sleep(1000);
 		solo.clickOnButton(1);
 		//checks that listExercise activity is shown
-		solo.assertCurrentActivity("View all exercises activity", ListExerciseActivity.class);
+		solo.assertCurrentActivity(VIEW_EXERCISEACTIVITY, ListExerciseActivity.class);
 	}
 	
 	/**Testing to add static exercise whith minimal settings
@@ -127,19 +132,19 @@ public class TestExercise extends ActivityInstrumentationTestCase2<MainActivity>
 		//Clicks exercise button
 		solo.clickOnImageButton(1);
 		//adds a new static exercise whitout description or notes
-		solo.clickOnMenuItem("ADD EXCERSICE!");
-		solo.enterText(0, "Exercise Name");
+		solo.clickOnMenuItem(ADD_EXERCISE);
+		solo.enterText(0, EXERCISE_NAME);
 		solo.clickOnButton(1);
-		solo.sleep(1);
-		solo.pressSpinnerItem(0, 1);
-		solo.sleep(1);
+		solo.sleep(1000);
+		solo.pressSpinnerItem(0, 2);
+		solo.sleep(1000);
 		solo.pressSpinnerItem(1, 1);
-		solo.sleep(1);
+		solo.sleep(1000);
 		solo.pressSpinnerItem(2, 1);
-		solo.sleep(1);
+		solo.sleep(1000);
 		solo.clickOnButton(1);
 		//checks that listExercise activity is shown
-		solo.assertCurrentActivity("View all exercises activity", ListExerciseActivity.class);
+		solo.assertCurrentActivity(VIEW_EXERCISEACTIVITY, ListExerciseActivity.class);
 	}
 	
 	/**Testing to add dynamic exercise whith minimal settings
@@ -150,19 +155,19 @@ public class TestExercise extends ActivityInstrumentationTestCase2<MainActivity>
 		//Clicks exercise button
 		solo.clickOnImageButton(1);
 		//adds a new dynamic exercise whitout description or notes
-		solo.clickOnMenuItem("ADD EXCERSICE!");
-		solo.enterText(0, "Exercise Name");
+		solo.clickOnMenuItem(ADD_EXERCISE);
+		solo.enterText(0, EXERCISE_NAME);
 		solo.clickOnButton(1);
-		solo.sleep(1);
-		solo.pressSpinnerItem(0, 2);
-		solo.sleep(1);
+		solo.sleep(1000);
+		solo.pressSpinnerItem(0, 1);
+		solo.sleep(1000);
 		solo.pressSpinnerItem(1, 1);
-		solo.sleep(1);
+		solo.sleep(1000);
 		solo.pressSpinnerItem(2, 1);
-		solo.sleep(1);
+		solo.sleep(1000);
 		solo.clickOnButton(1);
 		//checks that listExercise activity is shown
-		solo.assertCurrentActivity("View all exercises activity", ListExerciseActivity.class);
+		solo.assertCurrentActivity(VIEW_EXERCISEACTIVITY, ListExerciseActivity.class);
 	}
 	
 	/**Testing to add cardio exercise whith maximal settings
@@ -173,21 +178,21 @@ public class TestExercise extends ActivityInstrumentationTestCase2<MainActivity>
 		//Clicks exercise button
 		solo.clickOnImageButton(1);
 		//adds a new cardio exercise whit description and notes
-		solo.clickOnMenuItem("ADD EXCERSICE!");
-		solo.enterText(0, "Exercise Name");
+		solo.clickOnMenuItem(ADD_EXERCISE);
+		solo.enterText(0, EXERCISE_NAME);
 		solo.clickOnButton(1);
-		solo.sleep(1);
+		solo.sleep(1000);
 		solo.pressSpinnerItem(0, 0);
-		solo.sleep(1);
+		solo.sleep(1000);
 		solo.pressSpinnerItem(1, 1);
-		solo.sleep(1);
-		solo.enterText(0, "test");
-		solo.sleep(1);
-		solo.enterText(1, "test");
-		solo.sleep(1);
+		solo.sleep(1000);
+		solo.enterText(0, DESC);
+		solo.sleep(1000);
+		solo.enterText(1, NOTES);
+		solo.sleep(1000);
 		solo.clickOnButton(1);
 		//checks that listExercise activity is shown
-		solo.assertCurrentActivity("View all exercises activity", ListExerciseActivity.class);
+		solo.assertCurrentActivity(VIEW_EXERCISEACTIVITY, ListExerciseActivity.class);
 	}
 	
 	/**Testing to add static exercise whith maximal settings
@@ -198,23 +203,23 @@ public class TestExercise extends ActivityInstrumentationTestCase2<MainActivity>
 		//Clicks exercise button
 		solo.clickOnImageButton(1);
 		//adds a new static exercise whit description and notes
-		solo.clickOnMenuItem("ADD EXCERSICE!");
-		solo.enterText(0, "Exercise Name");
+		solo.clickOnMenuItem(ADD_EXERCISE);
+		solo.enterText(0, EXERCISE_NAME);
 		solo.clickOnButton(1);
-		solo.sleep(1);
-		solo.pressSpinnerItem(0, 1);
-		solo.sleep(1);
+		solo.sleep(1000);
+		solo.pressSpinnerItem(0, 2);
+		solo.sleep(1000);
 		solo.pressSpinnerItem(1, 1);
-		solo.sleep(1);
+		solo.sleep(1000);
 		solo.pressSpinnerItem(2, 1);
-		solo.sleep(1);
-		solo.enterText(0, "test");
-		solo.sleep(1);
-		solo.enterText(1, "test");
-		solo.sleep(1);
+		solo.sleep(1000);
+		solo.enterText(0, DESC);
+		solo.sleep(1000);
+		solo.enterText(1, NOTES);
+		solo.sleep(1000);
 		solo.clickOnButton(1);
 		//checks that listExercise activity is shown
-		solo.assertCurrentActivity("View all exercises activity", ListExerciseActivity.class);
+		solo.assertCurrentActivity(VIEW_EXERCISEACTIVITY, ListExerciseActivity.class);
 	}
 	
 	/**Testing to add dynamic exercise whith maximal settings
@@ -225,23 +230,23 @@ public class TestExercise extends ActivityInstrumentationTestCase2<MainActivity>
 		//Clicks exercise button
 		solo.clickOnImageButton(1);
 		//adds a new dynamic exercise whit description and notes
-		solo.clickOnMenuItem("ADD EXCERSICE!");
-		solo.enterText(0, "Exercise Name");
+		solo.clickOnMenuItem(ADD_EXERCISE);
+		solo.enterText(0, EXERCISE_NAME);
 		solo.clickOnButton(1);
-		solo.sleep(1);
-		solo.pressSpinnerItem(0, 2);
-		solo.sleep(1);
+		solo.sleep(1000);
+		solo.pressSpinnerItem(0, 1);
+		solo.sleep(1000);
 		solo.pressSpinnerItem(1, 1);
-		solo.sleep(1);
+		solo.sleep(1000);
 		solo.pressSpinnerItem(2, 1);
-		solo.sleep(1);
-		solo.enterText(0, "test");
-		solo.sleep(1);
-		solo.enterText(1, "test");
-		solo.sleep(1);
+		solo.sleep(1000);
+		solo.enterText(0, DESC);
+		solo.sleep(1000);
+		solo.enterText(1, NOTES);
+		solo.sleep(1000);
 		solo.clickOnButton(1);
 		//checks that listExercise activity is shown
-		solo.assertCurrentActivity("View all exercises activity", ListExerciseActivity.class);
+		solo.assertCurrentActivity(VIEW_EXERCISEACTIVITY, ListExerciseActivity.class);
 	}
 	
 	/**Testing to delete an exercise
@@ -251,6 +256,8 @@ public class TestExercise extends ActivityInstrumentationTestCase2<MainActivity>
 	{
 		//Clicks exercise button
 		solo.clickOnImageButton(1);
+		solo.clickLongInList(0);
+		solo.clickOnButton(1);
 	}
 	
 	/**Testing to edit an exsisting exercise
@@ -262,16 +269,16 @@ public class TestExercise extends ActivityInstrumentationTestCase2<MainActivity>
 		solo.clickOnImageButton(1);
 		//Clicks on an exsisting exercise
 		solo.clickInList(0);
-		solo.sleep(1);
+		solo.sleep(1000);
 		//Enters the text edit in both description and notes
-		solo.enterText(0, "Edit");
-		solo.sleep(1);
-		solo.enterText(1, "Edit");
-		solo.sleep(1);
+		solo.enterText(0, DESC);
+		solo.sleep(1000);
+		solo.enterText(1, NOTES);
+		solo.sleep(1000);
 		//Saves the changes
 		solo.clickOnButton(1);
 		//checks that listExercise activity is shown
-		solo.assertCurrentActivity("View all exercises activity", ListExerciseActivity.class);
+		solo.assertCurrentActivity(VIEW_EXERCISEACTIVITY, ListExerciseActivity.class);
 	}
 	
 	/**Testing to rename an exsisting exercise
@@ -290,15 +297,15 @@ public class TestExercise extends ActivityInstrumentationTestCase2<MainActivity>
 	{
 		//Clicks exercise button
 		solo.clickOnImageButton(1);
-		solo.sleep(1);
+		solo.sleep(1000);
 		//Adds exercise with name exercise name
-		solo.clickOnMenuItem("LÄGG TILL ÖVNING!");
-		solo.enterText(0, "Exercise Name");
+		solo.clickOnMenuItem(ADD_EXERCISE);
+		solo.enterText(0, EXERCISE_NAME);
 		solo.clickOnButton(1);
 		//Pushs cancel
 		solo.clickOnButton(0);
 		//checks that listExercise activity is shown
-		solo.assertCurrentActivity("View ListExercise Activity", ListExerciseActivity.class);
+		solo.assertCurrentActivity(VIEW_EXERCISEACTIVITY, ListExerciseActivity.class);
 	}
 	
 	/**Testing to cancel when editing a existing exercise
@@ -308,14 +315,14 @@ public class TestExercise extends ActivityInstrumentationTestCase2<MainActivity>
 	{
 		//Clicks exercise button
 		solo.clickOnImageButton(1);
-		solo.sleep(1);
+		solo.sleep(1000);
 		//Clicks exsisting exercise
 		solo.clickInList(0);
-		solo.sleep(1);
+		solo.sleep(1000);
 		//Clicks cancel
 		solo.clickOnButton(0);
 		//checks that listExercise activity is shown
-		solo.assertCurrentActivity("View ListExercise Activity", ListExerciseActivity.class);
+		solo.assertCurrentActivity(VIEW_EXERCISEACTIVITY, ListExerciseActivity.class);
 	}
 
 	protected void tearDown() throws Exception

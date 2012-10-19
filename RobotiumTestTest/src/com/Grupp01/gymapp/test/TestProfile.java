@@ -35,6 +35,11 @@ import com.jayway.android.robotium.solo.Solo;
 public class TestProfile extends ActivityInstrumentationTestCase2<MainActivity> {
 
 	private Solo solo;
+	private final int PROFILE_BUTTON = 4;
+	private final String NAME = "name";
+	private final String WEIGTH = "70";
+	private final String LENGTH = "180";
+	private final String AGE = "20";
 	public TestProfile() {
 		super("com.Grupp01.gymapp", MainActivity.class);
 	}
@@ -51,7 +56,7 @@ public class TestProfile extends ActivityInstrumentationTestCase2<MainActivity> 
 	public void testOpenProfile()
 	{
 		//Clicks on profile button
-		solo.clickOnImageButton(4);
+		solo.clickOnImageButton(PROFILE_BUTTON);
 		//Checks that profile activity is shown
 		solo.assertCurrentActivity("Wrong activity", ProfileActivity.class);
 	}
@@ -62,15 +67,15 @@ public class TestProfile extends ActivityInstrumentationTestCase2<MainActivity> 
 	public void testAddProfile()
 	{
 		//Clicks on profile button
-		solo.clickOnImageButton(4);
+		solo.clickOnImageButton(PROFILE_BUTTON);
 		//Fills in all textboxes
-		solo.typeText(0, "name");
+		solo.typeText(0, NAME);
 		solo.sleep(1);
-		solo.typeText(1, "1");
+		solo.typeText(1, AGE);
 		solo.sleep(1);
-		solo.typeText(2, "180");
+		solo.typeText(2, LENGTH);
 		solo.sleep(1);
-		solo.typeText(3, "70");
+		solo.typeText(3, WEIGTH);
 		//Clicks uppdate profile button
 		solo.clickOnButton(1);
 		//Checks that main activity is shown
@@ -83,7 +88,7 @@ public class TestProfile extends ActivityInstrumentationTestCase2<MainActivity> 
 	public void testAbortAddProfile()
 	{
 		//Clicks on profile button
-		solo.clickOnImageButton(4);
+		solo.clickOnImageButton(PROFILE_BUTTON);
 		//Clicks cancel button
 		solo.clickOnButton(0);
 		//Checks that main activity is shown
@@ -97,13 +102,13 @@ public class TestProfile extends ActivityInstrumentationTestCase2<MainActivity> 
 	public void testEmptyName()
 	{
 		//Clicks on profile button
-		solo.clickOnImageButton(4);
+		solo.clickOnImageButton(PROFILE_BUTTON);
 		//Fills in all textboxes exept name
-		solo.typeText(1, "1");
+		solo.typeText(1, AGE);
 		solo.sleep(1);
-		solo.typeText(2, "180");
+		solo.typeText(2, LENGTH);
 		solo.sleep(1);
-		solo.typeText(3, "70");
+		solo.typeText(3, WEIGTH);
 		//Clicks uppdate profile button
 		solo.clickOnButton(1);
 		//Checks that a error message is shown
@@ -117,13 +122,13 @@ public class TestProfile extends ActivityInstrumentationTestCase2<MainActivity> 
 	public void testEmptyAge()
 	{
 		//Clicks on profile button
-		solo.clickOnImageButton(4);
+		solo.clickOnImageButton(PROFILE_BUTTON);
 		//Fills in all textboxes exept age
-		solo.typeText(0, "name");
+		solo.typeText(0, NAME);
 		solo.sleep(1);
-		solo.typeText(2, "180");
+		solo.typeText(2, LENGTH);
 		solo.sleep(1);
-		solo.typeText(3, "70");
+		solo.typeText(3, WEIGTH);
 		//Clicks uppdate profile button
 		solo.clickOnButton(1);
 		//Checks that a error message is shown
@@ -137,13 +142,13 @@ public class TestProfile extends ActivityInstrumentationTestCase2<MainActivity> 
 	public void testEmptyLength()
 	{
 		//Clicks on profile button
-		solo.clickOnImageButton(4);
+		solo.clickOnImageButton(PROFILE_BUTTON);
 		//Fills in all textboxes exept length
-		solo.typeText(0, "name");
+		solo.typeText(0, NAME);
 		solo.sleep(1);
-		solo.typeText(1, "1");
+		solo.typeText(1, AGE);
 		solo.sleep(1);
-		solo.typeText(3, "70");
+		solo.typeText(3, WEIGTH);
 		//Clicks uppdate profile button
 		solo.clickOnButton(1);
 		//Checks that a error message is shown
@@ -157,13 +162,13 @@ public class TestProfile extends ActivityInstrumentationTestCase2<MainActivity> 
 	public void testEmptyWeigth()
 	{
 		//Clicks on profile button
-		solo.clickOnImageButton(4);
+		solo.clickOnImageButton(PROFILE_BUTTON);
 		//Fills in all textboxes exept weigth
-		solo.typeText(0, "name");
+		solo.typeText(0, NAME);
 		solo.sleep(1);
-		solo.typeText(1, "1");
+		solo.typeText(1, AGE);
 		solo.sleep(1);
-		solo.typeText(2, "180");
+		solo.typeText(2, LENGTH);
 		//Clicks uppdate profile button
 		solo.clickOnButton(1);
 		//Checks that a error message is shown
