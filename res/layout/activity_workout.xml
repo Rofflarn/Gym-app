@@ -45,7 +45,7 @@
             android:layout_height="fill_parent"
             android:layout_weight="1.0"
             android:onClick="done"
-            android:text="@string/Done" />
+            android:text="@string/done" />
  
         <Button
             android:id="@+id/button_start"
