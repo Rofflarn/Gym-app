@@ -173,6 +173,7 @@ public class WorkoutDbHandler extends Database {
 		Cursor c = ourDatabase.rawQuery("SELECT * FROM Exercises WHERE ExerciseId='" + 
 				exerciseId + "';", null);
 		c.moveToFirst();
+		//Define the necessary column id's
 		int id = c.getColumnIndex(EXERCISE_ID);
 		int pri = c.getColumnIndex("ExercisePri");
 		int sec = c.getColumnIndex("ExerciseSec");

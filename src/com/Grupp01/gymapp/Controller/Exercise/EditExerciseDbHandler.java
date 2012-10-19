@@ -81,7 +81,7 @@ public class EditExerciseDbHandler extends Database {
 		c.moveToFirst();
 		int id = c.getColumnIndex("ExerciseTypeId");
 		int name = c.getColumnIndex("ExerciseTypeName");
-		//Forlopp som går igenom hela databasen, alla kolummer
+		//Loop through cursor c
 		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext())
 		{
 			idNameList.add(new IdName(c.getInt(id),c.getString(name)));

@@ -97,6 +97,7 @@ public class HistoryDbHandler extends Database {
 		open();
 		Cursor c = ourDatabase.rawQuery("SELECT * FROM Workouts ORDER BY WorkoutDate DESC;", null);
 		c.moveToFirst();
+		//Define the necessary column id's
 		int id = c.getColumnIndex("WorkoutId");
 		int date = c.getColumnIndex("WorkoutDate");
 		int name = c.getColumnIndex("WorkoutName");
@@ -104,7 +105,7 @@ public class HistoryDbHandler extends Database {
 		//Create object to handle date and time in GMT timezone
 		SimpleDateFormat gmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	    gmt.setTimeZone(TimeZone.getTimeZone("GMT"));  
-	  //Create object to handle date and time in local timezone
+	    //Create object to handle date and time in local timezone
 		SimpleDateFormat loc = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	    loc.setTimeZone(TimeZone.getDefault());
  

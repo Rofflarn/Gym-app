@@ -27,6 +27,14 @@ import android.database.Cursor;
 
 import com.Grupp01.gymapp.Model.Database;
 
+/**
+ * @author GivDev
+ * @version 0.1
+ * @peer reviewed 
+ * @date 
+ * This class contains the necessary methods for accessing the database from the ListExercise part
+ * of the GUI.
+ */
 public class RegisterDbHandler extends Database {
 
 	//Used for time formating equation
@@ -38,11 +46,14 @@ public class RegisterDbHandler extends Database {
 	//Number of sets that are going to be shown in text: "Latest sets"
 	public static final int NUMBER_OF_LATEST_SET = 4; 
 	
+	/**
+	 * This method forwards the Context to the superclass.
+	 * @param c Reference to calling object.
+	 */
 	public RegisterDbHandler(Context c)
 	{
 		super(c);
 	}
-
 
 	/**
 	 * Adds a cardioset to table Sets in database.
@@ -133,7 +144,7 @@ public class RegisterDbHandler extends Database {
 	}
 
 	/**
-	 * Gets a list of the 4 latestDynamicSets for a specific exercise
+	 * Gets a list of the 4 latestDynamicSets for a specific exercise.
 	 * @param workoutId workoutId for current workout
 	 * @param exerciseId exerciseId for current exercise
 	 * @param exerciseTypeId exerciseTypeId for current exercise
@@ -164,7 +175,13 @@ public class RegisterDbHandler extends Database {
 		return dynamicSetsList;
 	}
 
-
+	/**
+	 * Gets a list of the 4 latestStaticSets for a specific exercise.
+	 * @param workoutId
+	 * @param exerciseId
+	 * @param exerciseTypeId
+	 * @return
+	 */
 	public List<SetsData> getPreviouslyStaticSets(int workoutId, int exerciseId, int exerciseTypeId)
 	{
 		List<SetsData> staticSetsList = new LinkedList<SetsData>();
@@ -192,7 +209,11 @@ public class RegisterDbHandler extends Database {
 		return staticSetsList;
 	}
 
-	public void removeLatestCardioSet(int setCardioId)
+	/**
+	 * This method deletes the specified CardioSet.
+	 * @param setCardioId the id of the set to delete.
+	 */
+	public void deleteCardioSet(int setCardioId)
 	{
 		open();
 		ourDatabase.execSQL("DELETE FROM Sets WHERE SetId="+setCardioId+";");
@@ -200,8 +221,11 @@ public class RegisterDbHandler extends Database {
 		close();
 	}
 
+	/**
+	 * This method gets the id of the latest added cardio set.
+	 * @return the id of the latest added cardio set.
+	 */
 	public int getLatestCardioSetId()
-
 	{
 		open();
 		Cursor c = ourDatabase.rawQuery("SELECT MAX(SetId) FROM Sets", null);
@@ -211,5 +235,4 @@ public class RegisterDbHandler extends Database {
 		close();
 		return latestRowId;
 	}
-
 }
