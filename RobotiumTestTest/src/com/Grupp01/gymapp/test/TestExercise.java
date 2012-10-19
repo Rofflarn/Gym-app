@@ -36,11 +36,12 @@ import com.jayway.android.robotium.solo.Solo;
 public class TestExercise extends ActivityInstrumentationTestCase2<MainActivity> {
 
 	private Solo solo;
-	private final String EXERCISE_NAME = "Exercise Name";
-	private final String ADD_EXERCISE = "ADD EXERCISE!";
-	private final String VIEW_EXERCISEACTIVITY = "Should view exercise activity";
-	private final String NOTES = "Notes";
-	private final String DESC = "Description";
+	private static final int SLEEP = 1000;
+	private static final String EXERCISE_NAME = "Exercise Name";
+	private static final String ADD_EXERCISE = "ADD EXERCISE!";
+	private static final String VIEW_EXERCISEACTIVITY = "Should view exercise activity";
+	private static final String NOTES = "Notes";
+	private static final String DESC = "Description";
 	
 	public TestExercise() {
 		super("com.Grupp01.gymapp", MainActivity.class);
@@ -114,11 +115,11 @@ public class TestExercise extends ActivityInstrumentationTestCase2<MainActivity>
 		solo.clickOnMenuItem(ADD_EXERCISE);
 		solo.enterText(0, EXERCISE_NAME);
 		solo.clickOnButton(1);
-		solo.sleep(1000);
+		solo.sleep(SLEEP);
 		solo.pressSpinnerItem(0, 0);
-		solo.sleep(1000);
+		solo.sleep(SLEEP);
 		solo.pressSpinnerItem(1, 1);
-		solo.sleep(1000);
+		solo.sleep(SLEEP);
 		solo.clickOnButton(1);
 		//checks that listExercise activity is shown
 		solo.assertCurrentActivity(VIEW_EXERCISEACTIVITY, ListExerciseActivity.class);
@@ -135,13 +136,13 @@ public class TestExercise extends ActivityInstrumentationTestCase2<MainActivity>
 		solo.clickOnMenuItem(ADD_EXERCISE);
 		solo.enterText(0, EXERCISE_NAME);
 		solo.clickOnButton(1);
-		solo.sleep(1000);
+		solo.sleep(SLEEP);
 		solo.pressSpinnerItem(0, 2);
-		solo.sleep(1000);
+		solo.sleep(SLEEP);
 		solo.pressSpinnerItem(1, 1);
-		solo.sleep(1000);
+		solo.sleep(SLEEP);
 		solo.pressSpinnerItem(2, 1);
-		solo.sleep(1000);
+		solo.sleep(SLEEP);
 		solo.clickOnButton(1);
 		//checks that listExercise activity is shown
 		solo.assertCurrentActivity(VIEW_EXERCISEACTIVITY, ListExerciseActivity.class);
@@ -158,13 +159,13 @@ public class TestExercise extends ActivityInstrumentationTestCase2<MainActivity>
 		solo.clickOnMenuItem(ADD_EXERCISE);
 		solo.enterText(0, EXERCISE_NAME);
 		solo.clickOnButton(1);
-		solo.sleep(1000);
+		solo.sleep(SLEEP);
 		solo.pressSpinnerItem(0, 1);
-		solo.sleep(1000);
+		solo.sleep(SLEEP);
 		solo.pressSpinnerItem(1, 1);
-		solo.sleep(1000);
+		solo.sleep(SLEEP);
 		solo.pressSpinnerItem(2, 1);
-		solo.sleep(1000);
+		solo.sleep(SLEEP);
 		solo.clickOnButton(1);
 		//checks that listExercise activity is shown
 		solo.assertCurrentActivity(VIEW_EXERCISEACTIVITY, ListExerciseActivity.class);
@@ -181,15 +182,15 @@ public class TestExercise extends ActivityInstrumentationTestCase2<MainActivity>
 		solo.clickOnMenuItem(ADD_EXERCISE);
 		solo.enterText(0, EXERCISE_NAME);
 		solo.clickOnButton(1);
-		solo.sleep(1000);
+		solo.sleep(SLEEP);
 		solo.pressSpinnerItem(0, 0);
-		solo.sleep(1000);
+		solo.sleep(SLEEP);
 		solo.pressSpinnerItem(1, 1);
-		solo.sleep(1000);
+		solo.sleep(SLEEP);
 		solo.enterText(0, DESC);
-		solo.sleep(1000);
+		solo.sleep(SLEEP);
 		solo.enterText(1, NOTES);
-		solo.sleep(1000);
+		solo.sleep(SLEEP);
 		solo.clickOnButton(1);
 		//checks that listExercise activity is shown
 		solo.assertCurrentActivity(VIEW_EXERCISEACTIVITY, ListExerciseActivity.class);
@@ -206,17 +207,17 @@ public class TestExercise extends ActivityInstrumentationTestCase2<MainActivity>
 		solo.clickOnMenuItem(ADD_EXERCISE);
 		solo.enterText(0, EXERCISE_NAME);
 		solo.clickOnButton(1);
-		solo.sleep(1000);
+		solo.sleep(SLEEP);
 		solo.pressSpinnerItem(0, 2);
-		solo.sleep(1000);
+		solo.sleep(SLEEP);
 		solo.pressSpinnerItem(1, 1);
-		solo.sleep(1000);
+		solo.sleep(SLEEP);
 		solo.pressSpinnerItem(2, 1);
-		solo.sleep(1000);
+		solo.sleep(SLEEP);
 		solo.enterText(0, DESC);
-		solo.sleep(1000);
+		solo.sleep(SLEEP);
 		solo.enterText(1, NOTES);
-		solo.sleep(1000);
+		solo.sleep(SLEEP);
 		solo.clickOnButton(1);
 		//checks that listExercise activity is shown
 		solo.assertCurrentActivity(VIEW_EXERCISEACTIVITY, ListExerciseActivity.class);
@@ -233,17 +234,17 @@ public class TestExercise extends ActivityInstrumentationTestCase2<MainActivity>
 		solo.clickOnMenuItem(ADD_EXERCISE);
 		solo.enterText(0, EXERCISE_NAME);
 		solo.clickOnButton(1);
-		solo.sleep(1000);
+		solo.sleep(SLEEP);
 		solo.pressSpinnerItem(0, 1);
-		solo.sleep(1000);
+		solo.sleep(SLEEP);
 		solo.pressSpinnerItem(1, 1);
-		solo.sleep(1000);
+		solo.sleep(SLEEP);
 		solo.pressSpinnerItem(2, 1);
-		solo.sleep(1000);
+		solo.sleep(SLEEP);
 		solo.enterText(0, DESC);
-		solo.sleep(1000);
+		solo.sleep(SLEEP);
 		solo.enterText(1, NOTES);
-		solo.sleep(1000);
+		solo.sleep(SLEEP);
 		solo.clickOnButton(1);
 		//checks that listExercise activity is shown
 		solo.assertCurrentActivity(VIEW_EXERCISEACTIVITY, ListExerciseActivity.class);
@@ -270,12 +271,12 @@ public class TestExercise extends ActivityInstrumentationTestCase2<MainActivity>
 		solo.clickOnImageButton(1);
 		//Clicks on an exsisting exercise
 		solo.clickInList(0);
-		solo.sleep(1000);
+		solo.sleep(SLEEP);
 		//Enters the text edit in both description and notes
 		solo.enterText(0, DESC);
-		solo.sleep(1000);
+		solo.sleep(SLEEP);
 		solo.enterText(1, NOTES);
-		solo.sleep(1000);
+		solo.sleep(SLEEP);
 		//Saves the changes
 		solo.clickOnButton(1);
 		//checks that listExercise activity is shown
@@ -298,7 +299,7 @@ public class TestExercise extends ActivityInstrumentationTestCase2<MainActivity>
 	{
 		//Clicks exercise button
 		solo.clickOnImageButton(1);
-		solo.sleep(1000);
+		solo.sleep(SLEEP);
 		//Adds exercise with name exercise name
 		solo.clickOnMenuItem(ADD_EXERCISE);
 		solo.enterText(0, EXERCISE_NAME);
@@ -316,10 +317,10 @@ public class TestExercise extends ActivityInstrumentationTestCase2<MainActivity>
 	{
 		//Clicks exercise button
 		solo.clickOnImageButton(1);
-		solo.sleep(1000);
+		solo.sleep(SLEEP);
 		//Clicks exsisting exercise
 		solo.clickInList(0);
-		solo.sleep(1000);
+		solo.sleep(SLEEP);
 		//Clicks cancel
 		solo.clickOnButton(0);
 		//checks that listExercise activity is shown
