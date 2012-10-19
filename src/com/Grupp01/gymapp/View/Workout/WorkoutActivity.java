@@ -273,7 +273,8 @@ public class WorkoutActivity extends SherlockActivity implements OnItemClickList
 		//Get the name of the current workouttemplate
 		String tmp = dbHandler.getWorkoutTemplateIdNameById(workoutId).getName();
 		//Add the workouttemplate as a new workout to the table of performed workouts.
-		int tempId = dbHandler.addWorkout(tmp);
+		//Needs to receive an int back (when we can use it)
+		dbHandler.addWorkout(tmp);
 		dbHandler.close();
 	}
 	
