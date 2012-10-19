@@ -8,7 +8,8 @@ import com.Grupp01.gymapp.View.History.ShowSingleHistoryActivity;
 import com.jayway.android.robotium.solo.Solo;
 
 public class TestHistory extends ActivityInstrumentationTestCase2<MainActivity> {
-
+	private static final int WORKOUT_BUTTON = 0;
+	private static final int HISTORY_BUTTON = 2;
 	private Solo solo;
 	public TestHistory() {
 		super("com.Grupp01.gymapp", MainActivity.class);
@@ -25,7 +26,7 @@ public class TestHistory extends ActivityInstrumentationTestCase2<MainActivity> 
 	public void testOpenHistory()
 	{		
 		//Click on button in main menu
-		solo.clickOnImageButton(2);
+		solo.clickOnImageButton(WORKOUT_BUTTON);
 		//Asert that the right activity has started
 		solo.assertCurrentActivity("Wrong activity", ListHistoryActivity.class);
 	}
@@ -38,7 +39,7 @@ public class TestHistory extends ActivityInstrumentationTestCase2<MainActivity> 
 	public void testHistoryExists()
 	{
 		//Selet workout
-		solo.clickOnImageButton(0);
+		solo.clickOnImageButton(WORKOUT_BUTTON);
 		solo.clickOnText("Joels pass");
 		//Start it and finish
 		solo.clickOnText("Start");
@@ -46,7 +47,7 @@ public class TestHistory extends ActivityInstrumentationTestCase2<MainActivity> 
 		//Go back to main menu
 		solo.goBack();
 		//Select history
-		solo.clickOnImageButton(2);
+		solo.clickOnImageButton(WORKOUT_BUTTON);
 		//Make sure the workout is visible
 		assertTrue(solo.searchText("Joels pass"));
 	}

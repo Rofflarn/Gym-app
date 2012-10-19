@@ -11,7 +11,7 @@ import com.Grupp01.gymapp.View.Settings.SettingsActivity;
 import com.jayway.android.robotium.solo.Solo;
 
 public class TestSettings extends ActivityInstrumentationTestCase2<MainActivity> {
-
+	private static final int SETTINGS_BUTTON = 5;
 	private Solo solo;
 	public TestSettings() {
 		super("com.Grupp01.gymapp", MainActivity.class);
@@ -24,14 +24,14 @@ public class TestSettings extends ActivityInstrumentationTestCase2<MainActivity>
 
 	public void testOpenSettings()
 	{		
-		solo.clickOnImageButton(5);
+		solo.clickOnImageButton(SETTINGS_BUTTON);
 		solo.assertCurrentActivity("Expected settings activity", SettingsActivity.class);
 		
 	}
 	
 	public void testChangeLanguage()
 	{		
-		solo.clickOnImageButton(5);
+		solo.clickOnImageButton(SETTINGS_BUTTON);
 		
 		//Select swedish as language
 		solo.clickOnText("Select desired language");
@@ -39,7 +39,7 @@ public class TestSettings extends ActivityInstrumentationTestCase2<MainActivity>
 		
 		//Go back to reload the view
 		solo.goBack();
-		solo.clickOnImageButton(5);
+		solo.clickOnImageButton(SETTINGS_BUTTON);
 		
 		//Make sure the text is swedish
 		assertTrue(solo.searchText("Språk"));
@@ -49,13 +49,13 @@ public class TestSettings extends ActivityInstrumentationTestCase2<MainActivity>
 		solo.clickOnText("Ange önskat språk");
 		solo.clickOnText("English");
 		solo.goBack();
-		solo.clickOnImageButton(5);
+		solo.clickOnImageButton(SETTINGS_BUTTON);
 		assertTrue(solo.searchText("Language"));
 	}
 
 	public void testChangeDistanceUnit()
 	{		
-		solo.clickOnImageButton(5);
+		solo.clickOnImageButton(SETTINGS_BUTTON);
 		
 		//Select kilometers as unit
 		solo.clickOnText("Select desired distance");
@@ -81,7 +81,7 @@ public class TestSettings extends ActivityInstrumentationTestCase2<MainActivity>
 	
 	public void testChangeWeightUnit()
 	{		
-		solo.clickOnImageButton(5);
+		solo.clickOnImageButton(SETTINGS_BUTTON);
 		
 		//Select kilogram as unit
 		solo.clickOnText("Select desired weight");
