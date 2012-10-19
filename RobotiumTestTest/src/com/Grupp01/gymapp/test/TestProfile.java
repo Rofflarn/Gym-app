@@ -46,6 +46,8 @@ public class TestProfile extends ActivityInstrumentationTestCase2<MainActivity> 
 	private static final String LENGTH = "180";
 	private static final String AGE = "20";
 	private static final String CORRECT_INFORMATION = "Fill in correct information";
+	private static final String ERROR_MESSAGE = "Should generate error message";
+	private static final String WRONG_ACTIVITY = "Wrong activity";
 	public TestProfile()
 	{
 		super("com.Grupp01.gymapp", MainActivity.class);
@@ -65,7 +67,7 @@ public class TestProfile extends ActivityInstrumentationTestCase2<MainActivity> 
 		//Clicks on profile button
 		solo.clickOnImageButton(PROFILE_BUTTON);
 		//Checks that profile activity is shown
-		solo.assertCurrentActivity("Wrong activity", ProfileActivity.class);
+		solo.assertCurrentActivity(WRONG_ACTIVITY, ProfileActivity.class);
 	}
 	
 	/**Testing to add a profile.
@@ -86,7 +88,7 @@ public class TestProfile extends ActivityInstrumentationTestCase2<MainActivity> 
 		//Clicks uppdate profile button
 		solo.clickOnButton(1);
 		//Checks that main activity is shown
-		solo.assertCurrentActivity("Wrong activity", MainActivity.class);
+		solo.assertCurrentActivity(WRONG_ACTIVITY, MainActivity.class);
 	}
 	
 	/**Testing to cancel when trying to add a profile.
@@ -99,7 +101,7 @@ public class TestProfile extends ActivityInstrumentationTestCase2<MainActivity> 
 		//Clicks cancel button
 		solo.clickOnButton(0);
 		//Checks that main activity is shown
-		solo.assertCurrentActivity("Wrong activity", MainActivity.class);
+		solo.assertCurrentActivity(WRONG_ACTIVITY, MainActivity.class);
 	}
 	
 	/**Testing to that a error message is shown when trying to add a profile
@@ -119,7 +121,7 @@ public class TestProfile extends ActivityInstrumentationTestCase2<MainActivity> 
 		//Clicks uppdate profile button
 		solo.clickOnButton(1);
 		//Checks that a error message is shown
-		assertTrue("Should generate error message", solo.searchText(CORRECT_INFORMATION));
+		assertTrue(ERROR_MESSAGE, solo.searchText(CORRECT_INFORMATION));
 	}
 	
 	/**Testing to that a error message is shown when trying to add a profile
@@ -159,7 +161,7 @@ public class TestProfile extends ActivityInstrumentationTestCase2<MainActivity> 
 		//Clicks uppdate profile button
 		solo.clickOnButton(1);
 		//Checks that a error message is shown
-		assertTrue("Should generate error message", solo.searchText(CORRECT_INFORMATION));
+		assertTrue(ERROR_MESSAGE, solo.searchText(CORRECT_INFORMATION));
 	}
 	
 	/**Testing to that a error message is shown when trying to add a profile
@@ -179,7 +181,7 @@ public class TestProfile extends ActivityInstrumentationTestCase2<MainActivity> 
 		//Clicks uppdate profile button
 		solo.clickOnButton(1);
 		//Checks that a error message is shown
-		assertTrue("Should generate error message", solo.searchText(CORRECT_INFORMATION));
+		assertTrue(ERROR_MESSAGE, solo.searchText(CORRECT_INFORMATION));
 	}
 	
 	protected void tearDown() throws Exception
