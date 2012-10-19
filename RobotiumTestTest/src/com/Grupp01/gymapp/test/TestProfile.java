@@ -35,12 +35,19 @@ import com.jayway.android.robotium.solo.Solo;
 public class TestProfile extends ActivityInstrumentationTestCase2<MainActivity> {
 
 	private Solo solo;
-	private final int PROFILE_BUTTON = 4;
-	private final String NAME = "name";
-	private final String WEIGTH = "70";
-	private final String LENGTH = "180";
-	private final String AGE = "20";
-	public TestProfile() {
+	private static final int NAME_TEXTFIELD = 0;
+	private static final int AGE_TEXTFIELD = 1;
+	private static final int LENGTH_TEXTFIELD = 2;
+	private static final int WEIGTH_TEXTFIELD = 3;
+	private static final int PROFILE_BUTTON = 4;
+	private static final int SLEEP = 1000;
+	private static final String NAME = "name";
+	private static final String WEIGTH = "70";
+	private static final String LENGTH = "180";
+	private static final String AGE = "20";
+	private static final String CORRECT_INFORMATION = "Fill in correct information";
+	public TestProfile()
+	{
 		super("com.Grupp01.gymapp", MainActivity.class);
 	}
 
@@ -69,13 +76,13 @@ public class TestProfile extends ActivityInstrumentationTestCase2<MainActivity> 
 		//Clicks on profile button
 		solo.clickOnImageButton(PROFILE_BUTTON);
 		//Fills in all textboxes
-		solo.typeText(0, NAME);
-		solo.sleep(1);
-		solo.typeText(1, AGE);
-		solo.sleep(1);
-		solo.typeText(2, LENGTH);
-		solo.sleep(1);
-		solo.typeText(3, WEIGTH);
+		solo.typeText(NAME_TEXTFIELD, NAME);
+		solo.sleep(SLEEP);
+		solo.typeText(AGE_TEXTFIELD, AGE);
+		solo.sleep(SLEEP);
+		solo.typeText(LENGTH_TEXTFIELD, LENGTH);
+		solo.sleep(SLEEP);
+		solo.typeText(WEIGTH_TEXTFIELD, WEIGTH);
 		//Clicks uppdate profile button
 		solo.clickOnButton(1);
 		//Checks that main activity is shown
@@ -104,15 +111,15 @@ public class TestProfile extends ActivityInstrumentationTestCase2<MainActivity> 
 		//Clicks on profile button
 		solo.clickOnImageButton(PROFILE_BUTTON);
 		//Fills in all textboxes exept name
-		solo.typeText(1, AGE);
-		solo.sleep(1);
-		solo.typeText(2, LENGTH);
-		solo.sleep(1);
-		solo.typeText(3, WEIGTH);
+		solo.typeText(AGE_TEXTFIELD, AGE);
+		solo.sleep(SLEEP);
+		solo.typeText(LENGTH_TEXTFIELD, LENGTH);
+		solo.sleep(SLEEP);
+		solo.typeText(WEIGTH_TEXTFIELD, WEIGTH);
 		//Clicks uppdate profile button
 		solo.clickOnButton(1);
 		//Checks that a error message is shown
-		assertTrue("Should generate error message", solo.searchText("Fill in correct information"));
+		assertTrue("Should generate error message", solo.searchText(CORRECT_INFORMATION));
 	}
 	
 	/**Testing to that a error message is shown when trying to add a profile
@@ -124,15 +131,15 @@ public class TestProfile extends ActivityInstrumentationTestCase2<MainActivity> 
 		//Clicks on profile button
 		solo.clickOnImageButton(PROFILE_BUTTON);
 		//Fills in all textboxes exept age
-		solo.typeText(0, NAME);
-		solo.sleep(1);
-		solo.typeText(2, LENGTH);
-		solo.sleep(1);
-		solo.typeText(3, WEIGTH);
+		solo.typeText(NAME_TEXTFIELD, NAME);
+		solo.sleep(SLEEP);
+		solo.typeText(LENGTH_TEXTFIELD, LENGTH);
+		solo.sleep(SLEEP);
+		solo.typeText(WEIGTH_TEXTFIELD, WEIGTH);
 		//Clicks uppdate profile button
 		solo.clickOnButton(1);
 		//Checks that a error message is shown
-		assertTrue("Should generate error message", solo.searchText("Fill in correct information"));
+		assertTrue("Should generate error message", solo.searchText(CORRECT_INFORMATION));
 	}
 	
 	/**Testing to that a error message is shown when trying to add a profile
@@ -144,15 +151,15 @@ public class TestProfile extends ActivityInstrumentationTestCase2<MainActivity> 
 		//Clicks on profile button
 		solo.clickOnImageButton(PROFILE_BUTTON);
 		//Fills in all textboxes exept length
-		solo.typeText(0, NAME);
-		solo.sleep(1);
-		solo.typeText(1, AGE);
-		solo.sleep(1);
-		solo.typeText(3, WEIGTH);
+		solo.typeText(NAME_TEXTFIELD, NAME);
+		solo.sleep(SLEEP);
+		solo.typeText(AGE_TEXTFIELD, AGE);
+		solo.sleep(SLEEP);
+		solo.typeText(WEIGTH_TEXTFIELD, WEIGTH);
 		//Clicks uppdate profile button
 		solo.clickOnButton(1);
 		//Checks that a error message is shown
-		assertTrue("Should generate error message", solo.searchText("Fill in correct information"));
+		assertTrue("Should generate error message", solo.searchText(CORRECT_INFORMATION));
 	}
 	
 	/**Testing to that a error message is shown when trying to add a profile
@@ -164,15 +171,15 @@ public class TestProfile extends ActivityInstrumentationTestCase2<MainActivity> 
 		//Clicks on profile button
 		solo.clickOnImageButton(PROFILE_BUTTON);
 		//Fills in all textboxes exept weigth
-		solo.typeText(0, NAME);
-		solo.sleep(1);
-		solo.typeText(1, AGE);
-		solo.sleep(1);
-		solo.typeText(2, LENGTH);
+		solo.typeText(NAME_TEXTFIELD, NAME);
+		solo.sleep(SLEEP);
+		solo.typeText(AGE_TEXTFIELD, AGE);
+		solo.sleep(SLEEP);
+		solo.typeText(LENGTH_TEXTFIELD, LENGTH);
 		//Clicks uppdate profile button
 		solo.clickOnButton(1);
 		//Checks that a error message is shown
-		assertTrue("Should generate error message", solo.searchText("Fill in correct information"));
+		assertTrue("Should generate error message", solo.searchText(CORRECT_INFORMATION));
 	}
 	
 	protected void tearDown() throws Exception
