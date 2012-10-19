@@ -26,9 +26,11 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
 /**
- * Main database-class. Contains methods for creating the database and accessing data.
  * @author GivDev
- *
+ * @version 0.1
+ * @peer reviewed 
+ * @date 
+ * Main database-class. Contains methods for creating the database and accessing data.
  */
 public class Database {
 	private DbHelper ourHelper;
@@ -56,7 +58,6 @@ public class Database {
 		return this;	
 	}
 
-
 	/**
 	 * Closes connection to database and closes connection to DatabaseHelper.
 	 */
@@ -64,28 +65,5 @@ public class Database {
 	{
 		ourDatabase.close();
 		ourHelper.close();
-	}
-
-	public void addExercise(int exerciseMusclePri, int exerciseMuscleSec, String exerciseName, String exerciseDesc, String exerciseNote, int exerciseSportId, int exerciseTypeId){
-		ourDatabase.execSQL("INSERT INTO Exercises (ExerciseMusclePri, ExerciseMuscleSec, ExerciseName, ExerciseDesc, ExerciseNote, ExerciseSportId, ExerciseTypeId) " +
-				"VALUES (" + exerciseMusclePri + ", " + exerciseMuscleSec + ", " + exerciseName + ", " + exerciseDesc + ", " + exerciseNote + ", " + exerciseTypeId + ");");
-	}
-
-	public Cursor getMuscleGroups(){
-		return ourDatabase.rawQuery("SELECT * FROM MuscleGroups;" ,null);
-	}
-
-	public Cursor getMusclesByMuscleByGroupId(int muscleGroupId){
-		return ourDatabase.rawQuery("SELECT * FROM Muscles WHERE MuscleGroupId = '" + muscleGroupId + "';", null);
-	}
-
-	/**
-	 * Gets all SetTemplates and ExerciseNames that belong to a PassTemplate. Note: only gets SetsId and ExerciseNames.
-	 * 
-	 * @return
-	 */
-	public Cursor getSetTemplatesByPassId(String passTemplateId){
-		return ourDatabase.rawQuery("SELECT SetTemplates.SetTemplateId, Exercises.ExerciseName FROM SetTemplates, Exercises " +
-				"WHERE Exercises.ExerciseId = SetTemplates.ExerciseId AND SetTemplates.PassTemplateId = '" + passTemplateId + "';", null);
 	}
 }

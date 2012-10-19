@@ -22,12 +22,23 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+/**
+ * @author GivDev
+ * @version 0.1
+ * @peer reviewed 
+ * @date 
+ * Database help class, used by Database.java to create and set up database.
+ */
 public class DbHelper extends SQLiteOpenHelper{
 
 	private static final String DATABASE_NAME = "GymAppDatabase"; 
 	private static final int DATABASE_VERSION = 1;
 
-
+	/**
+	 * This method forwards the Context, database name and database version to the
+	 * superclass.
+	 * @param context Reference to calling object.
+	 */
 	public DbHelper(Context context)
 	{	
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -62,7 +73,7 @@ public class DbHelper extends SQLiteOpenHelper{
 	 * @param db The SQLite database to upgrade.
 	 * @param oldVersion The version number of the current database.
 	 * @param newVersion The version number of the new database.
-	 * @author Anders Gustafsson, Tobias Hallberg
+	 * @author GivDev
 	 */
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -85,7 +96,7 @@ public class DbHelper extends SQLiteOpenHelper{
 	/**
 	 * Adds table Exercises database and adds default content.
 	 * 
-	 * @author Anders Gustafsson, Tobias Hallberg
+	 * @author GivDev
 	 * @param db The SQLite database in which the table is added.
 	 */
 	private void createExercises(SQLiteDatabase db)
@@ -109,7 +120,7 @@ public class DbHelper extends SQLiteOpenHelper{
 	/**
 	 * Adds table ExerciseTypes to database and adds default content.
 	 * 
-	 * @author Anders Gustafsson, Tobias Hallberg
+	 * @author GivDev
 	 * @param db The SQLite database in which the table is added.
 	 */
 	private void createExerciseTypes(SQLiteDatabase db)
@@ -124,7 +135,7 @@ public class DbHelper extends SQLiteOpenHelper{
 	/**
 	 * Adds table MeasureDataTypes to database.
 	 * 
-	 * @author Anders Gustafsson, Tobias Hallberg
+	 * @author GivDev
 	 * @param db The SQLite database in which the table is added.
 	 */
 	private void createMeasureDataTypes(SQLiteDatabase db)
@@ -136,7 +147,7 @@ public class DbHelper extends SQLiteOpenHelper{
 	/**
 	 * Adds table MeasureData to database.
 	 * 
-	 * @author Anders Gustafsson, Tobias Hallberg
+	 * @author GivDev
 	 * @param db The SQLite database in which the table is added.
 	 */
 	private void createMeasureData(SQLiteDatabase db)
@@ -149,12 +160,12 @@ public class DbHelper extends SQLiteOpenHelper{
 	/**
 	 * Adds table Workout to database.
 	 * 
-	 * @author Anders Gustafsson, Tobias Hallberg
+	 * @author GivDev
 	 * @param db The SQLite database in which the table is added.
 	 */
 	private void createWorkouts(SQLiteDatabase db)
 	{
-		db.execSQL("CREATE TABLE Workouts (WorkoutID INTEGER PRIMARY KEY AUTOINCREMENT, " +
+		db.execSQL("CREATE TABLE Workouts (WorkoutId INTEGER PRIMARY KEY AUTOINCREMENT, " +
 				"WorkoutDate TEXT DEFAULT current_timestamp, WorkoutName TEXT, " +
 				"UserId INTEGER);");
 	}
@@ -162,7 +173,7 @@ public class DbHelper extends SQLiteOpenHelper{
 	/**
 	 * Adds table Measures to database.
 	 * 
-	 * @author Anders Gustafsson, Tobias Hallberg
+	 * @author GivDev
 	 * @param db The SQLite database in which the table is added.
 	 */
 	private void createMeasures(SQLiteDatabase db)
@@ -175,7 +186,7 @@ public class DbHelper extends SQLiteOpenHelper{
 	/**
 	 * Adds table MuscleGroups to database and adds default content.
 	 * 
-	 * @author Anders Gustafsson, Tobias Hallberg
+	 * @author GivDev
 	 * @param db The SQLite database in which the table is added.
 	 */
 	private void createMuscleGroups(SQLiteDatabase db)
@@ -193,7 +204,7 @@ public class DbHelper extends SQLiteOpenHelper{
 	/**
 	 * Adds table Muscles to database and adds default content.
 	 * 
-	 * @author Anders Gustafsson, Tobias Hallberg
+	 * @author GivDev
 	 * @param db The SQLite database in which the table is added.
 	 */
 	private void createMuscles(SQLiteDatabase db)
@@ -212,7 +223,7 @@ public class DbHelper extends SQLiteOpenHelper{
 	/**
 	 * Adds table Sets to database.
 	 * 
-	 * @author Anders Gustafsson, Tobias Hallberg
+	 * @author GivDev
 	 * @param db The SQLite database in which the table is added.
 	 */
 	private void createSets(SQLiteDatabase db)
@@ -225,7 +236,7 @@ public class DbHelper extends SQLiteOpenHelper{
 	/**
 	 * Adds table Sports to database and adds default content.
 	 * 
-	 * @author Anders Gustafsson, Tobias Hallberg
+	 * @author GivDev
 	 * @param db The SQLite database in which the table is added.
 	 */
 	private void createSports(SQLiteDatabase db)
@@ -248,7 +259,7 @@ public class DbHelper extends SQLiteOpenHelper{
 	/**
 	 * Adds table Users to database.
 	 * 
-	 * @author Anders Gustafsson, Tobias Hallberg
+	 * @author GivDev
 	 * @param db The SQLite database in which the table is added.
 	 */
 	private void createUsers(SQLiteDatabase db)
@@ -261,7 +272,7 @@ public class DbHelper extends SQLiteOpenHelper{
 	/**
 	 * Adds table WorkoutTemplates to database and adds deafult content.
 	 * 
-	 * @author Anders Gustafsson, Tobias Hallberg
+	 * @author GivDev
 	 * @param db The SQLite database in which the table is added.
 	 */
 	private void createWorkoutTemplates(SQLiteDatabase db)
@@ -277,7 +288,7 @@ public class DbHelper extends SQLiteOpenHelper{
 	/**
 	 * Adds table SetTemplates to database and adds default content.
 	 * 
-	 * @author Anders Gustafsson, Tobias Hallberg
+	 * @author GivDev
 	 * @param db The SQLite database in which the table is added.
 	 */
 	private void createWorkoutTemplateExercises(SQLiteDatabase db)
