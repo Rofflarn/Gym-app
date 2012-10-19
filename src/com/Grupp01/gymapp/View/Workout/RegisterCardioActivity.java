@@ -230,7 +230,7 @@ public class RegisterCardioActivity extends SherlockActivity {
 			Integer sec = Integer.parseInt(seconds);
 			Integer dist = Integer.parseInt(distance);
 			//Adds new sets to cardioSetsList and update the view
-			cardioSetsList.add(new SetsData(sec,min,dist,workoutId,exerciseId));
+			cardioSetsList.add(new SetsData(min,sec,dist,workoutId,exerciseId));
 			updateView();
 
 		}
@@ -313,12 +313,12 @@ public class RegisterCardioActivity extends SherlockActivity {
 		dbHandler.open();
 		
 		//Get the list with sets from last time from the database.
-		List<SetsData> cardioSetsList = dbHandler.
+		List<SetsData> previousSetsList = dbHandler.
 				getPreviouslyCardioSets(workoutId, exerciseId, exercise.getTypeId());
 		dbHandler.close();
 		
 		//For each set, add it (and format correctly) to the stringbuffer.
-		for(SetsData cardioSet: cardioSetsList)
+		for(SetsData cardioSet: previousSetsList)
 		{
 			sets.append(cardioSet.getDuration());
 			sets.append("x");

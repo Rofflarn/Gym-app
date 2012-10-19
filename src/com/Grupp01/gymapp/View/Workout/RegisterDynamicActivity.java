@@ -145,6 +145,7 @@ public class RegisterDynamicActivity extends SherlockActivity {
 		//Make app icon navigate back to the applications start screen.
 		case	android.R.id.home:
 			Intent intent = new Intent(this, MainActivity.class);
+			//Clear all activities on top of main activity in the stack
 			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			startActivity(intent);
 			return true;
@@ -164,7 +165,7 @@ public class RegisterDynamicActivity extends SherlockActivity {
 		//Create the help object to read from the database
 		RegisterDbHandler dbHandler = new RegisterDbHandler(this);
 
-		//Temporary stringbuffer which will hold all prev. sets
+		//Temporary stringbuffer which will hold all previous sets
 		StringBuffer sets = new StringBuffer();
 
 		//Textview that will display the final string from stringbuffer
@@ -172,11 +173,11 @@ public class RegisterDynamicActivity extends SherlockActivity {
 		dbHandler.open();
 
 		//List of 4 previous sets for this exercise.
-		List<SetsData> dynamicSetsList = dbHandler.getPreviouslyDynamicSets(workoutId, 
+		List<SetsData> previousSetsList = dbHandler.getPreviouslyDynamicSets(workoutId, 
 				exerciseId, exercise.getTypeId());
 
-		//The exercise has never been performed, set to text.
-		if(dynamicSetsList.size() == 0)
+		//The exercise has never been performed, set the text to "".
+		if(previousSetsList.size() == 0)
 		{
 			latestSets.setText(EMPTY);
 		}
@@ -185,13 +186,14 @@ public class RegisterDynamicActivity extends SherlockActivity {
 		//i.e 8x12kg, 8x12kg, 8x12kg etc.
 		else
 		{
-			for (SetsData setData : dynamicSetsList)
+			for (SetsData setData : previousSetsList)
 			{
 				sets.append(" ");
 				sets.append(setData.getReps());
 				sets.append("x");
 				sets.append(setData.getWeight());
-				sets.append(weightUnit + ",");
+				sets.append(weightUnit);
+				sets.append(",");
 			}
 
 			//Show final result in the view to the user.
@@ -348,8 +350,10 @@ public class RegisterDynamicActivity extends SherlockActivity {
 	 */
 	private void getExerciseData()
 	{
+		//Create and open a database help object
 		WorkoutDbHandler dbHandler = new WorkoutDbHandler(this);
 		dbHandler.open();
+		//Retrieve the information about the exercise in form of a ExerciseData object.
 		exercise = dbHandler.getExerciseDataFromExerciseId(exerciseId);
 		dbHandler.close();
 	}

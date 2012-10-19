@@ -15,9 +15,9 @@ import com.Grupp01.gymapp.Model.Database;
 
 public class HistoryDbHandler extends Database {
 
-	public final static int NUMBER_SECONDS_IN_HOUR  = 3600; //Used for timeformating equation
-	public final static int NUMBER_SECONDS_IN_MIN = 60; //Used for timeformating equation
-	public final static int NUMBER_OF_LATEST_SET = 4; //Number of sets that are going to be shown
+	public static final int NUMBER_SECONDS_IN_HOUR  = 3600; //Used for timeformating equation
+	public static final int NUMBER_SECONDS_IN_MIN = 60; //Used for timeformating equation
+	public static final int NUMBER_OF_LATEST_SET = 4; //Number of sets that are going to be shown
 	//in text: "Latest sets"
 
 
