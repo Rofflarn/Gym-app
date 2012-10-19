@@ -257,7 +257,8 @@ public class TestExercise extends ActivityInstrumentationTestCase2<MainActivity>
 		//Clicks exercise button
 		solo.clickOnImageButton(1);
 		solo.clickLongInList(0);
-		solo.clickOnButton(1);
+		solo.clickOnText("Delete");
+		solo.assertCurrentActivity(VIEW_EXERCISEACTIVITY, ListExerciseActivity.class);
 	}
 	
 	/**Testing to edit an exsisting exercise
