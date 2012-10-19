@@ -160,14 +160,13 @@ public class RegisterStaticActivity extends SherlockActivity {
 		StringBuffer sets = new StringBuffer();
 		dbHandler.open();
 		//Get the sets from the database
-		dynamicSetsList = dbHandler.getPreviouslyStaticSets(workoutId, 
-				exerciseId, exercise.getTypeId());
+		dynamicSetsList = dbHandler.getPreviouslyStaticSets(exerciseId, exercise.getTypeId());
 		//If the lists with sets is empty, there is nothing to show so set the string to "".
 		if(dynamicSetsList.size() == 0)
 		{
 			lastSet.setText(EMPTY);
 		}
-		//Else use the stringbuffer to show "(Reps)x(Weight)(weightUnit)" without ().
+		//Else use the stringbuffer to show "(Time)x(Weight)(weightUnit)" without ().
 		else
 		{
 			for (SetsData setData : dynamicSetsList)
@@ -304,7 +303,7 @@ public class RegisterStaticActivity extends SherlockActivity {
 		for (SetsData setData : staticSetsList)
 		{
 			setsString.append(setData.getMin());
-			setsString.append("h");
+			setsString.append("m ");
 			setsString.append(setData.getSec());
 			setsString.append("s x ");
 			setsString.append(setData.getWeight());

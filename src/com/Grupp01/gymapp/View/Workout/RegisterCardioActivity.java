@@ -314,7 +314,7 @@ public class RegisterCardioActivity extends SherlockActivity {
 		
 		//Get the list with sets from last time from the database.
 		List<SetsData> previousSetsList = dbHandler.
-				getPreviouslyCardioSets(workoutId, exerciseId, exercise.getTypeId());
+				getPreviouslyCardioSets(exerciseId, exercise.getTypeId());
 		dbHandler.close();
 		
 		//For each set, add it (and format correctly) to the stringbuffer.

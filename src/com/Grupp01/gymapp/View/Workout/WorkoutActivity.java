@@ -89,7 +89,8 @@ public class WorkoutActivity extends SherlockActivity implements OnClickListener
 		super.onCreate(savedInstanceState);
 
 		//Get the ID of the workout which was passed via the invoking intent
-		workoutId = getIntent().getIntExtra(ListWorkoutActivity.WORKOUT_ID, 0);
+		workoutId = getIntent().
+				getIntExtra(ListWorkoutActivity.WORKOUT_ID, INTENT_INT_DEFAULT_VALUE);
 
 		//Set layout from xml file
 		setContentView(R.layout.activity_workout);

@@ -114,12 +114,12 @@ public class RegisterDbHandler extends Database {
 	 * @return A List containing the four latest sets in SetData objects with SetDuration and 
 	 * SetDistance parameters.
 	 */
-	public List<SetsData> getPreviouslyCardioSets(int workoutId, int exerciseId, int exerciseTypeId)
+	public List<SetsData> getPreviouslyCardioSets(int exerciseId, int exerciseTypeId)
 	{
 		List<SetsData> cardioSetsList = new LinkedList<SetsData>();
 		open();	
 		Cursor c = ourDatabase.rawQuery("SELECT Sets.SetDuration, Sets.SetDistance FROM Sets, " +
-				"Exercises WHERE Sets.WorkoutId = " + workoutId +" AND " +
+				"Exercises WHERE " +
 				"Sets.ExerciseId = " + exerciseId + " AND Exercises.ExerciseId = Sets.ExerciseId AND "
 				+ "Exercises.ExerciseTypeId = " + exerciseTypeId + " ORDER BY SetId DESC LIMIT 4;", 
 				null);
@@ -150,13 +150,13 @@ public class RegisterDbHandler extends Database {
 	 * @param exerciseTypeId exerciseTypeId for current exercise
 	 * @return
 	 */
-	public List<SetsData> getPreviouslyDynamicSets(int workoutId, int exerciseId, 
+	public List<SetsData> getPreviouslyDynamicSets(int exerciseId, 
 			int exerciseTypeId)
 	{
 		List<SetsData> dynamicSetsList = new LinkedList<SetsData>();
 		open();
 		Cursor c = ourDatabase.rawQuery("SELECT Sets.SetWeight, Sets.SetReps FROM Sets, " +
-				"Exercises WHERE Sets.WorkoutId = " + workoutId +" AND " +
+				"Exercises WHERE " +
 				"Sets.ExerciseId = " + exerciseId + " AND Exercises.ExerciseId = " +
 						"Sets.ExerciseId AND " +
 				"Exercises.ExerciseTypeId = " + exerciseTypeId + " ORDER BY SetId " +
@@ -182,12 +182,12 @@ public class RegisterDbHandler extends Database {
 	 * @param exerciseTypeId
 	 * @return
 	 */
-	public List<SetsData> getPreviouslyStaticSets(int workoutId, int exerciseId, int exerciseTypeId)
+	public List<SetsData> getPreviouslyStaticSets(int exerciseId, int exerciseTypeId)
 	{
 		List<SetsData> staticSetsList = new LinkedList<SetsData>();
 		open();
 		Cursor c = ourDatabase.rawQuery("SELECT Sets.SetDuration, Sets.SetWeight FROM Sets, " +
-				"Exercises WHERE Sets.WorkoutId = " + workoutId +" AND " +
+				"Exercises WHERE " +
 				"Sets.ExerciseId = " + exerciseId + " AND Exercises.ExerciseId = " +
 						"Sets.ExerciseId AND " +
 				"Exercises.ExerciseTypeId = " + exerciseTypeId + " ORDER BY SetId DESC LIMIT 4;", 

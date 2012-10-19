@@ -173,8 +173,8 @@ public class RegisterDynamicActivity extends SherlockActivity {
 		dbHandler.open();
 
 		//List of 4 previous sets for this exercise.
-		List<SetsData> previousSetsList = dbHandler.getPreviouslyDynamicSets(workoutId, 
-				exerciseId, exercise.getTypeId());
+		List<SetsData> previousSetsList = dbHandler.
+				getPreviouslyDynamicSets(exerciseId, exercise.getTypeId());
 
 		//The exercise has never been performed, set the text to "".
 		if(previousSetsList.size() == 0)
