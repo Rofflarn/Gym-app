@@ -118,8 +118,6 @@ public class MainActivity extends SherlockActivity {
 	public void statistics(View view)
 	{
 		Toast.makeText(this, R.string.not_implemented, Toast.LENGTH_SHORT).show();
-		//Intent statistic = new Intent(this, Statistik.class);
-		//startActivity(statistic);
 	}
 
 

@@ -190,7 +190,7 @@ public class WorkoutDbHandler extends Database {
 	}
 
 
-	public ArrayList<ExerciseListElementData> getExercisesCheckedByWorkoutTemplateId(int 
+	public List<ExerciseListElementData> getExercisesCheckedByWorkoutTemplateId(int 
 			workoutTemplateId)
 	{
 		open();
@@ -275,7 +275,6 @@ public class WorkoutDbHandler extends Database {
 	public int addWorkout(String workoutName)
 	{
 		open();
-		System.out.println(workoutName);
 		ContentValues values = new ContentValues();
 		values.put("WorkoutName", workoutName);
 		int workoutId = (int) (long) ourDatabase.insert("Workouts", null, values);
@@ -308,17 +307,17 @@ public class WorkoutDbHandler extends Database {
 		close();
 	}
 
-	public void deleteExercise(int ExerciseId)
+	public void deleteExercise(int exerciseId)
 	{
 		open();
 		//Delete WorkoutTemplateExercises associated with Exercise
 		ourDatabase.execSQL("DELETE FROM WorkoutTemplateExercises WHERE ExerciseId = '" + 
-				ExerciseId + "';");
+				exerciseId + "';");
 		//Delete sets associated with Exercise
-		ourDatabase.execSQL("DELETE FROM Sets WHERE ExerciseId = '" + ExerciseId + "';");
+		ourDatabase.execSQL("DELETE FROM Sets WHERE ExerciseId = '" + exerciseId + "';");
 		//Delete Exercises
 		ourDatabase.execSQL("DELETE FROM WorkoutTemplates WHERE WorkoutTemplateId = '" + 
-				ExerciseId + "';");
+				exerciseId + "';");
 		close();
 	}
 }
