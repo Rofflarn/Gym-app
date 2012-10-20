@@ -1,0 +1,31 @@
+<class-diagram version="1.0.10" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="true" nesting-relationships="true">  
+  <class id="1" corner="BOTTOM_RIGHT" language="java" name="com.Grupp01.gymapp.View.Settings.SettingsActivity" 
+    project="com.Grupp01.gymapp.MainActivity" 
+    file="/com.Grupp01.gymapp.MainActivity/src/com/Grupp01/gymapp/View/Settings/SettingsActivity.java" binary="false">    
+    <position height="-1" width="-1" x="293" y="150"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="2" corner="BOTTOM_RIGHT" language="java" name="com.actionbarsherlock.app.SherlockPreferenceActivity" 
+    project="com.Grupp01.gymapp.MainActivity" 
+    file="C:/Users/Lerum/Gym-app/libs/actionbarsherlock/library/bin/library.jar" binary="true">    
+    <position height="-1" width="-1" x="606" y="152"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false"/>      
+      <operations public="false" package="false" protected="false" private="false"/>    
+    </display>  
+  </class>  
+  <generalization id="3">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="2"/>  
+  </generalization>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true"/>    
+    <operations public="true" package="true" protected="true" private="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
