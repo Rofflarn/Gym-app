@@ -1,12 +1,11 @@
 <resources>
 
-    <string name="app_name">Gymapp</string>
+    <string name="app_name">Ripped</string>
     <string name="title_activity_main">Ripped</string>
     <string name="title_workouts">Workouts</string>
     <string name="title_statistics">Statistics</string>
     <string name="title_history">History</string>
-    <string name="menu_addExe">Add Exercise!</string>
-    <string name="exercise_name">Exercise name</string>
+    <string name="menu_addExe">Add Exercise</string>
     <string name="cancel">Cancel</string>
     <string name="add">Add</string>
     <string name="done">Done</string>
@@ -60,38 +59,7 @@
 	<string name="distance_select">Select desired distance unit</string>
 	<string name="weight_select">Select desired weight unit</string>
 	<string name="unit">Units</string>
-	<string name="register_last_time">Last time: </string>
-	<string name="register_current_sets">Sets: </string>
-	<string name="register_my_notes">Notes: </string>
-	<string name="register_minutes">Min.</string>
-	<string name="register_seconds">Sec.</string>
-	<string name="register_distance">Distance</string>
-	<string name="register_undo_set">Remove set</string>
-	<string name="register_reps">Reps</string>
-	<string name="register_weight">Weight</string>
-	<string name="textview_musclegroup">Muscle group</string>
-	<string name="textview_muscle">Muscle</string>
-
-    <string name="ok">OK</string>
-    <string name="language">Language</string>
-    <string name="language_select">Select desired language</string>
-    <string name="distance">Distance</string>
-    <string name="distance_select">Select desired distance unit</string>
-    <string name="weight">Weight</string>
-    <string name="weight_select">Select desired weight unit</string>
-    <string name="unit">Units</string>
-    <string name="register_last_time">Last time: </string>
-    <string name="register_current_sets">Sets: </string>
-    <string name="register_my_notes">Notes: </string>
-    <string name="register_minutes">Min.</string>
-    <string name="register_seconds">Sec.</string>
-    <string name="register_distance">Distance</string>
-    <string name="register_finish_set">Add set</string>
-    <string name="register_undo_set">Remove set</string>
-    <string name="register_reps">Reps</string>
-    <string name="register_weight">Weight</string>
-    <string name="textview_musclegroup">Muscle group</string>
-    <string name="textview_muscle">Muscle</string>
+	<string name="ok">OK</string>
     <string name="imagebutton_workout">WorkoutButton</string>
     <string name="imagebutton_exercises">ExercisesButton</string>
     <string name="imagebutton_history">HistoryButton</string>
@@ -115,7 +83,8 @@
     <string name="done_editing">Are you really done editing?</string>
     <string name="quit">Quit</string>
     <string name="really_quit">Do you really want to quit Gym-app?</string>
-    <string name="leaving">Leaving</string>
+    <string name="leaving">Leaving</string>    
+    <string name="easter">Happy Easter =). A very special easter exercises is created</string>
 
     <string-array name="trainingtype_array">
         <item>Cardio</item>
