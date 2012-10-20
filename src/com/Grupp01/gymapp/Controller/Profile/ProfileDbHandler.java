@@ -65,7 +65,7 @@ public class ProfileDbHandler extends Database {
 	public int numberOfUsers()
 	{
 		open();
-		Cursor c = ourDatabase.rawQuery("SELECT COUNT(*) FROM User;", null);
+		Cursor c = ourDatabase.rawQuery("SELECT COUNT(*) FROM Users;", null);
 		c.moveToFirst();
 		int count = c.getInt(0);
 		close();

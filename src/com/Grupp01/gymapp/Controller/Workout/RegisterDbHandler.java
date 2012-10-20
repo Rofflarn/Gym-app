@@ -235,4 +235,19 @@ public class RegisterDbHandler extends Database {
 		close();
 		return latestRowId;
 	}
+	
+	/**
+	 * This method return the number of Sets in the table Sets. This is only used for
+	 * testing purposes.
+	 * @return The number of sets.
+	 */
+	public int getNumberOfSets()
+	{
+		open();
+		Cursor c = ourDatabase.rawQuery("SELECT COUNT(*) FROM Sets;", null);
+		c.moveToFirst();
+		int count = c.getInt(0);
+		close();
+		return count;
+	}
 }

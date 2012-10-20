@@ -64,7 +64,6 @@ public class HistoryDbHandler extends Database {
 		}
 		return exerciseIdList;
 	}
-
 	/**
 	 * Gets exerciseTypeId for a list of exerciseId's.
 	 * @param exerciseIdList A LinkedList<Integer> of exerciseId.
@@ -160,5 +159,19 @@ public class HistoryDbHandler extends Database {
 		c.close();
 		close();
 		return setsList;
+	}
+	
+	/**
+	 * This method return the number of Workouts in the table Workouts. This is only used for
+	 * testing purposes.
+	 * @return The number of workouts.
+	 */
+	public int getNumberOfPerformedWorkouts(){
+		open();
+		Cursor c = ourDatabase.rawQuery("SELECT COUNT(*) FROM Workouts;", null);
+		c.moveToFirst();
+		int count = c.getInt(0);
+		close();
+		return count;
 	}
 }
