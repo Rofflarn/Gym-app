@@ -33,6 +33,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.Grupp01.gymapp.Controller.Exercise.EditExerciseDbHandler;
+import com.Grupp01.gymapp.Controller.Exercise.ExerciseData;
+import com.Grupp01.gymapp.Controller.Exercise.ListExerciseDbHandler;
 import com.Grupp01.gymapp.View.Exercise.ListExerciseActivity;
 import com.Grupp01.gymapp.View.History.ListHistoryActivity;
 import com.Grupp01.gymapp.View.Profile.ProfileActivity;
@@ -55,6 +58,7 @@ import com.actionbarsherlock.view.MenuInflater;
  */
 public class MainActivity extends SherlockActivity implements OnClickListener {
 	private Dialog dialog;
+	private int counter;
 	/**
 	 * Instantiate the class with necessary method calls.
 	 * 
@@ -120,7 +124,41 @@ public class MainActivity extends SherlockActivity implements OnClickListener {
 	 */
 	public void statistics(View view)
 	{
-		Toast.makeText(this, R.string.not_implemented, Toast.LENGTH_SHORT).show();
+		counter++;
+		if(counter==5)
+		{
+			Toast.makeText(this, R.string.easter, Toast.LENGTH_SHORT).show();
+			ListExerciseDbHandler dbHandler = new ListExerciseDbHandler(this);
+			dbHandler.open();
+
+			//Write the new exercise to the database and get the ID in return
+			int id = dbHandler.addExercise("Joels öhlhäfv");
+			//creates a EditExerciseDbHandler
+			EditExerciseDbHandler get = new EditExerciseDbHandler(this);
+			get.open();
+			ExerciseData exercise = get.getExerciseById(id);
+
+			//Puts description into the exercise
+			exercise.putDesc("Kör bara kör");
+			//Puts note to self into the exercise
+			exercise.putNote("Det finns inget alkholhets på Chalmers");
+			//Puts the training type selected from spinner into the exercise
+			exercise.putTypeId(2);
+			exercise.putPri(3);
+			//puts the secondary muscle selected in spinner into the exercise
+			exercise.putSec(4);
+			//Gets and puts the added/changed data into the exercise object
+
+			//creates a EditExerci
+			//Push the changed exercise-object int the database
+			get.editExercise(exercise);
+			get.close();
+			dbHandler.close();
+		}
+		else
+		{
+			Toast.makeText(this, R.string.not_implemented, Toast.LENGTH_SHORT).show();
+		}
 	}
 
 
@@ -174,7 +212,7 @@ public class MainActivity extends SherlockActivity implements OnClickListener {
 		String lang = sharedPref.getString("pref_key_language", "default");
 
 		//If its set to default, set the language to the phones default laguage.
-		
+
 		/*if(lang.equals("default")){
 			Locale locale = Locale.getDefault();
 			Locale.setDefault(locale);
@@ -184,15 +222,15 @@ public class MainActivity extends SherlockActivity implements OnClickListener {
 		}*/
 
 		//Otherwise set it to the user selected language.
-		
-			Locale locale = new Locale(lang);
-			Locale.setDefault(locale);
-			Configuration config = new Configuration();
-			config.locale = locale;
-			getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
-		
-			//Changing language according to thread:
-			//
+
+		Locale locale = new Locale(lang);
+		Locale.setDefault(locale);
+		Configuration config = new Configuration();
+		config.locale = locale;
+		getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+
+		//Changing language according to thread:
+		//
 
 	}
 	/**
@@ -212,7 +250,7 @@ public class MainActivity extends SherlockActivity implements OnClickListener {
 		((Button) dialog.findViewById(R.id.yes_Button)).setOnClickListener(this);
 		((Button) dialog.findViewById(R.id.no_Button)).setOnClickListener(this);
 		dialog.show();
-		
+
 	}
 
 	@Override
