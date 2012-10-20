@@ -1,5 +1,12 @@
 package com.Grupp01.gymapp.Controller.History;
 
+/**
+ * @author GivDev
+ * @version 0.1
+ * @peer reviewed 
+ * @date 
+ * This class contains an ExerciseId and the associated ExerciseTypeId.
+ */
 public class ExerciseIdTypeId {
 	
 	private int exerciseId;
@@ -33,6 +40,4 @@ public class ExerciseIdTypeId {
 	{
 		return exerciseTypeId;
 	}
-	
-
 }

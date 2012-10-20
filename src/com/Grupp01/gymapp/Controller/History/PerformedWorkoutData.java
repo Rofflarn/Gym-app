@@ -17,9 +17,20 @@
 
 package com.Grupp01.gymapp.Controller.History;
 
+/**
+ * @author GivDev
+ * @version 0.1
+ * @peer reviewed 
+ * @date 
+ * This class contains the necessary methods for accessing the database from the History part of
+ * the GUI.
+ */
 public class PerformedWorkoutData {
-	private String workoutName;		//name of workout
-	private String date;	//date of workout
+	//name of workout
+	private String workoutName;
+	//date of workout
+	private String date;
+	//if of workout
 	private int id;
 
 
