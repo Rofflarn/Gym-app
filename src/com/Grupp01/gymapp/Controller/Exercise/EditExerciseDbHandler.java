@@ -162,7 +162,7 @@ public class EditExerciseDbHandler extends Database {
 	 * testing purposes.
 	 * @return The number of exercises.
 	 */
-	public int getNumberOMuscles(){
+	public int getNumberOfMuscles(){
 		open();
 		Cursor c = ourDatabase.rawQuery("SELECT COUNT(*) FROM Muscles;", null);
 		c.moveToFirst();
