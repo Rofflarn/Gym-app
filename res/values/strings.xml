@@ -1,7 +1,7 @@
 <resources>
 
     <string name="app_name">Gymapp</string>
-    <string name="title_activity_main">Gym-appen</string>
+    <string name="title_activity_main">Ripped</string>
     <string name="title_workouts">Workouts</string>
     <string name="title_statistics">Statistics</string>
     <string name="title_history">History</string>

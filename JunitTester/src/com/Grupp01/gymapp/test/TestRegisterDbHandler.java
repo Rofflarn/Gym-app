@@ -62,7 +62,9 @@ public class TestRegisterDbHandler extends ActivityInstrumentationTestCase2<List
 	 */
 	public void testAddCardioSet()
 	{
+		//Gets number of sets
 		int nrOfSets = dbR.getNumberOfSets();
+		//Adds cardio set
 		dbR.addCardioSet(SEC, MIN, DISTANCE, WORKOUT_ID, EXERCISE_ID);
 		assertEquals("Did not work to add CardioSet", nrOfSets + 1, dbR.getNumberOfSets());
 	}
@@ -71,7 +73,9 @@ public class TestRegisterDbHandler extends ActivityInstrumentationTestCase2<List
 	 */
 	public void testAddDynamicSet()
 	{
+		//Gets number of sets
 		int nrOfSets = dbR.getNumberOfSets();
+		//Adds dynamic set
 		dbR.addDynamicSet(WEIGTH, REPS, WORKOUT_ID, EXERCISE_ID);
 		assertEquals("Did not work to add DynamicSet", nrOfSets + 1, dbR.getNumberOfSets());
 	}
@@ -80,7 +84,9 @@ public class TestRegisterDbHandler extends ActivityInstrumentationTestCase2<List
 	 */
 	public void testAddStaticSet()
 	{
+		//Gets number of sets
 		int nrOfSets = dbR.getNumberOfSets();
+		//Adds static set
 		dbR.addStaticSet(MIN, SEC, WEIGTH, WORKOUT_ID, EXERCISE_ID);
 		assertEquals("Did not work to add StaticSet", nrOfSets + 1, dbR.getNumberOfSets());
 	}
@@ -89,7 +95,9 @@ public class TestRegisterDbHandler extends ActivityInstrumentationTestCase2<List
 	 */
 	public void testDeleteCardioSet()
 	{
+		//Gets number of sets
 		int numberOfSets = dbR.getNumberOfSets();
+		//Delets set
 		dbR.deleteCardioSet(EXERCISE_ID);
 		assertEquals("Did not work to delete CardioSet", numberOfSets - 1, dbR.getNumberOfSets());
 	}
