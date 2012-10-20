@@ -21,14 +21,13 @@ package com.Grupp01.gymapp.Model;
 
 
 import android.content.Context;
-import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
 /**
  * @author GivDev
  * @version 0.1
- * @peer reviewed 
+ * @peer reviewed by Robert Blomberg
  * @date 
  * Main database-class. Contains methods for creating the database and accessing data.
  */

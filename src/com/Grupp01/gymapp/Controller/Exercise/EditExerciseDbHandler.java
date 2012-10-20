@@ -30,7 +30,7 @@ import com.Grupp01.gymapp.Model.Database;
 /**
  * @author GivDev
  * @version 0.1
- * @peer reviewed 
+ * @peer reviewed by Robert Blomberg
  * @date 
  * This class contains the necessary methods for accessing the database from the EditExercise
  * part of the GUI.
@@ -47,8 +47,8 @@ public class EditExerciseDbHandler extends Database {
 	}
 
 	/**
-	 * 
-	 * @param exerciseId
+	 * This method gets the exercise with the specified id.
+	 * @param exerciseId the id of the exercise.
 	 * @return
 	 */
 	public ExerciseData getExerciseById(int exerciseId)
@@ -57,6 +57,8 @@ public class EditExerciseDbHandler extends Database {
 		Cursor c = ourDatabase.rawQuery("SELECT * FROM Exercises WHERE ExerciseId='" + 
 		exerciseId + "';", null);
 		c.moveToFirst();
+		
+		//Define the necessary column id's
 		int id = c.getColumnIndex("ExerciseId");
 		int pri = c.getColumnIndex("ExercisePri");
 		int sec = c.getColumnIndex("ExerciseSec");
@@ -65,6 +67,8 @@ public class EditExerciseDbHandler extends Database {
 		int desc = c.getColumnIndex("ExerciseNote");
 		int sport = c.getColumnIndex("ExerciseSportId");
 		int type = c.getColumnIndex("ExerciseTypeId");
+		
+		//Create new ExerciseData object with data from database.
 		ExerciseData temp = new ExerciseData(c.getInt(id), c.getInt(pri), c.getInt(sec), 
 				c.getString(name), c.getString(note), c.getString(desc), c.getInt(sport), 
 				c.getInt(type));
@@ -73,17 +77,24 @@ public class EditExerciseDbHandler extends Database {
 		return temp;
 	}
 
+	/**
+	 * This method gets a list off all the exercise types.
+	 * @return List<IdName> containing exercise types.
+	 */
 	public List<IdName> getExerciseTypes()
 	{
 		open();
 		Cursor c = ourDatabase.rawQuery("SELECT * FROM ExerciseTypes;", null);
 		List<IdName> idNameList = new LinkedList<IdName>();
 		c.moveToFirst();
+		
+		//Define the necessary column id's
 		int id = c.getColumnIndex("ExerciseTypeId");
 		int name = c.getColumnIndex("ExerciseTypeName");
 		//Loop through cursor c
 		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext())
 		{
+			//Add ExerciseType to the list
 			idNameList.add(new IdName(c.getInt(id),c.getString(name)));
 		}
 		c.close();
@@ -91,6 +102,10 @@ public class EditExerciseDbHandler extends Database {
 		return idNameList;
 	}
 
+	/**
+	 * This methods gets all the sports in the database and returns them as a List<IdName>.
+	 * @return the List<IdName> of Sports.
+	 */
 	public List<IdName> getSports()
 	{
 		open();
@@ -100,6 +115,7 @@ public class EditExerciseDbHandler extends Database {
 		int id = c.getColumnIndex("SportId");
 		int name = c.getColumnIndex("SportName");
 
+		//Procedure that runs through the cursor.
 		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext())
 		{
 			idNameList.add(new IdName(c.getInt(id),c.getString(name)));
@@ -109,6 +125,10 @@ public class EditExerciseDbHandler extends Database {
 		return idNameList;
 	}
 
+	/**
+	 * This methods gets all the muscles in the database and returns them as a List<IdName>.
+	 * @return the List<IdName> of Muslces.
+	 */
 	public List<IdName> getMuscles()
 	{
 		Cursor c = ourDatabase.rawQuery("SELECT MuscleId, MuscleName FROM Muscles;", null);
@@ -117,6 +137,8 @@ public class EditExerciseDbHandler extends Database {
 		c.moveToFirst();
 		int id = c.getColumnIndex("MuscleId");
 		int name = c.getColumnIndex("MuscleName");
+		
+		//Procedure that runs through the cursor.
 		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext())
 		{
 			idNameList.add(new IdName(c.getInt(id),c.getString(name)));
@@ -127,8 +149,9 @@ public class EditExerciseDbHandler extends Database {
 	}
 	
 	/**
-	 * 
-	 * @param exerciseData
+	 * This method is used to alter the data in an exercise.
+	 * @param exerciseData The exercisedata object containing the id of the exercise to edit and
+	 * the updated fields.
 	 */
 	public void editExercise(ExerciseData exerciseData)
 	{

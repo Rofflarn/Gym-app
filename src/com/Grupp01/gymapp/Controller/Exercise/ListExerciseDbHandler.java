@@ -60,7 +60,7 @@ public class ListExerciseDbHandler extends Database {
 		c.moveToFirst();
 		int id = c.getColumnIndex("ExerciseId");
 		int name = c.getColumnIndex("ExerciseName");
-		//Forlopp som går igenom hela databasen, alla kolummer
+		//Procedure that runs through the cursor.
 		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext())
 		{
 			idNameList.add(new IdName(c.getInt(id),c.getString(name)));

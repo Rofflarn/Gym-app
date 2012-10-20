@@ -21,19 +21,16 @@ package com.Grupp01.gymapp.Controller.Profile;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.widget.TextView;
 
-import com.Grupp01.gymapp.R;
 import com.Grupp01.gymapp.Model.Database;
-import com.Grupp01.gymapp.View.Profile.ProfileActivity;
 
 /** 
  * @author GivDev
  * @version 0.1
- * @peer reviewed by
+ * @peer reviewed by Robert Blomberg
  * @date dd/mm/yy
  *
- * Class ProfileDbHandler are a help class for ProfileActivity to write to database. 
+ * Class ProfileDbHandler are a help class for ProfileActivity to write to the database. 
  */
 
 public class ProfileDbHandler extends Database {
@@ -54,7 +51,7 @@ public class ProfileDbHandler extends Database {
 	public void addUser(Profile profile)
 	{
 		open();
-		//writes the input information to Users table
+		//Writes the input information to Users table
 		ourDatabase.execSQL("INSERT INTO Users (UserName, UserBirthday, UserInitialWeight, UserHeight ) VALUES ('" + profile.getName() + "', '" + profile.getAge() + "', "
 				+ profile.getWeigth() + ", " + profile.getLength() + ");");
 		close();

@@ -34,7 +34,7 @@ import com.Grupp01.gymapp.View.Workout.ExerciseListElementData;
 /**
  * @author GivDev
  * @version 0.1
- * @peer reviewed 
+ * @peer reviewed by Robert Blomberg
  * @date 
  * This class contains the necessary methods for accessing the database from the Workout part of
  * the GUI.
