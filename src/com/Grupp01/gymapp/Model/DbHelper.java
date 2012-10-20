@@ -32,7 +32,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DbHelper extends SQLiteOpenHelper{
 
 	private static final String DATABASE_NAME = "GymAppDatabase"; 
-	private static final int DATABASE_VERSION = 1;
+	private static final int DATABASE_VERSION = 2;
 
 	/**
 	 * This method forwards the Context, database name and database version to the
@@ -105,16 +105,44 @@ public class DbHelper extends SQLiteOpenHelper{
 				"ExercisePri INTEGER, ExerciseSec INTEGER, ExerciseName TEXT NOT NULL, " +
 				"ExerciseDesc TEXT, ExerciseNote Text, " +
 				"ExerciseSportId INTEGER, ExerciseTypeId INTEGER);");
-		db.execSQL("INSERT INTO Exercises(ExercisePri, ExerciseSec, ExerciseName, ExerciseDesc, " +
-				"ExerciseNote, ExerciseTypeId) VALUES (3, 1, 'Bench Press', 'Desc', 'Note', 1);");
-		db.execSQL("INSERT INTO Exercises(ExercisePri, ExerciseSec, ExerciseName, ExerciseDesc, " +
-				"ExerciseNote, ExerciseTypeId) VALUES (1, 4, 'Dips', 'Desc', 'Note', 2);");
 		db.execSQL("INSERT INTO Exercises(ExercisePri, ExerciseSec, ExerciseName, " +
-				"ExerciseTypeId) VALUES (1, 2, 'Barbell Curls', 3);");
+				"ExerciseTypeId) VALUES (3, 1, 'Bench press', 1);");
 		db.execSQL("INSERT INTO Exercises(ExercisePri, ExerciseSec, ExerciseName, " +
-				"ExerciseTypeId) VALUES (1, 2, 'Military Press', 1);");
+				"ExerciseTypeId) VALUES (1, 4, 'Dips', 2);");
+		db.execSQL("INSERT INTO Exercises(ExercisePri, ExerciseSec, ExerciseName, " +
+				"ExerciseTypeId) VALUES (1, 2, 'Barbell curls', 3);");
+		db.execSQL("INSERT INTO Exercises(ExercisePri, ExerciseSec, ExerciseName, " +
+				"ExerciseTypeId) VALUES (1, 2, 'Military press', 1);");
 		db.execSQL("INSERT INTO Exercises(ExercisePri, ExerciseSec, ExerciseName, " +
 				"ExerciseTypeId) VALUES (1, 2, 'Deadlift', 1);");
+		db.execSQL("INSERT INTO Exercises(ExercisePri, ExerciseSec, ExerciseName, " +
+				"ExerciseTypeId) VALUES (14,15,'Bench Press', 1);");
+		db.execSQL("INSERT INTO Exercises(ExercisePri, ExerciseSec, ExerciseName, " +
+				"ExerciseTypeId) VALUES (2,8,'Dips', 2);");
+		db.execSQL("INSERT INTO Exercises(ExercisePri, ExerciseSec, ExerciseName, " +
+				"ExerciseTypeId) VALUES (1,22,'Barbell Curls', 3);");
+		db.execSQL("INSERT INTO Exercises(ExercisePri, ExerciseSec, ExerciseName, " +
+				"ExerciseTypeId) VALUES (8,2,'Military Press', 2);");
+		db.execSQL("INSERT INTO Exercises(ExercisePri, ExerciseSec, ExerciseName, " +
+				"ExerciseTypeId) VALUES (13,10,'Deadlift', 2);");
+		db.execSQL("INSERT INTO Exercises(ExerciseName, ExerciseSportId, " +
+				"ExerciseTypeId) VALUES ('Swimming', 9, 1);");
+		db.execSQL("INSERT INTO Exercises(ExerciseName, ExerciseSportId, " +
+				"ExerciseTypeId) VALUES ('Cycling', 1, 1);");
+		db.execSQL("INSERT INTO Exercises(ExerciseName, ExerciseSportId, " +
+				"ExerciseTypeId) VALUES ('Running', 5, 1);");
+		db.execSQL("INSERT INTO Exercises(ExercisePri, ExerciseSec, ExerciseName, " +
+				"ExerciseTypeId) VALUES (2,2,'Pushdowns', 2);");
+		db.execSQL("INSERT INTO Exercises(ExercisePri, ExerciseSec, ExerciseName, " +
+				"ExerciseTypeId) VALUES (8,18,'Shoulder press', 2);");
+		db.execSQL("INSERT INTO Exercises(ExercisePri, ExerciseSec, ExerciseName, " +
+				"ExerciseTypeId) VALUES (11,16,'Full squat', 2);");
+		db.execSQL("INSERT INTO Exercises(ExercisePri, ExerciseSec, ExerciseName, " +
+				"ExerciseTypeId) VALUES (4,11,'Lunge', 2);");
+		db.execSQL("INSERT INTO Exercises(ExercisePri, ExerciseSec, ExerciseName, " +
+				"ExerciseTypeId) VALUES (11,11,'Leg extension', 2);");
+		db.execSQL("INSERT INTO Exercises(ExercisePri, ExerciseSec, ExerciseName, " +
+				"ExerciseTypeId) VALUES (4,11,'Leg press', 2);");
 	}
 
 	/**
@@ -217,7 +245,25 @@ public class DbHelper extends SQLiteOpenHelper{
 		db.execSQL("INSERT INTO Muscles (MuscleName, MuscleGroupId) VALUES ('Abs', 5);");
 		db.execSQL("INSERT INTO Muscles (MuscleName, MuscleGroupId) VALUES ('Gluteus Maximus',6);");
 		db.execSQL("INSERT INTO Muscles (MuscleName, MuscleGroupId) VALUES ('Straight thigh', 6);");
-		db.execSQL("INSERT INTO Muscles (MuscleName, MuscleGroupId) VALUES ('Tailor', 6);");
+		db.execSQL("INSERT INTO Muscles (MuscleName, MuscleGroupId) VALUES " +
+				"('Tailor´s muscle', 6);");
+		db.execSQL("INSERT INTO Muscles (MuscleName, MuscleGroupId) VALUES ('Hips', 2);");
+		db.execSQL("INSERT INTO Muscles (MuscleName, MuscleGroupId) VALUES ('Shoulders', 4);");
+		db.execSQL("INSERT INTO Muscles (MuscleName, MuscleGroupId) VALUES ('Lower back', 3);");
+		db.execSQL("INSERT INTO Muscles (MuscleName, MuscleGroupId) VALUES ('Legs',6);");
+		db.execSQL("INSERT INTO Muscles (MuscleName, MuscleGroupId) VALUES ('Thigh',6);");
+		db.execSQL("INSERT INTO Muscles (MuscleName, MuscleGroupId) VALUES ('Inner thigh',6);");
+		db.execSQL("INSERT INTO Muscles (MuscleName, MuscleGroupId) VALUES ('Back',3);");
+		db.execSQL("INSERT INTO Muscles (MuscleName, MuscleGroupId) VALUES ('Upper pecs',2);");
+		db.execSQL("INSERT INTO Muscles (MuscleName, MuscleGroupId) VALUES ('Lower pecs',2);");
+		db.execSQL("INSERT INTO Muscles (MuscleName, MuscleGroupId) VALUES ('Calf',6);");
+		db.execSQL("INSERT INTO Muscles (MuscleName, MuscleGroupId) VALUES ('Tibias',6);");
+		db.execSQL("INSERT INTO Muscles (MuscleName, MuscleGroupId) VALUES ('Upper traps',4);");
+		db.execSQL("INSERT INTO Muscles (MuscleName, MuscleGroupId) VALUES ('Lower traps',4);");
+		db.execSQL("INSERT INTO Muscles (MuscleName, MuscleGroupId) VALUES ('Traps',4);");
+		db.execSQL("INSERT INTO Muscles (MuscleName, MuscleGroupId) VALUES ('Forearm',1);");
+		db.execSQL("INSERT INTO Muscles (MuscleName, MuscleGroupId) VALUES ('Hand flexors',1);");
+		
 	}
 
 	/**
@@ -297,15 +343,48 @@ public class DbHelper extends SQLiteOpenHelper{
 				"INTEGER PRIMARY KEY AUTOINCREMENT, ExerciseId INTEGER NOT NULL, " +
 				"WorkoutTemplateId INTEGER NOT NULL);");
 		db.execSQL("INSERT INTO WorkoutTemplateExercises (ExerciseId, WorkoutTemplateId) " +
-				"VALUES (1, 1);");
+				"VALUES (1 ,1);");
 		db.execSQL("INSERT INTO WorkoutTemplateExercises (ExerciseId, WorkoutTemplateId) " +
-				"VALUES (2, 1);");
+				"VALUES (2 ,1);");
 		db.execSQL("INSERT INTO WorkoutTemplateExercises (ExerciseId, WorkoutTemplateId) " +
-				"VALUES (3, 1);");
+				"VALUES (3 ,1);");
 		db.execSQL("INSERT INTO WorkoutTemplateExercises (ExerciseId, WorkoutTemplateId) " +
-				"VALUES (1, 2);");
+				"VALUES (6 ,4);");
 		db.execSQL("INSERT INTO WorkoutTemplateExercises (ExerciseId, WorkoutTemplateId) " +
-				"VALUES (2, 2);");
+				"VALUES (7 ,4);");
+		db.execSQL("INSERT INTO WorkoutTemplateExercises (ExerciseId, WorkoutTemplateId) " +
+				"VALUES (8 ,8);");
+		db.execSQL("INSERT INTO WorkoutTemplateExercises (ExerciseId, WorkoutTemplateId) " +
+				"VALUES (1 ,3);");
+		db.execSQL("INSERT INTO WorkoutTemplateExercises (ExerciseId, WorkoutTemplateId) " +
+				"VALUES (2 ,3);");
+		db.execSQL("INSERT INTO WorkoutTemplateExercises (ExerciseId, WorkoutTemplateId) " +
+				"VALUES (3 ,3);");
+		db.execSQL("INSERT INTO WorkoutTemplateExercises (ExerciseId, WorkoutTemplateId) " +
+				"VALUES (4 ,3);");
+		db.execSQL("INSERT INTO WorkoutTemplateExercises (ExerciseId, WorkoutTemplateId) " +
+				"VALUES (5 ,3);");
+		db.execSQL("INSERT INTO WorkoutTemplateExercises (ExerciseId, WorkoutTemplateId) " +
+				"VALUES (8 ,3);");
+		db.execSQL("INSERT INTO WorkoutTemplateExercises (ExerciseId, WorkoutTemplateId) " +
+				"VALUES (4 ,1);");
+		db.execSQL("INSERT INTO WorkoutTemplateExercises (ExerciseId, WorkoutTemplateId) " +
+				"VALUES (10 ,1);");
+		db.execSQL("INSERT INTO WorkoutTemplateExercises (ExerciseId, WorkoutTemplateId) " +
+				"VALUES (11 ,2);");
+		db.execSQL("INSERT INTO WorkoutTemplateExercises (ExerciseId, WorkoutTemplateId) " +
+				"VALUES (12 ,2);");
+		db.execSQL("INSERT INTO WorkoutTemplateExercises (ExerciseId, WorkoutTemplateId) " +
+				"VALUES (13 ,2);");
+		db.execSQL("INSERT INTO WorkoutTemplateExercises (ExerciseId, WorkoutTemplateId) " +
+				"VALUES (14 ,2);");
+		db.execSQL("INSERT INTO WorkoutTemplateExercises (ExerciseId, WorkoutTemplateId) " +
+				"VALUES (10 ,3);");
+		db.execSQL("INSERT INTO WorkoutTemplateExercises (ExerciseId, WorkoutTemplateId) " +
+				"VALUES (12 ,3);");
+		db.execSQL("INSERT INTO WorkoutTemplateExercises (ExerciseId, WorkoutTemplateId) " +
+				"VALUES (13 ,3);");
+		db.execSQL("INSERT INTO WorkoutTemplateExercises (ExerciseId, WorkoutTemplateId) " +
+				"VALUES (14 ,3);");
 	}
-
 }
