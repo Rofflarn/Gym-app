@@ -125,6 +125,11 @@ public class EditExerciseDbHandler extends Database {
 		close();
 		return idNameList;
 	}
+	
+	/**
+	 * 
+	 * @param exerciseData
+	 */
 	public void editExercise(ExerciseData exerciseData)
 	{
 		open();
@@ -136,5 +141,33 @@ public class EditExerciseDbHandler extends Database {
 				"', ExerciseTypeId = '" + 
 				exerciseData.getTypeId() + "' WHERE ExerciseId = '" + exerciseData.getId() + "';");
 		close();
+	}
+	
+	/**
+	 * This method return the number of Exercises in the table Exercises. This is only used for
+	 * testing purposes.
+	 * @return The number of sports.
+	 */
+	public int getNumberOfSports(){
+		open();
+		Cursor c = ourDatabase.rawQuery("SELECT COUNT(*) FROM Sports;", null);
+		c.moveToFirst();
+		int count = c.getInt(0);
+		close();
+		return count;
+	}
+	
+	/**
+	 * This method return the number of Exercises in the table Exercises. This is only used for
+	 * testing purposes.
+	 * @return The number of exercises.
+	 */
+	public int getNumberOMuscles(){
+		open();
+		Cursor c = ourDatabase.rawQuery("SELECT COUNT(*) FROM Muscles;", null);
+		c.moveToFirst();
+		int count = c.getInt(0);
+		close();
+		return count;
 	}
 }
