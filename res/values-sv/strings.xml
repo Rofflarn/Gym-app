@@ -81,6 +81,9 @@
     <string name="really_quit">Vill du verkligen avsluta Ripped?</string>
     <string name="leaving">Lämnar</string>
     <string name="easter">Glad påsk =). Nya speciella påskövningar är skapade.</string>
+    <string name="joels">Joels ölhäfv</string>
+    <string name="joels_descr">Kör bara kör</string>
+    <string name="joels_note">Det finns inget alkholhets på Chalmers</string>
 
     <string-array name="trainingtype_array">
         <item>Kondition</item>

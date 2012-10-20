@@ -127,21 +127,21 @@ public class MainActivity extends SherlockActivity implements OnClickListener {
 		counter++;
 		if(counter==5)
 		{
-			Toast.makeText(this, R.string.easter, Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, R.string.easter, Toast.LENGTH_LONG).show();
 			ListExerciseDbHandler dbHandler = new ListExerciseDbHandler(this);
 			dbHandler.open();
 
 			//Write the new exercise to the database and get the ID in return
-			int id = dbHandler.addExercise("Joels öhlhäfv");
+			int id = dbHandler.addExercise(getResources().getString(R.string.joels));
 			//creates a EditExerciseDbHandler
 			EditExerciseDbHandler get = new EditExerciseDbHandler(this);
 			get.open();
 			ExerciseData exercise = get.getExerciseById(id);
 
 			//Puts description into the exercise
-			exercise.putDesc("Kör bara kör");
+			exercise.putDesc(getResources().getString(R.string.joels_descr));
 			//Puts note to self into the exercise
-			exercise.putNote("Det finns inget alkholhets på Chalmers");
+			exercise.putNote(getResources().getString(R.string.joels_note));
 			//Puts the training type selected from spinner into the exercise
 			exercise.putTypeId(2);
 			exercise.putPri(3);
@@ -157,7 +157,7 @@ public class MainActivity extends SherlockActivity implements OnClickListener {
 		}
 		else
 		{
-			Toast.makeText(this, R.string.not_implemented, Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, R.string.not_implemented, 300).show();
 		}
 	}
 
@@ -210,16 +210,6 @@ public class MainActivity extends SherlockActivity implements OnClickListener {
 		//Get the stored default language from sharedpreferences.
 		SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
 		String lang = sharedPref.getString("pref_key_language", "default");
-
-		//If its set to default, set the language to the phones default laguage.
-
-		/*if(lang.equals("default")){
-			Locale locale = Locale.getDefault();
-			Locale.setDefault(locale);
-			Configuration config = new Configuration();
-			config.locale = locale;
-			getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
-		}*/
 
 		//Otherwise set it to the user selected language.
 
