@@ -54,9 +54,24 @@ public class ProfileDbHandler extends Database {
 	public void addUser(Profile profile)
 	{
 		open();
-		//writes the input information to Users tabel
+		//writes the input information to Users table
 		ourDatabase.execSQL("INSERT INTO Users (UserName, UserBirthday, UserInitialWeight, UserHeight ) VALUES ('" + profile.getName() + "', '" + profile.getAge() + "', "
 				+ profile.getWeigth() + ", " + profile.getLength() + ");");
 		close();
+	}
+	
+	/**
+	 * This method return the number of Users in the table Users. This is only used for
+	 * testing purposes.
+	 * @return The number of users.
+	 */
+	public int numberOfUsers()
+	{
+		open();
+		Cursor c = ourDatabase.rawQuery("SELECT COUNT(*) FROM User;", null);
+		c.moveToFirst();
+		int count = c.getInt(0);
+		close();
+		return count;
 	}
 }
