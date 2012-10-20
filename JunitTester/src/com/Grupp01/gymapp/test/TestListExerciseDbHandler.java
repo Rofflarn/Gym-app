@@ -1,19 +1,47 @@
+/*Copyright © 2012 GivDev
+ * 
+ * This file is part of Gymapp.
+ *
+ *   Gymapp is free software: you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation, either version 3 of the License, or
+ *   (at your option) any later version.
+ *
+ *   Gymapp is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *  along with Gymapp.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ *	Copyright © 2012 GivDev
+ *
+ */
+
 package com.Grupp01.gymapp.test;
 
 import android.test.ActivityInstrumentationTestCase2;
 import com.Grupp01.gymapp.Controller.Exercise.ListExerciseDbHandler;
 import com.Grupp01.gymapp.View.Exercise.ListExerciseActivity;
 
+/** 
+ * @author GivDev
+ * @version 0.1
+ * @peer reviewed by xxxxxxxxxxx
+ * @date dd/mm/yyyy
+ */
 public class TestListExerciseDbHandler extends ActivityInstrumentationTestCase2<ListExerciseActivity>
 {	
 	private ListExerciseActivity activity;
 	private ListExerciseDbHandler dbL;
+	//Constants
 	private final int MANY_EXERCISES = 100;
 	private final int ZERO_EXERCISES = 0;
 	
 	public TestListExerciseDbHandler()	
 	{		
-		super("com.Grupp01.gymapp", ListExerciseActivity.class);	
+		super("com.Grupp01.gymapp", ListExerciseActivity.class);
 	}	
 	
 	protected void setUp() throws Exception	
@@ -23,7 +51,8 @@ public class TestListExerciseDbHandler extends ActivityInstrumentationTestCase2<
 		dbL= new ListExerciseDbHandler(activity);
 	}
 	
-	//Lägger till 100 exercises
+	/**Tests to add 100 exercises
+	 */
 	public void testAddManyExercises()
 	{
 		String name = "n";
@@ -38,7 +67,8 @@ public class TestListExerciseDbHandler extends ActivityInstrumentationTestCase2<
 		dbL.close();
 	}
 	
-	//Lägger till en övning
+	/**Tests to add one exercise
+	 */
 	public void testAddExercise()
 	{
 		dbL.open();
@@ -48,7 +78,8 @@ public class TestListExerciseDbHandler extends ActivityInstrumentationTestCase2<
 		dbL.close();
 	}
 	
-	//Tar bort alla övningar från databasen	
+	/**Tests to delete all exercises
+	 */
 	public void testDeleteAllExercises()	
 	{		
 	  dbL.open();
@@ -61,7 +92,8 @@ public class TestListExerciseDbHandler extends ActivityInstrumentationTestCase2<
 	  dbL.close();
 	}
 	
-	//Tar bort en övning
+	/**Tests to delete on exercise
+	 */
 	public void testDeleteOneExercise()	
 	{
 	  dbL.open();
@@ -73,6 +105,8 @@ public class TestListExerciseDbHandler extends ActivityInstrumentationTestCase2<
 	  dbL.close();
 	}
 	
+	/**Tests to receive a list with IdName
+	 */
 	public void testgetExerciseIdName()
 	{
 		assertEquals("Not match", dbL.getNumberOfExercises(), dbL.getExerciseIdName().size());
