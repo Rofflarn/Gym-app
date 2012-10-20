@@ -106,16 +106,6 @@ public class DbHelper extends SQLiteOpenHelper{
 				"ExerciseDesc TEXT, ExerciseNote Text, " +
 				"ExerciseSportId INTEGER, ExerciseTypeId INTEGER);");
 		db.execSQL("INSERT INTO Exercises(ExercisePri, ExerciseSec, ExerciseName, " +
-				"ExerciseTypeId) VALUES (3, 1, 'Bench press', 1);");
-		db.execSQL("INSERT INTO Exercises(ExercisePri, ExerciseSec, ExerciseName, " +
-				"ExerciseTypeId) VALUES (1, 4, 'Dips', 2);");
-		db.execSQL("INSERT INTO Exercises(ExercisePri, ExerciseSec, ExerciseName, " +
-				"ExerciseTypeId) VALUES (1, 2, 'Barbell curls', 3);");
-		db.execSQL("INSERT INTO Exercises(ExercisePri, ExerciseSec, ExerciseName, " +
-				"ExerciseTypeId) VALUES (1, 2, 'Military press', 1);");
-		db.execSQL("INSERT INTO Exercises(ExercisePri, ExerciseSec, ExerciseName, " +
-				"ExerciseTypeId) VALUES (1, 2, 'Deadlift', 1);");
-		db.execSQL("INSERT INTO Exercises(ExercisePri, ExerciseSec, ExerciseName, " +
 				"ExerciseTypeId) VALUES (14,15,'Bench Press', 1);");
 		db.execSQL("INSERT INTO Exercises(ExercisePri, ExerciseSec, ExerciseName, " +
 				"ExerciseTypeId) VALUES (2,8,'Dips', 2);");
@@ -353,7 +343,7 @@ public class DbHelper extends SQLiteOpenHelper{
 		db.execSQL("INSERT INTO WorkoutTemplateExercises (ExerciseId, WorkoutTemplateId) " +
 				"VALUES (7 ,4);");
 		db.execSQL("INSERT INTO WorkoutTemplateExercises (ExerciseId, WorkoutTemplateId) " +
-				"VALUES (8 ,8);");
+				"VALUES (8 ,4);");
 		db.execSQL("INSERT INTO WorkoutTemplateExercises (ExerciseId, WorkoutTemplateId) " +
 				"VALUES (1 ,3);");
 		db.execSQL("INSERT INTO WorkoutTemplateExercises (ExerciseId, WorkoutTemplateId) " +
