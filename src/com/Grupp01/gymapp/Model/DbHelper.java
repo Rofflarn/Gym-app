@@ -106,11 +106,11 @@ public class DbHelper extends SQLiteOpenHelper{
 				"ExerciseDesc TEXT, ExerciseNote Text, " +
 				"ExerciseSportId INTEGER, ExerciseTypeId INTEGER);");
 		db.execSQL("INSERT INTO Exercises(ExercisePri, ExerciseSec, ExerciseName, " +
-				"ExerciseTypeId) VALUES (14,15,'Bench Press', 1);");
+				"ExerciseTypeId) VALUES (14,15,'Bench Press', 2);");
 		db.execSQL("INSERT INTO Exercises(ExercisePri, ExerciseSec, ExerciseName, " +
 				"ExerciseTypeId) VALUES (2,8,'Dips', 2);");
 		db.execSQL("INSERT INTO Exercises(ExercisePri, ExerciseSec, ExerciseName, " +
-				"ExerciseTypeId) VALUES (1,22,'Barbell Curls', 3);");
+				"ExerciseTypeId) VALUES (1,22,'Barbell Curls', 2);");
 		db.execSQL("INSERT INTO Exercises(ExercisePri, ExerciseSec, ExerciseName, " +
 				"ExerciseTypeId) VALUES (8,2,'Military Press', 2);");
 		db.execSQL("INSERT INTO Exercises(ExercisePri, ExerciseSec, ExerciseName, " +
