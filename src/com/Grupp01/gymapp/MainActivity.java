@@ -27,7 +27,6 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -203,7 +202,7 @@ public class MainActivity extends SherlockActivity implements OnClickListener {
 	 * @param event
 	 */
 	@Override
-	public boolean onKeyDown(int keyCode, KeyEvent event) 
+	public void onBackPressed() 
 	{
 		dialog = new Dialog(this);
 		dialog.setContentView(R.layout.y_n_dialog);
@@ -213,7 +212,7 @@ public class MainActivity extends SherlockActivity implements OnClickListener {
 		((Button) dialog.findViewById(R.id.yes_Button)).setOnClickListener(this);
 		((Button) dialog.findViewById(R.id.no_Button)).setOnClickListener(this);
 		dialog.show();
-		return true;
+		
 	}
 
 	@Override

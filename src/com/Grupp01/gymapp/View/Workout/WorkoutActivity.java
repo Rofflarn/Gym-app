@@ -24,7 +24,6 @@ import java.util.List;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -301,14 +300,14 @@ public class WorkoutActivity extends SherlockActivity implements OnClickListener
 	}
 
 
-			/**
-			 * Is called when the user presses the back-key, prompting
-			 * if user is working out.
-			 * @param keyCode
-			 * @param event
-			 */
-			@Override
-			public boolean onKeyDown(int keyCode, KeyEvent event) 
+	/**
+	 * Is called when the user presses the back-key, prompting
+	 * if user is working out.
+	 * @param keyCode
+	 * @param event
+	 */
+	@Override
+	public void onBackPressed() 
 	{
 		//if user is working out, prompt before quitting
 		if(buttonDone.getVisibility()!=View.GONE)
@@ -323,13 +322,13 @@ public class WorkoutActivity extends SherlockActivity implements OnClickListener
 			((Button) dialog.findViewById(R.id.no_Button)).setOnClickListener(this);
 			dialog.setCancelable(false);
 			dialog.show();
-			return true;
+			
 		}
 		//if not working out
 		else
 		{
 			//back-key working as usual
-			return super.onKeyDown(keyCode, event);
+			super.onBackPressed();
 		}
 	}
 	@Override

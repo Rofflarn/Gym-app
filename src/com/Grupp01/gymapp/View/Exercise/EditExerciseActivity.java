@@ -25,7 +25,6 @@ import java.util.List;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -413,7 +412,7 @@ AdapterView.OnItemSelectedListener, OnClickListener {
 	 * @param event
 	 */
 	@Override
-	public boolean onKeyDown(int keyCode, KeyEvent event) 
+	public void onBackPressed() 
 	{
 		//Create a new dialog
 		dialog = new Dialog(this);
@@ -425,7 +424,6 @@ AdapterView.OnItemSelectedListener, OnClickListener {
 		((Button) dialog.findViewById(R.id.yes_Button)).setOnClickListener(this);
 		((Button) dialog.findViewById(R.id.no_Button)).setOnClickListener(this);
 		dialog.show();
-		return true;
 	}
 	/**
 	 * Listens to the dialog-buttons
