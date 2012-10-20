@@ -36,7 +36,7 @@ import android.widget.TextView;
  * @author GivDev
  * @version 0.1
  * @peer by Robert Blomberg
- * @date 
+ * @date 20/10/12
  *
  */
 public class HistoryAdapter extends ArrayAdapter<PerformedWorkoutData>{

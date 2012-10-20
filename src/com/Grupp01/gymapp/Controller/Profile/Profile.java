@@ -22,7 +22,7 @@ package com.Grupp01.gymapp.Controller.Profile;
  * @author GivDev
  * @version 0.1
  * @peer reviewed by Robert Blomberg
- * @date dd/mm/yy
+ * @date 20/10/12
  * Class Profile holds data about a user. 
  */
 

@@ -28,7 +28,7 @@ import android.database.sqlite.SQLiteDatabase;
  * @author GivDev
  * @version 0.1
  * @peer reviewed by Robert Blomberg
- * @date 
+ * @date 20/10/12
  * Main database-class. Contains methods for creating the database and accessing data.
  */
 public class Database {

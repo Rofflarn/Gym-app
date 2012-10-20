@@ -47,8 +47,8 @@ import com.actionbarsherlock.view.MenuInflater;
 /** 
  * @author GivDev
  * @version 0.1
- * @peer reviewed by
- * @date 05/10/12
+ * @peer reviewed by Erik
+ * @date 20/10/12
  *
  * Class MainActivity starts when the application starts and shows the main menu 
  * with buttons to the available activities. 
@@ -114,11 +114,11 @@ public class MainActivity extends SherlockActivity implements OnClickListener {
 
 	/**
 	 * When button Statistics is pressed Statistics is started.
+	 * Since this is not implemented yet the user will only
+	 * see a toast notifying about this
 	 * 
 	 * @param view
 	 */
-
-
 	public void statistics(View view)
 	{
 		Toast.makeText(this, R.string.not_implemented, Toast.LENGTH_SHORT).show();
@@ -175,22 +175,25 @@ public class MainActivity extends SherlockActivity implements OnClickListener {
 		String lang = sharedPref.getString("pref_key_language", "default");
 
 		//If its set to default, set the language to the phones default laguage.
-		if(lang.equals("default")){
+		
+		/*if(lang.equals("default")){
 			Locale locale = Locale.getDefault();
 			Locale.setDefault(locale);
 			Configuration config = new Configuration();
 			config.locale = locale;
 			getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
-		}
+		}*/
 
 		//Otherwise set it to the user selected language.
-		else{
+		
 			Locale locale = new Locale(lang);
 			Locale.setDefault(locale);
 			Configuration config = new Configuration();
 			config.locale = locale;
 			getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
-		}
+		
+			//Changing language according to thread:
+			//
 
 	}
 	/**

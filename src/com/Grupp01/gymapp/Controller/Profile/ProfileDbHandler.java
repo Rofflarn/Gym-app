@@ -28,7 +28,7 @@ import com.Grupp01.gymapp.Model.Database;
  * @author GivDev
  * @version 0.1
  * @peer reviewed by Robert Blomberg
- * @date dd/mm/yy
+ * @date 20/10/12
  *
  * Class ProfileDbHandler are a help class for ProfileActivity to write to the database. 
  */

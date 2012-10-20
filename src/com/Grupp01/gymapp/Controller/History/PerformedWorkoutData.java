@@ -20,8 +20,8 @@ package com.Grupp01.gymapp.Controller.History;
 /**
  * @author GivDev
  * @version 0.1
- * @peer reviewed 
- * @date 
+ * @peer reviewed by Erik
+ * @date 20/10/12
  * This class contains the necessary methods for accessing the database from the History part of
  * the GUI.
  */

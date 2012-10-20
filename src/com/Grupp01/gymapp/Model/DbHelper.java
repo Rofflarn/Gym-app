@@ -25,8 +25,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 /**
  * @author GivDev
  * @version 0.1
- * @peer reviewed 
- * @date 
+ * @peer reviewed by Erik
+ * @date 20/10/12
  * Database help class, used by Database.java to create and set up database.
  */
 public class DbHelper extends SQLiteOpenHelper{

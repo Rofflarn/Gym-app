@@ -1,0 +1,143 @@
+<class-diagram version="1.0.10" icons="true" always-add-relationships="true" generalizations="true" realizations="true" 
+  associations="true" dependencies="true" nesting-relationships="true">  
+  <class id="1" corner="BOTTOM_RIGHT" language="java" name="com.Grupp01.gymapp.View.Workout.RegisterStaticActivity" 
+    project="com.Grupp01.gymapp.MainActivity" 
+    file="/com.Grupp01.gymapp.MainActivity/src/com/Grupp01/gymapp/View/Workout/RegisterStaticActivity.java" 
+    binary="false">    
+    <position height="-1" width="-1" x="562" y="197"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="2" corner="BOTTOM_RIGHT" language="java" name="com.Grupp01.gymapp.View.Workout.ExerciseArrayAdapter" 
+    project="com.Grupp01.gymapp.MainActivity" 
+    file="/com.Grupp01.gymapp.MainActivity/src/com/Grupp01/gymapp/View/Workout/ExerciseArrayAdapter.java" binary="false">    
+    <position height="-1" width="-1" x="283" y="878"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="3" corner="BOTTOM_RIGHT" language="java" name="com.Grupp01.gymapp.View.Workout.WorkoutActivity" 
+    project="com.Grupp01.gymapp.MainActivity" 
+    file="/com.Grupp01.gymapp.MainActivity/src/com/Grupp01/gymapp/View/Workout/WorkoutActivity.java" binary="false">    
+    <position height="-1" width="-1" x="215" y="261"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="4" corner="BOTTOM_RIGHT" language="java" name="com.Grupp01.gymapp.View.Workout.ExerciseViewHolder" 
+    project="com.Grupp01.gymapp.MainActivity" 
+    file="/com.Grupp01.gymapp.MainActivity/src/com/Grupp01/gymapp/View/Workout/ExerciseViewHolder.java" binary="false">    
+    <position height="-1" width="-1" x="862" y="739"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="5" corner="BOTTOM_RIGHT" language="java" name="com.Grupp01.gymapp.View.Workout.RegisterDynamicActivity" 
+    project="com.Grupp01.gymapp.MainActivity" 
+    file="/com.Grupp01.gymapp.MainActivity/src/com/Grupp01/gymapp/View/Workout/RegisterDynamicActivity.java" 
+    binary="false">    
+    <position height="-1" width="-1" x="-75" y="212"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="6" corner="BOTTOM_RIGHT" language="java" name="com.Grupp01.gymapp.View.Workout.RegisterCardioActivity" 
+    project="com.Grupp01.gymapp.MainActivity" 
+    file="/com.Grupp01.gymapp.MainActivity/src/com/Grupp01/gymapp/View/Workout/RegisterCardioActivity.java" 
+    binary="false">    
+    <position height="-1" width="-1" x="-72" y="651"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="7" corner="BOTTOM_RIGHT" language="java" name="com.Grupp01.gymapp.View.Workout.EditWorkoutActivity" 
+    project="com.Grupp01.gymapp.MainActivity" 
+    file="/com.Grupp01.gymapp.MainActivity/src/com/Grupp01/gymapp/View/Workout/EditWorkoutActivity.java" binary="false">    
+    <position height="-1" width="-1" x="515" y="622"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="8" corner="BOTTOM_RIGHT" language="java" name="com.Grupp01.gymapp.View.Workout.ExerciseListElementData" 
+    project="com.Grupp01.gymapp.MainActivity" 
+    file="/com.Grupp01.gymapp.MainActivity/src/com/Grupp01/gymapp/View/Workout/ExerciseListElementData.java" 
+    binary="false">    
+    <position height="-1" width="-1" x="197" y="667"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="9" corner="BOTTOM_RIGHT" language="java" name="com.Grupp01.gymapp.View.Workout.ListWorkoutActivity" 
+    project="com.Grupp01.gymapp.MainActivity" 
+    file="/com.Grupp01.gymapp.MainActivity/src/com/Grupp01/gymapp/View/Workout/ListWorkoutActivity.java" binary="false">    
+    <position height="-1" width="-1" x="909" y="433"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <dependency id="10">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="8"/>  
+  </dependency>  
+  <dependency id="11">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="9"/>  
+  </dependency>  
+  <dependency id="12">    
+    <bendpoint x="488" y="450"/>    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="9"/>  
+  </dependency>  
+  <dependency id="13">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="6"/>  
+  </dependency>  
+  <dependency id="14">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="3"/>  
+  </dependency>  
+  <dependency id="15">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <dependency id="16">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <association id="17">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="18" name="exerciseList"/>      
+      <multiplicity id="19" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="20">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="5"/>  
+  </dependency>  
+  <dependency id="21">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="7"/>  
+  </dependency>  
+  <dependency id="22">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="2"/>  
+  </dependency>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true"/>    
+    <operations public="true" package="true" protected="true" private="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

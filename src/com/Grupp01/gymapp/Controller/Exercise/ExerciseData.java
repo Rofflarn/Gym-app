@@ -21,8 +21,8 @@ package com.Grupp01.gymapp.Controller.Exercise;
 /**
  * @author GivDev
  * @version 0.1
- * @peer reviewed 
- * @date 
+ * @peer reviewed by Erik
+ * @date 20/10/12
  * This class contains the data that is stored in an exercise object. The instance variables is
  * identical to the fields in the Exercises table in the database.
  */

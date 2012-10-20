@@ -21,8 +21,8 @@ package com.Grupp01.gymapp.Controller;
 /**
  * @author GivDev
  * @version 0.1
- * @peer reviewed 
- * @date 
+ * @peer reviewed by Erik
+ * @date 20/10/12
  * This class is used for containing an id as an int and a name as a string.
  */
 public class IdName {
