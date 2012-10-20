@@ -21,6 +21,8 @@
 package com.Grupp01.gymapp.test;
 
 import android.test.ActivityInstrumentationTestCase2;
+import android.widget.Button;
+
 import com.Grupp01.gymapp.MainActivity;
 import com.Grupp01.gymapp.View.Exercise.EditExerciseActivity;
 import com.Grupp01.gymapp.View.Exercise.ListExerciseActivity;
@@ -65,12 +67,15 @@ public class TestExercise extends ActivityInstrumentationTestCase2<MainActivity>
 	/**Testing to open viewExercise and the push the homebutton
 	 * Reference to Test-case in documentation: 3.2
 	 */
-	public void testExerciseHomeButton()
+	public void testAAAExerciseHomeButton()
 	{
 		////Clicks on the exercise button and then the homebutton in viewExercise Activity
 		//and verifies that the Main activity is shown
 		solo.clickOnImageButton(1);
+		solo.sleep(SLEEP);
 		solo.clickOnActionBarHomeButton();
+		solo.sleep(SLEEP);
+		solo.sleep(SLEEP);
 		solo.assertCurrentActivity("View Main activity", MainActivity.class);
 	}
 	
@@ -101,7 +106,7 @@ public class TestExercise extends ActivityInstrumentationTestCase2<MainActivity>
 		solo.enterText(0, "");
 		solo.clickOnButton(1);
 		//Checks that an error message is displayed in the dialog textbox
-		assertEquals("Error, text should be shown", solo.getEditText(0).getHint().equals("Please enter a name"));
+		assertTrue("Error, text should be shown", solo.getEditText(0).getHint().equals("Please enter a name"));
 	}
 	
 	/**Testing to add cardio exercise whith minimal settings
@@ -283,15 +288,6 @@ public class TestExercise extends ActivityInstrumentationTestCase2<MainActivity>
 		solo.assertCurrentActivity(VIEW_EXERCISEACTIVITY, ListExerciseActivity.class);
 	}
 	
-	/**Testing to rename an exsisting exercise
-	 * Reference to Test-case in documentation: 3.10
-	 */
-	public void testRenameExercise()
-	{
-		//Clicks exercise button
-		solo.clickOnImageButton(1);
-	}
-	
 	/**Testing to cancel when adding a new exercise
 	 * Reference to Test-case in documentation: 3.9
 	 */
@@ -304,6 +300,7 @@ public class TestExercise extends ActivityInstrumentationTestCase2<MainActivity>
 		solo.clickOnMenuItem(ADD_EXERCISE);
 		solo.enterText(0, EXERCISE_NAME);
 		solo.clickOnButton(1);
+		solo.sleep(SLEEP);
 		//Pushs cancel
 		solo.clickOnButton(0);
 		//checks that listExercise activity is shown

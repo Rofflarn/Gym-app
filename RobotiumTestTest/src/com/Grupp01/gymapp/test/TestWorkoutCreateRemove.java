@@ -42,12 +42,12 @@ public class TestWorkoutCreateRemove extends ActivityInstrumentationTestCase2<Li
 
 	 private Solo solo;
 	 public static final String WORKOUT_NAME = "Workout name";
-	 public static final String JOELS = "Joels";
+	 public static final String FULL_BODY = "Full body";
 	 public static final String ADD_WORKOUT = "ADD WORKOUT";
 	 public static final String WRONG_ACTIVITY = "Wrong activity"; 
 	 public static final String ADD_SET = "Add set";
 	 public static final String BENCH_PRESS = "Bench press";
-	 public static final String CHINS = "Chins";
+	 public static final String DIPS = "Dips";
 	 public static final String PUSH_UPS = "Push-ups";
 	 public static final String EDIT_WORKOUT = "EDIT WORKOUT!";
 	 public static final String SAVE = "Save";
@@ -75,7 +75,7 @@ public class TestWorkoutCreateRemove extends ActivityInstrumentationTestCase2<Li
 	 * the test is ok.
 	 * Reference to Test-case in documentation: 2.1
 	 */
-	public void testAddAWorkout()
+	public void testAAAddAWorkout()
 	{	
 		//Click on the button "Add workout"
 		solo.clickOnMenuItem(ADD_WORKOUT);
@@ -140,7 +140,7 @@ public class TestWorkoutCreateRemove extends ActivityInstrumentationTestCase2<Li
 	 */
 	public void testStartEditWorkoutActivity()
 	{
-		solo.clickOnText(JOELS);
+		solo.clickOnText(FULL_BODY);
 		//Test to get into the edit workout activity from the workout activity
 		solo.clickOnText(EDIT_WORKOUT);
 		//Is it the right activity? If wrong, "Wrong activity" will be writen in
@@ -156,7 +156,7 @@ public class TestWorkoutCreateRemove extends ActivityInstrumentationTestCase2<Li
 	public void testToLongClickEdit()
 	{
 		//Test to longclick
-		solo.clickLongOnText(JOELS);
+		solo.clickLongOnText(FULL_BODY);
 		//Click on edit
 		solo.clickOnText("Edit");
 		solo.assertCurrentActivity(WRONG_ACTIVITY, EditWorkoutActivity.class);
@@ -166,20 +166,20 @@ public class TestWorkoutCreateRemove extends ActivityInstrumentationTestCase2<Li
 	 * 	the test is ok.
 	 * Reference to Test-case in documentation: 2.5
 	 */
-	public void testCheckedActivityOnSave()
+	public void testAACheckedActivityOnSave()
 	{
 		//Scroll to bottom to save time
 		solo.scrollToBottom();
 		solo.clickOnText(WORKOUT_NAME);
 		solo.clickOnText(EDIT_WORKOUT);
 		//Click on a exercise in edit workout, now it is marked as checked
-		solo.clickOnText(CHINS);
+		solo.clickOnText(DIPS);
 		//Save the workout
 		solo.clickOnText(SAVE);
 		//Go into the workout and see if it is saved
 		solo.clickOnText(EDIT_WORKOUT);
 		//Is the checkbox of the exercise that was clicked checked?
-		assertTrue(solo.isCheckBoxChecked(0));
+		assertTrue(solo.isCheckBoxChecked(1));
 	}
 	
 	/** Testing if an exercise is checked after it has been checked(it exist in workoutActivity).
@@ -193,7 +193,7 @@ public class TestWorkoutCreateRemove extends ActivityInstrumentationTestCase2<Li
 		solo.clickOnText(WORKOUT_NAME);
 		//Check if the exercise that was clicked is still checked
 		//after reboot
-		assertTrue(solo.searchText(CHINS));
+		assertTrue(solo.searchText(DIPS));
 	}
 	
 	/** Testing if an exercise is unchecked, if the exercise is unchecked after pressing it two times
@@ -207,12 +207,12 @@ public class TestWorkoutCreateRemove extends ActivityInstrumentationTestCase2<Li
 		solo.clickOnText(WORKOUT_NAME);
 		solo.clickOnText(EDIT_WORKOUT);
 		//Press the exercise so it is unchecked
-		solo.clickOnText(CHINS);
+		solo.clickOnText(DIPS);
 		//Click on the save-button
 		solo.clickOnText(SAVE);
 		solo.clickOnText(EDIT_WORKOUT);
 		//Check if the exercise is not checked
-		assertFalse(solo.isCheckBoxChecked(0));
+		assertFalse(solo.isCheckBoxChecked(1));
 	}
 	
 	/** Testing if an exercise is not checked after it has been not checked(it doesnt exist in workoutActivity).
@@ -224,7 +224,7 @@ public class TestWorkoutCreateRemove extends ActivityInstrumentationTestCase2<Li
 		solo.scrollToBottom();
 		solo.clickOnText(WORKOUT_NAME);
 		//Check that the exercise isn't listed in workout
-		assertFalse(solo.searchText(CHINS));
+		assertFalse(solo.searchText(DIPS));
 	}
 	
 	/**Testing that the "longclick-function to delete" works. After longclicking robotium
