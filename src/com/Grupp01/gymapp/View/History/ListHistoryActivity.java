@@ -105,18 +105,7 @@ public class ListHistoryActivity extends SherlockListActivity {
 	 */
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id){
-		//Get the history object that was clicked
-		PerformedWorkoutData h = (PerformedWorkoutData) getListAdapter().getItem(position);
-
-		//Start a new activity that will display performed exercises for that history
-		Intent intent = new Intent(this, ShowSingleHistoryActivity.class);
-
-		//To let the activity open corrent history object we pass on the database ID 
-		//to the new activity.
-		intent.putExtra(HISTORY_ID, h.getId());
-
-
-		//startActivity() Disabled until activity is implemented correctly
+		
 	}
 
 
