@@ -23,7 +23,7 @@ import com.Grupp01.gymapp.Model.Database;
  */
 public class HistoryDbHandler extends Database {
 
-	//Used for timeformating equation
+	//Used for time formating equation
 	public static final int NUMBER_SECONDS_IN_HOUR  = 3600;
 	public static final int NUMBER_SECONDS_IN_MIN = 60;
 	
@@ -41,9 +41,9 @@ public class HistoryDbHandler extends Database {
 	}
 
 	/**
-	 * This method is used for return every unice exerciseId from a performed workout
+	 * This method is used for return every unique exerciseId from a performed workout
 	 * @param workoutId WorkoutId for the selected performed workout.
-	 * @return LinkedList containing Integers of all unice ExerciseId in a performed workout
+	 * @return LinkedList containing Integers of all unique ExerciseId in a performed workout
 	 */
 	public List<Integer> getAllExerciseIdFromPerformedWorkout(int workoutId)
 	{
@@ -66,7 +66,7 @@ public class HistoryDbHandler extends Database {
 	}
 
 	/**
-	 * Gets exerciseTypeId for an exerciseId.
+	 * Gets exerciseTypeId for a list of exerciseId's.
 	 * @param exerciseIdList A LinkedList<Integer> of exerciseId.
 	 * @return LinkedList<ExerciseIdTypeId> with exerciseId and exerciseTypeId as parameters.
 	 */
@@ -74,6 +74,7 @@ public class HistoryDbHandler extends Database {
 	{
 		List<ExerciseIdTypeId> idTypeIdList = new LinkedList<ExerciseIdTypeId>();
 		open();
+		//Loop through the input list and get the associated ExerciseTypeId from the database
 		for(Integer id: exerciseIdList)
 		{
 			Cursor c = ourDatabase.rawQuery("SELECT ExerciseTypeId FROM Exercises Where " +

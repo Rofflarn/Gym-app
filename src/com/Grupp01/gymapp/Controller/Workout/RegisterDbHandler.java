@@ -30,7 +30,7 @@ import com.Grupp01.gymapp.Model.Database;
 /**
  * @author GivDev
  * @version 0.1
- * @peer reviewed 
+ * @peer reviewed by Robert Blomberg
  * @date 
  * This class contains the necessary methods for accessing the database from the ListExercise part
  * of the GUI.
