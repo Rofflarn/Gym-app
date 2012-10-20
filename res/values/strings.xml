@@ -85,6 +85,9 @@
     <string name="really_quit">Do you really want to quit Gym-app?</string>
     <string name="leaving">Leaving</string>    
     <string name="easter">Happy Easter =). A very special easter exercises is created</string>
+    <string name="joels">Joels ölhäfv</string>
+    <string name="joels_descr">Kör bara kör</string>
+    <string name="joels_note">Det finns inget alkholhets på Chalmers</string>
 
     <string-array name="trainingtype_array">
         <item>Cardio</item>
