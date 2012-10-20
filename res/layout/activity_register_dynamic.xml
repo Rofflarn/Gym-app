@@ -48,7 +48,7 @@
             android:layout_height="fill_parent"
             android:layout_weight="1.0"
             android:onClick="onClick"
-            android:text="@string/Done" />
+            android:text="@string/done" />
     </LinearLayout>
 
     <ScrollView
