@@ -58,7 +58,9 @@ public class TestEditExerciseDbHandler extends ActivityInstrumentationTestCase2<
 	public void testGetExerciseById()
 	{
 		dbE.open();
+		//Recives exercise data
 		ExerciseData exerciseData = dbE.getExerciseById(1);
+		//Tests id, name and type
 		assertEquals("Wrong id", exerciseData.getId(), 1);
 		assertNotNull("No name", exerciseData.getName());
 		assertNotNull("No type id", exerciseData.getTypeId());
@@ -70,6 +72,7 @@ public class TestEditExerciseDbHandler extends ActivityInstrumentationTestCase2<
 	public void testGetSports()
 	{
 		dbE.open();
+		//Gets list with all sports
 		List<IdName> allSports = dbE.getSports();
 		assertEquals("List not contains rigth nr of sport", allSports.size(), dbE.getNumberOfSports());
 		dbE.close();
@@ -80,6 +83,7 @@ public class TestEditExerciseDbHandler extends ActivityInstrumentationTestCase2<
 	public void testGetMuscles()
 	{
 		dbE.open();
+		//Gets list with all muscles
 		List<IdName> allMuscles = dbE.getMuscles();
 		assertEquals("List not contains rigth nr of muscles", allMuscles.size(), dbE.getNumberOfMuscles());
 		dbE.close();
@@ -90,8 +94,11 @@ public class TestEditExerciseDbHandler extends ActivityInstrumentationTestCase2<
 	public void testEditExercise()
 	{
 		dbE.open();
+		//Gets an exercise
 		ExerciseData exerciseData = dbE.getExerciseById(1);
+		//Changes descriptiton
 		exerciseData.putDesc("Edit");
+		//Edits the exercise
 		dbE.editExercise(exerciseData);
 		assertTrue("Wrong Description", dbE.getExerciseById(1).getDesc().equals("Edit"));
 		dbE.close();

@@ -57,7 +57,9 @@ public class TestListExerciseDbHandler extends ActivityInstrumentationTestCase2<
 	{
 		String name = "n";
 		dbL.open();
+		//Gets the number of exercises
 		int nrOfExercise = dbL.getNumberOfExercises();
+		//Adds 100 exercises
 		for(int i = 0; i < 100; i++)
 		{		
 			dbL.addExercise(name);
@@ -72,7 +74,9 @@ public class TestListExerciseDbHandler extends ActivityInstrumentationTestCase2<
 	public void testAddExercise()
 	{
 		dbL.open();
+		//Gets number of exercises
 		int nrOfExercise = dbL.getNumberOfExercises();
+		//Adds 1 exercise
 		dbL.addExercise("test");
 		assertEquals("Did not work to add exercise", nrOfExercise + 1, dbL.getNumberOfExercises());
 		dbL.close();
@@ -83,7 +87,9 @@ public class TestListExerciseDbHandler extends ActivityInstrumentationTestCase2<
 	public void testDeleteAllExercises()	
 	{		
 	  dbL.open();
+	  //Gets number of exercises
 	  int nrOfExercises = dbL.getNumberOfExercises();
+	  //Delets all exercises
 	  for(int i = 0; i <= nrOfExercises; i++)
 	  {
 		  dbL.deleteExercise(i);
@@ -97,10 +103,15 @@ public class TestListExerciseDbHandler extends ActivityInstrumentationTestCase2<
 	public void testDeleteOneExercise()	
 	{
 	  dbL.open();
+	  //Get number of exercises
 	  int nrOfExercises = dbL.getNumberOfExercises();
+	  //Adds one exercise
 	  int exerciseId = dbL.addExercise("test");
+	  //Checks that one exercise is added
 	  assertEquals("Did not work to add an exercise", dbL.getNumberOfExercises(), nrOfExercises + 1);
+	  //Delets the exercise
 	  dbL.deleteExercise(exerciseId);
+	  //Checks that the exercise is removed
 	  assertEquals("Did not work to delete exercise from database", nrOfExercises, dbL.getNumberOfExercises());
 	  dbL.close();
 	}

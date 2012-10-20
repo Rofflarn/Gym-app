@@ -55,7 +55,9 @@ public class TestProfileDbHandler extends ActivityInstrumentationTestCase2<Profi
 	 */
 	public void testAddProfile()
 	{
+		//Gets number of users
 		int nrOfUsers = dbP.numberOfUsers();
+		//Adds one user
 		dbP.addUser(new Profile("Name", "20", 70, 180));
 		assertEquals("Did not work to add a user", dbP.numberOfUsers(), nrOfUsers + 1);
 	}

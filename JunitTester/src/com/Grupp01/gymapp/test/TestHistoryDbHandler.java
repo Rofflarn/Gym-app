@@ -53,6 +53,7 @@ public class TestHistoryDbHandler extends ActivityInstrumentationTestCase2<ListH
 	 */
 	public void testGetPerformedWorkouts()
 	{
+		//Saves the size of the list with all performed workouts
 		int nrOfPerformedWorkouts = dbH.getPerformedWorkoutsList().size();
 		assertEquals("Performed activitys not match", nrOfPerformedWorkouts, dbH.getNumberOfPerformedWorkouts());
 	}
