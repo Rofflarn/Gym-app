@@ -46,7 +46,9 @@ import com.actionbarsherlock.view.MenuInflater;
 
 /** 
  * The Graphical layout where the user Edit a Workout.
- *  @author Robert Blomberg
+ * @author Robert Blomberg
+ * @peer reviewed by Erik
+ * @date 20/10/12
  */	
 
 public class EditWorkoutActivity extends SherlockActivity implements OnClickListener

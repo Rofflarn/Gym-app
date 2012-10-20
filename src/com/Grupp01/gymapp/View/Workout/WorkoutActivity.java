@@ -47,7 +47,7 @@ import com.actionbarsherlock.view.MenuItem;
 /**
  * @author GivDev
  * @version 0.1
- * @peer reviewed by Robert(07/10-2012)
+ * @peer reviewed by Robert
  * @date 04/10/12
  *
  * Class WorkoutActivity will be shown if the user selects a workout routine from the list in

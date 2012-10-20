@@ -47,8 +47,8 @@ import com.actionbarsherlock.view.MenuInflater;
 /** 
  * @author GivDev
  * @version 0.1
- * @peer reviewed by
- * @date 05/10/12
+ * @peer reviewed by Erik
+ * @date 20/10/12
  *
  * Class MainActivity starts when the application starts and shows the main menu 
  * with buttons to the available activities. 

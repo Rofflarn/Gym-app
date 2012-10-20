@@ -19,6 +19,16 @@
 
 package com.Grupp01.gymapp.Controller.Workout;
 
+/**
+ * @author GivDev
+ * @version 0.1
+ * @peer reviewed by Robert Blomberg
+ * @date 20/10/12
+ * 
+ * This class contains information about one set for an exercise. The data it contains
+ * depends on which exercise it belongs to. 
+ *
+ */
 public class SetsData {
 
 	private int min;

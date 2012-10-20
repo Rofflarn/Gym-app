@@ -50,8 +50,8 @@ import com.actionbarsherlock.view.MenuItem;
 /**
  * @author GivDev
  * @version 0.1
- * @peer reviewed by
- * @date 04/10/12
+ * @peer reviewed by Robert
+ * @date 20/10/12
  *
  * Class ListWorkoutActivity will show all workout routines that the user has created,
  *
