@@ -46,7 +46,11 @@ public class TestExercise extends ActivityInstrumentationTestCase2<MainActivity>
 	private static final String NOTES = "Notes";
 	private static final String DESC = "Description";
 	
-	public TestExercise() {
+	/**Constructor for the class. Calls Main Activity since it will
+	 * start from there
+	 */
+	public TestExercise() 
+	{
 		super(MainActivity.class);
 	}
 	/**Method for a "clean" start on every test case. Runs in the beginning

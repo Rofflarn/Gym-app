@@ -53,11 +53,16 @@ public class TestWorkoutCreateRemove extends ActivityInstrumentationTestCase2<Li
 	 public static final String SAVE = "Save";
 	 public static final int TIME = 1500;
 	
+	 
+	 /**Constructor for the class. Calls Main Activity since it will
+	  * start from there
+	  */
 	public TestWorkoutCreateRemove()
 	{
 		super(ListWorkoutActivity.class);
 	}
-	/**The constructor for the test, start the class it extends and start the automated testing
+	/**Method for a "clean" start on every test case. Runs in the beginning
+	 * of every test case.
 	 * 
 	 */
 	 protected void setUp() throws Exception {

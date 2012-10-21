@@ -41,7 +41,12 @@ public class TestHistory extends ActivityInstrumentationTestCase2<MainActivity> 
 	private static final String START = "Start";
 	private static final String DONE = "Done";
 	private Solo solo;
-	public TestHistory() {
+	
+	/**Constructor for the class. Calls Main Activity since it will
+	 * start from there
+	 */
+	public TestHistory() 
+	{
 		super(MainActivity.class);
 	}
 	/**Method for a "clean" start on every test case. Runs in the beginning

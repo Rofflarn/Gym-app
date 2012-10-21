@@ -48,11 +48,18 @@ public class TestProfile extends ActivityInstrumentationTestCase2<MainActivity> 
 	private static final String CORRECT_INFORMATION = "Fill in correct information";
 	private static final String ERROR_MESSAGE = "Should generate error message";
 	private static final String WRONG_ACTIVITY = "Wrong activity";
+	
+	
+	/**Constructor for the class. Calls Main Activity since it will
+	 * start from there
+	 */
 	public TestProfile()
 	{
 		super(MainActivity.class);
 	}
-	/**The constructor for the test, start the class it extends and start the automated testing
+	
+	/**Method for a "clean" start on every test case. Runs in the beginning
+	 * of every test case.
 	 * 
 	 */
 	protected void setUp() throws Exception
