@@ -52,7 +52,9 @@ public class TestProfile extends ActivityInstrumentationTestCase2<MainActivity> 
 	{
 		super(MainActivity.class);
 	}
-
+	/**The constructor for the test, start the class it extends and start the automated testing
+	 * 
+	 */
 	protected void setUp() throws Exception
 	{
 		super.setUp();
@@ -183,7 +185,8 @@ public class TestProfile extends ActivityInstrumentationTestCase2<MainActivity> 
 		//Checks that a error message is shown
 		assertTrue(ERROR_MESSAGE, solo.searchText(CORRECT_INFORMATION));
 	}
-	
+	/**When a test method are done, close it.
+	 */
 	protected void tearDown() throws Exception
 	{
 		solo.finishOpenedActivities();

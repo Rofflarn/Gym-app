@@ -240,6 +240,9 @@ public class ListWorkoutActivity extends SherlockActivity implements OnClickList
 		//Activate longclick menu in the list
 		registerForContextMenu(mainListView);
 
+		/**When clicking an item in the list, go to Workout Activity
+		 * 
+		 */
 		//Set each row in the list clickable and fetch the title of the workout
 		//to be able to open correct workout in WorkoutActivity
 		mainListView.setOnItemClickListener(new OnItemClickListener() {

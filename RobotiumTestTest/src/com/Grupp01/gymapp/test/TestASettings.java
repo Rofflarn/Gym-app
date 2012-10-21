@@ -43,6 +43,9 @@ public class TestASettings extends ActivityInstrumentationTestCase2<MainActivity
 		super(MainActivity.class);
 	}
 
+	/**Method for a "clean" start on every test case. Runs in the beginning
+	 * of every test case.
+	 */
 	protected void setUp() throws Exception {
 		super.setUp();
 		solo = new Solo(getInstrumentation(),getActivity());
@@ -141,7 +144,8 @@ public class TestASettings extends ActivityInstrumentationTestCase2<MainActivity
 		assertTrue(unit.equals("lb"));
 		assertFalse(unit.equals("kg"));
 	}
-	
+	/**When a test method are done, close it.
+	 */
 	protected void tearDown() throws Exception {
 		solo.finishOpenedActivities();
 	}

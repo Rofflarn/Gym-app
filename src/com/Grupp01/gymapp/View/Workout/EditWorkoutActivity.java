@@ -82,7 +82,8 @@ public class EditWorkoutActivity extends SherlockActivity implements OnClickList
 		createEditWorkout();
 
 	}
-
+	/**Sets the title for activity
+	 */
 	private void getSetTitle() {
 		WorkoutDbHandler dbHandler = new WorkoutDbHandler(this);
 		dbHandler.open();
@@ -257,7 +258,8 @@ public class EditWorkoutActivity extends SherlockActivity implements OnClickList
 		
 		showConfirmationBeforeExit();
 	}
-	
+	/**When clicking the back-button a diaog will pop-up
+	 */
 	private void showConfirmationBeforeExit()
 	{
 		//Show a confirmation dialog before aborting the editing

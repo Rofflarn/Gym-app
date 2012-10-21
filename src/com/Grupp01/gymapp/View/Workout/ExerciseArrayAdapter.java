@@ -43,7 +43,11 @@ public class ExerciseArrayAdapter extends ArrayAdapter<ExerciseListElementData>
 {
 
 	private LayoutInflater inflater;
-
+	/**The constructor for class
+	 * 
+	 * @param context			Gets info from previous activity
+	 * @param exerciseList 		the list to put into the ArrayAdapter
+	 */
 	public ExerciseArrayAdapter( Context context, List<ExerciseListElementData> exerciseList )
 	{
 		super( context, R.layout.editworkoutrow, R.id.rowTextView, exerciseList );

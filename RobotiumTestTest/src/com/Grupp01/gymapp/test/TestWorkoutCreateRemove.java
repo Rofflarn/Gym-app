@@ -35,7 +35,7 @@ import com.jayway.android.robotium.solo.Solo;
  * @peer reviewed by
  * @date 11/10/12
  *
- * Test class for workout
+ * Test class for Adding or creating a Workout
  *  
  */
 public class TestWorkoutCreateRemove extends ActivityInstrumentationTestCase2<ListWorkoutActivity> {
@@ -57,7 +57,9 @@ public class TestWorkoutCreateRemove extends ActivityInstrumentationTestCase2<Li
 	{
 		super(ListWorkoutActivity.class);
 	}
-
+	/**The constructor for the test, start the class it extends and start the automated testing
+	 * 
+	 */
 	 protected void setUp() throws Exception {
 		super.setUp();
 		solo = new Solo(getInstrumentation(),getActivity());
@@ -256,7 +258,8 @@ public class TestWorkoutCreateRemove extends ActivityInstrumentationTestCase2<Li
 		//Check if the EditText-Field writes out "Invalid value!"
 		assertEquals("Please enter a name", solo.getEditText(0).getHint());
 	}
-	
+	/**When a test method are done, close it.
+	 */
 	protected void tearDown() throws Exception 
 	{
 		solo.finishOpenedActivities();

@@ -121,6 +121,9 @@ public class SettingsActivity extends SherlockPreferenceActivity{
 		//Set up the only button for the dialog which will dismiss the dialog
 		aDialog.setNeutralButton(R.string.ok, new DialogInterface.OnClickListener(){
 
+			/**When clicking ok, the dialog will be closed.
+			 * 
+			 */
 			public void onClick(DialogInterface d, int arg0){
 				d.dismiss();
 			}

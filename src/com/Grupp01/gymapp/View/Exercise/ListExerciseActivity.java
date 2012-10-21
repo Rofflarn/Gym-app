@@ -145,7 +145,10 @@ public class ListExerciseActivity extends SherlockActivity implements OnClickLis
 		//android-open-contextmenu-on-short-click-pass-item-clicked-details
 		
 	}
-	
+	/**Sets the menu when longclicking
+	 * @param menu 		The menu that pops-up
+	 * @return boolean true = menu shown, false = menu hidden
+	 */
 	public boolean onContextItemSelected(MenuItem menu){
 		AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) 
 				menu.getMenuInfo();

@@ -32,6 +32,8 @@ import com.jayway.android.robotium.solo.Solo;
  * @version 1.0
  * @peer reviewed by Robert Blomberg
  * @date 12/10/2012
+ * 
+ * Test class for exercises
  */
 
 public class TestExercise extends ActivityInstrumentationTestCase2<MainActivity> {
@@ -47,7 +49,10 @@ public class TestExercise extends ActivityInstrumentationTestCase2<MainActivity>
 	public TestExercise() {
 		super(MainActivity.class);
 	}
-
+	/**Method for a "clean" start on every test case. Runs in the beginning
+	 * of every test case.
+	 * 
+	 */
 	protected void setUp() throws Exception {
 		super.setUp();
 		solo = new Solo(getInstrumentation(), getActivity());
@@ -324,7 +329,8 @@ public class TestExercise extends ActivityInstrumentationTestCase2<MainActivity>
 		//checks that listExercise activity is shown
 		solo.assertCurrentActivity(VIEW_EXERCISEACTIVITY, ListExerciseActivity.class);
 	}
-
+	/**When a test method are done, close it.
+	 */
 	protected void tearDown() throws Exception
 	{
 		solo.finishOpenedActivities();
