@@ -14,7 +14,7 @@ public class TestHistory extends ActivityInstrumentationTestCase2<MainActivity> 
 	private static final String DONE = "Done";
 	private Solo solo;
 	public TestHistory() {
-		super("com.Grupp01.gymapp", MainActivity.class);
+		super(MainActivity.class);
 	}
 
 	protected void setUp() throws Exception {

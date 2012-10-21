@@ -26,9 +26,9 @@ import com.jayway.android.robotium.solo.Solo;
 
 /** 
  * @author GivDev
- * @version 0.1
- * @peer reviewed by
- * @date dd/mm/yy
+ * @version 1.0
+ * @peer reviewed by Robert Blomberg
+ * @date 21/10/2012
  * Tests profile activity. 
  */
 
@@ -50,7 +50,7 @@ public class TestProfile extends ActivityInstrumentationTestCase2<MainActivity> 
 	private static final String WRONG_ACTIVITY = "Wrong activity";
 	public TestProfile()
 	{
-		super("com.Grupp01.gymapp", MainActivity.class);
+		super(MainActivity.class);
 	}
 
 	protected void setUp() throws Exception
@@ -60,7 +60,7 @@ public class TestProfile extends ActivityInstrumentationTestCase2<MainActivity> 
 	}
 	
 	/**Testing to start profile activity.
-	 * Reference to Test-case in documentation: x.x
+	 * Reference to Test-case in documentation: 4.1
 	 */
 	public void testOpenProfile()
 	{
@@ -71,7 +71,7 @@ public class TestProfile extends ActivityInstrumentationTestCase2<MainActivity> 
 	}
 	
 	/**Testing to add a profile.
-	 * Reference to Test-case in documentation: x.x
+	 * Reference to Test-case in documentation: 4.2
 	 */
 	public void testAddProfile()
 	{
@@ -92,7 +92,7 @@ public class TestProfile extends ActivityInstrumentationTestCase2<MainActivity> 
 	}
 	
 	/**Testing to cancel when trying to add a profile.
-	 * Reference to Test-case in documentation: x.x
+	 * Reference to Test-case in documentation: 4.3
 	 */
 	public void testAbortAddProfile()
 	{
@@ -106,7 +106,7 @@ public class TestProfile extends ActivityInstrumentationTestCase2<MainActivity> 
 	
 	/**Testing to that a error message is shown when trying to add a profile
 	 * whitout name
-	 * Reference to Test-case in documentation: x.x
+	 * Reference to Test-case in documentation: 4.4
 	 */
 	public void testEmptyName()
 	{
@@ -118,15 +118,15 @@ public class TestProfile extends ActivityInstrumentationTestCase2<MainActivity> 
 		solo.typeText(LENGTH_TEXTFIELD, LENGTH);
 		solo.sleep(SLEEP);
 		solo.typeText(WEIGTH_TEXTFIELD, WEIGTH);
-		//Clicks uppdate profile button
+		//Clicks update profile button
 		solo.clickOnButton(1);
 		//Checks that a error message is shown
 		assertTrue(ERROR_MESSAGE, solo.searchText(CORRECT_INFORMATION));
 	}
 	
 	/**Testing to that a error message is shown when trying to add a profile
-	 * whitout age
-	 * Reference to Test-case in documentation: x.x
+	 * without age
+	 * Reference to Test-case in documentation: 4.4
 	 */
 	public void testEmptyAge()
 	{
@@ -145,8 +145,8 @@ public class TestProfile extends ActivityInstrumentationTestCase2<MainActivity> 
 	}
 	
 	/**Testing to that a error message is shown when trying to add a profile
-	 * whitout length
-	 * Reference to Test-case in documentation: x.x
+	 * without length
+	 * Reference to Test-case in documentation: 4.4
 	 */
 	public void testEmptyLength()
 	{
@@ -165,8 +165,8 @@ public class TestProfile extends ActivityInstrumentationTestCase2<MainActivity> 
 	}
 	
 	/**Testing to that a error message is shown when trying to add a profile
-	 * whitout weigth
-	 * Reference to Test-case in documentation: x.x
+	 * without weigth
+	 * Reference to Test-case in documentation: 4.4
 	 */
 	public void testEmptyWeigth()
 	{

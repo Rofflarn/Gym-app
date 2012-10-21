@@ -29,9 +29,9 @@ import com.jayway.android.robotium.solo.Solo;
 
 /** 
  * @author GivDev
- * @version 0.1
+ * @version 1.0
  * @peer reviewed by Robert Blomberg
- * @date dd/mm/yyyy
+ * @date 12/10/2012
  */
 
 public class TestExercise extends ActivityInstrumentationTestCase2<MainActivity> {
@@ -45,7 +45,7 @@ public class TestExercise extends ActivityInstrumentationTestCase2<MainActivity>
 	private static final String DESC = "Description";
 	
 	public TestExercise() {
-		super("com.Grupp01.gymapp", MainActivity.class);
+		super(MainActivity.class);
 	}
 
 	protected void setUp() throws Exception {
