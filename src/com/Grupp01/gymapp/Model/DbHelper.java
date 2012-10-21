@@ -133,6 +133,8 @@ public class DbHelper extends SQLiteOpenHelper{
 				"ExerciseTypeId) VALUES (11,11,'Leg extension', 2);");
 		db.execSQL("INSERT INTO Exercises(ExercisePri, ExerciseSec, ExerciseName, " +
 				"ExerciseTypeId) VALUES (4,11,'Leg press', 2);");
+		db.execSQL("INSERT INTO Exercises(ExercisePri, ExerciseSec, ExerciseName, " +
+				"ExerciseTypeId) VALUES (3,13,'Plank bridge', 3);");;
 	}
 
 	/**
@@ -376,5 +378,7 @@ public class DbHelper extends SQLiteOpenHelper{
 				"VALUES (13 ,3);");
 		db.execSQL("INSERT INTO WorkoutTemplateExercises (ExerciseId, WorkoutTemplateId) " +
 				"VALUES (14 ,3);");
+		db.execSQL("INSERT INTO WorkoutTemplateExercises (ExerciseId, WorkoutTemplateId) " +
+				"VALUES (15 ,3);");
 	}
 }
