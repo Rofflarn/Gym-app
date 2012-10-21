@@ -4,12 +4,10 @@ import android.test.ActivityInstrumentationTestCase2;
 
 import com.Grupp01.gymapp.MainActivity;
 import com.Grupp01.gymapp.View.History.ListHistoryActivity;
-import com.Grupp01.gymapp.View.History.ShowSingleHistoryActivity;
 import com.jayway.android.robotium.solo.Solo;
 
 public class TestHistory extends ActivityInstrumentationTestCase2<MainActivity> {
 	private static final int WORKOUT_BUTTON = 0;
-	private static final int HISTORY_BUTTON = 2;
 	private static final String JOELS_PASS = "Joels pass";
 	private static final String START = "Start";
 	private static final String DONE = "Färdig";

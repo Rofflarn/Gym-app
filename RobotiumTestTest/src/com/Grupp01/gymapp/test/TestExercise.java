@@ -21,7 +21,6 @@
 package com.Grupp01.gymapp.test;
 
 import android.test.ActivityInstrumentationTestCase2;
-import android.widget.Button;
 
 import com.Grupp01.gymapp.MainActivity;
 import com.Grupp01.gymapp.View.Exercise.EditExerciseActivity;
