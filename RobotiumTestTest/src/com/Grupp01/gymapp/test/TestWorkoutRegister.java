@@ -217,7 +217,9 @@ public class TestWorkoutRegister extends ActivityInstrumentationTestCase2<ListWo
 		TextView text = (TextView) solo.getView(com.Grupp01.gymapp.R.id.thisTimeSets);
 		//Check if an error message pops-up and if the set was added
 		if(solo.searchText("Cant add set with 0 repetitions"))
+		{
 				 assertTrue(text.equals(""));
+		}
 		
 	}
 	
