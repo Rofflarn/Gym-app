@@ -207,8 +207,8 @@ AdapterView.OnItemSelectedListener, OnClickListener {
 	 */
 	public void cancel(View view)
 	{
-		//Kills this activity
-		finish();
+		//Show confirmation so the user hasnt clicked the wrong button
+		showConfirmationBeforeExit();
 	}
 	/**
 	 * Retrives a List<IdName> of musclesfrom the database and adds the names of the muscles to a 
@@ -414,19 +414,29 @@ AdapterView.OnItemSelectedListener, OnClickListener {
 	@Override
 	public void onBackPressed() 
 	{
-		//Create a new dialog
-		dialog = new Dialog(this);
-		dialog.setContentView(R.layout.y_n_dialog);
-		dialog.setTitle(R.string.leaving);
-		((TextView) dialog.findViewById(R.id.TV_dialog)).setText(R.string.done_editing);
-		
-		//Set listeners to buttons
-		((Button) dialog.findViewById(R.id.yes_Button)).setOnClickListener(this);
-		((Button) dialog.findViewById(R.id.no_Button)).setOnClickListener(this);
-		dialog.show();
+		showConfirmationBeforeExit();
 	}
 	/**
-	 * Listens to the dialog-buttons
+	 * Show a confirmation dialog when the user press either cancel or the back button
+	 * so the user hasn't pressed this by mistake and loose unsaved changes.
+	 * 
+	 */
+	private void showConfirmationBeforeExit()
+	{
+		//Create a new dialog
+				dialog = new Dialog(this);
+				dialog.setContentView(R.layout.y_n_dialog);
+				dialog.setTitle(R.string.leaving);
+				((TextView) dialog.findViewById(R.id.TV_dialog)).setText(R.string.done_editing);
+				
+				//Set listeners to buttons
+				((Button) dialog.findViewById(R.id.yes_Button)).setOnClickListener(this);
+				((Button) dialog.findViewById(R.id.no_Button)).setOnClickListener(this);
+				dialog.show();
+	}
+	
+	/**
+	 * Is called when the user pressed any of the buttons in the dialog window
 	 */
 	@Override
 	public void onClick(View view) {
