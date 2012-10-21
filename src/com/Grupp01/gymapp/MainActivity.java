@@ -59,6 +59,7 @@ import com.actionbarsherlock.view.MenuInflater;
 public class MainActivity extends SherlockActivity implements OnClickListener {
 	private Dialog dialog;
 	private int counter;
+	private static final int TIME = 300;
 	/**
 	 * Instantiate the class with necessary method calls.
 	 * 
@@ -158,7 +159,7 @@ public class MainActivity extends SherlockActivity implements OnClickListener {
 		}
 		else
 		{
-			Toast.makeText(this, R.string.not_implemented, 300).show();
+			Toast.makeText(this, R.string.not_implemented, TIME).show();
 		}
 	}
 
@@ -247,9 +248,13 @@ public class MainActivity extends SherlockActivity implements OnClickListener {
 	@Override
 	public void onClick(View view) {
 		if(view == ((Button) dialog.findViewById(R.id.yes_Button)))
+		{
 			finish();
+		}
 		else
+		{
 			dialog.dismiss();
+		}
 	}
 
 

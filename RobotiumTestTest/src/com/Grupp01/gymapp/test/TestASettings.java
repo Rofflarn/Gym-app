@@ -38,6 +38,7 @@ import com.jayway.android.robotium.solo.Solo;
 
 public class TestASettings extends ActivityInstrumentationTestCase2<MainActivity> {
 	private static final int SETTINGS_BUTTON = 5;
+	private static final int TIME = 1000;
 	private Solo solo;
 	/**Constructor for the class. Calls Main Activity since it will
 	 * start from there
@@ -101,12 +102,12 @@ public class TestASettings extends ActivityInstrumentationTestCase2<MainActivity
 		//Select kilometers as unit
 		solo.clickOnText("Select desired distance");
 		solo.clickOnText("Kilometers");
-		solo.sleep(1500);
+		solo.sleep(TIME);
 		
 		//Get sharedpreferences and make sure "km" is set to the correct unit
 		SharedPreferences temp = PreferenceManager.getDefaultSharedPreferences(solo.getCurrentActivity());
 		String unit = temp.getString("pref_key_distance", "km");
-		solo.sleep(1500);
+		solo.sleep(TIME);
 		assertTrue(unit.equals("km"));
 		assertFalse(unit.equals("mi"));
 		
