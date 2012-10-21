@@ -40,7 +40,7 @@ public class TestExercise extends ActivityInstrumentationTestCase2<MainActivity>
 	private Solo solo;
 	private static final int SLEEP = 1000;
 	private static final String EXERCISE_NAME = "Exercise Name";
-	private static final String ADD_EXERCISE = "ADD EXERCISE!";
+	private static final String ADD_EXERCISE = "ADD EXERCISE";
 	private static final String VIEW_EXERCISEACTIVITY = "Should view exercise activity";
 	private static final String NOTES = "Notes";
 	private static final String DESC = "Description";
@@ -255,7 +255,7 @@ public class TestExercise extends ActivityInstrumentationTestCase2<MainActivity>
 		solo.assertCurrentActivity(VIEW_EXERCISEACTIVITY, ListExerciseActivity.class);
 	}
 	
-	/**Testing to delete an exercise
+	/**Testing to 	 an exercise
 	 * Reference to Test-case in documentation: 3.8
 	 */
 	public void testDeleteExercise()
@@ -303,6 +303,7 @@ public class TestExercise extends ActivityInstrumentationTestCase2<MainActivity>
 		solo.sleep(SLEEP);
 		//Pushs cancel
 		solo.clickOnButton(0);
+		solo.clickOnButton(1);
 		//checks that listExercise activity is shown
 		solo.assertCurrentActivity(VIEW_EXERCISEACTIVITY, ListExerciseActivity.class);
 	}
@@ -320,6 +321,7 @@ public class TestExercise extends ActivityInstrumentationTestCase2<MainActivity>
 		solo.sleep(SLEEP);
 		//Clicks cancel
 		solo.clickOnButton(0);
+		solo.clickOnButton(1);
 		//checks that listExercise activity is shown
 		solo.assertCurrentActivity(VIEW_EXERCISEACTIVITY, ListExerciseActivity.class);
 	}

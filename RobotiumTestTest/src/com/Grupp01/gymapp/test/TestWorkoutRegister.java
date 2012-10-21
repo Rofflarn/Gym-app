@@ -18,9 +18,9 @@ public class TestWorkoutRegister extends ActivityInstrumentationTestCase2<ListWo
 	 public static final String SWIMMING = "Swimming";
 	 public static final String WRONG_ACTIVITY = "Wrong activity"; 
 	 public static final String ADD_SET = "Add set";
-	 public static final String BENCH_PRESS = "Bench Press";
+	 public static final String DIPS = "Dips";
 	 public static final String CHINS = "Chins";
-	 public static final String PUSH_UPS = "Push-ups";
+	 public static final String PLANK_BRIDGE = "Plank bridge";
 	 public static final String EDIT_WORKOUT = "EDIT WORKOUT!";
 	 public static final String START = "Start";
 	 public static final int TIME = 1500;
@@ -115,7 +115,7 @@ public class TestWorkoutRegister extends ActivityInstrumentationTestCase2<ListWo
 		solo.clickOnText(FULL_BODY);
 		solo.clickOnText(START);
 		//Start the exercise called "Push-ups"
-		solo.clickOnText(PUSH_UPS);
+		solo.clickOnText(PLANK_BRIDGE);
 		//Check if the current activity is a Static-exercise activity
 		solo.assertCurrentActivity(WRONG_ACTIVITY, RegisterStaticActivity.class);
 	}
@@ -128,7 +128,7 @@ public class TestWorkoutRegister extends ActivityInstrumentationTestCase2<ListWo
 	{
 		solo.clickOnText(FULL_BODY);
 		solo.clickOnText(START);
-		solo.clickOnText(PUSH_UPS);
+		solo.clickOnText(PLANK_BRIDGE);
 		//Add an invalid time, first field minutes
 		solo.enterText(0, "0");
 		//Second field seconds
@@ -150,7 +150,7 @@ public class TestWorkoutRegister extends ActivityInstrumentationTestCase2<ListWo
 	{
 		solo.clickOnText(FULL_BODY);
 		solo.clickOnText(START);
-		solo.clickOnText(PUSH_UPS);
+		solo.clickOnText(PLANK_BRIDGE);
 		//Add a valid time
 		solo.enterText(0, "0");
 		solo.enterText(1, "3");
@@ -172,7 +172,7 @@ public class TestWorkoutRegister extends ActivityInstrumentationTestCase2<ListWo
 		solo.clickOnText(FULL_BODY);
 		solo.clickOnText(START);
 		//Start the exercise called "Bench-press"
-		solo.clickOnText(BENCH_PRESS);
+		solo.clickOnText(DIPS);
 		//Check if the current activity is a dynamic-exercise activity
 		solo.assertCurrentActivity(WRONG_ACTIVITY, RegisterDynamicActivity.class);
 	}
@@ -184,7 +184,7 @@ public class TestWorkoutRegister extends ActivityInstrumentationTestCase2<ListWo
 	{
 		solo.clickOnText(FULL_BODY);
 		solo.clickOnText(START);
-		solo.clickOnText(BENCH_PRESS);
+		solo.clickOnText(DIPS);
 		//Enter an invalid number of reps, first field is reps
 		solo.enterText(0, "0");
 		//Second field is weight
@@ -207,7 +207,7 @@ public class TestWorkoutRegister extends ActivityInstrumentationTestCase2<ListWo
 	{
 		solo.clickOnText(FULL_BODY);
 		solo.clickOnText(START);
-		solo.clickOnText(BENCH_PRESS);
+		solo.clickOnText(DIPS);
 		//
 		solo.enterText(0, "");
 		solo.enterText(1, "3");
@@ -229,7 +229,7 @@ public class TestWorkoutRegister extends ActivityInstrumentationTestCase2<ListWo
 	{
 		solo.clickOnText(FULL_BODY);
 		solo.clickOnText(START);
-		solo.clickOnText(BENCH_PRESS);
+		solo.clickOnText(DIPS);
 		solo.enterText(0, "3");
 		solo.enterText(1, "3");
 		solo.clickOnButton(ADD_SET);

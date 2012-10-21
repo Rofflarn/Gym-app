@@ -4,7 +4,6 @@ import android.test.ActivityInstrumentationTestCase2;
 
 import com.Grupp01.gymapp.MainActivity;
 import com.Grupp01.gymapp.View.History.ListHistoryActivity;
-import com.Grupp01.gymapp.View.History.ShowSingleHistoryActivity;
 import com.jayway.android.robotium.solo.Solo;
 
 public class TestHistory extends ActivityInstrumentationTestCase2<MainActivity> {
