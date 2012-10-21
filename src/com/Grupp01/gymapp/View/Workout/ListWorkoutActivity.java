@@ -188,17 +188,17 @@ public class ListWorkoutActivity extends SherlockActivity implements OnClickList
 				(AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
 
 		//Get id of the long clicked workout
-		int workoutId = idNameList.get(info.position).getId();
+		int id = idNameList.get(info.position).getId();
 
 		//Detect which button was pressed
 		switch (item.getItemId()){
 		//Edit menu item pressed, open edit workout activity
 		case R.id.contextMenuEdit:
-			editWorkouts(workoutId);
+			editWorkouts(id);
 			return true;
 			//Delete menu item pressed, delete the activity and refresh listview.
 		case R.id.contextMenuDelete:
-			deleteWorkout(workoutId);
+			deleteWorkout(id);
 			return true;
 		}
 		return true;
@@ -367,7 +367,7 @@ public class ListWorkoutActivity extends SherlockActivity implements OnClickList
 				newWorkoutNameField.setText("");
 
 				//Show a hint to the user.
-				newWorkoutNameField.setHint(R.string.invalid_value);
+				newWorkoutNameField.setHint(R.string.enter_correct_name);
 				newWorkoutNameField.setHintTextColor(Color.RED);
 			}
 		}

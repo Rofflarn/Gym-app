@@ -432,9 +432,13 @@ AdapterView.OnItemSelectedListener, OnClickListener {
 	public void onClick(View view) {
 		//if yes button was clicked
 		if(view == ((Button) dialog.findViewById(R.id.yes_Button)))
+		{
 			//close this actvity
 			finish();
+		}
 		else
+		{
 			dialog.dismiss();
+		}
 	}
 }

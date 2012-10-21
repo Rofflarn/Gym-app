@@ -26,7 +26,6 @@
     <string name="hint_comment">Add a personal comment</string>
     <string name="title_activity_profile">Profile</string>
     <string name="menu_addWorkout">Add workout</string>
-    <string name="title_activity_workout">WorkoutActivity</string>
     <string name="menu_editWorkout">Edit workout!</string>
     <string name="title_activity_register_dynamic">RegisterDynamicActivity</string>
     <string name="title_activity_register_static">RegisterStaticActivity</string>
@@ -43,9 +42,6 @@
     <string name="register_weight">Weight</string>
     <string name="textview_musclegroup">Muscle group</string>
     <string name="textview_muscle">Muscle</string>
-    <string name="title_activity_database">DatabaseActivity</string>
-    <string name="title_activity_sqlview">SQLView</string>
-    <string name="title_activity_show_single_history">ShowSingleHistoryActivity</string>
     <string name="title_activity_list_exercise">Exercises</string>
     <string name="dialog_new_workout_title">Enter name of Workout:</string>
     <string name="title_activity_settings">Settings</string>
@@ -88,6 +84,7 @@
     <string name="joels">Joels ölhäfv</string>
     <string name="joels_descr">Kör bara kör</string>
     <string name="joels_note">Det finns inget alkholhets på Chalmers</string>
+    <string name="edit">Edit</string>
 
     <string-array name="trainingtype_array">
         <item>Cardio</item>

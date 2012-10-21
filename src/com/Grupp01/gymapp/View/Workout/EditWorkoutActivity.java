@@ -145,7 +145,7 @@ public class EditWorkoutActivity extends SherlockActivity implements OnClickList
 			if(temp.length() == 0)
 			{
 				//set the editTextfield to
-				name.setHint("Fyll i ett namn");
+				name.setHint(R.string.enter_correct_name);
 				name.setHintTextColor(Color.RED);
 			}
 			//Else, create intent and start EditExerciseActivity
@@ -183,7 +183,7 @@ public class EditWorkoutActivity extends SherlockActivity implements OnClickList
 		//setup a new dialog
 		dialog = new Dialog(this);
 		dialog.setContentView(R.layout.dialog);
-		dialog.setTitle("New Exercise");
+		dialog.setTitle(R.string.new_exercise);
 		
 		//Create listeners to the button
 		((Button) dialog.findViewById(R.id.add_Button)).setOnClickListener(this);
@@ -250,10 +250,10 @@ public class EditWorkoutActivity extends SherlockActivity implements OnClickList
 		final AlertDialog.Builder closeEditWorkoutDialog = new AlertDialog.Builder(this);
 
 		//Set message
-		closeEditWorkoutDialog.setMessage("Are you sure you want to close workout?");
+		closeEditWorkoutDialog.setMessage(R.string.done_editing);
 
 		//If pressing the "Yes"-button
-		closeEditWorkoutDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener()
+		closeEditWorkoutDialog.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener()
 		{
 			/** When the user click the "Yes"-button, go back to ListWorkout*/
 			public void onClick(DialogInterface dialog, int whichButton)
@@ -262,10 +262,10 @@ public class EditWorkoutActivity extends SherlockActivity implements OnClickList
 			}
 		});
 		//If pressing the "Cancel"-button
-		closeEditWorkoutDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener()
+		closeEditWorkoutDialog.setNegativeButton(R.string.no, new DialogInterface.OnClickListener()
 		{
 			@Override
-			/** When the user click the "Cancel"-button, close the dialog*/
+			/** When the user click the "No"-button, close the dialog*/
 			public void onClick(DialogInterface dialog, int whichButton)
 			{
 				dialog.cancel();
