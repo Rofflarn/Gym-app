@@ -66,7 +66,7 @@ public class TestExercise extends ActivityInstrumentationTestCase2<MainActivity>
 	/**Testing to open viewExercise and the push the homebutton
 	 * Reference to Test-case in documentation: 3.2
 	 */
-	public void testAAAExerciseHomeButton()
+	public void testExerciseHomeButton()
 	{
 		////Clicks on the exercise button and then the homebutton in viewExercise Activity
 		//and verifies that the Main activity is shown
@@ -261,7 +261,7 @@ public class TestExercise extends ActivityInstrumentationTestCase2<MainActivity>
 	{
 		//Clicks exercise button
 		solo.clickOnImageButton(1);
-		solo.clickLongInList(0);
+		solo.clickLongOnText(EXERCISE_NAME);
 		solo.clickOnText("Delete");
 		solo.assertCurrentActivity(VIEW_EXERCISEACTIVITY, ListExerciseActivity.class);
 	}
@@ -320,7 +320,7 @@ public class TestExercise extends ActivityInstrumentationTestCase2<MainActivity>
 		solo.sleep(SLEEP);
 		//Clicks cancel
 		solo.clickOnButton(0);
-		solo.clickOnButton(1);
+		solo.clickOnText("Yes");
 		//checks that listExercise activity is shown
 		solo.assertCurrentActivity(VIEW_EXERCISEACTIVITY, ListExerciseActivity.class);
 	}

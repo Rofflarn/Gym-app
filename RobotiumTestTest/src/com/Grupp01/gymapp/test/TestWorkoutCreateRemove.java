@@ -75,7 +75,7 @@ public class TestWorkoutCreateRemove extends ActivityInstrumentationTestCase2<Li
 	 * the test is ok.
 	 * Reference to Test-case in documentation: 2.1
 	 */
-	public void testAAAddAWorkout()
+	public void testAddAWorkout()
 	{	
 		//Click on the button "Add workout"
 		solo.clickOnMenuItem(ADD_WORKOUT);
@@ -166,7 +166,7 @@ public class TestWorkoutCreateRemove extends ActivityInstrumentationTestCase2<Li
 	 * 	the test is ok.
 	 * Reference to Test-case in documentation: 2.5
 	 */
-	public void testAACheckedActivityOnSave()
+	public void testCheckedActivityOnSave()
 	{
 		//Scroll to bottom to save time
 		solo.scrollToBottom();
@@ -254,7 +254,7 @@ public class TestWorkoutCreateRemove extends ActivityInstrumentationTestCase2<Li
 		//Click on the "add workout"-button without writing a workout name
 		solo.clickOnButton(1);
 		//Check if the EditText-Field writes out "Invalid value!"
-		assertEquals("Invalid value!", solo.getEditText(0).getHint());
+		assertEquals("Please enter a name", solo.getEditText(0).getHint());
 	}
 	
 	protected void tearDown() throws Exception 
