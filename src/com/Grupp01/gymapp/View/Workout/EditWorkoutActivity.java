@@ -209,6 +209,12 @@ public class EditWorkoutActivity extends SherlockActivity implements OnClickList
 		// When item is tapped, toggle checked properties of CheckBox and Exercise.
 		listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
 		{
+			/**Makes the item checked or unchecked
+			 * @param parent
+			 * @param item
+			 * @param position
+			 * @param id
+			 */
 			public void onItemClick( AdapterView<?> parent, View item, int position, long id)
 			{
 				//Get the item the user clicks on
@@ -273,7 +279,9 @@ public class EditWorkoutActivity extends SherlockActivity implements OnClickList
 		dialog.setCancelable(false);
 		dialog.show();
 	}
-	
+	/**When clicking on the "go back"-button
+	 * 
+	 */
 	public void onBackPressed() 
 	{
 		showConfirmationBeforeExit();	

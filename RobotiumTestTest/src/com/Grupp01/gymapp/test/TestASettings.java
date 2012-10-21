@@ -39,7 +39,11 @@ import com.jayway.android.robotium.solo.Solo;
 public class TestASettings extends ActivityInstrumentationTestCase2<MainActivity> {
 	private static final int SETTINGS_BUTTON = 5;
 	private Solo solo;
-	public TestASettings() {
+	/**Constructor for the class. Calls Main Activity since it will
+	 * start from there
+	 */
+	public TestASettings() 
+	{
 		super(MainActivity.class);
 	}
 
