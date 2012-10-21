@@ -331,14 +331,21 @@ public class WorkoutActivity extends SherlockActivity implements OnClickListener
 			super.onBackPressed();
 		}
 	}
+	
+	/**
+	 * Take action depending on users selection from the quit dialog.
+	 */
 	@Override
 	public void onClick(View view) 
 	{
 		if(view == ((Button) dialog.findViewById(R.id.yes_Button)))
+		{
 			finish();
+		}
 		else
+		{
 			dialog.dismiss();
-
+		}
 
 	}
 

@@ -22,13 +22,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <ListView
-        android:id="@+id/activeWorkoutList"
-        android:layout_width="fill_parent"
-        android:selectable ="false"
-        android:layout_height="fill_parent" />
+
 
     <LinearLayout
+        android:id="@+id/workoutBottomButtons"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -37,7 +34,7 @@
         android:paddingBottom="1dp"
         android:paddingLeft="4dp"
         android:paddingRight="4dp"
-        android:paddingTop="5dp" >
+        android:paddingTop="5dp">
 
         <Button
             android:id="@+id/button_done"
@@ -55,5 +52,12 @@
             android:onClick="start"
             android:text="@string/start" />
     </LinearLayout>
+    
+        <ListView
+        android:id="@+id/activeWorkoutList"
+        android:layout_width="fill_parent"
+        android:selectable ="false"
+        android:layout_height="fill_parent"
+        android:layout_above="@id/workoutBottomButtons" />
 
 </RelativeLayout>

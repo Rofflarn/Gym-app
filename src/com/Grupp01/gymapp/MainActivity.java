@@ -125,6 +125,7 @@ public class MainActivity extends SherlockActivity implements OnClickListener {
 	public void statistics(View view)
 	{
 		counter++;
+		//User has pressed the button five times, create the easter egg.
 		if(counter==5)
 		{
 			Toast.makeText(this, R.string.easter, Toast.LENGTH_LONG).show();
