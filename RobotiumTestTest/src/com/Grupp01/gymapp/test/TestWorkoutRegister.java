@@ -103,7 +103,7 @@ public class TestWorkoutRegister extends ActivityInstrumentationTestCase2<ListWo
 		solo.sleep(TIME);
 		TextView text = (TextView) solo.getView(com.Grupp01.gymapp.R.id.thisTimeSetsCardio);
 		//Check if the set was added
-		assertEquals("16m 10s x8km, ", text.getText());
+		assertTrue(text.getText().equals("16m 10s x8km, ") || text.getText().equals("16m 10s x8mi"));
 	}
 	
 	/** Testing to start a static exercise, the starting activity should be
@@ -160,7 +160,7 @@ public class TestWorkoutRegister extends ActivityInstrumentationTestCase2<ListWo
 		//Get the textview
 		TextView text = (TextView) solo.getView(com.Grupp01.gymapp.R.id.thisTimeSetsStatic);
 		//Check if the set was added
-		assertEquals("0:3 3 | ",text.getText() );
+		assertTrue(text.getText().equals("0m 3s x 3kg,")|| text.getText().equals("0m 3s x 3lb,"));
 	}
 	
 	/** Testing to start a dynamic exercise, the starting activity should be
@@ -237,7 +237,7 @@ public class TestWorkoutRegister extends ActivityInstrumentationTestCase2<ListWo
 		//get textview
 		TextView text = (TextView) solo.getView(com.Grupp01.gymapp.R.id.thisTimeSets);
 		//Check if the set was added
-		assertEquals(" 3x3kg, ", text.getText());
+		assertTrue(text.getText().equals(" 3x3kg, ")|| text.getText().equals(" 3x3lb, "));
 	}
 	/**When a test method are done, close it.
 	 */
